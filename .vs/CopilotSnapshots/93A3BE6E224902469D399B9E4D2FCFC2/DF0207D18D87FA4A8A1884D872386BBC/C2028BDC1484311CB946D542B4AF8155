@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - HITEC University Website</title>
+
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/magnific-popup.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/faculty-sidebar.css")" />
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <!-- backtotop - start -->
+    <div class="xb-backtotop">
+        <a href="#" class="scroll">
+            <i class="far fa-arrow-up"></i>
+        </a>
+    </div>
+    <!-- backtotop - end -->
+    <!-- Preloader - Start -->
+    <div id="preloader">
+        <div id="loader" class="loader">
+            <div class="loader-container">
+                <div class="loader-icon">
+                    <img src="@Url.Content("~/Content/img/logo/HitecLogo.svg")" alt="preloader">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader - End -->
+    <!-- Header -->
+    @Html.Partial("_Header")
+    <!-- Header - End -->
+    <!-- Main Content -->
+    <main>
+        @RenderBody()
+    </main>
+    <!-- Main Content - End -->
+    <!-- Footer -->
+    @Html.Partial("_Footer")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/swiper")
+    @Scripts.Render("~/bundles/vendor")
+    <script src="@Url.Content("~/Scripts/jquery.magnific-popup.min.js")"></script>
+    @Scripts.Render("~/bundles/main")
+
+    <!-- Footer - End -->
+</body>
+</html>

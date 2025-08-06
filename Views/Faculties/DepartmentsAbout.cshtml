@@ -1,0 +1,66 @@
+@* Change the model to expect a single department object *@
+@model Website.Models.tblDepartment
+
+@{
+    ViewBag.Title = Model != null ? Model.Title + " Details" : "Department Details";
+}
+
+<body>
+    <div class="body_wrap">
+        <main aria-labelledby="title">
+            @if (Model != null)
+            {
+                <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="@(string.IsNullOrEmpty(Model.Banner) ? "/Content/img/bg/about_bg.jpg" : Model.Banner)">
+                    <div class="container">
+                        <div class="breadcrumb__content text-center">
+                            <h2 class="breadcrumb__title mt-25" style="color: #000">Department of @Model.Title</h2>
+                            <p class="breadcrumb__desc mb-50" style="color: #000">@Model.Code Department</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="department-banner-image" style="text-align:center; margin-bottom:40px;">
+                    <img src="~/Content/img/bg/video_img.jpg" alt="Department Banner" style="max-width:100%; height:auto; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                </section>
+                <section class="breadcrumb bg_img ul_li  ml-40" style="padding: 0; min-height: 0;" data-background="@(string.IsNullOrEmpty(Model.Banner) ? "/Content/img/bg/about_bg.jpg" : Model.Banner)">
+                    <div class="container">
+                        <div>
+                            <h1 style="color: #000">About Department</h1>
+                        </div>
+                    </div>
+                </section>
+                <section class="about pb-60 ml-40">
+                    <div class="container">
+                        <div class="faculty-page-layout">
+                            <div class="faculty-page-content">
+                                <div class="about-content">
+                                    @if (!string.IsNullOrEmpty(Model.About))
+                                    {
+                                        @* Use Html.Raw to render the HTML from the database correctly *@
+                                        @Html.Raw(Model.About)
+                                    }
+                                    else
+                                    {
+                                        <p>Department description is currently being updated. Please check back later for more information about @Model.Title.</p>
+                                    }
+                                </div>
+                            </div>
+                            <div class="faculty-page-sidebar">
+                                @Html.Partial("_FacultySidebar")
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            }
+            else
+            {
+                @* This 'else' block for when the model is null is handled by the controller now, but can be kept as a fallback. *@
+                <section class="about pt-120 pb-120">
+                    <div class="container text-center">
+                        <h2>Department Not Found</h2>
+                        <p>The requested department information is not available.</p>
+                    </div>
+                </section>
+            }
+        </main>
+    </div>
+</body>

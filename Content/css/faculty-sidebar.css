@@ -1,0 +1,126 @@
+/* Faculty Sidebar Styles */
+.faculty-sidebar {
+  max-width: 320px;
+  background-color: var(--color-white);
+  padding: 30px;
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.07);
+  border-radius: 10px;
+  position: sticky;
+  top: 30px;
+  height: fit-content;
+}
+
+.faculty-sidebar__title {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: var(--font-body);
+  margin-bottom: 25px;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 10px;
+}
+
+.faculty-sidebar__menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.faculty-sidebar__menu li {
+  border-bottom: 1px solid #E6E6E6;
+  transition: all 0.3s ease;
+}
+
+.faculty-sidebar__menu li:last-child {
+  border-bottom: none;
+}
+
+.faculty-sidebar__menu li a {
+  display: block;
+  padding: 15px 0;
+  color: #5C5C54;
+  font-size: 16px;
+  line-height: 26px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.faculty-sidebar__menu li a:hover {
+  color: var(--color-primary);
+  padding-left: 10px;
+}
+
+.faculty-sidebar__menu li a.active {
+  color: var(--color-primary);
+  font-weight: 600;
+  padding-left: 10px;
+}
+
+.faculty-sidebar__menu li a.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 20px;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+  .faculty-sidebar {
+    max-width: 100%;
+    margin-top: 30px;
+    position: static;
+  }
+}
+
+@media (max-width: 767px) {
+  .faculty-sidebar {
+    padding: 20px;
+  }
+  
+  .faculty-sidebar__title {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .faculty-sidebar__menu li a {
+    font-size: 15px;
+    padding: 12px 0;
+  }
+}
+
+/* Layout adjustments for pages with sidebar */
+.faculty-page-layout {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.faculty-page-content {
+  flex: 1;
+}
+
+.faculty-page-sidebar {
+  flex-shrink: 0;
+}
+
+@media (max-width: 991px) {
+  .faculty-page-layout {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .faculty-page-sidebar {
+    order: 2;
+  }
+  
+  .faculty-page-content {
+    order: 1;
+  }
+} 

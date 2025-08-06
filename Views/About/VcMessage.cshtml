@@ -1,0 +1,38 @@
+@model Website.Models.tblAbout
+@{
+    ViewBag.Title = "VC's Message";
+}
+<section class="about pt-80 pb-80">
+    <div class="container">
+        <div class="row mt-none-30">
+            <div class="col-xl-4 col-lg-5 mt-30">
+                <div class="about-image">
+                    <img src="@(string.IsNullOrEmpty(Model.vc_image) 
+                        ? Url.Content("~/Content/img/about/about-img02.png") 
+                        : (Model.vc_image.StartsWith("~") || Model.vc_image.StartsWith("/") 
+                            ? Url.Content(Model.vc_image) 
+                            : Url.Content("~/Content/img/about/" + Model.vc_image)))" 
+                        alt="VC" style="width: 150%; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-7 mt-30 align-items-center">
+                <div class="about-content">
+                    <div class="section-title mb-40">
+                        <span class="sub-title">VC's Message</span>
+                        <h2 class="title">A Message from the Vice Chancellor</h2>
+                    </div>
+                    <div class="about-message" style="font-size:1.15rem; color:#444; line-height:1.8;">
+                        @if (!string.IsNullOrEmpty(Model.vc_message))
+                        {
+                            <p>@Html.Raw(Model.vc_message.Replace("\n", "<br />"))</p>
+                        }
+                        else
+                        {
+                            <p>VC's message is not available at the moment.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<HitecCM.Models.tblMenus>
+@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    Func<string, string> getControllerFromLink = link => {
+        if (string.IsNullOrEmpty(link)) return null;
+        var parts = link.Trim('/').Split('/');
+        return parts.Length > 0 ? parts[0] : null;
+    };
+    Func<string, string> getActionFromLink = link => {
+        if (string.IsNullOrEmpty(link)) return null;
+        var parts = link.Trim('/').Split('/');
+        return parts.Length > 1 ? parts[1] : "Index";
+    };
+    Func<HitecCM.Models.tblMenus, bool> isChildActive = childMenu => {
+        var childController = getControllerFromLink(childMenu.MenuLink);
+        var childAction = getActionFromLink(childMenu.MenuLink);
+        return !string.IsNullOrEmpty(childController) && childController.Equals(currentController, StringComparison.OrdinalIgnoreCase)
+            && !string.IsNullOrEmpty(childAction) && childAction.Equals(currentAction, StringComparison.OrdinalIgnoreCase);
+    };
+}
+<ul>
+    @foreach (var menu in Model)
+    {
+        var menuController = getControllerFromLink(menu.MenuLink);
+        var menuAction = getActionFromLink(menu.MenuLink);
+        var isActiveMenu =
+            (!string.IsNullOrEmpty(menuController) && menuController.Equals(currentController, StringComparison.OrdinalIgnoreCase) &&
+                (string.IsNullOrEmpty(menuAction) || menuAction.Equals(currentAction, StringComparison.OrdinalIgnoreCase) || menuAction == "Index"))
+            || (menu.ChildMenus != null && menu.ChildMenus.Any(isChildActive));
+        <li class="menu-item-has-children @(isActiveMenu ? "active" : "")">
+            @if (!string.IsNullOrEmpty(menu.MenuLink))
+            {
+                <a href="@menu.MenuLink">@menu.MenuName</a>
+            }
+            else
+            {
+                <a href="#">@menu.MenuName</a>
+            }
+
+            @if (menu.ChildMenus != null && menu.ChildMenus.Any())
+            {
+                <ul class="submenu">
+                    @foreach (var childMenu in menu.ChildMenus)
+                    {
+                        var isActiveChild = isChildActive(childMenu);
+                        <li class="@(isActiveChild ? "active" : "")">
+                            @if (!string.IsNullOrEmpty(childMenu.MenuLink))
+                            {
+                                <a href="@childMenu.MenuLink">@childMenu.MenuName</a>
+                            }
+                            else
+                            {
+                                <a href="#">@childMenu.MenuName</a>
+                            }
+                        </li>
+                    }
+                </ul>
+            }
+        </li>
+    }
+</ul>

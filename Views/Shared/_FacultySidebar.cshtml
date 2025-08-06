@@ -1,0 +1,79 @@
+@{
+    var currentAction = ViewContext.RouteData.Values["Action"].ToString();
+    var currentController = ViewContext.RouteData.Values["Controller"].ToString();
+    
+    // Get the department parameter from the current URL
+    var department = Request.QueryString["department"];
+}
+
+<div class="faculty-sidebar mr-20">
+    <h3 class="faculty-sidebar__title">Department Menu</h3>
+    <ul class="faculty-sidebar__menu">
+        <li>
+            <a href="@Url.Action("DepartmentsAbout", "Faculties", new { department = department })" 
+               class="@(currentAction == "DepartmentsAbout" && currentController == "Faculties" ? "active" : "")">
+                About Department
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("ChairpersonMessage", "Faculties", new { department = department })" 
+               class="@(currentAction == "ChairpersonMessage" && currentController == "Faculties" ? "active" : "")">
+                Chairperson's Message
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("TeachingFaculty", "Faculties", new { department = department })" 
+               class="@(currentAction == "TeachingFaculty" && currentController == "Faculties" ? "active" : "")">
+                Teaching Faculty
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Programs", "Faculties", new { department = department })" 
+               class="@(currentAction == "Programs" && currentController == "Faculties" ? "active" : "")">
+                Programs
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Facilities", "Faculties", new { department = department })" 
+               class="@(currentAction == "Facilities" && currentController == "Faculties" ? "active" : "")">
+                Facilities
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("SchemeOfStudies", "Faculties", new { department = department })" 
+               class="@(currentAction == "SchemeOfStudies" && currentController == "Faculties" ? "active" : "")">
+                Scheme of Studies
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("PastEvents", "Faculties", new { department = department })" 
+               class="@(currentAction == "PastEvents" && currentController == "Faculties" ? "active" : "")">
+                Past Events
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("UpcomingEvents", "Faculties", new { department = department })" 
+               class="@(currentAction == "UpcomingEvents" && currentController == "Faculties" ? "active" : "")">
+                Upcoming Events
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("SuccessStories", "Faculties", new { department = department })" 
+               class="@(currentAction == "SuccessStories" && currentController == "Faculties" ? "active" : "")">
+                Success Stories
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("FAQs", "Faculties", new { department = department })" 
+               class="@(currentAction == "FAQs" && currentController == "Faculties" ? "active" : "")">
+                FAQs
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Contacts", "Faculties", new { department = department })" 
+               class="@(currentAction == "Contacts" && currentController == "Faculties" ? "active" : "")">
+                Contacts
+            </a>
+        </li>
+    </ul>
+</div> 

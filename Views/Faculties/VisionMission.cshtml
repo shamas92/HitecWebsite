@@ -1,0 +1,38 @@
+@model Website.Models.tblFacultiesET
+@{
+    ViewBag.Title = "Vision & Mission";
+}
+<section class="about pt-80 pb-80">
+    <div class="container">
+        <div class="row align-items-center mt-none-30">
+            <div class="col-xl-8 col-lg-10 mx-auto mt-30">
+                <div class="about-content text-center">
+                    <div class="section-title mb-40">
+                        <span class="sub-title">Vision & Mission</span>
+                        <h2 class="title">Faculty Vision & Mission</h2>
+                    </div>
+                    <div class="about-message" style="font-size:1.15rem; color:#444; line-height:1.8;">
+                        <h3>Vision</h3>
+                        @if (!string.IsNullOrEmpty(Model.VisionText))
+                        {
+                            <p>@Html.Raw(Model.VisionText.Replace("\n", "<br />"))</p>
+                        }
+                        else
+                        {
+                            <p>Vision is not available at the moment.</p>
+                        }
+                        <h3 class="mt-4">Mission</h3>
+                        @if (!string.IsNullOrEmpty(Model.MissionText))
+                        {
+                            <p>@Html.Raw(Model.MissionText.Replace("\n", "<br />"))</p>
+                        }
+                        else
+                        {
+                            <p>Mission is not available at the moment.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 

@@ -1,0 +1,756 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2A73857F-0221-40F1-BB63-8C7995D5E26E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Website</RootNamespace>
+    <AssemblyName>Website</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44347</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.9\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.WebHost.5.2.9\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\FacultiesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AcademicCalendar.cs" />
+    <Compile Include="Models\AcademicDeficiency.cs" />
+    <Compile Include="Models\AdverQsement.cs" />
+    <Compile Include="Models\BiomedicalEngineering.cs" />
+    <Compile Include="Models\BS_Islamic_Studies.cs" />
+    <Compile Include="Models\BS_MathemaQcs_AI.cs" />
+    <Compile Include="Models\Business_Programs.cs" />
+    <Compile Include="Models\Cafeteria_Info.cs" />
+    <Compile Include="Models\CivilEngineering.cs" />
+    <Compile Include="Models\ClassificaQon_Groups.cs" />
+    <Compile Include="Models\ComputerEngineering.cs" />
+    <Compile Include="Models\Computer_Science.cs" />
+    <Compile Include="Models\Conference_IncenQves.cs" />
+    <Compile Include="Models\ContactU.cs" />
+    <Compile Include="Models\Contributory_Fund_Accounts.cs" />
+    <Compile Include="Models\Contributory_Fund_Advances.cs" />
+    <Compile Include="Models\Contributory_Fund_ContribuQons.cs" />
+    <Compile Include="Models\Contributory_Fund_Members.cs" />
+    <Compile Include="Models\Contributory_Fund_NominaQon.cs" />
+    <Compile Include="Models\Contributory_Fund_Senngs.cs" />
+    <Compile Include="Models\Course_Learning_Outcomes.cs" />
+    <Compile Include="Models\Death_Gratuity.cs" />
+    <Compile Include="Models\Download_Categories.cs" />
+    <Compile Include="Models\Download_Items.cs" />
+    <Compile Include="Models\EducaQon_Subsidy.cs" />
+    <Compile Include="Models\ElectricalEngineering.cs" />
+    <Compile Include="Models\Employee_Appeals.cs" />
+    <Compile Include="Models\Employee_Appointment_Details.cs" />
+    <Compile Include="Models\Employee_Breach_Conduct.cs" />
+    <Compile Include="Models\Employee_Conduct_Rules.cs" />
+    <Compile Include="Models\Employee_Contracts.cs" />
+    <Compile Include="Models\Employee_Disciplinary_Cases.cs" />
+    <Compile Include="Models\Employee_Eligibility_Criteria.cs" />
+    <Compile Include="Models\Employee_Inquiry_Procedures.cs" />
+    <Compile Include="Models\Employee_Leave_Records.cs" />
+    <Compile Include="Models\Employee_PenalQes.cs" />
+    <Compile Include="Models\Employee_Transfers.cs" />
+    <Compile Include="Models\Employment_Types.cs" />
+    <Compile Include="Models\FeeStructureWithHostel.cs" />
+    <Compile Include="Models\Hostel_Info.cs" />
+    <Compile Include="Models\Hostel_Requests.cs" />
+    <Compile Include="Models\Leave_Approvals.cs" />
+    <Compile Include="Models\Leave_EnQtlement.cs" />
+    <Compile Include="Models\Leave_Types.cs" />
+    <Compile Include="Models\MechanicalEngineering.cs" />
+    <Compile Include="Models\Model1.cs" />
+    <Compile Include="Models\MSRulesAndRegulaQon.cs" />
+    <Compile Include="Models\MS_Islamic_Studies.cs" />
+    <Compile Include="Models\MS_MathemaQcs.cs" />
+    <Compile Include="Models\PEO_AVainment.cs" />
+    <Compile Include="Models\PEO_PLO_Mapping.cs" />
+    <Compile Include="Models\Personal_Loan.cs" />
+    <Compile Include="Models\PhDRulesAndRegulaQon.cs" />
+    <Compile Include="Models\PhD_Islamic_Studies.cs" />
+    <Compile Include="Models\PhD_MathemaQcs.cs" />
+    <Compile Include="Models\PLO_AVainment.cs" />
+    <Compile Include="Models\PLO_CLO_Mapping.cs" />
+    <Compile Include="Models\PosiQon_Details.cs" />
+    <Compile Include="Models\Program_EducaQonal_ObjecQves.cs" />
+    <Compile Include="Models\Program_Learning_Outcomes.cs" />
+    <Compile Include="Models\PublicaQons_IncenQves.cs" />
+    <Compile Include="Models\ResignaQon_TerminaQon_Process.cs" />
+    <Compile Include="Models\SelecQon_Board.cs" />
+    <Compile Include="Models\SelecQon_CommiVee.cs" />
+    <Compile Include="Models\Sport_Info.cs" />
+    <Compile Include="Models\tblAbout.cs" />
+    <Compile Include="Models\tblAccommodation.cs" />
+    <Compile Include="Models\tblAccommodationNote.cs" />
+    <Compile Include="Models\tblAccommodationRefundPolicy.cs" />
+    <Compile Include="Models\tblBMEOBECurriculum.cs" />
+    <Compile Include="Models\tblCsOBECurriculum.cs" />
+    <Compile Include="Models\tblDepartment.cs" />
+    <Compile Include="Models\tblDepartmentChairperson.cs" />
+    <Compile Include="Models\tblDepartmentContact.cs" />
+    <Compile Include="Models\tblDepartmentFacility.cs" />
+    <Compile Include="Models\tblDepartmentFacultyAbout.cs" />
+    <Compile Include="Models\tblDepartmentFAQ.cs" />
+    <Compile Include="Models\tblDepartmentPastEvent.cs" />
+    <Compile Include="Models\tblDepartmentProgram.cs" />
+    <Compile Include="Models\tblDepartmentProgramStudy.cs" />
+    <Compile Include="Models\tblDepartmentSchemeOfStudy.cs" />
+    <Compile Include="Models\tblDepartmentSuccessStory.cs" />
+    <Compile Include="Models\tblDepartmentTeachingFaculty.cs" />
+    <Compile Include="Models\tblDepartmentUpcomingEvent.cs" />
+    <Compile Include="Models\tblDesignation.cs" />
+    <Compile Include="Models\tblDownload.cs" />
+    <Compile Include="Models\tblEvent.cs" />
+    <Compile Include="Models\tblEventHead.cs" />
+    <Compile Include="Models\tblEventPhoto.cs" />
+    <Compile Include="Models\tblEventVideo.cs" />
+    <Compile Include="Models\tblFacilite.cs" />
+    <Compile Include="Models\tblFacilityImage.cs" />
+    <Compile Include="Models\tblFacilityPhoto.cs" />
+    <Compile Include="Models\tblFacultiesET.cs" />
+    <Compile Include="Models\tblFaculty.cs" />
+    <Compile Include="Models\tblFAQ.cs" />
+    <Compile Include="Models\tblFeeRefundPolicy.cs" />
+    <Compile Include="Models\tblFinancialAssistance.cs" />
+    <Compile Include="Models\tblLatePaymentPenalty.cs" />
+    <Compile Include="Models\tblMenus.cs" />
+    <Compile Include="Models\tblMenuType.cs" />
+    <Compile Include="Models\tblMiscellaneousCharge.cs" />
+    <Compile Include="Models\tblMiscellaneousNote.cs" />
+    <Compile Include="Models\tblNew.cs" />
+    <Compile Include="Models\tblNewsHead.cs" />
+    <Compile Include="Models\tblNewsPhoto.cs" />
+    <Compile Include="Models\tblNoticeBoard.cs" />
+    <Compile Include="Models\tblPolicyCategory.cs" />
+    <Compile Include="Models\tblPolicyItem.cs" />
+    <Compile Include="Models\tblProgram.cs" />
+    <Compile Include="Models\tblQAC.cs" />
+    <Compile Include="Models\tblQACAccreditation.cs" />
+    <Compile Include="Models\tblQACAnnualActivityCalender.cs" />
+    <Compile Include="Models\tblQACContact.cs" />
+    <Compile Include="Models\tblQACIPE.cs" />
+    <Compile Include="Models\tblQACOrganogram.cs" />
+    <Compile Include="Models\tblQACPGPR.cs" />
+    <Compile Include="Models\tblQACSAR.cs" />
+    <Compile Include="Models\tblQACSurvay.cs" />
+    <Compile Include="Models\tblQAPolicy.cs" />
+    <Compile Include="Models\tblRefundPolicy.cs" />
+    <Compile Include="Models\tblSchemeOfStudy.cs" />
+    <Compile Include="Models\tblSeOBECurriculum.cs" />
+    <Compile Include="Models\tblSuccessStory.cs" />
+    <Compile Include="Models\tblTransport.cs" />
+    <Compile Include="Models\tblTransportNote.cs" />
+    <Compile Include="Models\tblTransportRefundPolicy.cs" />
+    <Compile Include="Models\tblUser.cs" />
+    <Compile Include="Models\Transport_Info.cs" />
+    <Compile Include="Models\UniversityDocument.cs" />
+    <Compile Include="Models\Wards_Fee_Concession.cs" />
+    <Compile Include="Models\Welfare_Fund.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\animate.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\fontawesome.css" />
+    <Content Include="Content\css\image-crop.css" />
+    <Content Include="Content\css\magnific-popup.css" />
+    <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\nice-select.css" />
+    <Content Include="Content\css\odometer.css" />
+    <Content Include="Content\css\recoleta-font.css" />
+    <Content Include="Content\css\swiper.min.css" />
+    <Content Include="Content\img\about\about-img01.jpg" />
+    <Content Include="Content\img\about\about-img02.png" />
+    <Content Include="Content\img\about\about-img03.jpg" />
+    <Content Include="Content\img\about\AdmissionAd.jpg" />
+    <Content Include="Content\img\about\ChairmanHIT.jpg" />
+    <Content Include="Content\img\about\logoReport.png" />
+    <Content Include="Content\img\about\pelican_noao_big.jpg" />
+    <Content Include="Content\img\about\VC.jpg" />
+    <Content Include="Content\img\bg\about_bg.jpg" />
+    <Content Include="Content\img\bg\campus-bg.jpg" />
+    <Content Include="Content\img\bg\cta-bg02.png" />
+    <Content Include="Content\img\bg\fanfact_bg.jpg" />
+    <Content Include="Content\img\bg\faq_image.png" />
+    <Content Include="Content\img\bg\footer-bg.jpg" />
+    <Content Include="Content\img\bg\footer-bg02.jpg" />
+    <Content Include="Content\img\bg\footer-bg03.jpg" />
+    <Content Include="Content\img\bg\footer-bg03.png" />
+    <Content Include="Content\img\bg\hero_bg.jpg" />
+    <Content Include="Content\img\bg\hero_bg.png" />
+    <Content Include="Content\img\bg\hero_bg02.jpg" />
+    <Content Include="Content\img\bg\hero_bg02.png" />
+    <Content Include="Content\img\bg\news-bg.jpg" />
+    <Content Include="Content\img\bg\news_bg01.jpg" />
+    <Content Include="Content\img\bg\overly.jpg" />
+    <Content Include="Content\img\bg\pro-Banner.png" />
+    <Content Include="Content\img\bg\program-bg.jpg" />
+    <Content Include="Content\img\bg\video_img.jpg" />
+    <Content Include="Content\img\bg\vm_bg.jpg" />
+    <Content Include="Content\img\blog\avatar1.png" />
+    <Content Include="Content\img\blog\avatar2.png" />
+    <Content Include="Content\img\blog\avatar3.png" />
+    <Content Include="Content\img\blog\avatar4.png" />
+    <Content Include="Content\img\blog\avatar5.png" />
+    <Content Include="Content\img\blog\blog-img01.png" />
+    <Content Include="Content\img\blog\blog-img02.png" />
+    <Content Include="Content\img\blog\blog-img03.png" />
+    <Content Include="Content\img\blog\blog-img04.png" />
+    <Content Include="Content\img\blog\blog-img05.png" />
+    <Content Include="Content\img\blog\blog_06.jpg" />
+    <Content Include="Content\img\blog\blog_07.jpg" />
+    <Content Include="Content\img\blog\blog_08.jpg" />
+    <Content Include="Content\img\blog\blog_09.jpg" />
+    <Content Include="Content\img\blog\blog_10.jpg" />
+    <Content Include="Content\img\blog\blog_11.jpg" />
+    <Content Include="Content\img\blog\blog_12.jpg" />
+    <Content Include="Content\img\blog\blog_single.jpg" />
+    <Content Include="Content\img\blog\blog_single2.jpg" />
+    <Content Include="Content\img\blog\blog_single3.jpg" />
+    <Content Include="Content\img\blog\blog_single4.jpg" />
+    <Content Include="Content\img\campus\campus-img01.png" />
+    <Content Include="Content\img\campus\campus-img02.png" />
+    <Content Include="Content\img\campus\campus-img03.png" />
+    <Content Include="Content\img\course\avatar.png" />
+    <Content Include="Content\img\course\avatar2.jpg" />
+    <Content Include="Content\img\course\avatar3.jpg" />
+    <Content Include="Content\img\course\course_single.jpg" />
+    <Content Include="Content\img\course\course_single2.jpg" />
+    <Content Include="Content\img\cta\cta-bg.jpg" />
+    <Content Include="Content\img\cta\cta-bg01.png" />
+    <Content Include="Content\img\cta\cta_img1.jpg" />
+    <Content Include="Content\img\cta\cta_img2.jpg" />
+    <Content Include="Content\img\event\event-img01.png" />
+    <Content Include="Content\img\event\event-img02.png" />
+    <Content Include="Content\img\event\event-img03.png" />
+    <Content Include="Content\img\event\event-img04.png" />
+    <Content Include="Content\img\event\event-img05.png" />
+    <Content Include="Content\img\event\event-img06.jpg" />
+    <Content Include="Content\img\event\event-img07.jpg" />
+    <Content Include="Content\img\event\event-img08.jpg" />
+    <Content Include="Content\img\event\event-img09.jpg" />
+    <Content Include="Content\img\event\event-img10.jpg" />
+    <Content Include="Content\img\event\event_single.jpg" />
+    <Content Include="Content\img\event\event_single2.jpg" />
+    <Content Include="Content\img\event\event_single3.jpg" />
+    <Content Include="Content\img\fanfact\fanfact-img01.png" />
+    <Content Include="Content\img\fanfact\fanfact-img02.png" />
+    <Content Include="Content\img\fanfact\fanfact-img03.png" />
+    <Content Include="Content\img\fanfact\principle-img.png" />
+    <Content Include="Content\img\fanfact\principle-img01.png" />
+    <Content Include="Content\img\fanfact\principle-img02.png" />
+    <Content Include="Content\img\favicon.png" />
+    <Content Include="Content\img\feature\feature-img01.png" />
+    <Content Include="Content\img\feature\feature-img02.png" />
+    <Content Include="Content\img\feature\feature-img03.png" />
+    <Content Include="Content\img\footer\footer-avatar.png" />
+    <Content Include="Content\img\hero\hero_img01.png" />
+    <Content Include="Content\img\hero\hero_img02.jpg" />
+    <Content Include="Content\img\hero\hero_img03.png" />
+    <Content Include="Content\img\icon\about-icon.svg" />
+    <Content Include="Content\img\icon\about-icon01.png" />
+    <Content Include="Content\img\icon\about-icon02.png" />
+    <Content Include="Content\img\icon\about-icon03.png" />
+    <Content Include="Content\img\icon\ab_01.png" />
+    <Content Include="Content\img\icon\ab_01.svg" />
+    <Content Include="Content\img\icon\ab_02.png" />
+    <Content Include="Content\img\icon\ab_02.svg" />
+    <Content Include="Content\img\icon\ab_03.png" />
+    <Content Include="Content\img\icon\ab_03.svg" />
+    <Content Include="Content\img\icon\ab_04.png" />
+    <Content Include="Content\img\icon\ab_04.svg" />
+    <Content Include="Content\img\icon\ab_05.png" />
+    <Content Include="Content\img\icon\ab_05.svg" />
+    <Content Include="Content\img\icon\ab_06.png" />
+    <Content Include="Content\img\icon\ab_06.svg" />
+    <Content Include="Content\img\icon\am_01.svg" />
+    <Content Include="Content\img\icon\am_02.svg" />
+    <Content Include="Content\img\icon\am_03.svg" />
+    <Content Include="Content\img\icon\angle-down.svg" />
+    <Content Include="Content\img\icon\Arrow 02.png" />
+    <Content Include="Content\img\icon\arrow01.png" />
+    <Content Include="Content\img\icon\book-white.png" />
+    <Content Include="Content\img\icon\book.svg" />
+    <Content Include="Content\img\icon\call-calling.svg" />
+    <Content Include="Content\img\icon\call.svg" />
+    <Content Include="Content\img\icon\calling-icon.png" />
+    <Content Include="Content\img\icon\calling-icon01.png" />
+    <Content Include="Content\img\icon\calling-icon02.png" />
+    <Content Include="Content\img\icon\check-2.svg" />
+    <Content Include="Content\img\icon\Check-icon.svg" />
+    <Content Include="Content\img\icon\check.svg" />
+    <Content Include="Content\img\icon\ci_01.svg" />
+    <Content Include="Content\img\icon\ci_02.svg" />
+    <Content Include="Content\img\icon\ci_03.svg" />
+    <Content Include="Content\img\icon\ci_04.svg" />
+    <Content Include="Content\img\icon\ci_05.svg" />
+    <Content Include="Content\img\icon\ci_06.svg" />
+    <Content Include="Content\img\icon\ci_07.svg" />
+    <Content Include="Content\img\icon\ci_08.svg" />
+    <Content Include="Content\img\icon\clipboard-01.svg" />
+    <Content Include="Content\img\icon\clipboard-text.svg" />
+    <Content Include="Content\img\icon\clock.png" />
+    <Content Include="Content\img\icon\clock01.png" />
+    <Content Include="Content\img\icon\counter-icon.png" />
+    <Content Include="Content\img\icon\cta_icon_01.svg" />
+    <Content Include="Content\img\icon\cta_icon_02.svg" />
+    <Content Include="Content\img\icon\customer-support.png" />
+    <Content Include="Content\img\icon\email.svg" />
+    <Content Include="Content\img\icon\email01.svg" />
+    <Content Include="Content\img\icon\faq_01.svg" />
+    <Content Include="Content\img\icon\faq_02.svg" />
+    <Content Include="Content\img\icon\faq_03.svg" />
+    <Content Include="Content\img\icon\faq_04.svg" />
+    <Content Include="Content\img\icon\faq_05.svg" />
+    <Content Include="Content\img\icon\faq_06.svg" />
+    <Content Include="Content\img\icon\flag.png" />
+    <Content Include="Content\img\icon\hero_top-icon.png" />
+    <Content Include="Content\img\icon\icon_bookmark.svg" />
+    <Content Include="Content\img\icon\icon_search.svg" />
+    <Content Include="Content\img\icon\learning.png" />
+    <Content Include="Content\img\icon\learning.svg" />
+    <Content Include="Content\img\icon\learning01.png" />
+    <Content Include="Content\img\icon\left-arrrow.png" />
+    <Content Include="Content\img\icon\location-add.svg" />
+    <Content Include="Content\img\icon\location.svg" />
+    <Content Include="Content\img\icon\menu-search.svg" />
+    <Content Include="Content\img\icon\meta-icon01.png" />
+    <Content Include="Content\img\icon\note-book.svg" />
+    <Content Include="Content\img\icon\note.svg" />
+    <Content Include="Content\img\icon\polygon.png" />
+    <Content Include="Content\img\icon\pro-book.png" />
+    <Content Include="Content\img\icon\pro-man.png" />
+    <Content Include="Content\img\icon\profile-circle.svg" />
+    <Content Include="Content\img\icon\qua-02.png" />
+    <Content Include="Content\img\icon\qua.png" />
+    <Content Include="Content\img\icon\rating.png" />
+    <Content Include="Content\img\icon\rating01.png" />
+    <Content Include="Content\img\icon\right-arrow.png" />
+    <Content Include="Content\img\icon\right-arrow01.png" />
+    <Content Include="Content\img\icon\sms-chat.svg" />
+    <Content Include="Content\img\icon\sms-edit.svg" />
+    <Content Include="Content\img\icon\stamp.png" />
+    <Content Include="Content\img\icon\start01.png" />
+    <Content Include="Content\img\icon\teacher-icon.png" />
+    <Content Include="Content\img\icon\teacher-icon01.png" />
+    <Content Include="Content\img\icon\twitter-icon.png" />
+    <Content Include="Content\img\icon\warning.png" />
+    <Content Include="Content\img\logo\download.png" />
+    <Content Include="Content\img\logo\HitecLogo.svg" />
+    <Content Include="Content\img\logo\logo-2.svg" />
+    <Content Include="Content\img\logo\logo.svg" />
+    <Content Include="Content\img\logo\logo_white.svg" />
+    <Content Include="Content\img\logo\preloader-2.png" />
+    <Content Include="Content\img\logo\preloader.png" />
+    <Content Include="Content\img\news\hs-news_img01.jpg" />
+    <Content Include="Content\img\news\hs-news_img02.jpg" />
+    <Content Include="Content\img\news\hs-news_img03.jpg" />
+    <Content Include="Content\img\news\news-img01.jpg" />
+    <Content Include="Content\img\news\news-img02.png" />
+    <Content Include="Content\img\news\news-img03.png" />
+    <Content Include="Content\img\news\news-img04.png" />
+    <Content Include="Content\img\program\boy-with-glasses-doing-lesson-class-doing-assignment.png5565.png" />
+    <Content Include="Content\img\program\hs-program01.png" />
+    <Content Include="Content\img\program\hs-program02.png" />
+    <Content Include="Content\img\program\hs-program03.png" />
+    <Content Include="Content\img\program\hs-program04.png" />
+    <Content Include="Content\img\program\hs-program05.png" />
+    <Content Include="Content\img\program\hs-program06.png" />
+    <Content Include="Content\img\program\hs-program07.png" />
+    <Content Include="Content\img\program\hs-pro_bg01.png" />
+    <Content Include="Content\img\program\hs-pro_bg02.png" />
+    <Content Include="Content\img\program\hs-pro_bg03.png" />
+    <Content Include="Content\img\program\hs-pro_bg04.png" />
+    <Content Include="Content\img\program\hs-pro_bg05.png" />
+    <Content Include="Content\img\program\hs-pro_bg06.png" />
+    <Content Include="Content\img\program\pro-img01.png" />
+    <Content Include="Content\img\program\pro-img02.png" />
+    <Content Include="Content\img\program\pro-img03.png" />
+    <Content Include="Content\img\program\pro-img04.png" />
+    <Content Include="Content\img\program\pro-img05.png" />
+    <Content Include="Content\img\program\pro-img06.png" />
+    <Content Include="Content\img\program\pro-img07.png" />
+    <Content Include="Content\img\program\pro-img08.png" />
+    <Content Include="Content\img\program\pro-img09.png" />
+    <Content Include="Content\img\program\program-img01.png" />
+    <Content Include="Content\img\program\program-img02.png" />
+    <Content Include="Content\img\program\program-img03.png" />
+    <Content Include="Content\img\shape\about-shape.png" />
+    <Content Include="Content\img\shape\angle-shape01.png" />
+    <Content Include="Content\img\shape\angle-shape02.png" />
+    <Content Include="Content\img\shape\angle-white.png" />
+    <Content Include="Content\img\shape\book.png" />
+    <Content Include="Content\img\shape\camical.png" />
+    <Content Include="Content\img\shape\campus-shape.png" />
+    <Content Include="Content\img\shape\cap.png" />
+    <Content Include="Content\img\shape\hs-tes-sp.png" />
+    <Content Include="Content\img\shape\man-01.png" />
+    <Content Include="Content\img\shape\man-02.png" />
+    <Content Include="Content\img\shape\pen.png" />
+    <Content Include="Content\img\shape\shape_arrow_left.svg" />
+    <Content Include="Content\img\shape\shape_arrow_right.svg" />
+    <Content Include="Content\img\shape\stamp.png" />
+    <Content Include="Content\img\shape\stamp01.png" />
+    <Content Include="Content\img\shape\tes-shape.png" />
+    <Content Include="Content\img\shape\tes-shape02.png" />
+    <Content Include="Content\img\shape\Union.png" />
+    <Content Include="Content\img\shape\Vector01.png" />
+    <Content Include="Content\img\shape\Vector02.png" />
+    <Content Include="Content\img\shape\Vector03.png" />
+    <Content Include="Content\img\shape\Vector04.png" />
+    <Content Include="Content\img\shape\Vector05.png" />
+    <Content Include="Content\img\shape\Vector06.png" />
+    <Content Include="Content\img\shape\Vector07.png" />
+    <Content Include="Content\img\shape\vm_shape1.png" />
+    <Content Include="Content\img\shape\vm_shape2.png" />
+    <Content Include="Content\img\team\team_01.jpg" />
+    <Content Include="Content\img\team\team_02.jpg" />
+    <Content Include="Content\img\team\team_03.jpg" />
+    <Content Include="Content\img\team\team_04.jpg" />
+    <Content Include="Content\img\team\team_05.jpg" />
+    <Content Include="Content\img\team\team_06.jpg" />
+    <Content Include="Content\img\team\team_image.png" />
+    <Content Include="Content\img\team\team_single.jpg" />
+    <Content Include="Content\img\testimonial\clg-tes-img01.png" />
+    <Content Include="Content\img\testimonial\clg-tes-img02.png" />
+    <Content Include="Content\img\testimonial\clg-tes-img03.png" />
+    <Content Include="Content\img\testimonial\clg-tes-img04.png" />
+    <Content Include="Content\img\testimonial\clg-tes-img05.png" />
+    <Content Include="Content\img\testimonial\hs-tes-img01.png" />
+    <Content Include="Content\img\testimonial\hs-tes-img02.png" />
+    <Content Include="Content\img\testimonial\hs-tes-img03.png" />
+    <Content Include="Content\img\testimonial\hs-tes-img04.png" />
+    <Content Include="Content\img\testimonial\tes-img.png" />
+    <Content Include="Content\img\testimonial\tes-img02.png" />
+    <Content Include="Content\img\testimonial\tes-img03.png" />
+    <Content Include="Content\img\testimonial\tes-img04.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\appear.js" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\countdown.js" />
+    <Content Include="Scripts\image-crop.js" />
+    <Content Include="Scripts\imagesloaded.pkgd.min.js" />
+    <Content Include="Scripts\isotope.pkgd.min.js" />
+    <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.0.js" />
+    <Content Include="Scripts\jquery-3.7.0.min.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.min.js" />
+    <Content Include="Scripts\jquery-3.7.1.min.js" />
+    <Content Include="Scripts\jquery.magnific-popup.min.js" />
+    <Content Include="Scripts\jquery.nice-select.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\modernizr.js" />
+    <Content Include="Scripts\odometer.min.js" />
+    <Content Include="Scripts\parallax-scroll.js" />
+    <Content Include="Scripts\swiper.min.js" />
+    <Content Include="Scripts\wow.min.js" />
+    <Content Include="Views\Faculties\DepartmentsAbout.cshtml" />
+    <Content Include="Views\Faculties\VisionMission.cshtml" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\About\ChairmanMessage.cshtml" />
+    <Content Include="Views\About\VcMessage.cshtml" />
+    <Content Include="Views\About\Motto.cshtml" />
+    <Content Include="Views\About\VisionMission.cshtml" />
+    <Content Include="Views\About\Emblem.cshtml" />
+    <Content Include="Views\Menu\_TopMenu.cshtml" />
+    <Content Include="Views\Menu\_MainMenu.cshtml" />
+    <Content Include="Views\Menu\_MiddleMenu.cshtml" />
+    <Content Include="Views\Menu\_MainMenuMobile.cshtml" />
+    <Content Include="Views\Faculties\ChairpersonMessage.cshtml" />
+    <Content Include="Views\Faculties\Contacts.cshtml" />
+    <Content Include="Views\Faculties\Facilities.cshtml" />
+    <Content Include="Views\Faculties\FAQs.cshtml" />
+    <Content Include="Views\Faculties\PastEvents.cshtml" />
+    <Content Include="Views\Faculties\Programs.cshtml" />
+    <Content Include="Views\Faculties\SchemeOfStudies.cshtml" />
+    <Content Include="Views\Faculties\SuccessStories.cshtml" />
+    <Content Include="Views\Faculties\TeachingFaculty.cshtml" />
+    <Content Include="Views\Faculties\UpcomingEvents.cshtml" />
+    <Content Include="Views\Shared\_FacultySidebar.cshtml" />
+    <Content Include="Views\Menu\_MobileTopMenu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\Departments\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\main.css.map" />
+    <Content Include="Content\fonts\fa-brands-400.ttf" />
+    <Content Include="Content\fonts\fa-light-300.ttf" />
+    <Content Include="Content\fonts\fa-regular-400.ttf" />
+    <Content Include="Content\fonts\fa-solid-900.ttf" />
+    <Content Include="Content\fonts\Recoleta-Bold.woff" />
+    <Content Include="Content\fonts\Recoleta-Bold.woff2" />
+    <Content Include="Content\fonts\Recoleta-Medium.woff" />
+    <Content Include="Content\fonts\Recoleta-Medium.woff2" />
+    <Content Include="Content\fonts\Recoleta-Regular.woff" />
+    <Content Include="Content\fonts\Recoleta-Regular.woff2" />
+    <Content Include="Content\fonts\Recoleta-SemiBold.woff" />
+    <Content Include="Content\fonts\Recoleta-SemiBold.woff2" />
+    <Content Include="Content\img\.DS_Store" />
+    <Content Include="Content\img\about\.DS_Store" />
+    <Content Include="Content\img\bg\.DS_Store" />
+    <Content Include="Content\img\blog\.DS_Store" />
+    <Content Include="Content\img\campus\.DS_Store" />
+    <Content Include="Content\img\course\.DS_Store" />
+    <Content Include="Content\img\cta\.DS_Store" />
+    <Content Include="Content\img\event\.DS_Store" />
+    <Content Include="Content\img\fanfact\.DS_Store" />
+    <Content Include="Content\img\icon\flag_bangladesh.webp" />
+    <Content Include="Content\img\icon\flag_portugal.webp" />
+    <Content Include="Content\img\icon\flag_saudi_arabia.webp" />
+    <Content Include="Content\img\icon\flag_usa.webp" />
+    <Content Include="Content\img\logo\.DS_Store" />
+    <Content Include="Content\img\program\.DS_Store" />
+    <Content Include="Content\img\team\.DS_Store" />
+    <Content Include="Content\scss\.DS_Store" />
+    <Content Include="Content\scss\abstracts\_mixins.scss" />
+    <Content Include="Content\scss\abstracts\_variables.scss" />
+    <Content Include="Content\scss\base\_animation.scss" />
+    <Content Include="Content\scss\base\_base.scss" />
+    <Content Include="Content\scss\base\_fonts.scss" />
+    <Content Include="Content\scss\base\_overlay.scss" />
+    <Content Include="Content\scss\base\_reset.scss" />
+    <Content Include="Content\scss\base\_spacing.scss" />
+    <Content Include="Content\scss\base\_typography.scss" />
+    <Content Include="Content\scss\components\_about.scss" />
+    <Content Include="Content\scss\components\_admission.scss" />
+    <Content Include="Content\scss\components\_backtotop.scss" />
+    <Content Include="Content\scss\components\_blog.scss" />
+    <Content Include="Content\scss\components\_breadcrumb.scss" />
+    <Content Include="Content\scss\components\_buttons.scss" />
+    <Content Include="Content\scss\components\_campus.scss" />
+    <Content Include="Content\scss\components\_contact.scss" />
+    <Content Include="Content\scss\components\_course.scss" />
+    <Content Include="Content\scss\components\_cta.scss" />
+    <Content Include="Content\scss\components\_department.scss" />
+    <Content Include="Content\scss\components\_event.scss" />
+    <Content Include="Content\scss\components\_fanfact.scss" />
+    <Content Include="Content\scss\components\_faq.scss" />
+    <Content Include="Content\scss\components\_feature.scss" />
+    <Content Include="Content\scss\components\_funfact.scss" />
+    <Content Include="Content\scss\components\_global.scss" />
+    <Content Include="Content\scss\components\_hero.scss" />
+    <Content Include="Content\scss\components\_mission-vission.scss" />
+    <Content Include="Content\scss\components\_mobile-menu.scss" />
+    <Content Include="Content\scss\components\_news.scss" />
+    <Content Include="Content\scss\components\_preloader.scss" />
+    <Content Include="Content\scss\components\_program.scss" />
+    <Content Include="Content\scss\components\_search.scss" />
+    <Content Include="Content\scss\components\_sec-title.scss" />
+    <Content Include="Content\scss\components\_team.scss" />
+    <Content Include="Content\scss\components\_testimonial.scss" />
+    <Content Include="Content\scss\layout\_footer.scss" />
+    <Content Include="Content\scss\layout\_header.scss" />
+    <Content Include="Content\scss\layout\_navigation.scss" />
+    <Content Include="Content\scss\main.scss" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\jquery-3.7.0.min.map" />
+    <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>60953</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44347/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

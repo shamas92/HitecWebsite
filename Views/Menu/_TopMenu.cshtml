@@ -1,0 +1,16 @@
+@model IEnumerable<HitecCM.Models.tblMenus>
+
+@foreach (var menu in Model)
+{
+    <li>
+        @if (!string.IsNullOrEmpty(menu.MenuLink))
+        {
+            <a href="@menu.MenuLink" target="_blank" class="top-menu__btn">@menu.MenuName</a>
+        }
+        else
+        {
+            <a href="#" class="top-menu__btn">@menu.MenuName</a>
+        }
+    </li>
+
+} 

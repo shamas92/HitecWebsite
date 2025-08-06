@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Website.Models.tblDepartment>
+
+@{
+    ViewBag.Title = "Department Details";
+    var department = Model.FirstOrDefault();
+}
+
+<!-- backtotop - start -->
+<!-- backtotop - end -->
+
+<body>
+    <div class="body_wrap">
+
+        <!-- main area start  -->
+        <main aria-labelledby="title">
+
+            @if (department != null)
+            {
+                <!-- breadcrumb start -->
+                <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="@(string.IsNullOrEmpty(department.Banner) ? "/Content/img/bg/about_bg.jpg" : department.Banner)">
+                    <div class="container">
+                        <div class="breadcrumb__content text-center">
+                            <h2 class="breadcrumb__title" style="color: #000">@department.Title</h2>
+                            <p class="breadcrumb__desc" style="color: #000">@department.Code Department</p>
+                        </div>
+                    </div>
+                </section>
+                <!-- breadcrumb end -->
+
+                <!-- department about start -->
+                <section class="about pt-80 pb-120">
+                    <div class="container">
+                        
+                        <div class="about-content mt-60">
+                            @if (!string.IsNullOrEmpty(department.About))
+                            {
+                                @department.About
+                            }
+                            else
+                            {
+                                <p>Department description is currently being updated. Please check back later for more information about @department.Title.</p>
+                            }
+                                            </div>
+                                            </div>
+                </section>
+                <!-- department about end -->
+
+                
+                                        }
+                                        else
+                                        {
+                <!-- no department found start -->
+                <section class="breadcrumb bg_img ul_li" data-background="/Content/img/bg/about_bg.jpg">
+                    <div class="container">
+                        <div class="breadcrumb__content text-center">
+                            <h2 class="breadcrumb__title">Department Not Found</h2>
+                            <p class="breadcrumb__desc">The requested department information is not available</p>
+                        </div>
+                                    </div>
+                </section>
+                <!-- no department found end -->
+
+                <!-- error section start -->
+                <section class="about pt-120 pb-120">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8 text-center">
+                                <div class="about-content">
+                                    <div class="section-title mb-60">
+                                        <span class="sub-title">error</span>
+                                        <h2 class="title">Department Information <br> Not Available</h2>
+                                    </div>
+                                    <p>The requested department information is currently not available. Please check back later or contact our administration for more information.</p>
+                                    <div class="mt-4">
+                                        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">
+                                            <i class="fas fa-home"></i> Back to Home
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    </div>
+</section>
+                <!-- error section end -->
+            }
+
+        </main>
+        <!-- main area end  -->
+
+    </div>
+
+</body> 

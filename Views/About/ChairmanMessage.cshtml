@@ -1,0 +1,38 @@
+@model Website.Models.tblAbout
+@{
+    ViewBag.Title = "Chairman's Message";
+}
+<section class="about pt-80 pb-80">
+    <div class="container">
+        <div class="row  mt-none-30">
+            <div class="col-xl-4 col-lg-5 mt-30">
+                <div class="about-image">
+                    <img src="@(string.IsNullOrEmpty(Model.chairman_image) 
+                        ? Url.Content("~/Content/img/about/about-img01.jpg") 
+                        : (Model.chairman_image.StartsWith("~") || Model.chairman_image.StartsWith("/") 
+                            ? Url.Content(Model.chairman_image) 
+                            : Url.Content("~/Content/img/about/" + Model.chairman_image)))" 
+                        alt="Chairman" style="width: 150%; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-7 mt-30 align-items-center">
+                <div class="about-content">
+                    <div class="section-title mb-40">
+                        <span class="sub-title">Chairman's Message</span>
+                        <h2 class="title">A Message from the Chairman</h2>
+                    </div>
+                    <div class="about-message" style="font-size:1.15rem; color:#444; line-height:1.8;">
+                        @if (!string.IsNullOrEmpty(Model.chairman_message))
+                        {
+                            <p>@Html.Raw(Model.chairman_message.Replace("\n", "<br />"))</p>
+                        }
+                        else
+                        {
+                            <p>Chairman's message is not available at the moment.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 

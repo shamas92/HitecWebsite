@@ -1,0 +1,82 @@
+@model Website.Models.tblDepartment
+
+@{
+    ViewBag.Title = Model != null ? Model.Title + " - Chairperson's Message" : "Chairperson's Message";
+}
+
+<!-- backtotop - start -->
+<!-- backtotop - end -->
+
+<body>
+    <div class="body_wrap">
+
+        <!-- main area start  -->
+        <main aria-labelledby="title">
+            @if (Model != null)
+            {
+                <!-- breadcrumb start -->
+                <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="@(string.IsNullOrEmpty(Model.Banner) ? "/Content/img/bg/about_bg.jpg" : Model.Banner)">
+                    <div class="container">
+                        <div class="breadcrumb__content text-center">
+                            <h2 class="breadcrumb__title mt-25" style="color: #000">@Model.Title</h2>
+                            <p class="breadcrumb__desc mb-50" style="color: #000">Chairperson's Message</p>
+                        </div>
+                    </div>
+                </section>
+                <!-- breadcrumb end -->
+
+                <!-- chairperson message start -->
+                <section class="about pb-60 ml-40">
+                    <div class="container">
+                        <div class="faculty-page-layout">
+                            <div class="faculty-page-content">
+                                <div class="about-content">
+                                                                    <div class="section-title mb-60">
+                                    <h2 class="title">Chairperson's Message</h2>
+                                </div>
+                                    
+                                    @if (!string.IsNullOrEmpty(Model.HODPhoto))
+                                    {
+                                        <div class="hod-photo mb-40" style="text-align: center;">
+                                            <img src="@Model.HODPhoto" alt="Chairperson Photo" style="max-width: 300px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                        </div>
+                                    }
+                                    
+                                    @if (!string.IsNullOrEmpty(Model.HODMessage))
+                                    {
+                                        @* Use Html.Raw to render the HTML from the database correctly *@
+                                        @Html.Raw(Model.HODMessage)
+                                    }
+                                    else
+                                    {
+                                        <p>Welcome to our department! As the Chairperson, I am delighted to share our vision and commitment to excellence in education and research.</p>
+                                        <p>Our department is dedicated to providing high-quality education and fostering innovation in our field. We strive to prepare our students for successful careers while contributing to the advancement of knowledge through research and community engagement.</p>
+                                        <p>We believe in creating an inclusive learning environment where students can develop their skills, knowledge, and character. Our faculty members are committed to mentoring and guiding students throughout their academic journey.</p>
+                                        <p>Thank you for your interest in our department. We look forward to working with you and supporting your academic and professional growth.</p>
+                                    }
+                                </div>
+                            </div>
+                            <div class="faculty-page-sidebar">
+                                @Html.Partial("_FacultySidebar")
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- chairperson message end -->
+            }
+            else
+            {
+                <!-- This 'else' block for when the model is null is handled by the controller now, but can be kept as a fallback. -->
+                <section class="about pt-120 pb-120">
+                    <div class="container text-center">
+                        <h2>Department Not Found</h2>
+                        <p>The requested department information is not available.</p>
+                    </div>
+                </section>
+            }
+        </main>
+        <!-- main area end  -->
+
+    </div>
+
+</body> 

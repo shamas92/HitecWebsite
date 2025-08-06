@@ -1,0 +1,168 @@
+@model IEnumerable<HitecCM.Models.tblMenus>
+@using HitecCM.Models
+
+<!-- Debug: Current URL: @Request.Url?.AbsolutePath -->
+<!-- Debug: Controller: @ViewContext.RouteData.Values["controller"] -->
+<!-- Debug: Action: @ViewContext.RouteData.Values["action"] -->
+
+<nav class="xb-header-nav">
+    <ul class="xb-menu-primary clearfix">
+        @foreach (var menu in Model)
+        {
+            <!-- Debug: Menu @menu.MenuName - Link: @menu.MenuLink - Children: @(menu.ChildMenus?.Count ?? 0) -->
+            <li class="menu-item menu-item-has-children @(IsMenuActive(menu) ? "active" : "")">
+                @if (!string.IsNullOrEmpty(menu.MenuLink))
+                {
+                    <a href="@menu.MenuLink">@menu.MenuName</a>
+                }
+                else
+                {
+                    <a href="#">@menu.MenuName</a>
+                }
+
+                @if (menu.ChildMenus != null && menu.ChildMenus.Any())
+                {
+                    <ul class="sub-menu">
+
+                        @foreach (var childMenu in menu.ChildMenus)
+                        {
+                            <!-- Debug: Child Menu @childMenu.MenuName - Link: @childMenu.MenuLink - Grandchildren: @(childMenu.ChildMenus?.Count ?? 0) -->
+                                                    
+                                                    <li class="menu-item @(childMenu.ChildMenus != null && childMenu.ChildMenus.Any() ? "menu-item-has-children " : "")@(IsChildMenuActive(childMenu) ? "active" : "")">
+                                                        @if (!string.IsNullOrEmpty(childMenu.MenuLink))
+                                                        {
+                                                            <a href="@childMenu.MenuLink">@childMenu.MenuName</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href="#">@childMenu.MenuName</a>
+                                                        }
+
+                                                        @if (childMenu.ChildMenus != null && childMenu.ChildMenus.Any())
+                                                        {
+                                                            <ul class="sub-menu">
+
+                                @foreach (var grandChildMenu in childMenu.ChildMenus)
+                                {
+                                    <!-- Debug: Grandchild Menu @grandChildMenu.MenuName - Link: @grandChildMenu.MenuLink -->
+                                                                <li class="menu-item @(IsGrandChildMenuActive(grandChildMenu) ? "active" : "")">
+                                                                    @if (!string.IsNullOrEmpty(grandChildMenu.MenuLink))
+                                                                    {
+                                                                        <a href="@grandChildMenu.MenuLink">@grandChildMenu.MenuName</a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a href="#">@grandChildMenu.MenuName</a>
+                                                                    }
+                                                                </li>
+                                                            }
+</ul>
+}
+                                                    </li>
+                                                }
+                    </ul>
+                }
+            </li>
+        }
+    </ul>
+    </nav>
+
+    @functions {
+        private bool IsMenuActive(tblMenus menu)
+        {
+            // Check if this menu itself is active
+            if (IsMenuLinkActive(menu))
+                return true;
+
+            // Check if any child menu is active (including nested children)
+            if (menu.ChildMenus != null && menu.ChildMenus.Any())
+            {
+                foreach (var childMenu in menu.ChildMenus)
+                {
+                    if (IsChildMenuActive(childMenu))
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool IsChildMenuActive(tblMenus childMenu)
+        {
+            // Check if this child menu is active
+            if (IsMenuLinkActive(childMenu))
+                return true;
+
+            // Check if any of its children (grandchildren) are active
+            if (childMenu.ChildMenus != null && childMenu.ChildMenus.Any())
+            {
+                foreach (var grandChild in childMenu.ChildMenus)
+                {
+                    if (IsGrandChildMenuActive(grandChild))
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool IsGrandChildMenuActive(tblMenus grandChildMenu)
+        {
+            return IsMenuLinkActive(grandChildMenu);
+        }
+
+        private bool IsMenuLinkActive(tblMenus menu)
+        {
+            if (string.IsNullOrEmpty(menu.MenuLink))
+                return false;
+
+            // Get current URL path without query parameters
+            var currentUrl = Request.Url?.AbsolutePath;
+            if (string.IsNullOrEmpty(currentUrl))
+                return false;
+
+            var menuUrl = menu.MenuLink;
+
+            // Handle full URLs (like https://localhost:44347/About/VcMessage)
+            if (menuUrl.StartsWith("http"))
+            {
+                // Extract path from full URL
+                try
+                {
+                    var menuUri = new Uri(menuUrl);
+                    var menuPath = menuUri.AbsolutePath;
+                    return currentUrl.Equals(menuPath, StringComparison.OrdinalIgnoreCase);
+                }
+                catch
+                {
+                    // If URL parsing fails, try direct comparison
+                    return currentUrl.Equals(menuUrl, StringComparison.OrdinalIgnoreCase);
+                }
+            }
+
+            // Handle relative URLs (starting with /)
+            if (menuUrl.StartsWith("/"))
+            {
+                return currentUrl.Equals(menuUrl, StringComparison.OrdinalIgnoreCase);
+            }
+
+            // Handle controller/action URLs (like Home/Index)
+            if (menuUrl.Contains("/"))
+            {
+                var parts = menuUrl.Split('/');
+                if (parts.Length >= 2)
+                {
+                    var controller = parts[0];
+                    var action = parts[1];
+
+                    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+                    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+
+                    return string.Equals(controller, currentController, StringComparison.OrdinalIgnoreCase) &&
+                           string.Equals(action, currentAction, StringComparison.OrdinalIgnoreCase);
+                }
+            }
+
+            return false;
+        }
+    }

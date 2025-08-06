@@ -1,0 +1,53 @@
+@{
+    ViewBag.Title = "Upcoming Events";
+}
+
+<!-- backtotop - start -->
+<!-- backtotop - end -->
+
+<body>
+    <div class="body_wrap">
+
+        <!-- main area start  -->
+        <main aria-labelledby="title">
+
+            <!-- breadcrumb start -->
+            <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
+                <div class="container">
+                    <div class="breadcrumb__content text-center">
+                        <h2 class="breadcrumb__title mt-25" style="color: #000">Upcoming Events</h2>
+                        <p class="breadcrumb__desc mb-50" style="color: #000">Future Activities</p>
+                    </div>
+                </div>
+            </section>
+            <!-- breadcrumb end -->
+
+            <!-- upcoming events start -->
+            <section class="about pb-120">
+                <div class="container">
+                    <div class="faculty-page-layout">
+                        <div class="faculty-page-content">
+                            <div class="about-content mt-60">
+                                <div class="section-title mb-60">
+                                    <span class="sub-title">Activities</span>
+                                    <h2 class="title">Upcoming Events</h2>
+                                </div>
+                                <p>Stay updated with our upcoming events, workshops, seminars, and activities. We regularly organize events that provide valuable learning opportunities and networking experiences for our students and faculty.</p>
+                                <p>Our upcoming events include technical workshops, industry seminars, research presentations, career development sessions, and cultural activities. These events are designed to enhance academic and professional growth.</p>
+                                <p>We encourage students and faculty to participate in these events as they provide excellent opportunities for skill development, networking, and staying current with industry trends and developments.</p>
+                            </div>
+                        </div>
+                        <div class="faculty-page-sidebar">
+                            @Html.Partial("_FacultySidebar")
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- upcoming events end -->
+
+        </main>
+        <!-- main area end  -->
+
+    </div>
+
+</body> 

@@ -1,0 +1,240 @@
+using System.Web.Mvc;
+using System.Linq;
+using Website.Models;
+using HitecCM.Models;
+using System.Data.Entity;
+using System.Collections.Generic; // Added for List<tblDepartment>
+using System.Web;
+using System.IO;
+using System;
+
+namespace Website.Controllers
+{
+    public class FacultiesController : Controller
+    {
+        public ActionResult VisionMission()
+        {
+            using (var db = new Model1())
+            {
+                var facultyET = db.tblFacultiesETs.OrderByDescending(f => f.Id).FirstOrDefault();
+                if (facultyET == null)
+                {
+                    // Create a default object to prevent null reference exception
+                    facultyET = new tblFacultiesET
+                    {
+                        Id = 0,
+                        VisionText = "",
+                        MissionText = "",
+                        CreatedDate = null,
+                        ModifiedDate = null
+                    };
+                }
+                return View(facultyET);
+            }
+        }
+        public ActionResult DepartmentsAbout(string department) // 'department' matches the query string key "?Department=EE"
+        {
+            if (string.IsNullOrEmpty(department))
+            {
+                // Handle cases where no department code is provided
+                return HttpNotFound("Department code not specified.");
+            }
+
+            using (var db = new Model1())
+            {
+                // Find the SINGLE department that matches the code from the URL
+                var departmentModel = db.tblDepartments.FirstOrDefault(d => d.Code == department);
+
+                if (departmentModel == null)
+                {
+                    // If no department with that code is found, show a not found page.
+                    return HttpNotFound();
+                }
+
+                // Pass the single department object to the view
+                return View(departmentModel);
+            }
+            using (var db = new Model1())
+            {
+                if (!string.IsNullOrEmpty(department))
+                {
+                    // Clean the department parameter
+                    department = department.Trim();
+
+                    // Get specific department by code (exact match) or title (contains match)
+                    var specificDepartment = db.tblDepartments
+                        .Include(d => d.tblDepartmentPrograms)
+                        .Include(d => d.tblDepartmentTeachingFaculties)
+                        .Where(d => (d.Code != null && d.Code.ToLower() == department.ToLower()) ||
+                                   (d.Title != null && d.Title.ToLower().Contains(department.ToLower())))
+                        .Where(d => !string.IsNullOrEmpty(d.About) || !string.IsNullOrEmpty(d.Banner))
+                        .FirstOrDefault();
+
+                    if (specificDepartment != null)
+                    {
+                        // Load the related data to prevent lazy loading issues
+                        var programsCount = specificDepartment.tblDepartmentPrograms?.Count ?? 0;
+                        var facultiesCount = specificDepartment.tblDepartmentTeachingFaculties?.Count ?? 0;
+
+                        // Return single department in array format for the view
+                        return View(new[] { specificDepartment });
+                    }
+                    else
+                    {
+                        // Department not found - return empty list to show error page
+                        return View(new List<tblDepartment>());
+                    }
+                }
+
+                // If no specific department found or no parameter provided, show all departments
+                var departments = db.tblDepartments
+                    .Include(d => d.tblDepartmentPrograms)
+                    .Include(d => d.tblDepartmentTeachingFaculties)
+                    .Where(d => !string.IsNullOrEmpty(d.About) || !string.IsNullOrEmpty(d.Banner))
+                    .OrderBy(d => d.C_Order)
+                    .ThenBy(d => d.Title)
+                    .ToList();
+
+                // Load the related data to prevent lazy loading issues
+                foreach (var dept in departments)
+                {
+                    var programsCount = dept.tblDepartmentPrograms?.Count ?? 0;
+                    var facultiesCount = dept.tblDepartmentTeachingFaculties?.Count ?? 0;
+                }
+
+                return View(departments);
+            }
+        }
+
+
+        public ActionResult ChairpersonMessage(string department)
+        {
+            if (string.IsNullOrEmpty(department))
+            {
+                // Handle cases where no department code is provided
+                return HttpNotFound("Department code not specified.");
+            }
+
+            using (var db = new Model1())
+            {
+                // Find the department that matches the code from the URL
+                var departmentModel = db.tblDepartments.FirstOrDefault(d => d.Code == department);
+
+                if (departmentModel == null)
+                {
+                    // If no department with that code is found, show a not found page.
+                    return HttpNotFound();
+                }
+
+                // Pass the department object to the view
+                return View(departmentModel);
+            }
+        }
+
+        public ActionResult TeachingFaculty()
+        {
+            return View();
+        }
+
+        public ActionResult Programs()
+        {
+            return View();
+        }
+
+        public ActionResult Facilities()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult UploadFacilityImage(HttpPostedFileBase croppedImage)
+        {
+            try
+            {
+                if (croppedImage != null && croppedImage.ContentLength > 0)
+                {
+                    // Validate file type
+                    var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+                    var fileExtension = Path.GetExtension(croppedImage.FileName).ToLower();
+                    
+                    if (!allowedExtensions.Contains(fileExtension))
+                    {
+                        return Json(new { success = false, message = "Only image files are allowed." });
+                    }
+
+                    // Validate file size (max 5MB)
+                    if (croppedImage.ContentLength > 5 * 1024 * 1024)
+                    {
+                        return Json(new { success = false, message = "File size cannot exceed 5MB." });
+                    }
+
+                    // Create unique filename
+                    var fileName = "facility_" + Guid.NewGuid().ToString() + fileExtension;
+                    var uploadPath = Server.MapPath("~/Content/uploads/facilities/");
+                    
+                    // Create directory if it doesn't exist
+                    if (!Directory.Exists(uploadPath))
+                    {
+                        Directory.CreateDirectory(uploadPath);
+                    }
+
+                    var filePath = Path.Combine(uploadPath, fileName);
+                    
+                    // Save the file
+                    croppedImage.SaveAs(filePath);
+                    
+                    // Here you would typically save the file info to database
+                    // For now, we'll just return success
+                    var relativeUrl = "/Content/uploads/facilities/" + fileName;
+                    
+                    return Json(new { 
+                        success = true, 
+                        message = "Image uploaded successfully!", 
+                        imageUrl = relativeUrl,
+                        fileName = fileName
+                    });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "No file was uploaded." });
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (you might want to use a logging framework)
+                System.Diagnostics.Debug.WriteLine($"Upload error: {ex.Message}");
+                return Json(new { success = false, message = "An error occurred while uploading the image." });
+            }
+        }
+
+        public ActionResult SchemeOfStudies()
+        {
+            return View();
+        }
+
+        public ActionResult PastEvents()
+        {
+            return View();
+        }
+
+        public ActionResult UpcomingEvents()
+        {
+            return View();
+        }
+
+        public ActionResult SuccessStories()
+        {
+            return View();
+        }
+
+        public ActionResult FAQs()
+        {
+            return View();
+        }
+
+        public ActionResult Contacts()
+        {
+            return View();
+        }
+    }
+}

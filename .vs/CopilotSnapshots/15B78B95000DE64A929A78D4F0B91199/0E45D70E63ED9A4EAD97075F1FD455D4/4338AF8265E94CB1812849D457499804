@@ -1,0 +1,40 @@
+﻿@model IEnumerable<HitecCM.Models.tblMenus>
+<ul>
+    @foreach (var menu in Model)
+    {
+        // Use ControllerName and ActionName for active logic if available
+        var isActiveMenu = ViewContext.RouteData.Values["controller"]?.ToString().Equals(menu.ControllerName, StringComparison.OrdinalIgnoreCase) == true;
+        <li class="menu-item-has-children @(isActiveMenu ? "active" : "")">
+            @if (!string.IsNullOrEmpty(menu.MenuLink))
+            {
+                <a href="@menu.MenuLink">@menu.MenuName</a>
+            }
+            else
+            {
+                <a href="#">@menu.MenuName</a>
+            }
+
+            @if (menu.ChildMenus != null && menu.ChildMenus.Any())
+            {
+                <ul class="submenu">
+                    @foreach (var childMenu in menu.ChildMenus)
+                    {
+                        var isActiveChild = 
+                            ViewContext.RouteData.Values["controller"]?.ToString().Equals(childMenu.ControllerName, StringComparison.OrdinalIgnoreCase) == true &&
+                            ViewContext.RouteData.Values["action"]?.ToString().Equals(childMenu.ActionName, StringComparison.OrdinalIgnoreCase) == true;
+                        <li class="@(isActiveChild ? "active" : "")">
+                            @if (!string.IsNullOrEmpty(childMenu.MenuLink))
+                            {
+                                <a href="@childMenu.MenuLink">@childMenu.MenuName</a>
+                            }
+                            else
+                            {
+                                <a href="#">@childMenu.MenuName</a>
+                            }
+                        </li>
+                    }
+                </ul>
+            }
+        </li>
+    }
+</ul>
