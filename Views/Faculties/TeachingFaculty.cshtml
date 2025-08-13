@@ -1,41 +1,341 @@
+@model List<Website.Models.tblFaculty>
 @{
     ViewBag.Title = "Teaching Faculty";
+    var department = ViewBag.Department as Website.Models.tblDepartment;
+    var departmentCode = ViewBag.DepartmentCode as string;
+    var departmentName = ViewBag.DepartmentName as string;
+
+    // SEO Meta Tags
+    ViewBag.MetaDescription = department != null
+        ? $"Meet the distinguished faculty members of the {department.Title} department at HITEC University. Our experienced educators are committed to excellence in teaching and research."
+        : "Meet the distinguished faculty members at HITEC University. Our experienced educators are committed to excellence in teaching and research.";
+    ViewBag.MetaKeywords = department != null
+        ? $"{department.Title}, faculty, teaching staff, professors, HITEC University, {department.Code}"
+        : "faculty, teaching staff, professors, HITEC University, academic staff";
 }
 
-<!-- backtotop - start -->
-<!-- backtotop - end -->
+@section Styles {
+    <link href="~/Content/css/faculty-sidebar.css" rel="stylesheet" />
+    <style>
+        /* EduBoost Team Card Styles - Exact Match */
+        .team-section {
+            padding: 60px 0;
+            background-color: #F1F1E9;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title .sub-title {
+            color: var(--color-primary);
+            font-size: 16px;
+            font-weight: 500;
+            text-transform: lowercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .section-title .title {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--color-heading);
+            line-height: 1.2;
+        }
+
+        /* Faculty Grid */
+        .row.mt-none-30 {
+            margin-top: -30px;
+        }
+
+        .mt-30 {
+            margin-top: 30px;
+        }
+
+        /* Team Item - Exact EduBoost Style */
+        .team-item {
+            padding: 30px;
+            background-color: var(--color-white);
+            border-radius: 10px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            -ms-border-radius: 10px;
+            -o-border-radius: 10px;
+            -webkit-transition: 0.3s;
+            -o-transition: 0.3s;
+            transition: 0.3s;
+        }
+
+        .team-item:hover {
+            box-shadow: 0 22px 33px 0 rgba(63, 104, 94, 0.24);
+        }
+
+        .team-item .xb-item--img {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .team-item .xb-item--img img {
+            width: 100%;
+            border-radius: 10px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            -ms-border-radius: 10px;
+            -o-border-radius: 10px;
+        }
+
+        .team-item .xb-item--info {
+            border-bottom: 1px dashed #D9D9D9;
+            padding-bottom: 22px;
+            margin-bottom: 22px;
+        }
+
+        .team-item .xb-item--name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--color-heading);
+        }
+
+        .team-item .xb-item--desig {
+            color: var(--color-primary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .team-item .xb-item--meta {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .team-item .xb-item--meta li {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: var(--color-default);
+        }
+
+        .team-item .xb-item--meta li span {
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .team-item .xb-item--meta li svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Additional Faculty Info Styles */
+        .faculty-qualification {
+            font-size: 13px;
+            color: var(--color-default);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .faculty-research {
+            font-size: 13px;
+            color: var(--color-default);
+            margin-bottom: 15px;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        /* No Results */
+        .faculty-no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--color-default);
+            background: var(--color-white);
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+
+        .faculty-no-results h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--color-heading);
+        }
+
+        .faculty-no-results p {
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Responsive Design */
+        media (max-width: 1199px) {
+            .team-item {
+                padding: 20px 10px;
+            }
+        }
+
+        media (max-width: 768px) {
+            .section-title .title {
+                font-size: 32px;
+            }
+        }
+
+        media (max-width: 576px) {
+            .section-title .title {
+                font-size: 28px;
+            }
+
+            .team-item .xb-item--name {
+                font-size: 20px;
+            }
+        }
+    </style>
+}
+
+@section Meta {
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta property="og:title" content="@ViewBag.Title - HITEC University" />
+    <meta property="og:description" content="@ViewBag.MetaDescription" />
+    <meta property="og:type" content="website" />
+}
 
 <body>
     <div class="body_wrap">
-
         <!-- main area start  -->
         <main aria-labelledby="title">
-
             <!-- breadcrumb start -->
             <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
                 <div class="container">
                     <div class="breadcrumb__content text-center">
-                        <h2 class="breadcrumb__title mt-25" style="color: #000">Teaching Faculty</h2>
-                        <p class="breadcrumb__desc mb-50" style="color: #000">Our Academic Team</p>
+                        <h1 class="breadcrumb__title mt-25" style="color: #000">
+                            @if (department != null)
+                            {
+                                @($"Teaching Faculty - {department.Title}")
+                            }
+                            else
+                            {
+                                @("Teaching Faculty")
+                            }
+                        </h1>
+                        <p class="breadcrumb__desc mb-50" style="color: #000">
+                            @if (department != null)
+                            {
+                                @($"{department.Code} Department Academic Team")
+                            }
+                            else
+                            {
+                                @("Our Academic Team")
+                            }
+                        </p>
                     </div>
                 </div>
             </section>
             <!-- breadcrumb end -->
 
             <!-- teaching faculty start -->
-            <section class="about pb-120">
+            <section class="team-section">
                 <div class="container">
                     <div class="faculty-page-layout">
                         <div class="faculty-page-content">
-                            <div class="about-content mt-60">
-                                <div class="section-title mb-60">
-                                    <span class="sub-title">Faculty</span>
-                                    <h2 class="title">Teaching Faculty</h2>
-                                </div>
-                                <p>Our department is proud to have a distinguished team of faculty members who are experts in their respective fields. Our teaching faculty brings together years of academic and industry experience to provide students with comprehensive education and mentorship.</p>
-                                <p>Each faculty member is committed to excellence in teaching, research, and community service. They actively engage in cutting-edge research and maintain strong connections with industry partners to ensure our curriculum remains relevant and up-to-date.</p>
-                                <p>Our faculty members are not only educators but also mentors who guide students in their academic and professional development. They are dedicated to fostering a supportive learning environment where students can thrive and achieve their goals.</p>
+                            <div class="section-title text-center mb-60">
+                                <span class="sub-title">our honorable teacher</span>
+                                <h2 class="title">
+                                    @if (department != null)
+                                    {
+                                        @($"{department.Title} Teaching Faculty")
+                                    }
+                                    else
+                                    {
+                                        @("Our Expert Instructor")
+                                    }
+                                </h2>
                             </div>
+
+                            @if (Model != null && Model.Any())
+                            {
+                                <div class="row mt-none-30">
+                                    @foreach (var faculty in Model)
+                                    {
+                                        <div class="col-lg-6 col-md-6 mt-30">
+                                            <div class="team-item">
+                                                <div class="xb-item--img pos-rel">
+                                                    @if (!string.IsNullOrEmpty(faculty.Photo))
+                                                    {
+                                                        <img src="@Url.Content("~/Content/uploads/faculty/" + faculty.Photo)"
+                                                             alt="@faculty.FullName"
+                                                             onerror="this.src='@Url.Content("~/Content/img/team/team_01.jpg")';" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="@Url.Content("~/Content/img/team/team_01.jpg")" alt="@faculty.FullName" />
+                                                    }
+                                                </div>
+                                                <div class="xb-item--info pt-25">
+                                                    <h3 class="xb-item--name">@(faculty.FullName ?? "Faculty Member")</h3>
+                                                    <span class="xb-item--desig">@(faculty.tblDesignation?.Designation ?? faculty.AdDesignation ?? "Instructor")</span>
+                                                </div>
+
+                                                @if (!string.IsNullOrEmpty(faculty.Qualification) || !string.IsNullOrEmpty(faculty.ResearchInterests) || !string.IsNullOrEmpty(faculty.Email) || !string.IsNullOrEmpty(faculty.TelNo))
+                                                {
+                                                    <ul class="xb-item--meta ul_li">
+                                                        @if (!string.IsNullOrEmpty(faculty.Qualification))
+                                                        {
+                                                            <li class="faculty-qualification">
+                                                                <span><svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M4.87029 3.99439C6.76907 3.07568 8.77017 2.20568 10.8732 1.38439C11.2821 1.22467 11.7163 1.22467 12.1252 1.38439C15.4174 2.67013 18.4596 4.07539 21.251 5.59959C22.03 6.02496 22.03 7.5265 21.251 7.95244C18.4596 9.47664 15.4174 10.8813 12.1252 12.1671C11.7163 12.3268 11.2821 12.3268 10.8732 12.1671C7.58099 10.8813 4.53878 9.47664 1.74738 7.95244C0.96832 7.5265 0.96832 6.02496 1.74738 5.59959C2.38419 5.25182 3.03431 4.91027 3.69732 4.57496" stroke="#170006" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    <path d="M17.5884 14.175V14.8479C17.5884 15.1871 17.4395 15.4936 17.2098 15.6255C15.5581 16.5777 13.7251 17.4431 11.7103 18.2219C11.6549 18.2429 11.5975 18.2537 11.5406 18.2537C11.4835 18.2537 11.4262 18.2429 11.3709 18.2219C9.35603 17.4431 7.52297 16.5777 5.87126 15.6255C5.64207 15.4936 5.49316 15.1871 5.49316 14.8479V9.85612" stroke="#170006" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    <path d="M17.5898 12.4751V9.81525" stroke="#170006" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    <path d="M13.3574 7L9.85071 10.0233V18.3406" stroke="#170006" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    <path d="M9.85121 18.3406C10.3212 18.3406 10.7021 18.8594 10.7021 19.4994V21.7361H9.00027V19.4994C9.00027 18.8594 9.38124 18.3406 9.85121 18.3406Z" stroke="#170006" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                                </svg></span>@faculty.Qualification
+                                                            </li>
+                                                        }
+
+                                                        @if (!string.IsNullOrEmpty(faculty.Email))
+                                                        {
+                                                            <li>
+                                                                <span><svg width="19" height="21" viewBox="0 0 19 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M12.9863 4.10156C12.9863 6.027 11.4254 7.58789 9.5 7.58789C7.57456 7.58789 6.01367 6.027 6.01367 4.10156C6.01367 2.17612 7.57456 0.615232 9.5 0.615232C11.4254 0.615232 12.9863 2.17612 12.9863 4.10156Z" stroke="#170006" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    <path d="M16.2676 14.9707H15.6523C15.4259 14.9707 15.2422 14.787 15.2422 14.5605V12.5098C15.2422 12.2833 15.4259 12.0996 15.6523 12.0996H16.2676C17.0604 12.0996 17.7031 12.7423 17.7031 13.5352C17.7031 14.328 17.0604 14.9707 16.2676 14.9707Z" stroke="#170006" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    <path d="M2.73242 14.9707H3.34766C3.57415 14.9707 3.75781 14.787 3.75781 14.5605V12.5098C3.75781 12.2833 3.57415 12.0996 3.34766 12.0996H2.73242C1.93959 12.0996 1.29688 12.7423 1.29688 13.5352C1.29688 14.328 1.93959 14.9707 2.73242 14.9707Z" stroke="#170006" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    <path d="M14.4969 9.89722C13.2932 8.48419 11.5011 7.58767 9.49942 7.58767C7.49774 7.58767 5.70564 8.48419 4.50195 9.89722" stroke="#170006" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    <path d="M16.0625 12.0996V9.31054L9.5 11.7715V20.3848L16.0625 17.9238V14.9707" stroke="#170006" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    <path d="M2.9375 14.9707V17.9238L9.5 20.3848V11.7715L2.9375 9.31054V12.0996" stroke="#170006" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                                </svg></span><a href="mailto:@faculty.Email">@faculty.Email</a>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                }
+
+                                                @if (!string.IsNullOrEmpty(faculty.ResearchInterests))
+                                                {
+                                                    <div class="faculty-research">
+                                                        <strong>Research:</strong> @faculty.ResearchInterests
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="faculty-no-results">
+                                    <h3>No Faculty Members Found</h3>
+                                    @if (department != null)
+                                    {
+                                        <p>There are currently no faculty members listed for the @department.Title department. Please check back later or contact the department directly for more information.</p>
+                                    }
+                                    else
+                                    {
+                                        <p>There are currently no faculty members listed. Please check back later for updated faculty information.</p>
+                                    }
+                                </div>
+                            }
                         </div>
                         <div class="faculty-page-sidebar">
                             @Html.Partial("_FacultySidebar")
@@ -47,7 +347,75 @@
 
         </main>
         <!-- main area end  -->
-
     </div>
 
-</body> 
+    @section Scripts {
+        <script>
+            $(document).ready(function() {
+                // Faculty search functionality
+                $('#facultySearch').on('keyup', function() {
+                    var searchTerm = $(this).val().toLowerCase();
+                    filterFaculty();
+                });
+
+                // Faculty filter functionality
+                $('.faculty-filter-btn').on('click', function() {
+                    $('.faculty-filter-btn').removeClass('active');
+                    $(this).addClass('active');
+                    filterFaculty();
+                });
+
+                function filterFaculty() {
+                    var searchTerm = $('#facultySearch').val().toLowerCase();
+                    var activeFilter = $('.faculty-filter-btn.active').data('filter');
+                    var visibleCount = 0;
+
+                    $('.faculty-card').each(function() {
+                        var $card = $(this);
+                        var name = $card.data('name').toLowerCase();
+                        var qualification = $card.data('qualification').toLowerCase();
+                        var research = $card.data('research').toLowerCase();
+                        var designation = $card.data('designation').toLowerCase();
+
+                        // Search filter
+                        var matchesSearch = searchTerm === '' ||
+                            name.includes(searchTerm) ||
+                            qualification.includes(searchTerm) ||
+                            research.includes(searchTerm) ||
+                            designation.includes(searchTerm);
+
+                        // Designation filter
+                        var matchesFilter = activeFilter === 'all' ||
+                            (activeFilter === 'professor' && designation.includes('professor')) ||
+                            (activeFilter === 'associate' && designation.includes('associate')) ||
+                            (activeFilter === 'assistant' && designation.includes('assistant'));
+
+                        if (matchesSearch && matchesFilter) {
+                            $card.show();
+                            visibleCount++;
+                        } else {
+                            $card.hide();
+                        }
+                    });
+
+                    // Show/hide no results message
+                    if (visibleCount === 0) {
+                        if ($('#noResultsMessage').length === 0) {
+                            $('#facultyGrid').after('<div id="noResultsMessage" class="faculty-no-results"><h3>No Faculty Members Found</h3><p>No faculty members match your current search criteria. Please try adjusting your search terms or filters.</p></div>');
+                        }
+                        $('#noResultsMessage').show();
+                    } else {
+                        $('#noResultsMessage').hide();
+                    }
+                }
+
+                // Smooth scroll to faculty grid when using search
+                $('#facultySearch').on('focus', function() {
+                    $('html, body').animate({
+                        scrollTop: $('#facultyGrid').offset().top - 100
+                    }, 500);
+                });
+            });
+        </script>
+    }
+</body>

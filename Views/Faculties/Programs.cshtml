@@ -1,22 +1,144 @@
+@model List<Website.Models.tblDepartmentProgram>
 @{
     ViewBag.Title = "Programs";
+    var department = ViewBag.Department as Website.Models.tblDepartment;
+    var departmentCode = ViewBag.DepartmentCode as string;
+
+    // SEO Meta Tags
+    ViewBag.MetaDescription = department != null
+        ? $"Discover the comprehensive academic programs offered by the {department.Title} department at HITEC University. Our undergraduate and graduate programs prepare students for successful careers."
+        : "Discover the comprehensive academic programs offered at HITEC University. Our undergraduate and graduate programs prepare students for successful careers.";
+    ViewBag.MetaKeywords = department != null
+        ? $"{department.Title}, programs, undergraduate, graduate, curriculum, degrees, HITEC University, {department.Code}"
+        : "programs, undergraduate, graduate, curriculum, degrees, HITEC University";
 }
 
-<!-- backtotop - start -->
-<!-- backtotop - end -->
+@section Styles {
+    <link href="~/Content/css/faculty-components.css" rel="stylesheet" />
+    <link href="~/Content/css/faculty-sidebar.css" rel="stylesheet" />
+    <style>
+        .program-card {
+            background: var(--color-white);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--color-primary);
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .program-title {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--color-heading);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .program-content {
+            color: var(--color-default);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .program-content h3,
+        .program-content h4,
+        .program-content h5 {
+            color: var(--color-heading);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .program-content ul,
+        .program-content ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .program-content li {
+            margin-bottom: 5px;
+        }
+
+        .program-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .program-meta-item {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: var(--color-default);
+        }
+
+        .program-meta-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            color: var(--color-primary);
+        }
+
+        media (max-width: 768px) {
+            .program-card {
+                padding: 20px;
+            }
+
+            .program-title {
+                font-size: 20px;
+            }
+
+            .program-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+}
+
+@section Meta {
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta property="og:title" content="@ViewBag.Title - HITEC University" />
+    <meta property="og:description" content="@ViewBag.MetaDescription" />
+    <meta property="og:type" content="website" />
+}
 
 <body>
     <div class="body_wrap">
-
         <!-- main area start  -->
         <main aria-labelledby="title">
-
             <!-- breadcrumb start -->
             <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
                 <div class="container">
                     <div class="breadcrumb__content text-center">
-                        <h2 class="breadcrumb__title mt-25" style="color: #000">Programs</h2>
-                        <p class="breadcrumb__desc mb-50" style="color: #000">Academic Programs</p>
+                        <h1 class="breadcrumb__title mt-25" style="color: #000">
+                            @if (department != null)
+                            {
+                                @($"Programs - {department.Title}")
+                            }
+                            else
+                            {
+                                @("Programs")
+                            }
+                        </h1>
+                        <p class="breadcrumb__desc mb-50" style="color: #000">
+                            @if (department != null)
+                            {
+                                @($"{department.Code} Department Academic Programs")
+                            }
+                            else
+                            {
+                                @("Academic Programs")
+                            }
+                        </p>
                     </div>
                 </div>
             </section>
@@ -28,13 +150,102 @@
                     <div class="faculty-page-layout">
                         <div class="faculty-page-content">
                             <div class="about-content mt-60">
-                                <div class="section-title mb-60">
+                                <div class="section-title mb-40">
                                     <span class="sub-title">Education</span>
-                                    <h2 class="title">Academic Programs</h2>
+                                    <h2 class="title">
+                                        @if (department != null)
+                                        {
+                                            @($"{department.Title} Academic Programs")
+                                        }
+                                        else
+                                        {
+                                            @("Academic Programs")
+                                        }
+                                    </h2>
                                 </div>
-                                <p>Our department offers a comprehensive range of academic programs designed to meet the evolving needs of students and industry. Our curriculum is carefully crafted to provide students with both theoretical knowledge and practical skills.</p>
-                                <p>We offer undergraduate and graduate programs that prepare students for successful careers in their chosen fields. Our programs are regularly updated to reflect the latest developments in technology and industry practices.</p>
-                                <p>Each program is designed with input from industry experts and alumni to ensure relevance and employability. We emphasize hands-on learning, research opportunities, and industry partnerships to enhance the educational experience.</p>
+
+                                @if (department != null)
+                                {
+                                    <p>The @department.Title department offers a comprehensive range of academic programs designed to meet the evolving needs of students and industry. Our curriculum is carefully crafted to provide students with both theoretical knowledge and practical skills specific to @department.Title.</p>
+                                }
+                                else
+                                {
+                                    <p>Our departments offer a comprehensive range of academic programs designed to meet the evolving needs of students and industry. Our curriculum is carefully crafted to provide students with both theoretical knowledge and practical skills.</p>
+                                }
+
+                                <p>We offer undergraduate and graduate programs that prepare students for successful careers in their chosen fields. Our programs are regularly updated to reflect the latest developments in technology and industry practices, ensuring our graduates are well-prepared for the modern workplace.</p>
+
+                                @if (Model != null && Model.Any())
+                                {
+                                    <!-- Programs Statistics -->
+                                    <div class="faculty-stats">
+                                        <div class="faculty-stat">
+                                            <span class="faculty-stat-number">@Model.Count</span>
+                                            <span class="faculty-stat-label">Programs Available</span>
+                                        </div>
+                                        <div class="faculty-stat">
+                                            <span class="faculty-stat-number">@DateTime.Now.Year</span>
+                                            <span class="faculty-stat-label">Current Academic Year</span>
+                                        </div>
+                                        <div class="faculty-stat">
+                                            <span class="faculty-stat-number">100%</span>
+                                            <span class="faculty-stat-label">Industry Relevant</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Programs List -->
+                                    <div class="programs-container">
+                                        @foreach (var program in Model)
+                                        {
+                                            <div class="program-card">
+                                                @if (!string.IsNullOrEmpty(program.ProgramsInfo))
+                                                {
+                                                    <div class="program-meta">
+                                                        @if (program.CreatedDate.HasValue)
+                                                        {
+                                                            <div class="program-meta-item">
+                                                                <i class="program-meta-icon fas fa-calendar"></i>
+                                                                <span>Updated: @program.CreatedDate.Value.ToString("MMMM yyyy")</span>
+                                                            </div>
+                                                        }
+                                                        @if (department != null)
+                                                        {
+                                                            <div class="program-meta-item">
+                                                                <i class="program-meta-icon fas fa-graduation-cap"></i>
+                                                                <span>@department.Title Department</span>
+                                                            </div>
+                                                        }
+                                                    </div>
+
+                                                    <div class="program-content">
+                                                        @Html.Raw(program.ProgramsInfo)
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <h3 class="program-title">Program Information</h3>
+                                                    <div class="program-content">
+                                                        <p>Program details are currently being updated. Please contact the department for the most current information about available programs, admission requirements, and curriculum details.</p>
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="faculty-no-results">
+                                        <h3>No Program Information Available</h3>
+                                        @if (department != null)
+                                        {
+                                            <p>Program information for the @department.Title department is currently being updated. Please check back later or contact the department directly for detailed information about available programs, admission requirements, and curriculum.</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Program information is currently being updated. Please check back later for detailed information about our academic programs and curriculum offerings.</p>
+                                        }
+                                    </div>
+                                }
                             </div>
                         </div>
                         <div class="faculty-page-sidebar">

@@ -1,40 +1,234 @@
+@model List<Website.Models.tblDepartmentFAQ>
 @{
     ViewBag.Title = "FAQs";
+    var department = ViewBag.Department as Website.Models.tblDepartment;
+    var departmentCode = ViewBag.DepartmentCode as string;
+
+    ViewBag.MetaDescription = department != null
+        ? $"Find answers to frequently asked questions about the {department.Title} department at HITEC University. Get information about programs, admissions, and department policies."
+        : "Find answers to frequently asked questions about HITEC University departments. Get information about programs, admissions, and university policies.";
+    ViewBag.MetaKeywords = department != null
+        ? $"{department.Title}, FAQ, questions, answers, information, HITEC University, {department.Code}"
+        : "FAQ, questions, answers, information, HITEC University";
 }
 
-<!-- backtotop - start -->
-<!-- backtotop - end -->
+@section Styles {
+    <link href="~/Content/css/faculty-components.css" rel="stylesheet" />
+    <link href="~/Content/css/faculty-sidebar.css" rel="stylesheet" />
+    <style>
+        .faq-accordion {
+            margin-top: 40px;
+        }
+
+        .faq-item {
+            background: var(--color-white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            background: var(--color-white);
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-heading);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--color-sec-bg);
+        }
+
+        .faq-question.active {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .faq-icon {
+            font-size: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: var(--color-white);
+        }
+
+        .faq-answer.active {
+            padding: 20px 25px;
+            max-height: 1000px;
+        }
+
+        .faq-answer-content {
+            color: var(--color-default);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .faq-search {
+            margin-bottom: 30px;
+        }
+
+        .faq-search input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: var(--font-body);
+            transition: border-color 0.3s ease;
+        }
+
+        .faq-search input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        media (max-width: 768px) {
+            .faq-question {
+                padding: 15px 20px;
+                font-size: 15px;
+            }
+
+            .faq-answer.active {
+                padding: 15px 20px;
+            }
+        }
+    </style>
+}
+
+@section Meta {
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta property="og:title" content="@ViewBag.Title - HITEC University" />
+    <meta property="og:description" content="@ViewBag.MetaDescription" />
+    <meta property="og:type" content="website" />
+}
 
 <body>
     <div class="body_wrap">
-
-        <!-- main area start  -->
         <main aria-labelledby="title">
-
-            <!-- breadcrumb start -->
             <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
                 <div class="container">
                     <div class="breadcrumb__content text-center">
-                        <h2 class="breadcrumb__title mt-25" style="color: #000">FAQs</h2>
-                        <p class="breadcrumb__desc mb-50" style="color: #000">Frequently Asked Questions</p>
+                        <h1 class="breadcrumb__title mt-25" style="color: #000">
+                            @if (department != null)
+                            {
+                                @($"FAQs - {department.Title}")
+                            }
+                            else
+                            {
+                                @("FAQs")
+                            }
+                        </h1>
+                        <p class="breadcrumb__desc mb-50" style="color: #000">
+                            @if (department != null)
+                            {
+                                @($"{department.Code} Department Frequently Asked Questions")
+                            }
+                            else
+                            {
+                                @("Frequently Asked Questions")
+                            }
+                        </p>
                     </div>
                 </div>
             </section>
-            <!-- breadcrumb end -->
 
-            <!-- FAQs start -->
             <section class="about pb-120">
                 <div class="container">
                     <div class="faculty-page-layout">
                         <div class="faculty-page-content">
                             <div class="about-content mt-60">
-                                <div class="section-title mb-60">
+                                <div class="section-title mb-40">
                                     <span class="sub-title">Information</span>
-                                    <h2 class="title">Frequently Asked Questions</h2>
+                                    <h2 class="title">
+                                        @if (department != null)
+                                        {
+                                            @($"{department.Title} FAQs")
+                                        }
+                                        else
+                                        {
+                                            @("Frequently Asked Questions")
+                                        }
+                                    </h2>
                                 </div>
-                                <p>Find answers to commonly asked questions about our department, programs, admission requirements, and other important information. We've compiled this FAQ section to help you quickly find the information you need.</p>
-                                <p>If you don't find the answer to your question here, please don't hesitate to contact us directly. We're here to help and provide you with the information you need to make informed decisions about your education.</p>
-                                <p>Our FAQ section is regularly updated to reflect current policies, procedures, and information. We encourage you to check back periodically for the most up-to-date information.</p>
+
+                                @if (department != null)
+                                {
+                                    <p>Find answers to commonly asked questions about the @department.Title department, our programs, admission requirements, and other important information. We've compiled this FAQ section to help you quickly find the information you need.</p>
+                                }
+                                else
+                                {
+                                    <p>Find answers to commonly asked questions about our departments, programs, admission requirements, and other important information. We've compiled this FAQ section to help you quickly find the information you need.</p>
+                                }
+
+                                @if (Model != null && Model.Any())
+                                {
+                                    <div class="faq-search">
+                                        <input type="text" id="faqSearch" placeholder="Search FAQs..." />
+                                    </div>
+
+                                    <div class="faq-accordion" id="faqAccordion">
+                                        @for (int i = 0; i < Model.Count; i++)
+                                        {
+                                            var faq = Model[i];
+                                            <div class="faq-item" data-faq="@(faq.Question ?? "") @(faq.Answer ?? "")">
+                                                <button class="faq-question" data-target="#faq-@i">
+                                                    <span>@(faq.Question ?? "Question")</span>
+                                                    <i class="faq-icon fas fa-chevron-down"></i>
+                                                </button>
+                                                <div class="faq-answer" id="faq-@i">
+                                                    <div class="faq-answer-content">
+                                                        @if (!string.IsNullOrEmpty(faq.Answer))
+                                                        {
+                                                            @Html.Raw(faq.Answer)
+                                                        }
+                                                        else
+                                                        {
+                                                            <p>Answer will be provided soon. Please contact the department for more information.</p>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="faculty-no-results">
+                                        <h3>No FAQs Available</h3>
+                                        @if (department != null)
+                                        {
+                                            <p>FAQ information for the @department.Title department is currently being compiled. Please check back later or contact the department directly for answers to your questions.</p>
+                                        }
+                                        else
+                                        {
+                                            <p>FAQ information is currently being compiled. Please check back later or contact us directly for answers to your questions.</p>
+                                        }
+                                    </div>
+                                }
                             </div>
                         </div>
                         <div class="faculty-page-sidebar">
@@ -43,11 +237,54 @@
                     </div>
                 </div>
             </section>
-            <!-- FAQs end -->
-
         </main>
-        <!-- main area end  -->
-
     </div>
 
-</body> 
+    @section Scripts {
+        <script>
+            $(document).ready(function() {
+                // FAQ accordion functionality
+                $('.faq-question').on('click', function() {
+                    var target = $(this).data('target');
+                    var $answer = $(target);
+                    var $question = $(this);
+
+                    // Close all other FAQs
+                    $('.faq-question').not($question).removeClass('active');
+                    $('.faq-answer').not($answer).removeClass('active');
+
+                    // Toggle current FAQ
+                    $question.toggleClass('active');
+                    $answer.toggleClass('active');
+                });
+
+                // FAQ search functionality
+                $('#faqSearch').on('keyup', function() {
+                    var searchTerm = $(this).val().toLowerCase();
+                    var visibleCount = 0;
+
+                    $('.faq-item').each(function() {
+                        var faqText = $(this).data('faq').toLowerCase();
+
+                        if (searchTerm === '' || faqText.includes(searchTerm)) {
+                            $(this).show();
+                            visibleCount++;
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+
+                    // Show/hide no results message
+                    if (visibleCount === 0 && searchTerm !== '') {
+                        if ($('#noFaqResults').length === 0) {
+                            $('#faqAccordion').after('<div id="noFaqResults" class="faculty-no-results"><h3>No FAQs Found</h3><p>No FAQs match your search criteria. Please try different keywords.</p></div>');
+                        }
+                        $('#noFaqResults').show();
+                    } else {
+                        $('#noFaqResults').hide();
+                    }
+                });
+            });
+        </script>
+    }
+</body>
