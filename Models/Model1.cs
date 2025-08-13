@@ -93,7 +93,6 @@ namespace Website.Models
         public virtual DbSet<tblDepartmentProgramStudy> tblDepartmentProgramStudies { get; set; }
         public virtual DbSet<tblDepartment> tblDepartments { get; set; }
         public virtual DbSet<tblDepartmentSchemeOfStudy> tblDepartmentSchemeOfStudies { get; set; }
-        public virtual DbSet<tblDepartmentSuccessStory> tblDepartmentSuccessStories { get; set; }
         public virtual DbSet<tblDepartmentTeachingFaculty> tblDepartmentTeachingFaculties { get; set; }
         public virtual DbSet<tblDepartmentUpcomingEvent> tblDepartmentUpcomingEvents { get; set; }
         public virtual DbSet<tblDesignation> tblDesignations { get; set; }

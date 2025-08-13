@@ -142,6 +142,7 @@
     <Compile Include="Controllers\FacultiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -282,6 +283,8 @@
   <ItemGroup>
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\faculty-components.css" />
+    <Content Include="Content\css\faculty-sidebar.css" />
     <Content Include="Content\css\fontawesome.css" />
     <Content Include="Content\css\image-crop.css" />
     <Content Include="Content\css\magnific-popup.css" />
@@ -378,6 +381,13 @@
     <Content Include="Content\img\hero\hero_img01.png" />
     <Content Include="Content\img\hero\hero_img02.jpg" />
     <Content Include="Content\img\hero\hero_img03.png" />
+    <Content Include="Content\img\HomePage\2.jpeg" />
+    <Content Include="Content\img\HomePage\3.jpeg" />
+    <Content Include="Content\img\HomePage\4 %281%29.jpeg" />
+    <Content Include="Content\img\HomePage\4.jpeg" />
+    <Content Include="Content\img\HomePage\AdmissionAd.jpeg" />
+    <Content Include="Content\img\HomePage\AdmissionsSpring2024.jpeg" />
+    <Content Include="Content\img\HomePage\back.jpeg" />
     <Content Include="Content\img\icon\about-icon.svg" />
     <Content Include="Content\img\icon\about-icon01.png" />
     <Content Include="Content\img\icon\about-icon02.png" />
@@ -609,6 +619,7 @@
     <Content Include="Views\About\ChairmanMessage.cshtml" />
     <Content Include="Views\About\VcMessage.cshtml" />
     <Content Include="Views\About\Motto.cshtml" />
+    <Content Include="Views\Events\Details.cshtml" />
     <Content Include="Views\About\VisionMission.cshtml" />
     <Content Include="Views\About\Emblem.cshtml" />
     <Content Include="Views\Menu\_TopMenu.cshtml" />
@@ -630,6 +641,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\uploads\facilities\" />
     <Folder Include="Views\Departments\" />
   </ItemGroup>
   <ItemGroup>

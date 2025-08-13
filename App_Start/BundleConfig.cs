@@ -76,7 +76,8 @@ namespace Website
                 "~/Content/css/fontawesome.css",
                 "~/Content/css/main.css",
                 "~/Content/css/swiper.min.css",
-                "~/Content/css/responsive.css"
+                "~/Content/css/responsive.css",
+                "~/Content/css/faculty-components.css"
             ));
             bundles.Add(new ScriptBundle("~/bundles/main").Include(
                 "~/Scripts/main.js"

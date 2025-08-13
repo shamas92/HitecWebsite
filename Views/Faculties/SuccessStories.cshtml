@@ -1,53 +1,350 @@
+@model List<Website.Models.tblSuccessStory>
+@using System.Text.RegularExpressions;
 @{
-    ViewBag.Title = "Success Stories";
+    ViewBag.Title = ViewBag.Title ?? "Success Stories";
+    var department = ViewBag.Department as Website.Models.tblDepartment;
+    var departmentCode = ViewBag.DepartmentCode as string;
 }
 
-<!-- backtotop - start -->
-<!-- backtotop - end -->
+@section Styles {
+    <link href="~/Content/css/faculty-sidebar.css" rel="stylesheet" />
+    <link href="~/Content/css/faculty-components.css" rel="stylesheet" />
+}
 
-<body>
-    <div class="body_wrap">
+<!-- breadcrumb start -->
+<section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
+    <div class="container">
+        <div class="breadcrumb__content text-center">
+            <h2 class="breadcrumb__title mt-25" style="color: #000">
+                @if (department != null)
+                {
+                    @($"{department.Title} - Success Stories")
+                }
+                else
+                {
+                    @("Success Stories")
+                }
+            </h2>
+            <p class="breadcrumb__desc mb-50" style="color: #000">Alumni Achievements</p>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb end -->
 
-        <!-- main area start  -->
-        <main aria-labelledby="title">
-
-            <!-- breadcrumb start -->
-            <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
-                <div class="container">
-                    <div class="breadcrumb__content text-center">
-                        <h2 class="breadcrumb__title mt-25" style="color: #000">Success Stories</h2>
-                        <p class="breadcrumb__desc mb-50" style="color: #000">Alumni Achievements</p>
+<!-- success stories start -->
+<section class="success-stories-section pb-120 ml-40">
+    <div class="container">
+        <div class="faculty-page-layout">
+            <div class="faculty-page-content">
+                <div class="success-stories-content mt-60">
+                    <div class="section-title mb-60">
+                        <span class="sub-title">Achievements</span>
+                        <h2 class="title">
+                            @if (department != null)
+                            {
+                                @($"{department.Title} Success Stories")
+                            }
+                            else
+                            {
+                                @("Success Stories")
+                            }
+                        </h2>
                     </div>
-                </div>
-            </section>
-            <!-- breadcrumb end -->
 
-            <!-- success stories start -->
-            <section class="about pb-120">
-                <div class="container">
-                    <div class="faculty-page-layout">
-                        <div class="faculty-page-content">
-                            <div class="about-content mt-60">
-                                <div class="section-title mb-60">
-                                    <span class="sub-title">Achievements</span>
-                                    <h2 class="title">Success Stories</h2>
+                    @if (department != null)
+                    {
+                        <p>The <strong>@department.Title</strong> takes pride in the success stories of our alumni who have gone on to achieve remarkable accomplishments in their careers. These success stories serve as inspiration for current students and demonstrate the quality of education we provide.</p>
+                    }
+                    else
+                    {
+                        <p>Our departments take pride in the success stories of our alumni who have gone on to achieve remarkable accomplishments in their careers. These success stories serve as inspiration for current students and demonstrate the quality of education we provide.</p>
+                    }
+
+                    <p>Our alumni have excelled in various fields including industry, academia, research, entrepreneurship, and public service. Their achievements reflect the strong foundation and skills they developed during their time in our department.</p>
+
+
+
+                    @if (Model != null && Model.Any())
+                    {
+                        <!-- Success Stories Grid -->
+                        <div class="success-stories-grid mt-50">
+                            @foreach (var story in Model)
+                            {
+                                <div class="success-story-card">
+                                    <div class="story-image">
+                                        @if (!string.IsNullOrEmpty(story.Photo))
+                                        {
+                                            <img src="@Url.Content("~/Content/uploads/alumni/" + story.Photo)"
+                                                 alt="@(story.FullName ?? "Success Story")"
+                                                 onerror="this.src='@Url.Content("~/Content/img/team/team_01.jpg")';" />
+                                        }
+                                        else
+                                        {
+                                            <img src="@Url.Content("~/Content/img/team/team_01.jpg")"
+                                                 alt="@(story.FullName ?? "Success Story")" />
+                                        }
+                                        <div class="story-department">
+                                            @if (department != null)
+                                            {
+                                                @department.Title
+                                            }
+                                            else if (!string.IsNullOrEmpty(story.Department))
+                                            {
+                                                @story.Department
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="story-content">
+                                        <h3 class="story-name">@(story.FullName ?? "Alumni")</h3>
+
+                                        @if (!string.IsNullOrEmpty(story.Organization) || !string.IsNullOrEmpty(story.Designation))
+                                        {
+                                            <div class="story-position">
+                                                @if (!string.IsNullOrEmpty(story.Designation))
+                                                {
+                                                    <span class="designation">@story.Designation</span>
+                                                }
+                                                @if (!string.IsNullOrEmpty(story.Organization))
+                                                {
+                                                    <span class="organization">@story.Organization</span>
+                                                }
+                                            </div>
+                                        }
+
+                                        <div class="story-details truncated">
+                                            @if (!string.IsNullOrEmpty(story.Details))
+                                            {
+                                                var plain = Regex.Replace(story.Details, "<.*?>", string.Empty);
+                                                var trimmed = plain.Trim();
+                                                var truncated = trimmed.Length > 200 ? trimmed.Substring(0, 200) + "…" : trimmed;
+                                                @truncated
+                                            }
+                                            else
+                                            {
+                                                <p>Success story details will be updated soon.</p>
+                                            }
+                                        </div>
+
+                                        @if (!string.IsNullOrEmpty(story.Qualification))
+                                        {
+                                            <div class="story-qualification">
+                                                <i class="fas fa-graduation-cap"></i>
+                                                @story.Qualification
+                                            </div>
+                                        }
+
+                                    </div>
+                                    <div class="story-card-footer">
+                                        <button type="button" class="story-details-btn"
+                                                data-story-id="@story.ID"
+                                                data-story-name="@Html.AttributeEncode(story.FullName ?? "")"
+                                                data-story-photo="@Html.AttributeEncode(story.Photo ?? "")"
+                                                data-story-details="@Html.AttributeEncode(story.Details ?? "")"
+                                                data-story-organization="@Html.AttributeEncode(story.Organization ?? "")"
+                                                data-story-designation="@Html.AttributeEncode(story.Designation ?? "")"
+                                                data-story-qualification="@Html.AttributeEncode(story.Qualification ?? "")"
+                                                data-story-linkedin="@Html.AttributeEncode(story.Linkedin ?? "")"
+                                                data-story-facebook="@Html.AttributeEncode(story.Facebook ?? "")"
+                                                data-story-twitter="@Html.AttributeEncode(story.Twitter ?? "")"
+                                                onclick="openSuccessStoryModal(this)">
+                                            <i class="fas fa-eye"></i> View Details
+                                        </button>
+                                    </div>
                                 </div>
-                                <p>Our department takes pride in the success stories of our alumni who have gone on to achieve remarkable accomplishments in their careers. These success stories serve as inspiration for current students and demonstrate the quality of education we provide.</p>
-                                <p>Our alumni have excelled in various fields including industry, academia, research, entrepreneurship, and public service. Their achievements reflect the strong foundation and skills they developed during their time in our department.</p>
-                                <p>We regularly feature success stories of our alumni to showcase the diverse career paths and opportunities available to our graduates. These stories highlight the impact of our education and the potential for success in our field.</p>
+
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <!-- No Success Stories Message -->
+                        <div class="no-success-stories mt-50">
+                            <div class="no-content-message">
+                                <div class="no-content-icon">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <h3>No Success Stories Available</h3>
+                                <p>
+                                    @if (department != null)
+                                    {
+                                        @($"Success stories for {department.Title} will be featured here soon. Check back later for inspiring alumni achievements.")
+                                    }
+                                    else
+                                    {
+                                        @("Success stories will be featured here soon. Check back later for inspiring alumni achievements.")
+                                    }
+                                </p>
                             </div>
                         </div>
-                        <div class="faculty-page-sidebar">
-                            @Html.Partial("_FacultySidebar")
-                        </div>
+                    }
+                </div>
+            </div>
+            <div class="faculty-page-sidebar">
+                @Html.Partial("_FacultySidebar")
+            </div>
+        </div>
+    </div>
+</section>
+<!-- success stories end -->
+
+<!-- Success Story Modal -->
+<div id="successStoryModal" class="success-story-modal">
+    <div class="modal-overlay" onclick="closeSuccessStoryModal()"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle" class="modal-title"></h2>
+            <button class="modal-close" onclick="closeSuccessStoryModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-photo-section">
+                <img id="modalPhoto" src="" alt="" class="modal-photo">
+                <div class="modal-professional-info">
+                    <div id="modalDesignation" class="modal-designation"></div>
+                    <div id="modalOrganization" class="modal-organization"></div>
+                    <div id="modalQualification" class="modal-qualification"></div>
+                </div>
+            </div>
+            <div class="modal-details-section">
+                <h3 class="modal-section-title">Success Story</h3>
+                <div id="modalDetails" class="modal-details-content"></div>
+
+                <div id="modalSocialSection" class="modal-social-section">
+                    <h4 class="modal-social-title">Connect</h4>
+                    <div class="modal-social-links">
+                        <a id="modalLinkedin" href="" target="_blank" class="modal-social-link linkedin" style="display: none;">
+                            <i class="fab fa-linkedin-in"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a id="modalFacebook" href="" target="_blank" class="modal-social-link facebook" style="display: none;">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a id="modalTwitter" href="" target="_blank" class="modal-social-link twitter" style="display: none;">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
                     </div>
                 </div>
-            </section>
-            <!-- success stories end -->
-
-        </main>
-        <!-- main area end  -->
-
+            </div>
+        </div>
     </div>
+</div>
 
-</body> 
+@section Scripts {
+    <script>
+        function openSuccessStoryModal(button) {
+            // Get data from button attributes
+            const id = button.getAttribute('data-story-id');
+            const fullName = button.getAttribute('data-story-name');
+            const photo = button.getAttribute('data-story-photo');
+            const details = button.getAttribute('data-story-details');
+            const organization = button.getAttribute('data-story-organization');
+            const designation = button.getAttribute('data-story-designation');
+            const qualification = button.getAttribute('data-story-qualification');
+            const linkedin = button.getAttribute('data-story-linkedin');
+            const facebook = button.getAttribute('data-story-facebook');
+            const twitter = button.getAttribute('data-story-twitter');
+
+            // Populate modal content
+            document.getElementById('modalTitle').textContent = fullName || 'Alumni Success Story';
+
+            // Set photo
+            const modalPhoto = document.getElementById('modalPhoto');
+            if (photo) {
+                modalPhoto.src = '@Url.Content("~/Content/uploads/alumni/")' + photo;
+                modalPhoto.alt = fullName || 'Success Story';
+            } else {
+                modalPhoto.src = '@Url.Content("~/Content/img/team/team_01.jpg")';
+                modalPhoto.alt = fullName || 'Success Story';
+            }
+
+            // Set professional information
+            const modalDesignation = document.getElementById('modalDesignation');
+            const modalOrganization = document.getElementById('modalOrganization');
+            const modalQualification = document.getElementById('modalQualification');
+
+            modalDesignation.textContent = designation || '';
+            modalDesignation.style.display = designation ? 'block' : 'none';
+
+            modalOrganization.textContent = organization || '';
+            modalOrganization.style.display = organization ? 'block' : 'none';
+
+            modalQualification.textContent = qualification || '';
+            modalQualification.style.display = qualification ? 'inline-flex' : 'none';
+
+            // Set details
+            const modalDetails = document.getElementById('modalDetails');
+            if (details) {
+                modalDetails.innerHTML = details;
+            } else {
+                modalDetails.innerHTML = '<p>Success story details will be updated soon.</p>';
+            }
+
+            // Set social media links
+            const modalLinkedin = document.getElementById('modalLinkedin');
+            const modalFacebook = document.getElementById('modalFacebook');
+            const modalTwitter = document.getElementById('modalTwitter');
+            const modalSocialSection = document.getElementById('modalSocialSection');
+
+            let hasSocialLinks = false;
+
+            if (linkedin) {
+                modalLinkedin.href = linkedin;
+                modalLinkedin.style.display = 'flex';
+                hasSocialLinks = true;
+            } else {
+                modalLinkedin.style.display = 'none';
+            }
+
+            if (facebook) {
+                modalFacebook.href = facebook;
+                modalFacebook.style.display = 'flex';
+                hasSocialLinks = true;
+            } else {
+                modalFacebook.style.display = 'none';
+            }
+
+            if (twitter) {
+                modalTwitter.href = twitter;
+                modalTwitter.style.display = 'flex';
+                hasSocialLinks = true;
+            } else {
+                modalTwitter.style.display = 'none';
+            }
+
+            modalSocialSection.style.display = hasSocialLinks ? 'block' : 'none';
+
+            // Show modal
+            const modal = document.getElementById('successStoryModal');
+            modal.classList.add('show');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSuccessStoryModal() {
+            const modal = document.getElementById('successStoryModal');
+            modal.classList.remove('show');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeSuccessStoryModal();
+            }
+        });
+
+        // Prevent modal content clicks from closing the modal
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalContent = document.querySelector('.modal-content');
+            if (modalContent) {
+                modalContent.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                });
+            }
+        });
+    </script>
+}
