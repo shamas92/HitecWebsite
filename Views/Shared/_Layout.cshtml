@@ -1,15 +1,68 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - HITEC University Website</title>
+    <title>@ViewBag.Title - HITEC University</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="@(ViewBag.MetaDescription ?? "HITEC University - Leading institution for engineering and technology education in Pakistan. Offering undergraduate and graduate programs with excellence in teaching and research.")" />
+    <meta name="keywords" content="@(ViewBag.MetaKeywords ?? "HITEC University, engineering, technology, education, Pakistan, undergraduate, graduate, research")" />
+    <meta name="author" content="HITEC University" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="@ViewBag.Title - HITEC University" />
+    <meta property="og:description" content="@(ViewBag.MetaDescription ?? "HITEC University - Leading institution for engineering and technology education in Pakistan.")" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="@Request.Url.AbsoluteUri" />
+    <meta property="og:site_name" content="HITEC University" />
+    <meta property="og:image" content="@Url.Content("~/Content/img/logo/HitecLogo.svg")" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="@ViewBag.Title - HITEC University" />
+    <meta name="twitter:description" content="@(ViewBag.MetaDescription ?? "HITEC University - Leading institution for engineering and technology education in Pakistan.")" />
+    <meta name="twitter:image" content="@Url.Content("~/Content/img/logo/HitecLogo.svg")" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="@Url.Content("~/Content/img/logo/favicon.ico")" />
+    <link rel="apple-touch-icon" href="@Url.Content("~/Content/img/logo/HitecLogo.svg")" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="@Request.Url.AbsoluteUri" />
 
     @Styles.Render("~/Content/css")
     <link rel="stylesheet" href="@Url.Content("~/Content/css/magnific-popup.css")" />
     <link rel="stylesheet" href="@Url.Content("~/Content/css/faculty-sidebar.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/faculty-components.css")" />
     @RenderSection("Styles", required: false)
+    @RenderSection("Meta", required: false)
     @Scripts.Render("~/bundles/modernizr")
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "context": "https://schema.org",
+        "type": "EducationalOrganization",
+        "name": "HITEC University",
+        "url": "@Request.Url.GetLeftPart(UriPartial.Authority)",
+        "logo": "@Url.Content("~/Content/img/logo/HitecLogo.svg")",
+        "description": "Leading institution for engineering and technology education in Pakistan",
+        "address": {
+            "type": "PostalAddress",
+            "streetAddress": "HITEC University",
+            "addressLocality": "Taxila Cantt",
+            "addressCountry": "Pakistan"
+        },
+        "contactPoint": {
+            "type": "ContactPoint",
+            "telephone": "+92-51-9047851-60",
+            "contactType": "customer service",
+            "email": "info@hitecuni.edu.pk"
+        }
+    }
+    </script>
 </head>
 <body>
     <!-- backtotop - start -->
