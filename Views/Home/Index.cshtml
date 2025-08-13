@@ -77,92 +77,69 @@
                     </div>*@
                 </div>
                 <div class="row justify-content-center">
-                    @if (Model != null && Model.Any())
-                    {
-                        var eventsList = Model.ToList();
-
-                        <!-- Left Column - 2 smaller cards -->
-                        <div class="col-lg-3 col-md-8">
-                            <div class="xb-blog__left">
-                                @for (int i = 0; i < Math.Min(2, eventsList.Count); i++)
-                                {
-                                    var ev = eventsList[i];
-                                    <div class="xb-blog pos-rel mt-20">
-                                        <div class="xb-item--img">
-                                            <a href="@Url.Action("Details", "Events", new { id = ev.EventID })">
-                                                <img src="@Url.Content("~/Content/img/blog/blog-img0" + (i+1) + ".png")" alt="@ev.Title" />
-                                            </a>
-                                        </div>
-                                        <div class="xb-item--holder">
-                                            <a class="xb-item--cta" href="@Url.Action("Details", "Events", new { id = ev.EventID })">#@(ev.tblEventHead?.Title ?? "Event")</a>
-                                            <h2 class="xb-item--title border-effect-2">
-                                                <a href="@Url.Action("Details", "Events", new { id = ev.EventID })">@(ev.Title?.Length > 50 ? ev.Title.Substring(0, 50) + ".." : ev.Title)</a>
-                                            </h2>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-
-                        <!-- Center Column - 1 large card -->
-                        <div class="col-lg-6 col-md-8">
-                            @if (eventsList.Count > 2)
-                            {
-                                var mainEvent = eventsList[2];
-                                <div class="xb-blog chn-margin pos-rel mt-20">
-                                    <div class="xb-item--img">
-                                        <a href="@Url.Action("Details", "Events", new { id = mainEvent.EventID })">
-                                            <img src="@Url.Content("~/Content/img/blog/blog-img03.png")" alt="@mainEvent.Title" />
-                                        </a>
-                                    </div>
-                                    <div class="xb-item--holder">
-                                        <a class="xb-item--cta" href="@Url.Action("Details", "Events", new { id = mainEvent.EventID })">#@(mainEvent.tblEventHead?.Title ?? "Event")</a>
-                                        <h2 class="xb-item--title border-effect">
-                                            <a href="@Url.Action("Details", "Events", new { id = mainEvent.EventID })">@mainEvent.Title</a>
-                                        </h2>
-                                        <div class="xb-item--meta ul_li">
-                                            <span><i class="far fa-calendar"></i>@mainEvent.EventDate</span>
-                                            @if (!string.IsNullOrEmpty(mainEvent.Venue))
-                                            {
-                                                <span><i class="far fa-map-marker-alt"></i>@mainEvent.Venue</span>
-                                            }
-                                            <span><i class="far fa-eye"></i>@(mainEvent.Views ?? 0)</span>
-                                        </div>
-                                    </div>
+                    <div class="col-lg-3 col-md-8">
+                        <div class="xb-blog__left">
+                            <div class="xb-blog pos-rel mt-20">
+                                <div class="xb-item--img">
+                                    <a href="#!"><img src="~/Content/img/blog/blog-img01.png" alt=""></a>
                                 </div>
-                            }
-                        </div>
-
-                        <!-- Right Column - 2 smaller cards -->
-                        <div class="col-lg-3 col-md-8">
-                            <div class="xb-blog__right">
-                                @for (int i = 3; i < Math.Min(5, eventsList.Count); i++)
-                                {
-                                    var ev = eventsList[i];
-                                    <div class="xb-blog mr-left pos-rel mt-20">
-                                        <div class="xb-item--img">
-                                            <a href="@Url.Action("Details", "Events", new { id = ev.EventID })">
-                                                <img src="@Url.Content("~/Content/img/blog/blog-img0" + (i+1) + ".png")" alt="@ev.Title" />
-                                            </a>
-                                        </div>
-                                        <div class="xb-item--holder">
-                                            <a class="xb-item--cta" href="@Url.Action("Details", "Events", new { id = ev.EventID })">#@(ev.tblEventHead?.Title ?? "Event")</a>
-                                            <h2 class="xb-item--title border-effect-2">
-                                                <a href="@Url.Action("Details", "Events", new { id = ev.EventID })">@(ev.Title?.Length > 50 ? ev.Title.Substring(0, 50) + ".." : ev.Title)</a>
-                                            </h2>
-                                        </div>
-                                    </div>
-                                }
+                                <div class="xb-item--holder">
+                                    <a class="xb-item--cta" href="#!">#Study</a>
+                                    <h2 class="xb-item--title border-effect-2"> <a href="blog-single.html">EduFord University Hosts International on Climate..</a></h2>
+                                </div>
+                            </div>
+                            <div class="xb-blog pos-rel mt-20">
+                                <div class="xb-item--img">
+                                    <a href="#!"><img src="~/Content/img/blog/blog-img02.png" alt=""></a>
+                                </div>
+                                <div class="xb-item--holder">
+                                    <a class="xb-item--cta" href="#!">#Membership</a>
+                                    <h2 class="xb-item--title border-effect-2"> <a href="blog-single.html">Thirty-one UChicago faculty members receive named..</a></h2>
+                                </div>
                             </div>
                         </div>
-                    }
-                    else
-                    {
-                        <div class="col-12"><p>No events to display at this time.</p></div>
-                    }
+                    </div>
+                    <div class="col-lg-6 col-md-8">
+                        <div class="xb-blog chn-margin pos-rel mt-20">
+                            <div class="xb-item--img">
+                                <a href="#!"><img src="~/Content/img/blog/blog-img03.png" alt=""></a>
+                            </div>
+                            <div class="xb-item--holder">
+                                <a class="xb-item--cta" href="#!">#Study programs</a>
+                                <h2 class="xb-item--title border-effect"> <a href="blog-single.html">EduFord University Receives Grant for <br> Advanced STEM Programs..</a></h2>
+                                <div class="xb-item--meta ul_li">
+                                    <span><i class="far fa-user"></i>Louis Saville</span>
+                                    <span><i class="far fa-clock"></i>2023/10/15</span>
+                                    <span><i class="far fa-comment"></i>15</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-8">
+                        <div class="xb-blog__right">
+                            <div class="xb-blog mr-left pos-rel mt-20">
+                                <div class="xb-item--img">
+                                    <a href="#!"><img src="~/Content/img/blog/blog-img04.png" alt=""></a>
+                                </div>
+                                <div class="xb-item--holder">
+                                    <a class="xb-item--cta" href="#!">#Awarded</a>
+                                    <h2 class="xb-item--title border-effect-2"> <a href="blog-single.html">our Awarded National for Community Outreach..</a></h2>
+                                </div>
+                            </div>
+                            <div class="xb-blog mr-left pos-rel mt-20">
+                                <div class="xb-item--img">
+                                    <a href="#!"><img src="~/Content/img/blog/blog-img05.png" alt=""></a>
+                                </div>
+                                <div class="xb-item--holder">
+                                    <a class="xb-item--cta" href="#!">#Campus Life</a>
+                                    <h2 class="xb-item--title border-effect-2"> <a href="blog-single.html">Expands Campus Facilities <br> with State of-the-Art Lab..</a></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="xb-btn text-center pt-60">
-                    <a class="thm-btn" href="@Url.Action("Index", "Events")">
+                    <a class="thm-btn" href="blog.html">
                         More Campus News
                         <span class="icon">
                             <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -357,123 +334,123 @@
             </div>
         </section>
         <!-- fanfact section end  -->
-        <!-- statistics section start  -->
-        <section class="stats-section">
-            <div class="container">
-                <!-- First Row -->
-                <div class="row text-center justify-content-center align-items-center">
-                    <div class="col-lg-3 col-md-6 col-6 mb-4">
-                        <div class="stat-box">
-                            <div class="stat-content">
-                                <div class="stat-number-container">
-                                    <div class="stat-number">123</div>
-                                    <div class="stat-underline"></div>
-                                </div>
-                                <div class="stat-text">
-                                    <div class="stat-label">TEACHERS</div>
-                                </div>
+<!-- statistics section start  -->
+    <section class="stats-section">
+        <div class="container">
+            <!-- First Row -->
+            <div class="row text-center justify-content-center align-items-center">
+                <div class="col-lg-3 col-md-6 col-6 mb-4">
+                    <div class="stat-box">
+                        <div class="stat-content">
+                            <div class="stat-number-container">
+                                <div class="stat-number">123</div>
+                                <div class="stat-underline"></div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-6 mb-4">
-                        <div class="stat-box">
-                            <div class="stat-content">
-                                <div class="stat-number-container">
-                                    <div class="stat-number">5713</div>
-                                    <div class="stat-underline"></div>
-                                </div>
-                                <div class="stat-text">
-                                    <div class="stat-label">PASS OUT<br />STUDENTS</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-6 mb-4">
-                        <div class="stat-box">
-                            <div class="stat-content">
-                                <div class="stat-number-container">
-                                    <div class="stat-number">28</div>
-                                    <div class="stat-underline"></div>
-                                </div>
-                                <div class="stat-text">
-                                    <div class="stat-label">OFFERED<br />PROGRAMS</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-6 mb-4">
-                        <div class="stat-box">
-                            <div class="stat-content">
-                                <div class="stat-number-container">
-                                    <div class="stat-number">2329</div>
-                                    <div class="stat-underline"></div>
-                                </div>
-                                <div class="stat-text">
-                                    <div class="stat-label">REGISTERED<br />STUDENTS</div>
-                                </div>
+                            <div class="stat-text">
+                                <div class="stat-label">TEACHERS</div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Second Row -->
-                <div class="row text-center justify-content-center align-items-center">
-                    <div class="col-lg-3 col-md-6 col-6 mb-4">
-                        <div class="stat-box">
-                            <div class="stat-content">
-                                <div class="stat-number-container">
-                                    <div class="stat-number">31.5</div>
-                                    <div class="stat-underline"></div>
-                                </div>
-                                <div class="stat-text">
-                                    <div class="stat-label">SCHOLARSHIP<br />2020-2021<br />(MILLION)</div>
-                                </div>
+                <div class="col-lg-3 col-md-6 col-6 mb-4">
+                    <div class="stat-box">
+                        <div class="stat-content">
+                            <div class="stat-number-container">
+                                <div class="stat-number">5713</div>
+                                <div class="stat-underline"></div>
+                            </div>
+                            <div class="stat-text">
+                                <div class="stat-label">PASS OUT<br />STUDENTS</div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-6 mb-4">
-                        <div class="stat-box">
-                            <div class="stat-content">
-                                <div class="stat-number-container">
-                                    <div class="stat-number">14.9</div>
-                                    <div class="stat-underline"></div>
-                                </div>
-                                <div class="stat-text">
-                                    <div class="stat-label">SCHOLARSHIP<br />2021-2022<br />(MILLION)</div>
-                                </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-6 mb-4">
+                    <div class="stat-box">
+                        <div class="stat-content">
+                            <div class="stat-number-container">
+                                <div class="stat-number">28</div>
+                                <div class="stat-underline"></div>
+                            </div>
+                            <div class="stat-text">
+                                <div class="stat-label">OFFERED<br />PROGRAMS</div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-6 mb-4">
-                        <div class="stat-box">
-                            <div class="stat-content">
-                                <div class="stat-number-container">
-                                    <div class="stat-number">14.4</div>
-                                    <div class="stat-underline"></div>
-                                </div>
-                                <div class="stat-text">
-                                    <div class="stat-label">SCHOLARSHIP<br />2022-2023<br />(MILLION)</div>
-                                </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-6 mb-4">
+                    <div class="stat-box">
+                        <div class="stat-content">
+                            <div class="stat-number-container">
+                                <div class="stat-number">2329</div>
+                                <div class="stat-underline"></div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-6 mb-4">
-                        <div class="stat-box">
-                            <div class="stat-content">
-                                <div class="stat-number-container">
-                                    <div class="stat-number">197.2</div>
-                                    <div class="stat-underline"></div>
-                                </div>
-                                <div class="stat-text">
-                                    <div class="stat-label">SCHOLARSHIP<br />(2007-TILL)<br />(MILLION)</div>
-                                </div>
+                            <div class="stat-text">
+                                <div class="stat-label">REGISTERED<br />STUDENTS</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- statistics section end  -->
+            
+            <!-- Second Row -->
+            <div class="row text-center justify-content-center align-items-center">
+                <div class="col-lg-3 col-md-6 col-6 mb-4">
+                    <div class="stat-box">
+                        <div class="stat-content">
+                            <div class="stat-number-container">
+                                <div class="stat-number">31.5</div>
+                                <div class="stat-underline"></div>
+                            </div>
+                            <div class="stat-text">
+                                <div class="stat-label">SCHOLARSHIP<br />2020-2021<br />(MILLION)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-6 mb-4">
+                    <div class="stat-box">
+                        <div class="stat-content">
+                            <div class="stat-number-container">
+                                <div class="stat-number">14.9</div>
+                                <div class="stat-underline"></div>
+                            </div>
+                            <div class="stat-text">
+                                <div class="stat-label">SCHOLARSHIP<br />2021-2022<br />(MILLION)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-6 mb-4">
+                    <div class="stat-box">
+                        <div class="stat-content">
+                            <div class="stat-number-container">
+                                <div class="stat-number">14.4</div>
+                                <div class="stat-underline"></div>
+                            </div>
+                            <div class="stat-text">
+                                <div class="stat-label">SCHOLARSHIP<br />2022-2023<br />(MILLION)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-6 mb-4">
+                    <div class="stat-box">
+                        <div class="stat-content">
+                            <div class="stat-number-container">
+                                <div class="stat-number">197.2</div>
+                                <div class="stat-underline"></div>
+                            </div>
+                            <div class="stat-text">
+                                <div class="stat-label">SCHOLARSHIP<br />(2007-TILL)<br />(MILLION)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- statistics section end  -->
         <!-- program section start  -->
         <section class="program pos-rel pt-115">
             <div class="container">
