@@ -1,26 +1,148 @@
+@model List<Website.Models.tblDepartmentFacility>
 @{
     ViewBag.Title = "Facilities";
+    var department = ViewBag.Department as Website.Models.tblDepartment;
+    var departmentCode = ViewBag.DepartmentCode as string;
+
+    // SEO Meta Tags
+    ViewBag.MetaDescription = department != null
+        ? $"Explore the state-of-the-art facilities and infrastructure of the {department.Title} department at HITEC University. Our modern labs and equipment support excellence in education and research."
+        : "Explore the state-of-the-art facilities and infrastructure at HITEC University. Our modern labs and equipment support excellence in education and research.";
+    ViewBag.MetaKeywords = department != null
+        ? $"{department.Title}, facilities, laboratories, infrastructure, equipment, HITEC University, {department.Code}"
+        : "facilities, laboratories, infrastructure, equipment, HITEC University";
 }
 
 @section Styles {
-    <link rel="stylesheet" href="@Url.Content("~/Content/css/image-crop.css")" />
+    <link href="~/Content/css/faculty-components.css" rel="stylesheet" />
+    <link href="~/Content/css/faculty-sidebar.css" rel="stylesheet" />
+    <style>
+        .facility-card {
+            background: var(--color-white);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .facility-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .facility-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .facility-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .facility-card:hover .facility-image img {
+            transform: scale(1.05);
+        }
+
+        .facility-image-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--color-sec-bg) 0%, #e8e8e0 100%);
+            color: var(--color-gray);
+            font-size: 48px;
+        }
+
+        .facility-content {
+            padding: 25px;
+        }
+
+        .facility-title {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--color-heading);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .facility-info {
+            color: var(--color-default);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .facility-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        media (max-width: 768px) {
+            .facility-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .facility-image {
+                height: 200px;
+            }
+
+            .facility-content {
+                padding: 20px;
+            }
+
+            .facility-title {
+                font-size: 20px;
+            }
+        }
+    </style>
 }
 
-<!-- backtotop - start -->
-<!-- backtotop - end -->
+@section Meta {
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta property="og:title" content="@ViewBag.Title - HITEC University" />
+    <meta property="og:description" content="@ViewBag.MetaDescription" />
+    <meta property="og:type" content="website" />
+}
 
 <body>
     <div class="body_wrap">
-
         <!-- main area start  -->
         <main aria-labelledby="title">
-
             <!-- breadcrumb start -->
             <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
                 <div class="container">
                     <div class="breadcrumb__content text-center">
-                        <h2 class="breadcrumb__title mt-25" style="color: #000">Facilities</h2>
-                        <p class="breadcrumb__desc mb-50" style="color: #000">Our Infrastructure</p>
+                        <h1 class="breadcrumb__title mt-25" style="color: #000">
+                            @if (department != null)
+                            {
+                                @($"Facilities - {department.Title}")
+                            }
+                            else
+                            {
+                                @("Facilities")
+                            }
+                        </h1>
+                        <p class="breadcrumb__desc mb-50" style="color: #000">
+                            @if (department != null)
+                            {
+                                @($"{department.Code} Department Infrastructure")
+                            }
+                            else
+                            {
+                                @("Our Infrastructure")
+                            }
+                        </p>
                     </div>
                 </div>
             </section>
@@ -32,114 +154,103 @@
                     <div class="faculty-page-layout">
                         <div class="faculty-page-content">
                             <div class="about-content mt-60">
-                                <div class="section-title mb-60">
+                                <div class="section-title mb-40">
                                     <span class="sub-title">Infrastructure</span>
-                                    <h2 class="title">Department Facilities</h2>
+                                    <h2 class="title">
+                                        @if (department != null)
+                                        {
+                                            @($"{department.Title} Facilities")
+                                        }
+                                        else
+                                        {
+                                            @("Department Facilities")
+                                        }
+                                    </h2>
                                 </div>
-                                <p>Our department is equipped with state-of-the-art facilities to support teaching, learning, and research activities. We provide students with access to modern laboratories, computer labs, and specialized equipment.</p>
-                                <p>Our facilities include well-equipped classrooms, research laboratories, computer centers, and collaborative spaces. We maintain partnerships with industry to ensure our facilities reflect current workplace environments.</p>
-                                <p>We continuously invest in upgrading our facilities to provide students with the best possible learning environment. Our infrastructure supports both theoretical learning and practical application of knowledge.</p>
-                                
-                                <!-- Image Upload Section -->
-                                <div class="section-title mt-60 mb-40">
-                                    <span class="sub-title">Gallery</span>
-                                    <h3 class="title">Upload Facility Images</h3>
-                                </div>
-                                
-                                <div id="image-crop-container" class="image-crop-container">
-                                    <!-- File Upload Section -->
-                                    <div class="crop-upload-section">
-                                        <div class="file-input-wrapper">
-                                            <input type="file" id="facility-image-input" accept="image/*" />
-                                            <label for="facility-image-input" class="file-input-label">
-                                                <div>
-                                                    <div class="file-input-icon">??</div>
-                                                    <div class="file-input-text">
-                                                        <strong>Click to select an image</strong> or drag and drop here
-                                                        <br><small>Supports: JPG, PNG, GIF (Max 5MB)</small>
-                                                    </div>
-                                                </div>
-                                            </label>
+
+                                @if (department != null)
+                                {
+                                    <p>The @department.Title department is equipped with state-of-the-art facilities to support teaching, learning, and research activities. We provide students with access to modern laboratories, computer labs, and specialized equipment tailored to @department.Title education.</p>
+                                }
+                                else
+                                {
+                                    <p>Our departments are equipped with state-of-the-art facilities to support teaching, learning, and research activities. We provide students with access to modern laboratories, computer labs, and specialized equipment.</p>
+                                }
+
+                                <p>Our facilities include well-equipped classrooms, research laboratories, computer centers, and collaborative spaces. We maintain partnerships with industry to ensure our facilities reflect current workplace environments and provide students with hands-on experience using the latest technology.</p>
+
+                                @if (Model != null && Model.Any())
+                                {
+                                    <!-- Facilities Statistics -->
+                                    <div class="faculty-stats">
+                                        <div class="faculty-stat">
+                                            <span class="faculty-stat-number">@Model.Count</span>
+                                            <span class="faculty-stat-label">Facilities</span>
+                                        </div>
+                                        <div class="faculty-stat">
+                                            <span class="faculty-stat-number">@Model.Where(f => !string.IsNullOrEmpty(f.FacilityImage)).Count()</span>
+                                            <span class="faculty-stat-label">With Images</span>
+                                        </div>
+                                        <div class="faculty-stat">
+                                            <span class="faculty-stat-number">@DateTime.Now.Year</span>
+                                            <span class="faculty-stat-label">Latest Updates</span>
                                         </div>
                                     </div>
 
-                                    <!-- Crop Area -->
-                                    <div class="crop-area">
-                                        <div class="crop-container">
-                                            <!-- Image Preview -->
-                                            <div class="crop-preview-container">
-                                                <!-- Image and crop overlay will be inserted here -->
-                                            </div>
-
-                                            <!-- Crop Controls -->
-                                            <div class="crop-controls">
-                                                <h4>Crop Settings</h4>
-                                                
-                                                <!-- Crop Rectangle -->
-                                                <div class="crop-section">
-                                                    <h5>Crop Rectangle</h5>
-                                                    <div class="crop-input-group">
-                                                        <div>
-                                                            <label>Width</label>
-                                                            <input type="number" id="crop-width" class="crop-input" min="1" value="400" />
+                                    <!-- Facilities Grid -->
+                                    <div class="facility-grid">
+                                        @foreach (var facility in Model)
+                                        {
+                                            <div class="facility-card">
+                                                <div class="facility-image">
+                                                    @if (!string.IsNullOrEmpty(facility.FacilityImage))
+                                                    {
+                                                        <img src="@Url.Content("~/Content/uploads/facilities/" + facility.FacilityImage)"
+                                                             alt="@facility.FacilityTitle"
+                                                             onerror="this.parentElement.innerHTML='<div class=\'facility-image-placeholder\'><i class=\'fas fa-building\'></i></div>';" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="facility-image-placeholder">
+                                                            <i class="fas fa-building"></i>
                                                         </div>
-                                                        <div>
-                                                            <label>Height</label>
-                                                            <input type="number" id="crop-height" class="crop-input" min="1" value="300" />
-                                                        </div>
-                                                    </div>
+                                                    }
                                                 </div>
 
-                                                <!-- Aspect Ratio -->
-                                                <div class="crop-section">
-                                                    <h5>Aspect Ratio</h5>
-                                                    <select id="aspect-ratio" class="aspect-ratio-select">
-                                                        <option value="freeform">Free Form</option>
-                                                        <option value="1:1">Square (1:1)</option>
-                                                        <option value="4:3">Standard (4:3)</option>
-                                                        <option value="16:9">Widescreen (16:9)</option>
-                                                        <option value="3:2">Photo (3:2)</option>
-                                                    </select>
-                                                </div>
+                                                <div class="facility-content">
+                                                    <h3 class="facility-title">@(facility.FacilityTitle ?? "Facility")</h3>
 
-                                                <!-- Crop Position -->
-                                                <div class="crop-section">
-                                                    <h5>Crop Position</h5>
-                                                    <div class="crop-input-group">
-                                                        <div>
-                                                            <label>Position (X)</label>
-                                                            <input type="number" id="crop-pos-x" class="crop-input" min="0" value="0" />
+                                                    @if (!string.IsNullOrEmpty(facility.FacilityInfo))
+                                                    {
+                                                        <div class="facility-info">
+                                                            @Html.Raw(facility.FacilityInfo)
                                                         </div>
-                                                        <div>
-                                                            <label>Position (Y)</label>
-                                                            <input type="number" id="crop-pos-y" class="crop-input" min="0" value="0" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="facility-info">
+                                                            <p>Facility information will be updated soon. Please contact the department for more details about this facility.</p>
                                                         </div>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Action Buttons -->
-                                                <div class="crop-buttons">
-                                                    <button type="button" id="crop-btn" class="btn-crop btn-primary">
-                                                        Crop ?
-                                                    </button>
-                                                    <button type="button" id="reset-btn" class="btn-crop btn-secondary">
-                                                        Reset
-                                                    </button>
+                                                    }
                                                 </div>
                                             </div>
-                                        </div>
+                                        }
                                     </div>
-
-                                    <!-- Cropped Result -->
-                                    <div class="cropped-result">
-                                        <h4>Cropped Image Preview</h4>
-                                        <img class="cropped-preview" alt="Cropped preview" />
-                                        <br>
-                                        <button type="button" class="upload-final-btn">
-                                            Upload Image
-                                        </button>
+                                }
+                                else
+                                {
+                                    <div class="faculty-no-results">
+                                        <h3>No Facilities Information Available</h3>
+                                        @if (department != null)
+                                        {
+                                            <p>Facility information for the @department.Title department is currently being updated. Please check back later or contact the department directly for more information about available facilities.</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Facility information is currently being updated. Please check back later for detailed information about our facilities and infrastructure.</p>
+                                        }
                                     </div>
-                                </div>
+                                }
                             </div>
                         </div>
                         <div class="faculty-page-sidebar">
@@ -152,11 +263,5 @@
 
         </main>
         <!-- main area end  -->
-
     </div>
-
-    @section Scripts {
-        <script src="@Url.Content("~/Scripts/image-crop.js")"></script>
-    }
-
 </body>
