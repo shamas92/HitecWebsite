@@ -1,0 +1,108 @@
+@model Website.Models.tblEvent
+@{
+    ViewBag.Title = Model?.Title ?? "Event Details";
+}
+
+<div class="body_wrap">
+    <main>
+        <div class="section-title mb-20 text-center">
+            <h2 class="title mt-25">@Model.Title</h2>
+        </div>
+
+        <section class="event-single pt-20 pb-20">
+            <div class="container">
+                <div class="row mt-none-30">
+                    <div class="col-lg-8 mt-30">
+                        <div class="event-single__content">
+                            <div class="event-single__image mb-40">
+                                @if (!string.IsNullOrEmpty(Model.Banner))
+                                {
+                                    <img src="@(string.IsNullOrEmpty(Model.Banner) ? Url.Content("~/Content/img/bg/about_bg.jpg") : (Model.Banner.StartsWith("~") || Model.Banner.StartsWith("/") ? Url.Content(Model.Banner) : Url.Content("~/Content/uploads/events/" + Model.Banner)))"
+                                         alt="@Model.Title"
+                                         style="width:100%; border-radius:12px;"
+                                         onerror="this.src='@Url.Content("~/Content/img/news/news-img01.jpg")';" />
+                                }
+                                else
+                                {
+                                    <img src="@Url.Content("~/Content/img/news/news-img01.jpg")"
+                                         alt="@Model.Title"
+                                         style="width:100%; border-radius:12px;" />
+                                }
+                            </div>
+
+                            @* Mobile sidebar - shown only on small screens, right after the image *@
+                            <div class="d-lg-none mb-40">
+                                <aside class="event-single__sidebar">
+                                    <div class="course-sidebar__list list-unstyled" style="text-align: end;">
+                                        <li><strong>Date:</strong> <span>@Model.EventDate</span></li>
+                                        <li><strong>Venue:</strong> <span>@Model.Venue</span></li>
+                                        <li><strong>Views:</strong> <span>@(Model.Views ?? 0)</span></li>
+                                    </div>
+                                </aside>
+                            </div>
+
+                            <h2>About This Event</h2>
+                            <div class="event-description">
+                                @Html.Raw(Model.Details)
+                            </div>
+
+                            @if (Model.tblEventPhotos != null && Model.tblEventPhotos.Any())
+                            {
+                                <h3 class="mt-40">Gallery</h3>
+                                <div class="row mt-20">
+                                    @foreach (var photo in Model.tblEventPhotos)
+                                    {
+                                        <div class="col-md-4 mt-20">
+                                            @if (!string.IsNullOrEmpty(photo.Photo))
+                                            {
+                                                <img src="@Url.Content("~/Content/uploads/events/" + photo.Photo)"
+                                                     alt="@photo.Title"
+                                                     style="width:100%; border-radius:8px;"
+                                                     onerror="this.src='@Url.Content("~/Content/img/news/news-img02.png")';" />
+                                            }
+                                            else
+                                            {
+                                                <img src="@Url.Content("~/Content/img/news/news-img02.png")"
+                                                     alt="@photo.Title"
+                                                     style="width:100%; border-radius:8px;" />
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            }
+
+                            @if (Model.tblEventVideos != null && Model.tblEventVideos.Any())
+                            {
+                                <h3 class="mt-40">Videos</h3>
+                                <div class="row mt-20">
+                                    @foreach (var vid in Model.tblEventVideos)
+                                    {
+                                        if (!string.IsNullOrEmpty(vid.GoogleDriveFileID))
+                                        {
+                                            <div class="col-md-6 mt-20">
+                                                <div class="ratio ratio-16x9">
+                                                    <iframe src="https://drive.google.com/file/d/@vid.GoogleDriveFileID/preview" allow="autoplay" allowfullscreen style="width:100%; height:320px; border:0; border-radius:8px;"></iframe>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    @* Desktop sidebar - shown only on large screens in the right column *@
+                    <div class="col-lg-4 mt-30 d-none d-lg-block">
+                        <aside class="event-single__sidebar">
+                            <div class="course-sidebar__list list-unstyled" style="text-align: end;">
+                                <li><strong>Date:</strong> <span>@Model.EventDate</span></li>
+                                <li><strong>Venue:</strong> <span>@Model.Venue</span></li>
+                                <li><strong>Views:</strong> <span>@(Model.Views ?? 0)</span></li>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
