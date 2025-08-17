@@ -289,6 +289,7 @@
     <Content Include="Content\css\image-crop.css" />
     <Content Include="Content\css\magnific-popup.css" />
     <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\news-marquee.css" />
     <Content Include="Content\css\nice-select.css" />
     <Content Include="Content\css\odometer.css" />
     <Content Include="Content\css\recoleta-font.css" />

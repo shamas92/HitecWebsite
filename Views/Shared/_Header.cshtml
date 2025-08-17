@@ -1,41 +1,5 @@
-﻿    <!-- Top Menu - Start -->
-    <div class="top-menu">
-        <div class="container">
-            <div class="top-menu__wrap ul_li_between">
-                <div class="top-menu__social">
-                    <ul class="ul_li">
-                        <li><a href="https://www.facebook.com/hitecuni/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="https://www.linkedin.com/school/hitec-university" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="https://www.instagram.com/hitecuni/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="https://www.youtube.com/HITECUniversityOfficial" target="_blank"><i class="fab fa-youtube"></i></a></li>
-                    </ul>
-                </div>
-                <div class="top-menu__actions">
-                    <ul class="ul_li">
-                        @Html.Action("GetTopMenu", "Menu")
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Top Menu - End -->
-    <!-- header start -->
+﻿    <!-- header start -->
 <header id="xb-header-area" class="header-area is-sticky">
-    <div class="header-top_wrap">
-        <div class="container">
-            <div class="header-top ul_li_between">
-                <div class="xb-help_desk">
-                    <img src="~/Content/img/icon/hero_top-icon.png" alt="">
-                    <p>Help Desk : <span>(+92) 051 4908146</span></p>
-                </div>
-                <div class="xb-info">
-                    <ul class="ul_li align-items-end hitec-topmenu">
-                        @Html.Action("GetMiddleMenu", "Menu")
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="xb-header">
         <div class="container">
             <div class="header__wrap ul_li_between">
@@ -45,154 +9,7 @@
                 <div class="main-menu__wrap ul_li navbar navbar-expand-lg">
                     <nav class="main-menu collapse navbar-collapse">
                         @Html.Action("GetMainMenu", "Menu")
-                        @*<ul>
-                            <li class="menu-item-has-children @(ViewContext.RouteData.Values["controller"].ToString() == "About" ? "active" : "")">
-                                <a href="/About/Index">About</a>
-                                <ul class="submenu">
-                                    <li class="@(ViewContext.RouteData.Values["action"].ToString() == "ChairmanMessage" && ViewContext.RouteData.Values["controller"].ToString() == "About" ? "active" : "")"><a href="/About/ChairmanMessage">Chairman Message</a></li>
-                                    <li class="@(ViewContext.RouteData.Values["action"].ToString() == "VcMessage" && ViewContext.RouteData.Values["controller"].ToString() == "About" ? "active" : "")"><a href="/About/VcMessage">VC Message</a></li>
-                                    <li class="@(ViewContext.RouteData.Values["action"].ToString() == "Motto" && ViewContext.RouteData.Values["controller"].ToString() == "About" ? "active" : "")"><a href="/About/Motto">Motto</a></li>
-                                    <li class="@(ViewContext.RouteData.Values["action"].ToString() == "VisionMission" && ViewContext.RouteData.Values["controller"].ToString() == "About" ? "active" : "")"><a href="/About/VisionMission">Vision & Mission</a></li>
-                                    <li class="@(ViewContext.RouteData.Values["action"].ToString() == "Emblem" && ViewContext.RouteData.Values["controller"].ToString() == "About" ? "active" : "")"><a href="/About/Emblem">Emblem</a></li>
-                                    <li class="@(ViewContext.RouteData.Values["action"].ToString() == "ContactUs" && ViewContext.RouteData.Values["controller"].ToString() == "About" ? "active" : "")"><a href="/About/ContactUs">Contact Us</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children @(ViewContext.RouteData.Values["controller"].ToString() == "Admissions" ? "active" : "")">
-                                <a href="#">Admissions</a>
-                                <ul class="submenu">
-                                    <li class="@(ViewContext.RouteData.Values["action"].ToString() == "Advertisement" && ViewContext.RouteData.Values["controller"].ToString() == "Admissions" ? "active" : "")"><a href="admissions/advertisement">Advertisement</a></li>
-                                    <li class="@(ViewContext.RouteData.Values["action"].ToString() == "AcademicCalendar" && ViewContext.RouteData.Values["controller"].ToString() == "Admissions" ? "active" : "")"><a href="admissions/academic-calendar">Academic Calendar</a></li>
-                                    <li class="@(ViewContext.RouteData.Values["action"].ToString() == "FeeStructure" && ViewContext.RouteData.Values["controller"].ToString() == "Admissions" ? "active" : "")"><a href="admissions/fee-structure">Fee Structure</a></li>
 
-                                    <li class="menu-item-has-children">
-                                        <a href="admissions/financial-matters">Financial Matters</a>
-                                        <ul class="submenu">
-                                            <li><a href="admissions/financial-assistance">Financial Assistance</a></li>
-                                            <li><a href="admissions/refund-policy">Refund Policy</a></li>
-                                            <li><a href="admissions/fine-penalties-on-late-payments">Fine/Penalties on Late Payments</a></li>
-                                            <li><a href="admissions/accomodations">Accomodations</a></li>
-                                            <li><a href="admissions/transport">Transport</a></li>
-                                            <li><a href="admissions/miscellaneous-charges">Miscellaneous Charges</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="admissions/accademic-regulations">Accademic Regulations</a></li>
-                                    <li><a href="admissions/accademic-deficiencie">Accademic Deficiencie</a></li>
-                                    <li><a href="admissions/rules-&-regulations-ms">Rules & Regulations(MS)</a></li>
-                                    <li><a href="admissions/rules-&-regulations-phd">Rules & Regulations(PHD)</a></li>
-                                    <li><a href="admissions/hitec-university-act-2009">HITEC University Act 2009</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Programs</a>
-                                <ul class="submenu">
-                                    <li class="menu-item-has-children">
-                                        <a>UnderGraduate Programs</a>
-                                        <ul class="submenu">
-                                            <li><a href="faculties/mechanical-engineering">Mechanical Engineering</a></li>
-                                            <li><a href="faculties/electrical-engineering">Electrical Engineering</a></li>
-                                            <li><a href="faculties/computer-engineering">Computer Engineering</a></li>
-                                            <li><a href="faculties/civil-engineering">Civil Engineering</a></li>
-                                            <li><a href="faculties/biomedical-engineering">Biomedical Engineering</a></li>
-                                            <li><a href="faculties/computer-science">Computer Science</a></li>
-                                            <li><a href="faculties/business-administration">Business Administration</a></li>
-                                            <li><a href="faculties/islamic-studies">Islamic Studies</a></li>
-                                            <li><a href="faculties/mathematics">Mathematics</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a>PostGraduate Programs</a>
-                                        <ul class="submenu">
-                                            <li><a href="faculties/mechanical-engineering">Mechanical Engineering</a></li>
-                                            <li><a href="faculties/electrical-engineering">Electrical Engineering</a></li>
-                                            <li><a href="faculties/computer-engineering">Computer Engineering</a></li>
-                                            <li><a href="faculties/computer-science">Computer Science</a></li>
-                                            <li><a href="faculties/islamic-studies">Islamic Studies</a></li>
-                                            <li><a href="faculties/mathematics">Mathematics</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a>PHD Programs</a>
-                                        <ul class="submenu">
-                                            <li><a href="faculties/mechanical-engineering">Mechanical Engineering</a></li>
-                                            <li><a href="faculties/electrical-engineering">Electrical Engineering</a></li>
-                                            <li><a href="faculties/computer-science">Computer Science</a></li>
-                                            <li><a href="faculties/islamic-studies">Islamic Studies</a></li>
-                                            <li><a href="faculties/mathematics">Mathematics</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Faculties</a>
-                                <ul class="submenu">
-                                    <li class="menu-item-has-children">
-                                        <a>Faculty Of Engineering & Technology</a>
-                                        <ul class="submenu">
-                                            <li><a href="faculties/vision-&-mission">Vision & Mission</a></li>
-                                            <li><a href="faculties/mechanical-engineering">Mechanical Engineering</a></li>
-                                            <li><a href="faculties/electrical-engineering">Electrical Engineering</a></li>
-                                            <li><a href="faculties/computer-engineering">Computer Engineering</a></li>
-                                            <li><a href="faculties/civil-engineering">Civil Engineering</a></li>
-                                            <li><a href="faculties/biomedical-engineering">Biomedical Engineering</a></li>
-                                            <li><a href="faculties/computer-science">Computer Science</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a>Faculty Of Basic Sciences</a>
-                                        <ul class="submenu">
-                                            <li><a href="faculties/management-science">Management Science</a></li>
-                                            <li><a href="faculties/mathematics">Mathematics</a></li>
-                                            <li><a href="faculties/islamic-studies">Islamic Studies</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a>OBE Based Curriculum</a>
-                                        <ul class="submenu">
-                                            <li><a href="faculties/cs-obe-based-curriculum">CS OBE Based Curriculum</a></li>
-                                            <li><a href="faculties/se-obe-based-curriculum">SE OBE Based Curriculum</a></li>
-                                            <li><a href="faculties/bme-obe-based-curriculum">BME OBE Based Curriculum</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Facilities</a>
-                                <ul class="submenu">
-                                    <li><a href="facilities/transport">Transport</a></li>
-                                    <li><a href="facilities/sports">Sports</a></li>
-                                    <li><a href="facilities/hostel">Hostel</a></li>
-                                    <li><a href="facilities/cafeteria">Cafeteria</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Events</a>
-                                <ul class="submenu">
-                                    <li><a href="events/event-1">Event 1</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">HR</a>
-                                <ul class="submenu">
-                                    <li><a href="hr/types-&-classification-of-services">Types & Classification of Services</a></li>
-                                    <li><a href="hr/eligibility-recruitment-selection-termination-resignation">Eligibility, Recruitment/Selection, Termination, Resignation</a></li>
-                                    <li><a href="hr/perks-&-privileges">Perks & Privileges</a></li>
-                                    <li><a href="hr/leave">Leave</a></li>
-                                    <li><a href="hr/contributory-fund">Contributory Fund</a></li>
-                                    <li><a href="hr/conduct-&-discipline">Conduct & Discipline</a></li>
-                                    <li><a href="hr/payroll">Payroll</a></li>
-                                    <li><a href="hr/apply-online">Apply Online</a></li>
-                                    <li><a href="hr/position-vacant">Position Vacant</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Library</a>
-                                <ul class="submenu">
-                                    <li><a href="library/in-campus-library">In-Campus Library</a></li>
-                                    <li><a href="library/hec-digital-library">HEC Digital Library</a></li>
-                                </ul>
-                            </li>
-
-                        </ul>*@
                     </nav>
                     <div class="xb-header-wrap">
                         <div class="xb-header-menu">
@@ -209,120 +26,7 @@
                                 </div>
                                 <nav class="xb-header-nav">
                                     @Html.Action("GetMobileMainMenu", "Menu")
-                                    @*<ul class="xb-menu-primary clearfix">
-            <li class="menu-item menu-item-has-children">
-                <a href="/Home/About">About</a>
-                <ul class="sub-menu">
-                    <li class="menu-item"><a href="#">Our Story</a></li>
-                    <li class="menu-item"><a href="#">Mission</a></li>
-                    <li class="menu-item"><a href="#">Leadership</a></li>
-                </ul>
-            </li>
-            <li class="menu-item menu-item-has-children">
-                <a href="#">Admissions</a>
-                <ul class="sub-menu">
-                    <li class="menu-item menu-item-has-children">
-                        <a href="#">Undergraduate</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item"><a href="#">Apply</a></li>
-                            <li class="menu-item"><a href="#">Requirements</a></li>
-                            <li class="menu-item"><a href="#">Deadlines</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item"><a href="#">Graduate</a></li>
-                </ul>
-            </li>
-            <li class="menu-item menu-item-has-children">
-                <a href="#">Programs</a>
-                <ul class="sub-menu">
-                    <li class="menu-item menu-item-has-children">
-                        <a href="#">Program 1</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item"><a href="#">Sub 1</a></li>
-                            <li class="menu-item"><a href="#">Sub 2</a></li>
-                            <li class="menu-item"><a href="#">Sub 3</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item menu-item-has-children">
-                        <a href="#">Program 2</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item"><a href="#">Sub 1</a></li>
-                            <li class="menu-item"><a href="#">Sub 2</a></li>
-                            <li class="menu-item"><a href="#">Sub 3</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item menu-item-has-children">
-                        <a href="#">Program 3</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item"><a href="#">Sub 1</a></li>
-                            <li class="menu-item"><a href="#">Sub 2</a></li>
-                            <li class="menu-item"><a href="#">Sub 3</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li class="menu-item menu-item-has-children">
-                <a href="#">Faculties</a>
-                <ul class="sub-menu">
-                    <li class="menu-item menu-item-has-children">
-                        <a href="#">Faculty 1</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item"><a href="#">Sub 1</a></li>
-                            <li class="menu-item"><a href="#">Sub 2</a></li>
-                            <li class="menu-item"><a href="#">Sub 3</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item menu-item-has-children">
-                        <a href="#">Faculty 2</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item"><a href="#">Sub 1</a></li>
-                            <li class="menu-item"><a href="#">Sub 2</a></li>
-                            <li class="menu-item"><a href="#">Sub 3</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item menu-item-has-children">
-                        <a href="#">Faculty 3</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item"><a href="#">Sub 1</a></li>
-                            <li class="menu-item"><a href="#">Sub 2</a></li>
-                            <li class="menu-item"><a href="#">Sub 3</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li class="menu-item menu-item-has-children">
-                <a href="#">Facilities</a>
-                <ul class="sub-menu">
-                    <li class="menu-item"><a href="#">Library</a></li>
-                    <li class="menu-item"><a href="#">Labs</a></li>
-                    <li class="menu-item"><a href="#">Sports</a></li>
-                </ul>
-            </li>
-            <li class="menu-item menu-item-has-children">
-                <a href="#">Events</a>
-                <ul class="sub-menu">
-                    <li class="menu-item"><a href="#">Upcoming</a></li>
-                    <li class="menu-item"><a href="#">Past</a></li>
-                    <li class="menu-item"><a href="#">Calendar</a></li>
-                </ul>
-            </li>
-            <li class="menu-item menu-item-has-children">
-                <a href="#">HR</a>
-                <ul class="sub-menu">
-                    <li class="menu-item"><a href="#">Jobs</a></li>
-                    <li class="menu-item"><a href="#">Policies</a></li>
-                    <li class="menu-item"><a href="#">Contact HR</a></li>
-                </ul>
-            </li>
-            <li class="menu-item menu-item-has-children">
-                <a href="#">Library</a>
-                <ul class="sub-menu">
-                    <li class="menu-item"><a href="#">Catalog</a></li>
-                    <li class="menu-item"><a href="#">E-Resources</a></li>
-                    <li class="menu-item"><a href="#">Membership</a></li>
-                </ul>
-            </li>
-        </ul>*@
+
                                 </nav>
                             </div>
                         </div>
@@ -330,51 +34,7 @@
                     </div>
                 </div>
                 <div class="header-right ul_li">
-                    @*<a class="header-search header-search-btn" href="javascript:void(0);">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10.5 3.75H15" stroke="#170006" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M10.5 6H12.75" stroke="#170006" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M15.75 8.625C15.75 12.5625 12.5625 15.75 8.625 15.75C4.6875 15.75 1.5 12.5625 1.5 8.625C1.5 4.6875 4.6875 1.5 8.625 1.5" stroke="#170006" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M16.5 16.5L15 15" stroke="#170006" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        Search
-                    </a>*@
-                    <!-- <div class="language_dropdown dropdown">
-                        <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="flag">
-                                <img src="~/Content/img/icon/flag.png" alt="USA">
-                            </span>
-                            <span class="name">English</span>
-                        </button>
-                        <div class="dropdown-menu">
-                            <ul class="unordered_list_block">
-                                <li class="dropdown-item">
-                                    <span class="flag">
-                                        <img src="~/Content/img/icon/flag_saudi_arabia.webp" alt="Saudi Arabia">
-                                    </span>
-                                    <span class="name">Arabic</span>
-                                </li>
-                                <li class="dropdown-item">
-                                    <span class="flag">
-                                        <img src="~/Content/img/icon/flag_bangladesh.webp" alt="Bangladesh">
-                                    </span>
-                                    <span class="name">Bangali</span>
-                                </li>
-                                <li class="dropdown-item">
-                                    <span class="flag">
-                                        <img src="~/Content/img/icon/flag_usa.webp" alt="USA">
-                                    </span>
-                                    <span class="name">English</span>
-                                </li>
-                                <li class="dropdown-item">
-                                    <span class="flag">
-                                        <img src="~/Content/img/icon/flag_portugal.webp" alt="Portugal">
-                                    </span>
-                                    <span class="name">Portuguese</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div> -->
+
                 </div>
                 <div class="header-bar-mobile side-menu d-lg-none">
                     <a class="xb-nav-mobile" href="javascript:void(0);"><i class="fal fa-bars"></i></a>
@@ -382,17 +42,60 @@
             </div>
         </div>
     </div>
-</header>
-<!-- header end -->
-<!-- header search start -->
-@*<div class="header-search-form-wrapper">
-    <div class="xb-search-close xb-close"></div>
-    <div class="header-search-container">
-        <form role="search" class="search-form" action="#">
-            <input type="search" class="search-field" placeholder="Search …" value="" name="s">
-            <button type="submit" class="search-submit"><i class="far fa-search"></i></button>
-        </form>
+    <div class="news-marquee-wrapper">
+        <div class="container">
+            <div class="news-marquee">
+                <div class="news-marquee-content">
+                    <div class="news-label">
+                        <i class="fas fa-newspaper"></i>
+                        Latest News
+                    </div>
+                    <div class="news-scroll-container">
+                        <div class="news-scroll">
+                            <a href="/news/spring-admissions-2024" class="news-item">
+                                Spring Admissions 2024 Now Open - Apply before December 15th for Early Bird Discount
+                            </a>
+                            <a href="/events/tech-symposium-2024" class="news-item">
+                                Annual Tech Symposium 2024 - Register now for Pakistan's largest technology conference
+                            </a>
+                            <a href="/news/scholarship-program" class="news-item">
+                                Merit-based Scholarships Available - Up to 100% fee waiver for outstanding students
+                            </a>
+                            <a href="/news/industry-partnerships" class="news-item">
+                                New Industry Partnerships with Leading Tech Companies - Enhanced Job Placement Program
+                            </a>
+                            <a href="/news/research-achievements" class="news-item">
+                                HITEC Faculty Publishes Breakthrough Research in International Journal of Engineering
+                            </a>
+                            <a href="/news/campus-expansion" class="news-item">
+                                State-of-the-art Laboratory Complex Inaugurated - Advanced Equipment for Hands-on Learning
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>*@
+    <!-- News Marquee - End -->
+    <div class="header-top_wrap">
+        <div class="container">
+            <div class="header-top ul_li_between">
+
+                <div class="xb-info">
+                    <ul class="ul_li align-items-end hitec-topmenu">
+                        @Html.Action("GetMiddleMenu", "Menu")
+                    </ul>
+                </div>
+                <div class="top-menu__actions">
+                    <ul class="ul_li">
+                        @Html.Action("GetTopMenu", "Menu")
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+
 <div class="body-overlay"></div>
 <!-- header search end -->
