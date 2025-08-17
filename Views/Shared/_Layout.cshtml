@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/css/faculty-sidebar.css")" />
     <link rel="stylesheet" href="@Url.Content("~/Content/css/faculty-components.css")" />
     <link rel="stylesheet" href="@Url.Content("~/Content/css/news-marquee.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/admission-modal.css")" />
 
     @RenderSection("Styles", required: false)
     @RenderSection("Meta", required: false)
@@ -93,12 +94,55 @@
         @RenderBody()
     </main>
     <!-- Main Content - End -->
+    
+    <!-- Admission Announcement Modal -->
+    @if (ViewBag.Title == "Home Page" || Request.Path == "/" || Request.Path == "/Home" || Request.Path == "/Home/Index")
+    {
+    <div id="admissionModal" class="modal-overlay" style="display: none;">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeAdmissionModal()">&times;</button>
+            <div class="modal-header">
+                <div class="modal-logos">
+                    <img src="@Url.Content("~/Content/img/logo/HitecLogo.svg")" alt="HITEC University Logo" class="modal-logo">
+                </div>
+                <h1 class="modal-title">ADMISSIONS<br><span class="modal-season">FALL 2025</span></h1>
+            </div>
+            <div class="admission-modal-content">
+                <div class="admission-notice">
+                    <h3>Admission Deadline Extended</h3>
+                    <p>We are pleased to announce that, due to the heavy influx of applicants, the last date for admission application has been extended till <strong>August 18, 2025</strong>, for all departments and programs. Processing fee (if not paid) can be paid through new challan with extended date.</p>
+                </div>
+                <div class="modal-buttons-primary">
+                    <a href="https://admissions.hitecuni.edu.pk/" class="btn-apply" target="_blank">Apply Now</a>
+                    <a href="#programs" class="btn-programs" onclick="closeAdmissionModal()">Programs Offered</a>
+                </div>
+                <div class="modal-buttons-secondary">
+                    <a href="#fee-structure" class="btn-secondary">Fee Structure</a>
+                    <a href="#fee-refund" class="btn-secondary">Fee Refund Policy</a>
+                    <a href="#disability-policy" class="btn-secondary">HEC Disability Policy</a>
+                </div>
+                <div class="modal-footer-notice">
+                    <p>We are pleased to announce that admissions to the Faculty of Computing & Information Technology (FCIT) are now open for the following undergraduate programs as well:</p>
+                    <ul>
+                        <li>BS in Computer Science</li>
+                        <li>BS in Software Engineering</li>
+                        <li>BS in Information Technology</li>
+                        <li>BS in Bioinformatics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+    <!-- Admission Announcement Modal - End -->
+    
     <!-- Footer -->
     @Html.Partial("_Footer")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/swiper")
     @Scripts.Render("~/bundles/vendor")
     <script src="@Url.Content("~/Scripts/jquery.magnific-popup.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/admission-modal.js")"></script>
     @Scripts.Render("~/bundles/main")
     @RenderSection("Scripts", required: false)
 
