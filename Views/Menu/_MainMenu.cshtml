@@ -1,17 +1,18 @@
 @model IEnumerable<HitecCM.Models.tblMenus>
 @using HitecCM.Models
 
-<ul>
+<ul class="main-menu">
     @foreach (var menu in Model)
     {
-        <li class="menu-item-has-children @(IsMenuActive(menu) ? "active" : "")">
+        <li class="@(menu.ChildMenus != null && menu.ChildMenus.Any() ? "menu-item-has-children" : "") @(IsMenuActive(menu) ? "active" : "")">
             @if (!string.IsNullOrEmpty(menu.MenuLink))
             {
                 <a href="@menu.MenuLink">
                     @if (!string.IsNullOrEmpty(menu.SvgIcon))
                     {
                         <img src="@Url.Content("~/Content/img/menuicon/" + menu.SvgIcon)" class="menu-icon" alt="@menu.MenuName icon" />
-                        <br />}
+                        <br />
+                    }
                     <span>@menu.MenuName</span>
                 </a>
             }
@@ -21,7 +22,8 @@
                     @if (!string.IsNullOrEmpty(menu.SvgIcon))
                     {
                         <img src="@Url.Content("~/Content/img/menuicon/" + menu.SvgIcon)" class="menu-icon" alt="@menu.MenuName icon" />
-                        <br />}
+                        <br />
+                    }
                     <span>@menu.MenuName</span>
                 </a>
             }
@@ -69,10 +71,10 @@
 
 @functions {
     /// <summary>
-        /// Determines if a menu link is active by comparing its URL with the current request's URL, including query strings.
-        /// </summary>
-        /// <param name="menu">The menu item to check.</param>
-        /// <returns>True if the menu link matches the current URL.</returns>
+    /// Determines if a menu link is active by comparing its URL with the current request's URL, including query strings.
+    /// </summary>
+    /// <param name="menu">The menu item to check.</param>
+    /// <returns>True if the menu link matches the current URL.</returns>
     private bool IsMenuLinkActive(tblMenus menu)
     {
         if (string.IsNullOrEmpty(menu.MenuLink))
@@ -119,8 +121,8 @@
     }
 
     /// <summary>
-        /// Checks if a top-level menu item or any of its descendants are active.
-        /// </summary>
+    /// Checks if a top-level menu item or any of its descendants are active.
+    /// </summary>
     private bool IsMenuActive(tblMenus menu)
     {
         // Check if this menu itself is active.
@@ -141,8 +143,8 @@
     }
 
     /// <summary>
-        /// Checks if a second-level menu item or any of its children (grandchildren) are active.
-        /// </summary>
+    /// Checks if a second-level menu item or any of its children (grandchildren) are active.
+    /// </summary>
     private bool IsChildMenuActive(tblMenus childMenu)
     {
         // Check if this child menu is active.
@@ -163,8 +165,8 @@
     }
 
     /// <summary>
-        /// Checks if a third-level menu item is active.
-        /// </summary>
+    /// Checks if a third-level menu item is active.
+    /// </summary>
     private bool IsGrandChildMenuActive(tblMenus grandChildMenu)
     {
         // A grandchild is active only if its own link matches the current URL.
