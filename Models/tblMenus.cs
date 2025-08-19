@@ -27,6 +27,9 @@ namespace HitecCM.Models
 
         public int? ParentMenuID { get; set; }
 
+        public string SvgIcon { get; set; }
+
+
         [Required(ErrorMessage = "Menu Type is required")]
         public int MenuTypeID { get; set; }
 
