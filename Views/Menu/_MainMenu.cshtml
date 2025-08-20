@@ -4,7 +4,7 @@
 <ul class="main-menu">
     @foreach (var menu in Model)
     {
-        <li class="@(menu.ChildMenus != null && menu.ChildMenus.Any() ? "menu-item-has-children" : "") @(IsMenuActive(menu) ? "active" : "")">
+        <li class="@(menu.ChildMenus != null && menu.ChildMenus.Any() ? "menu-item-has-children" : "menu-item") @(IsMenuActive(menu) ? "active" : "")">
             @if (!string.IsNullOrEmpty(menu.MenuLink))
             {
                 <a href="@menu.MenuLink">
