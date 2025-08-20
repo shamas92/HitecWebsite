@@ -35,8 +35,32 @@ namespace Website.Controllers
                 return Content("<!-- Menu Error: " + ex.Message + " -->");
             }
         }
-        
-        
+        public ActionResult GetNewsMenu()
+        {
+            try
+            {
+                // Get news menus with MenuType "News Menu" ordered by SortingOrder
+                var newsMenus = db.tblMenus
+                    .Where(m => m.MenuType.MenuTypeName == "News Menu")
+                    .OrderBy(m => m.SortingOrder)
+                    .ToList();
+
+                // For each news menu, get its children recursively if needed
+                foreach (var menu in newsMenus)
+                {
+                    LoadChildMenusRecursively(menu, "News Menu");
+                }
+
+                return PartialView("_NewsMenu", newsMenus);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if you have logging configured
+                return Content("<!-- News Menu Error: " + ex.Message + " -->");
+            }
+        }
+
+
         public ActionResult GetMiddleMenu()
         {
             try
@@ -101,19 +125,19 @@ namespace Website.Controllers
         {
             try
             {
-                // Get top-level menus (ParentMenuID is null) with MenuType "Main Menu" for mobile (same as main menu)
-                var mobileMenus = db.tblMenus
+                // Get top-level menus (ParentMenuID is null) with MenuType "Main Menu" ordered by SortingOrder
+                var mainMenus = db.tblMenus
                     .Where(m => m.ParentMenuID == null && m.MenuType.MenuTypeName == "Main Menu")
                     .OrderBy(m => m.SortingOrder)
                     .ToList();
 
-                // For each mobile menu, get its children recursively
-                foreach (var menu in mobileMenus)
+                // For each main menu, get its children recursively
+                foreach (var menu in mainMenus)
                 {
                     LoadChildMenusRecursively(menu, "Main Menu");
                 }
 
-                return PartialView("_MainMenuMobile", mobileMenus);
+                return PartialView("_MainMenuMobile", mainMenus);
             }
             catch (Exception ex)
             {
@@ -122,33 +146,58 @@ namespace Website.Controllers
             }
         }
 
-        /// <summary>
-        /// Recursively loads all child menus for a given menu
-        /// </summary>
-        /// <param name="menu">The parent menu</param>
-        /// <param name="menuTypeName">The menu type name to filter by</param>
-        private void LoadChildMenusRecursively(tblMenus menu, string menuTypeName)
+        public ActionResult GetMobileTopMenu()
         {
-            // Load immediate children
-            menu.ChildMenus = db.tblMenus
-                .Where(m => m.ParentMenuID == menu.MenuID && m.MenuType.MenuTypeName == menuTypeName)
+            try
+            {
+                // Get top-level menus (ParentMenuID is null) with MenuType "Top Menu" ordered by SortingOrder
+                var topMenus = db.tblMenus
+                    .Where(m => m.ParentMenuID == null && m.MenuType.MenuTypeName == "Top Menu")
+                    .OrderBy(m => m.SortingOrder)
+                    .ToList();
+
+                // For each top menu, get its children recursively
+                foreach (var menu in topMenus)
+                {
+                    LoadChildMenusRecursively(menu, "Top Menu");
+                }
+
+                return PartialView("_MobileTopMenu", topMenus);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if you have logging configured
+                return Content("<!-- Menu Error: " + ex.Message + " -->");
+            }
+        }
+
+        private void LoadChildMenusRecursively(tblMenus menu, string menuType)
+        {
+            // Get all child menus of the current menu with the same MenuType
+            var children = db.tblMenus
+                .Where(m => m.ParentMenuID == menu.MenuID && m.MenuType.MenuTypeName == menuType)
                 .OrderBy(m => m.SortingOrder)
                 .ToList();
 
-            // Recursively load children for each child menu
-            foreach (var childMenu in menu.ChildMenus)
+            if (children.Any())
             {
-                LoadChildMenusRecursively(childMenu, menuTypeName);
+                menu.ChildMenus = children;
+
+                // Recursively load children of each child
+                foreach (var child in children)
+                {
+                    LoadChildMenusRecursively(child, menuType);
+                }
             }
         }
 
-        protected override void Dispose(bool disposing)
+        private bool IsMenuActive(string controller, string action)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            string currentController = (string)RouteData.Values["controller"];
+            string currentAction = (string)RouteData.Values["action"];
+
+            return string.Equals(currentController, controller, StringComparison.OrdinalIgnoreCase) &&
+                   string.Equals(currentAction, action, StringComparison.OrdinalIgnoreCase);
         }
     }
-} 
+}

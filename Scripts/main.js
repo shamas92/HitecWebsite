@@ -718,8 +718,77 @@
 	}
 
 
+    // JavaScript for seamless news marquee with continuous looping
+    document.addEventListener('DOMContentLoaded', () => {
+        const initNewsMarquee = () => {
+            const newsScrollContainer = document.querySelector('.news-scroll-container');
+            const newsScroll = document.querySelector('.news-scroll');
+            const newsWrapper = document.querySelector('.news-menu-wrapper');
+            
+            if (!newsScroll || !newsWrapper) return;
+            
+            // Remove any existing duplicate wrappers to avoid duplication on resize
+            const existingDuplicates = document.querySelectorAll('.news-menu-wrapper-duplicate');
+            existingDuplicates.forEach(duplicate => duplicate.remove());
+            
+            // Remove existing animation class
+            newsScroll.classList.remove('animate');
+            
+            // Create a complete duplicate of the news-menu-wrapper
+            const clone = newsWrapper.cloneNode(true);
+            clone.classList.add('news-menu-wrapper-duplicate');
+            newsScroll.appendChild(clone);
+            
+            // Get the width of the original wrapper
+            const wrapperWidth = newsWrapper.offsetWidth;
+            
+            // Calculate appropriate animation duration based on content length
+            // The longer the content, the longer the duration needs to be
+            // Speed factor can be adjusted - smaller value = faster speed
+            const speedFactor = 50; // pixels per second
+            const calculatedDuration = Math.max(wrapperWidth / speedFactor, 15);
+            
+            // Set CSS variable for animation duration
+            newsScroll.style.setProperty('--scroll-duration', `${calculatedDuration}s`);
+            
+            // Add animation class after a short delay to ensure DOM rendering is complete
+            setTimeout(() => {
+                newsScroll.classList.add('animate');
+            }, 50);
+            
+            // Setup event handlers for pausing on hover
+            const setupHoverEvents = (container) => {
+                const items = container.querySelectorAll('.news-item');
+                items.forEach(item => {
+                    item.addEventListener('mouseenter', () => {
+                        newsScroll.classList.add('paused');
+                    });
+                    
+                    item.addEventListener('mouseleave', () => {
+                        newsScroll.classList.remove('paused');
+                    });
+                });
+            };
+            
+            // Set up hover events for both original and cloned items
+            setupHoverEvents(newsWrapper);
+            setupHoverEvents(clone);
+        };
+        
+        // Initialize after a slight delay to ensure DOM is fully loaded
+        setTimeout(initNewsMarquee, 300);
+        
+        // Reinitialize on window resize to adjust for any layout changes
+        window.addEventListener('resize', () => {
+            setTimeout(initNewsMarquee, 300);
+        });
+    });
+
 
 })(jQuery);
+
+
+
 
 
 

@@ -1,0 +1,10 @@
+@model IEnumerable<HitecCM.Models.tblMenus>
+
+<div class="news-menu-wrapper">
+    @foreach (var menu in Model)
+    {
+        <a href="@(string.IsNullOrEmpty(menu.MenuLink) ? "#" : menu.MenuLink)" class="news-item">
+            @menu.MenuName
+        </a>
+    }
+</div>

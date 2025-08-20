@@ -1,4 +1,4 @@
-﻿    <!-- header start -->
+﻿<!-- header start -->
 <header id="xb-header-area" class="header-area is-sticky">
     <div class="xb-header">
         <div class="container">
@@ -9,7 +9,6 @@
                 <div class="main-menu__wrap ul_li navbar navbar-expand-lg">
                     <nav class="main-menu collapse navbar-collapse">
                         @Html.Action("GetMainMenu", "Menu")
-
                     </nav>
                     <div class="xb-header-wrap">
                         <div class="xb-header-menu">
@@ -42,6 +41,7 @@
             </div>
         </div>
     </div>
+<!-- News Marquee - Start -->
     <div class="news-marquee-wrapper">
         <div class="container">
             <div class="news-marquee">
@@ -52,24 +52,7 @@
                     </div>
                     <div class="news-scroll-container">
                         <div class="news-scroll">
-                            <a href="/news/spring-admissions-2024" class="news-item">
-                                Spring Admissions 2024 Now Open - Apply before December 15th for Early Bird Discount
-                            </a>
-                            <a href="/events/tech-symposium-2024" class="news-item">
-                                Annual Tech Symposium 2024 - Register now for Pakistan's largest technology conference
-                            </a>
-                            <a href="/news/scholarship-program" class="news-item">
-                                Merit-based Scholarships Available - Up to 100% fee waiver for outstanding students
-                            </a>
-                            <a href="/news/industry-partnerships" class="news-item">
-                                New Industry Partnerships with Leading Tech Companies - Enhanced Job Placement Program
-                            </a>
-                            <a href="/news/research-achievements" class="news-item">
-                                HITEC Faculty Publishes Breakthrough Research in International Journal of Engineering
-                            </a>
-                            <a href="/news/campus-expansion" class="news-item">
-                                State-of-the-art Laboratory Complex Inaugurated - Advanced Equipment for Hands-on Learning
-                            </a>
+                            @Html.Action("GetNewsMenu", "Menu")
                         </div>
                     </div>
                 </div>

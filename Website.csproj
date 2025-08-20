@@ -656,6 +656,7 @@
     <Content Include="Views\Faculties\UpcomingEvents.cshtml" />
     <Content Include="Views\Shared\_FacultySidebar.cshtml" />
     <Content Include="Views\Menu\_MobileTopMenu.cshtml" />
+    <Content Include="Views\Menu\_NewsMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
