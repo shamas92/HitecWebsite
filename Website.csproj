@@ -138,11 +138,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\AdmissionController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\FacultiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\ProgramController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -657,6 +659,8 @@
     <Content Include="Views\Shared\_FacultySidebar.cshtml" />
     <Content Include="Views\Menu\_MobileTopMenu.cshtml" />
     <Content Include="Views\Menu\_NewsMenu.cshtml" />
+    <Content Include="Views\Admission\AcademicCalendar.cshtml" />
+    <Content Include="Views\Program\ME.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
