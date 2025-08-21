@@ -3175,7 +3175,30 @@ body[data-aos-easing=ease] [data-aos] {
     .section-title--md .title {
       font-size: 28px;
       line-height: 35px; } }
+/* Top Programs: uniform image size */
+.program .xb-program__wrapper .xb-item--img {
+    height: 260px; /* adjust to taste */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f7f7f7;
+    border-radius: 10px;
+}
 
+    .program .xb-program__wrapper .xb-item--img img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover; /* crop to fill without distortion */
+        object-position: center;
+    }
+
+@media (max-width: 576px) {
+    .program .xb-program__wrapper .xb-item--img {
+        height: 200px;
+    }
+}
 .xb-blog {
   overflow: hidden;
   border-radius: 15px; }

@@ -510,6 +510,10 @@
     <Content Include="Content\img\news\news-img03.png" />
     <Content Include="Content\img\news\news-img04.png" />
     <Content Include="Content\img\program\boy-with-glasses-doing-lesson-class-doing-assignment.png5565.png" />
+    <Content Include="Content\img\program\BS EE.jpg" />
+    <Content Include="Content\img\program\BS ME.jpg" />
+    <Content Include="Content\img\program\Civil.jpg" />
+    <Content Include="Content\img\program\CS.jpg" />
     <Content Include="Content\img\program\hs-program01.png" />
     <Content Include="Content\img\program\hs-program02.png" />
     <Content Include="Content\img\program\hs-program03.png" />
@@ -517,12 +521,8 @@
     <Content Include="Content\img\program\hs-program05.png" />
     <Content Include="Content\img\program\hs-program06.png" />
     <Content Include="Content\img\program\hs-program07.png" />
-    <Content Include="Content\img\program\hs-pro_bg01.png" />
-    <Content Include="Content\img\program\hs-pro_bg02.png" />
-    <Content Include="Content\img\program\hs-pro_bg03.png" />
-    <Content Include="Content\img\program\hs-pro_bg04.png" />
-    <Content Include="Content\img\program\hs-pro_bg05.png" />
-    <Content Include="Content\img\program\hs-pro_bg06.png" />
+    <Content Include="Content\img\program\MS EE.jpg" />
+    <Content Include="Content\img\program\MS ME.jpg" />
     <Content Include="Content\img\program\pro-img01.png" />
     <Content Include="Content\img\program\pro-img02.png" />
     <Content Include="Content\img\program\pro-img03.png" />
@@ -598,6 +598,7 @@
     <Content Include="Scripts\image-crop.js" />
     <Content Include="Scripts\imagesloaded.pkgd.min.js" />
     <Content Include="Scripts\isotope.pkgd.min.js" />
+    <Content Include="PROGRAM_UPDATE_SUMMARY.md" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
