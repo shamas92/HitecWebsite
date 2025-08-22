@@ -8249,7 +8249,7 @@ body .mfp-wrap .mfp-container .mfp-content .mfp-close:hover::before, body .mfp-w
     height: 2px;
     bottom: -2px;
     top: auto;
-    background: #170006;
+    background: white;
     -webkit-transition: 0.3s cubic-bezier(0.67, 0.04, 0.3, 0.91);
     -o-transition: 0.3s cubic-bezier(0.67, 0.04, 0.3, 0.91);
     transition: 0.3s cubic-bezier(0.67, 0.04, 0.3, 0.91); }

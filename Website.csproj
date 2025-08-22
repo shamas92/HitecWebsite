@@ -399,6 +399,10 @@
     <Content Include="Content\img\home\AdmissionAd.jpeg" />
     <Content Include="Content\img\home\AdmissionsSpring2024.jpeg" />
     <Content Include="Content\img\home\back.jpeg" />
+    <Content Include="Content\img\home\online.jpg" />
+    <Content Include="Content\img\home\skills.jpg" />
+    <Content Include="Content\img\home\success1.jpg" />
+    <Content Include="Content\img\home\success2.jpg" />
     <Content Include="Content\img\icon\about-icon.svg" />
     <Content Include="Content\img\icon\about-icon01.png" />
     <Content Include="Content\img\icon\about-icon02.png" />
