@@ -31,6 +31,23 @@ namespace Website.Controllers
                 return View(ev);
             }
         }
+        
+        // GET: /Events/OpenHouse
+        public ActionResult OpenHouse()
+        {
+            using (var db = new Model1())
+            {
+                // Filter events with "Open House" in their title or events where the title contains "Open"
+                var openHouseEvents = db.tblEvents
+                    .Where(e => (e.Title != null && (e.Title.Contains("Open House") || e.Title.Contains("Open Day"))) 
+                            || (e.EventHeadID != null && db.tblEventHeads.Any(h => h.EventHeadID == e.EventHeadID && h.Title.Contains("Open House"))))
+                    .Where(e => e.Active == true)
+                    .OrderByDescending(e => e.EventDate)
+                    .ToList();
+                
+                return View(openHouseEvents);
+            }
+        }
     }
 }
 
