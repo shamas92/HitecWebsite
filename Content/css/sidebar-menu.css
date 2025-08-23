@@ -1,0 +1,57 @@
+/* Sidebar Menu Styling - Refined Single-Item Overlay Expansion (Fixed) */
+.sidebar-menu { position:fixed; right:0; top:50%; transform:translateY(-50%); z-index:1000; margin:0; padding:0; }
+.sidebar-menu-nav ul { list-style:none; margin:0; padding:0; }
+
+/* Base list item: fixed footprint so siblings never shift */
+.sidebar-menu-item { 
+  width:60px;             /* physical column width */
+  height:60px;            /* uniform height */
+  position:relative;      /* anchor for absolute overlay growth */
+  margin:0; padding:0; 
+  overflow:visible;       /* allow anchor to grow outward */
+}
+.sidebar-menu-item:hover { z-index:20; }
+
+/* Anchor acts as expanding panel (grow LEFT because right is fixed) */
+.sidebar-menu-link {
+  position:absolute; top:0; right:0; /* removed left so width can change */
+  display:flex; align-items:center; gap:14px;
+  padding:0 18px; box-sizing:border-box;
+  width:60px; height:60px;
+  text-decoration:none; color:#fff !important; font-weight:500; font-size:15px;
+  background:linear-gradient(90deg,#2A5298 0%,#1e3c72 100%);
+  border-top-left-radius:12px; border-bottom-left-radius:12px; border-right:none;
+  transition:width .28s ease, box-shadow .28s ease;
+  overflow:hidden; white-space:nowrap;
+}
+.sidebar-menu-item:nth-child(2) > .sidebar-menu-link { background:linear-gradient(90deg,#3161A8 0%,#1e3c72 100%); }
+.sidebar-menu-item.active > .sidebar-menu-link { background:linear-gradient(90deg,#007bff 0%,#0056b3 100%) !important; }
+
+.sidebar-menu-icon { width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; color:#fff; transition:transform .25s ease; }
+.sidebar-menu-label { opacity:0; transform:translateX(-8px); transition:opacity .18s ease .06s, transform .22s ease; }
+
+/* Expansion ONLY on hovered item */
+.sidebar-menu-item:hover > .sidebar-menu-link { width:190px; box-shadow:-3px 3px 10px rgba(0,0,0,.25); }
+.sidebar-menu-item:hover .sidebar-menu-icon { transform:scale(1.08); }
+.sidebar-menu-item:hover .sidebar-menu-label { opacity:1; transform:translateX(0); }
+
+/* Separator */
+.sidebar-menu-item:not(:last-child)::after { content:""; position:absolute; left:12px; right:12px; bottom:0; height:1px; background:rgba(255,255,255,.18); pointer-events:none; }
+
+/* Adjust internal rounding so stack looks unified */
+.sidebar-menu-item + .sidebar-menu-item > .sidebar-menu-link { border-top-left-radius:0; }
+.sidebar-menu-item:not(:last-child) > .sidebar-menu-link { border-bottom-left-radius:0; }
+
+.sidebar-menu-link:focus-visible { outline:2px solid rgba(255,255,255,.6); outline-offset:2px; }
+@media (prefers-reduced-motion:reduce){ .sidebar-menu-link, .sidebar-menu-icon, .sidebar-menu-label { transition:none; } }
+
+/* Mobile layout */
+@media (max-width:768px){
+  .sidebar-menu { top:auto; bottom:0; transform:none; width:100%; display:flex; justify-content:space-around; background:#1e3c72; padding:6px 4px; }
+  .sidebar-menu-item { flex:1; width:auto; height:auto; }
+  .sidebar-menu-link { position:static; width:100%!important; height:58px; border-radius:10px!important; display:flex; flex-direction:column; justify-content:center; gap:6px; box-shadow:none!important; }
+  .sidebar-menu-item:hover > .sidebar-menu-link { width:100%!important; }
+  .sidebar-menu-icon { transform:none!important; }
+  .sidebar-menu-label { opacity:1!important; transform:none!important; font-size:12px; }
+  .sidebar-menu-item:not(:last-child)::after { display:none; }
+}

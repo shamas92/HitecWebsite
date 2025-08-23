@@ -1,0 +1,32 @@
+@{
+    // Only two menu items as requested: Admission and Hope Academy
+    var menuItems = new[] {
+        new { Icon = "fas fa-graduation-cap", Label = "Admission", Link = "https://admissions.hitecuni.edu.pk/" },
+        new { Icon = "fas fa-school", Label = "Hope Academy", Link = "https://hope.hitecuni.edu.pk/" }
+    };
+    
+    var currentUrl = Request.Url?.AbsolutePath;
+}
+
+<!-- Sidebar Menu -->
+<div class="sidebar-menu" role="navigation" aria-label="Quick Access Menu">
+    <nav class="sidebar-menu-nav">
+        <ul>
+            @foreach (var item in menuItems)
+            {
+                bool isActive = !string.IsNullOrEmpty(currentUrl) && 
+                               (item.Link == currentUrl || 
+                               (item.Link != "#" && currentUrl.Contains(item.Link)));
+                
+                <li class="sidebar-menu-item @(isActive ? "active" : "")" role="menuitem">
+                    <a href="@item.Link" class="sidebar-menu-link" target="_blank"
+                       aria-label="@item.Label" 
+                       @(isActive ? "aria-current=page" : "")>
+                        <span class="sidebar-menu-icon" aria-hidden="true"><i class="@item.Icon"></i></span>
+                        <span class="sidebar-menu-label">@item.Label</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>

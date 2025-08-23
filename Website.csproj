@@ -298,6 +298,7 @@
     <Content Include="Content\css\nice-select.css" />
     <Content Include="Content\css\odometer.css" />
     <Content Include="Content\css\recoleta-font.css" />
+    <Content Include="Content\css\sidebar-menu.css" />
     <Content Include="Content\css\swiper.min.css" />
     <Content Include="Content\img\about\about-img01.jpg" />
     <Content Include="Content\img\about\about-img02.png" />
@@ -695,6 +696,7 @@
     <Content Include="Scripts\modernizr.js" />
     <Content Include="Scripts\odometer.min.js" />
     <Content Include="Scripts\parallax-scroll.js" />
+    <Content Include="Scripts\sidebar-menu.js" />
     <Content Include="Scripts\swiper.min.js" />
     <Content Include="Scripts\wow.min.js" />
     <Content Include="Views\Faculties\DepartmentsAbout.cshtml" />
@@ -744,6 +746,7 @@
     <Content Include="Views\HR\TypesAndClassification.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Events\OpenHouse.cshtml" />
+    <Content Include="Views\Menu\_SidebarMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

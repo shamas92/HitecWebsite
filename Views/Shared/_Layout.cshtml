@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/css/faculty-components.css")" />
     <link rel="stylesheet" href="@Url.Content("~/Content/css/news-marquee.css")" />
     <link rel="stylesheet" href="@Url.Content("~/Content/css/admission-modal.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/sidebar-menu.css")" />
 
     @RenderSection("Styles", required: false)
     @RenderSection("Meta", required: false)
@@ -86,6 +87,10 @@
         </div>
     </div>
     <!-- Preloader - End -->
+    
+    <!-- Sidebar Menu -->
+    @Html.Partial("~/Views/Menu/_SidebarMenu.cshtml")
+    
     <!-- Header -->
     @Html.Partial("_Header")
     <!-- Header - End -->
@@ -143,6 +148,7 @@
     @Scripts.Render("~/bundles/vendor")
     <script src="@Url.Content("~/Scripts/jquery.magnific-popup.min.js")"></script>
     <script src="@Url.Content("~/Scripts/admission-modal.js")"></script>
+    <script src="@Url.Content("~/Scripts/sidebar-menu.js")"></script>
     @Scripts.Render("~/bundles/main")
     @RenderSection("Scripts", required: false)
 
