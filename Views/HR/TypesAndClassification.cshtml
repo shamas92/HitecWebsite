@@ -1,0 +1,545 @@
+@model IEnumerable<Website.Models.Employment_Types>
+@{
+    ViewBag.Title = "Employment Types & Classification";
+
+    // SEO Meta Tags
+    ViewBag.MetaDescription = "Learn about the different employment types and classification categories at HITEC University. Understand contract, permanent, visiting, and other faculty positions.";
+    ViewBag.MetaKeywords = "HITEC University, employment types, job classification, faculty positions, employment categories, academic positions, staff classifications";
+}
+
+@section Styles {
+    <style>
+        /* Employment Types & Classification Specific Styles */
+        .employment-section {
+            padding: 50px 0;
+        }
+
+        .employment-card {
+            background: var(--color-white);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            padding: 25px;
+            border-left: 5px solid #1a4578;
+        }
+
+        .employment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .type-title {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--color-heading);
+            margin-bottom: 15px;
+            line-height: 1.3;
+            display: flex;
+            align-items: center;
+        }
+
+        .type-title i {
+            color: #1a4578;
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .type-info {
+            color: var(--color-default);
+            line-height: 1.6;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .classification-info {
+            background-color: #f5f7fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid #1a4578;
+        }
+
+        .classification-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-heading);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .classification-title i {
+            margin-right: 10px;
+            color: #1a4578;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #1a4578;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 5px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: white;
+            border: 4px solid #1a4578;
+            top: 20px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-left {
+            left: 0;
+        }
+
+        .timeline-right {
+            left: 50%;
+        }
+
+        .timeline-left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid #f5f7fa;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent #f5f7fa;
+        }
+
+        .timeline-right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid #f5f7fa;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent #f5f7fa transparent transparent;
+        }
+
+        .timeline-right::after {
+            left: -13px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: #f5f7fa;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-content h3 {
+            color: #1a4578;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::before {
+                left: 60px;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent #f5f7fa transparent transparent;
+            }
+
+            .timeline-left::after, .timeline-right::after {
+                left: 18px;
+            }
+
+            .timeline-right {
+                left: 0;
+            }
+        }
+        
+        .comparison-table {
+            width: 100%;
+            margin: 30px 0;
+        }
+
+        .comparison-table th {
+            background-color: #1a4578;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #f5f7fa;
+        }
+
+        .benefit-available {
+            color: #007e33;
+            font-weight: 600;
+        }
+
+        .benefit-limited {
+            color: #ff8800;
+            font-weight: 600;
+        }
+
+        .benefit-unavailable {
+            color: #cc0000;
+            font-weight: 600;
+        }
+        
+        .feature-list {
+            margin: 20px 0;
+            padding-left: 0;
+            list-style-type: none;
+        }
+
+        .feature-item {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .feature-item:before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #1a4578;
+        }
+    </style>
+}
+
+@section Meta {
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta property="og:title" content="@ViewBag.Title - HITEC University" />
+    <meta property="og:description" content="@ViewBag.MetaDescription" />
+    <meta property="og:type" content="website" />
+}
+
+<div class="body_wrap">
+    <!-- main area start  -->
+    <main>
+        <!-- breadcrumb start -->
+        <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
+            <div class="container">
+                <div class="breadcrumb__content text-center">
+                    <h1 class="breadcrumb__title mt-25" style="color: #000">Employment Types & Classification</h1>
+                    <p class="breadcrumb__desc mb-50" style="color: #000">Human Resources Department</p>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+
+        <!-- employment section start -->
+        <section class="employment-section">
+            <div class="container">
+                <div class="about-content mt-60">
+                    <div class="section-title mb-40">
+                        <span class="sub-title">Human Resources</span>
+                        <h2 class="title">Employment Categories at HITEC University</h2>
+                    </div>
+
+                    <p>HITEC University employs a diverse workforce in academic and administrative positions. Understanding the different employment types and classifications helps employees comprehend their rights, benefits, and responsibilities within the university structure.</p>
+
+                    <!-- Employment Types Overview -->
+                    <div class="classification-info">
+                        <div class="classification-title">
+                            <i class="fas fa-info-circle"></i> Employment Types Overview
+                        </div>
+                        <p>The university classifies employees into different categories based on their contractual relationship, work hours, and duration of employment. Each category has specific terms and conditions that govern employment relationships.</p>
+                    </div>
+
+                    <!-- Employment Types -->
+                    <div class="section-title mt-60 mb-40">
+                        <h3 class="title">Primary Employment Types</h3>
+                    </div>
+
+                    @if (Model != null && Model.Any())
+                    {
+                        <div class="row">
+                            @foreach (var type in Model)
+                            {
+                                <div class="col-lg-6">
+                                    <div class="employment-card">
+                                        <h4 class="type-title">
+                                            <i class="fas fa-user-tie"></i> @type.Type_Name
+                                        </h4>
+                                        <div class="type-info">
+                                            @Html.Raw(type.DescripQon)
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <!-- Default Employment Types when no data is available -->
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="employment-card">
+                                    <h4 class="type-title">
+                                        <i class="fas fa-user-tie"></i> Permanent Employees
+                                    </h4>
+                                    <div class="type-info">
+                                        <p>Permanent employees have ongoing employment with HITEC University with no specified end date. They receive full benefits and are entitled to all university services and facilities as per their position and grade.</p>
+                                        <p>Permanent positions typically require a probation period of 6-12 months before confirmation. After confirmation, these positions offer greater job security and career advancement opportunities.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="employment-card">
+                                    <h4 class="type-title">
+                                        <i class="fas fa-user-tie"></i> Contract Employees
+                                    </h4>
+                                    <div class="type-info">
+                                        <p>Contract employees are hired for a specific period, typically 1-3 years, with the possibility of renewal based on performance and university requirements. These positions may lead to permanent employment after multiple successful contract terms.</p>
+                                        <p>Contract employees receive defined benefits as specified in their employment agreement, which may differ from those provided to permanent staff.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="employment-card">
+                                    <h4 class="type-title">
+                                        <i class="fas fa-user-tie"></i> Visiting Faculty
+                                    </h4>
+                                    <div class="type-info">
+                                        <p>Visiting faculty members are typically industry professionals or academics from other institutions who teach specific courses on a semester basis. Their engagement is usually part-time and limited to teaching responsibilities.</p>
+                                        <p>Compensation is generally based on credit hours taught or a fixed remuneration for the semester, with limited additional benefits.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="employment-card">
+                                    <h4 class="type-title">
+                                        <i class="fas fa-user-tie"></i> Temporary/Adjunct Staff
+                                    </h4>
+                                    <div class="type-info">
+                                        <p>Temporary or adjunct staff members are hired for short-term assignments, special projects, or to fill temporary vacancies. Employment duration is typically less than one year with the possibility of extension.</p>
+                                        <p>These positions offer limited benefits and are focused on specific deliverables or outcomes for the designated period.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <!-- Classification Groups -->
+                    <div class="section-title mt-60 mb-40">
+                        <h3 class="title">Employee Classification Groups</h3>
+                    </div>
+
+                    <div class="timeline">
+                        <div class="timeline-item timeline-left">
+                            <div class="timeline-content">
+                                <h3>Academic Faculty</h3>
+                                <p>The academic faculty consists of teaching staff responsible for education and research activities within the university. This group includes professors, associate professors, assistant professors, lecturers, and teaching assistants.</p>
+                                <ul class="feature-list">
+                                    <li class="feature-item">Focus on teaching, research, and student mentoring</li>
+                                    <li class="feature-item">Eligible for academic promotions based on HEC criteria</li>
+                                    <li class="feature-item">Includes tenured and tenure-track positions</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item timeline-right">
+                            <div class="timeline-content">
+                                <h3>Administrative Staff</h3>
+                                <p>Administrative staff provide support services essential to the functioning of the university. This group includes office administrators, department coordinators, and support personnel.</p>
+                                <ul class="feature-list">
+                                    <li class="feature-item">Responsible for day-to-day administrative operations</li>
+                                    <li class="feature-item">Career progression through administrative grades</li>
+                                    <li class="feature-item">May include both technical and non-technical roles</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item timeline-left">
+                            <div class="timeline-content">
+                                <h3>Technical Staff</h3>
+                                <p>Technical staff maintain laboratories, provide IT support, and handle specialized equipment. This group includes lab engineers, technicians, IT specialists, and technical support personnel.</p>
+                                <ul class="feature-list">
+                                    <li class="feature-item">Specialized technical knowledge and skills</li>
+                                    <li class="feature-item">Support for academic and research activities</li>
+                                    <li class="feature-item">Maintenance of technical infrastructure</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item timeline-right">
+                            <div class="timeline-content">
+                                <h3>Management</h3>
+                                <p>Management includes department heads, directors, deans, and other senior administrative positions responsible for strategic direction and departmental leadership.</p>
+                                <ul class="feature-list">
+                                    <li class="feature-item">Strategic decision-making responsibilities</li>
+                                    <li class="feature-item">Departmental or functional area leadership</li>
+                                    <li class="feature-item">Enhanced benefits package commensurate with responsibilities</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item timeline-left">
+                            <div class="timeline-content">
+                                <h3>Support Services</h3>
+                                <p>Support services include maintenance staff, security personnel, transportation staff, and other service providers who ensure the campus functions effectively.</p>
+                                <ul class="feature-list">
+                                    <li class="feature-item">Essential services for campus operations</li>
+                                    <li class="feature-item">Skill-based progression opportunities</li>
+                                    <li class="feature-item">Specific benefits tailored to service roles</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Benefits Comparison -->
+                    <div class="section-title mt-60 mb-30">
+                        <h3 class="title">Benefits Comparison by Employment Type</h3>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Benefit</th>
+                                    <th>Permanent</th>
+                                    <th>Contract</th>
+                                    <th>Visiting</th>
+                                    <th>Temporary</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Health Insurance</td>
+                                    <td><span class="benefit-available">Full Coverage</span></td>
+                                    <td><span class="benefit-available">Full Coverage</span></td>
+                                    <td><span class="benefit-unavailable">Not Provided</span></td>
+                                    <td><span class="benefit-unavailable">Not Provided</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Retirement Benefits</td>
+                                    <td><span class="benefit-available">Contributory Fund</span></td>
+                                    <td><span class="benefit-limited">Limited Benefits</span></td>
+                                    <td><span class="benefit-unavailable">Not Provided</span></td>
+                                    <td><span class="benefit-unavailable">Not Provided</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Annual Leave</td>
+                                    <td><span class="benefit-available">30 Days</span></td>
+                                    <td><span class="benefit-available">20 Days</span></td>
+                                    <td><span class="benefit-unavailable">Not Applicable</span></td>
+                                    <td><span class="benefit-limited">Pro-rated</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Professional Development</td>
+                                    <td><span class="benefit-available">Full Support</span></td>
+                                    <td><span class="benefit-limited">Limited Support</span></td>
+                                    <td><span class="benefit-limited">Limited Access</span></td>
+                                    <td><span class="benefit-unavailable">Not Provided</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Tuition Fee Concession</td>
+                                    <td><span class="benefit-available">For Self & Children</span></td>
+                                    <td><span class="benefit-limited">For Children Only</span></td>
+                                    <td><span class="benefit-unavailable">Not Provided</span></td>
+                                    <td><span class="benefit-unavailable">Not Provided</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Housing Allowance</td>
+                                    <td><span class="benefit-available">Provided</span></td>
+                                    <td><span class="benefit-limited">Based on Contract</span></td>
+                                    <td><span class="benefit-unavailable">Not Provided</span></td>
+                                    <td><span class="benefit-unavailable">Not Provided</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Transport Facility</td>
+                                    <td><span class="benefit-available">Provided</span></td>
+                                    <td><span class="benefit-available">Provided</span></td>
+                                    <td><span class="benefit-limited">Limited Access</span></td>
+                                    <td><span class="benefit-limited">Limited Access</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="mt-3"><small><em>* Benefits may vary based on position, grade, and specific employment terms. Please refer to HR policies for detailed information.</em></small></p>
+
+                    <!-- HR Contact -->
+                    <div class="row mt-60">
+                        <div class="col-lg-12">
+                            <div class="employment-card" style="border-color: #2e7d32; background-color: #f1f8e9;">
+                                <h4 class="type-title" style="color: #2e7d32;">
+                                    <i class="fas fa-headset" style="color: #2e7d32;"></i> Need More Information?
+                                </h4>
+                                <p>For more detailed information about employment types, classifications, benefits, or career opportunities at HITEC University, please contact the Human Resources Department:</p>
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <p><strong><i class="fas fa-envelope"></i> Email:</strong> hr@hitecuni.edu.pk</p>
+                                        <p><strong><i class="fas fa-phone-alt"></i> Phone:</strong> 051-9047851-60 (Ext. 123)</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong><i class="fas fa-map-marker-alt"></i> Location:</strong> HR Department, Admin Block, HITEC University</p>
+                                        <p><strong><i class="fas fa-clock"></i> Office Hours:</strong> Monday to Friday (8:30 AM - 4:30 PM)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- employment section end -->
+    </main>
+    <!-- main area end  -->
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Force hide preloader
+            setTimeout(function () {
+                $('#preloader').fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            }, 500);
+        });
+    </script>
+}
