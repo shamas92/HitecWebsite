@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,6 +34,7 @@
     <link rel="canonical" href="@Request.Url.AbsoluteUri" />
 
     @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/fontawesome.css")" />
     <link rel="stylesheet" href="@Url.Content("~/Content/css/magnific-popup.css")" />
     <link rel="stylesheet" href="@Url.Content("~/Content/css/faculty-sidebar.css")" />
     <link rel="stylesheet" href="@Url.Content("~/Content/css/faculty-components.css")" />
@@ -68,6 +70,7 @@
     }
     </script>
 </head>
+
 <body>
     <!-- backtotop - start -->
     <div class="xb-backtotop">
@@ -87,10 +90,10 @@
         </div>
     </div>
     <!-- Preloader - End -->
-    
+
     <!-- Sidebar Menu -->
-    @Html.Partial("~/Views/Menu/_SidebarMenu.cshtml")
-    
+    @Html.Action("GetSidebarMenu", "Menu")
+
     <!-- Header -->
     @Html.Partial("_Header")
     <!-- Header - End -->
@@ -99,7 +102,7 @@
         @RenderBody()
     </main>
     <!-- Main Content - End -->
-    
+
     <!-- Admission Announcement Modal -->
     @if (ViewBag.Title == "Home Page" || Request.Path == "/" || Request.Path == "/Home" || Request.Path == "/Home/Index")
     {
@@ -140,7 +143,7 @@
     </div>
     }
     <!-- Admission Announcement Modal - End -->
-    
+
     <!-- Footer -->
     @Html.Partial("_Footer")
     @Scripts.Render("~/bundles/jquery")
@@ -154,4 +157,5 @@
 
     <!-- Footer - End -->
 </body>
+
 </html>

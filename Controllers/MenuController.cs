@@ -32,9 +32,96 @@ namespace Website.Controllers
             catch (Exception ex)
             {
                 // Log the exception if you have logging configured
+                System.Diagnostics.Debug.WriteLine($"Menu Error: {ex.Message}");
                 return Content("<!-- Menu Error: " + ex.Message + " -->");
             }
         }
+
+        public ActionResult GetSidebarMenu()
+        {
+            try
+            {
+                // Get sidebar menu items with MenuType "Sidebar Menu" ordered by SortingOrder
+                List<tblMenus> sidebarMenus;
+                
+                try 
+                {
+                    sidebarMenus = db.tblMenus
+                        .Where(m => m.MenuType.MenuTypeName == "Sidebar Menu")
+                        .OrderBy(m => m.SortingOrder)
+                        .ToList();
+                }
+                catch (Exception dbEx)
+                {
+                    // Log specific database error
+                    System.Diagnostics.Debug.WriteLine($"Database error loading sidebar menus: {dbEx.Message}");
+                    
+                    // Create fallback menu items if database query fails
+                    sidebarMenus = new List<tblMenus>
+                    {
+                        new tblMenus
+                        {
+                            MenuID = -1,
+                            MenuName = "Admission",
+                            MenuLink = "https://admissions.hitecuni.edu.pk/",
+                            SortingOrder = 1,
+                            SvgIcon = "fas fa-graduation-cap"
+                        },
+                        new tblMenus
+                        {
+                            MenuID = -2,
+                            MenuName = "Hope Academy",
+                            MenuLink = "https://hope.hitecuni.edu.pk/",
+                            SortingOrder = 2,
+                            SvgIcon = "fas fa-school"
+                        }
+                    };
+                }
+                
+                // If no sidebar menu items found in database, use default ones
+                if (sidebarMenus == null || !sidebarMenus.Any())
+                {
+                    sidebarMenus = new List<tblMenus>
+                    {
+                        new tblMenus
+                        {
+                            MenuID = -1,
+                            MenuName = "Admission",
+                            MenuLink = "https://admissions.hitecuni.edu.pk/",
+                            SortingOrder = 1,
+                            SvgIcon = "fas fa-graduation-cap"
+                        },
+                        new tblMenus
+                        {
+                            MenuID = -2,
+                            MenuName = "Hope Academy",
+                            MenuLink = "https://hope.hitecuni.edu.pk/",
+                            SortingOrder = 2,
+                            SvgIcon = "fas fa-school"
+                        }
+                    };
+                }
+
+                // Check each menu item for valid icon
+                foreach(var menu in sidebarMenus)
+                {
+                    // If SvgIcon is null or empty, set a default icon
+                    if (string.IsNullOrEmpty(menu.SvgIcon))
+                    {
+                        menu.SvgIcon = "fas fa-link";
+                    }
+                }
+
+                return PartialView("_SidebarMenu", sidebarMenus);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                System.Diagnostics.Debug.WriteLine($"Sidebar Menu Error: {ex.Message}");
+                return Content("<!-- Sidebar Menu Error: " + ex.Message + " -->");
+            }
+        }
+        
         public ActionResult GetNewsMenu()
         {
             try
@@ -56,6 +143,7 @@ namespace Website.Controllers
             catch (Exception ex)
             {
                 // Log the exception if you have logging configured
+                System.Diagnostics.Debug.WriteLine($"News Menu Error: {ex.Message}");
                 return Content("<!-- News Menu Error: " + ex.Message + " -->");
             }
         }
@@ -82,6 +170,7 @@ namespace Website.Controllers
             catch (Exception ex)
             {
                 // Log the exception if you have logging configured
+                System.Diagnostics.Debug.WriteLine($"Middle Menu Error: {ex.Message}");
                 return Content("<!-- Menu Error: " + ex.Message + " -->");
             }
         }
@@ -117,6 +206,7 @@ namespace Website.Controllers
             catch (Exception ex)
             {
                 // Log the exception if you have logging configured
+                System.Diagnostics.Debug.WriteLine($"Main Menu Error: {ex.Message}");
                 return Content("<!-- Menu Error: " + ex.Message + " -->");
             }
         }
@@ -142,6 +232,7 @@ namespace Website.Controllers
             catch (Exception ex)
             {
                 // Log the exception if you have logging configured
+                System.Diagnostics.Debug.WriteLine($"Mobile Main Menu Error: {ex.Message}");
                 return Content("<!-- Menu Error: " + ex.Message + " -->");
             }
         }
@@ -167,27 +258,36 @@ namespace Website.Controllers
             catch (Exception ex)
             {
                 // Log the exception if you have logging configured
+                System.Diagnostics.Debug.WriteLine($"Mobile Top Menu Error: {ex.Message}");
                 return Content("<!-- Menu Error: " + ex.Message + " -->");
             }
         }
 
         private void LoadChildMenusRecursively(tblMenus menu, string menuType)
         {
-            // Get all child menus of the current menu with the same MenuType
-            var children = db.tblMenus
-                .Where(m => m.ParentMenuID == menu.MenuID && m.MenuType.MenuTypeName == menuType)
-                .OrderBy(m => m.SortingOrder)
-                .ToList();
+            try {
+                // Get all child menus of the current menu with the same MenuType
+                var children = db.tblMenus
+                    .Where(m => m.ParentMenuID == menu.MenuID && m.MenuType.MenuTypeName == menuType)
+                    .OrderBy(m => m.SortingOrder)
+                    .ToList();
 
-            if (children.Any())
-            {
-                menu.ChildMenus = children;
-
-                // Recursively load children of each child
-                foreach (var child in children)
+                if (children.Any())
                 {
-                    LoadChildMenusRecursively(child, menuType);
+                    menu.ChildMenus = children;
+
+                    // Recursively load children of each child
+                    foreach (var child in children)
+                    {
+                        LoadChildMenusRecursively(child, menuType);
+                    }
                 }
+            } 
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error loading child menus for {menu.MenuName}: {ex.Message}");
+                // Initialize empty collection to avoid null reference
+                menu.ChildMenus = new List<tblMenus>();
             }
         }
 

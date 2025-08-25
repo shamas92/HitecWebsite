@@ -1,29 +1,154 @@
+@model IEnumerable<HitecCM.Models.tblMenus>
+@using System.Web
+@using System.IO
 @{
-    // Only two menu items as requested: Admission and Hope Academy
-    var menuItems = new[] {
-        new { Icon = "fas fa-graduation-cap", Label = "Admission", Link = "https://admissions.hitecuni.edu.pk/" },
-        new { Icon = "fas fa-school", Label = "Hope Academy", Link = "https://hope.hitecuni.edu.pk/" }
-    };
-    
     var currentUrl = Request.Url?.AbsolutePath;
+
+    // Simple mapping from common svg file names (or keywords) to Font Awesome classes
+    var svgKeywordToFa = new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase)
+    {
+        {"mortarboard", "fas fa-graduation-cap"},
+        {"graduate", "fas fa-graduation-cap"},
+        {"admission", "fas fa-graduation-cap"},
+        {"building", "fas fa-building"},
+        {"university", "fas fa-university"},
+        {"hope", "fas fa-school"},
+    };
+
+    Func<HitecCM.Models.tblMenus, string> GetIconHtml = (menu) => {
+        if (menu == null) return "<i class='fas fa-link'></i>";
+        if (!string.IsNullOrWhiteSpace(menu.SvgIcon))
+        {
+            var rawOriginal = menu.SvgIcon.Trim();
+            var raw = rawOriginal; // will mutate
+
+            // If HTML-encoded markup decode first
+            if (raw.StartsWith("&lt;", StringComparison.Ordinal))
+            {
+                raw = HttpUtility.HtmlDecode(raw);
+            }
+
+            // Reject script for safety
+            if (raw.IndexOf("<script", StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                return "<i class='fas fa-link'></i>";
+            }
+
+            // 1. Inline SVG markup (starts with <svg / <path / <g)
+            if (raw.StartsWith("<svg", StringComparison.OrdinalIgnoreCase) || raw.StartsWith("<path", StringComparison.OrdinalIgnoreCase) || raw.StartsWith("<g", StringComparison.OrdinalIgnoreCase))
+            {
+                // Wrap path/group only content
+                if (!raw.StartsWith("<svg", StringComparison.OrdinalIgnoreCase))
+                {
+                    raw = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='currentColor' class='sidebar-svg-icon'>" + raw + "</svg>";
+                }
+
+                return raw;
+            }
+
+            // 2. File name / path case
+            if (raw.EndsWith(".svg", StringComparison.OrdinalIgnoreCase) || raw.EndsWith(".png", StringComparison.OrdinalIgnoreCase) || raw.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) || raw.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase))
+            {
+                // Try to resolve local virtual path if not absolute URL
+                bool isAbsolute = raw.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || raw.StartsWith("https://", StringComparison.OrdinalIgnoreCase);
+                string virtualPath = raw;
+                if (!isAbsolute)
+                {
+                    // If user just stored file name like "mortarboard-graduate-svgrepo-com.svg" assume under ~/Content/img/icons/
+                    if (!raw.StartsWith("~/") && !raw.StartsWith("/"))
+                    {
+                        virtualPath = "~/Content/img/menuicon/" + raw; // configurable folder
+                    }
+                    else
+                    {
+                        virtualPath = raw;
+                    }
+
+                    // Check if file actually exists on disk; if not, attempt FA fallback mapping
+                    try
+                    {
+                        var physical = Server.MapPath(virtualPath);
+                        if (!System.IO.File.Exists(physical))
+                        {
+                            // Attempt mapping by keywords contained in filename
+                            foreach (var kv in svgKeywordToFa)
+                            {
+                                if (raw.IndexOf(kv.Key, StringComparison.OrdinalIgnoreCase) >= 0)
+                                {
+                                    return "<i class='" + kv.Value + "'></i><!-- FA fallback for missing file: " + HttpUtility.HtmlEncode(rawOriginal) + " -->";
+                                }
+                            }
+                            // If still not mapped, final fallback
+                            return "<i class='fas fa-link'></i><!-- Missing file: " + HttpUtility.HtmlEncode(rawOriginal) + " -->";
+                        }
+                    }
+                    catch { /* ignore mapping errors; fallback below */ }
+                }
+                var resolved = isAbsolute ? raw : Url.Content(virtualPath);
+                return "<img src='" + resolved + "' class='sidebar-img-icon' alt='" + HttpUtility.HtmlEncode(menu.MenuName) + "' onerror=\"this.outerHTML='\\x3ci class=\\'fas fa-link\\'\\x3e\\x3c/i\\x3e'\" />";
+            }
+
+            // 3. Font Awesome class already
+            if (raw.IndexOf("fa-", StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                // Ensure weight prefix
+                if (raw.StartsWith("fa ") || raw.StartsWith("fas ") || raw.StartsWith("far ") || raw.StartsWith("fab ") || raw.StartsWith("fal "))
+                    return "<i class='" + raw + "'></i>";
+                return "<i class='fas " + raw + "'></i>";
+            }
+
+            // 4. Try keyword mapping to FA
+            foreach (var kv in svgKeywordToFa)
+            {
+                if (raw.IndexOf(kv.Key, StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    return "<i class='" + kv.Value + "'></i>";
+                }
+            }
+
+            // 5. Plain string -> treat as FA name
+            return "<i class='fas fa-" + raw + "'></i>";
+        }
+        return "<i class='fas fa-link'></i>";
+    };
 }
 
 <!-- Sidebar Menu -->
 <div class="sidebar-menu" role="navigation" aria-label="Quick Access Menu">
     <nav class="sidebar-menu-nav">
         <ul>
-            @foreach (var item in menuItems)
+            @if (Model != null && Model.Any())
             {
-                bool isActive = !string.IsNullOrEmpty(currentUrl) && 
-                               (item.Link == currentUrl || 
-                               (item.Link != "#" && currentUrl.Contains(item.Link)));
-                
-                <li class="sidebar-menu-item @(isActive ? "active" : "")" role="menuitem">
-                    <a href="@item.Link" class="sidebar-menu-link" target="_blank"
-                       aria-label="@item.Label" 
-                       @(isActive ? "aria-current=page" : "")>
-                        <span class="sidebar-menu-icon" aria-hidden="true"><i class="@item.Icon"></i></span>
-                        <span class="sidebar-menu-label">@item.Label</span>
+                foreach (var menu in Model)
+                {
+                    bool isActive = !string.IsNullOrEmpty(currentUrl) &&
+                                   (menu.MenuLink == currentUrl ||
+                                   (!string.IsNullOrEmpty(menu.MenuLink) && menu.MenuLink != "#" && currentUrl.Contains(menu.MenuLink)));
+
+                    <li class="sidebar-menu-item @(isActive ? "active" : "")" role="menuitem">
+                        <a href="@menu.MenuLink" class="sidebar-menu-link" target="_blank"
+                           aria-label="@menu.MenuName"
+                           @(isActive ? "aria-current=page" : "")>
+                            <span class="sidebar-menu-icon" aria-hidden="true">
+                                @Html.Raw(GetIconHtml(menu))
+                            </span>
+                            <span class="sidebar-menu-label">@menu.MenuName</span>
+                        </a>
+                    </li>
+                }
+            }
+            else
+            {
+                <li class="sidebar-menu-item" role="menuitem">
+                    <a href="https://admissions.hitecuni.edu.pk/" class="sidebar-menu-link" target="_blank" aria-label="Admission">
+                        <span class="sidebar-menu-icon" aria-hidden="true"><i class="fas fa-graduation-cap"></i></span>
+                        <span class="sidebar-menu-label">Admission</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item" role="menuitem">
+                    <a href="https://hope.hitecuni.edu.pk/" class="sidebar-menu-link" target="_blank" aria-label="Hope Academy">
+                        <span class="sidebar-menu-icon" aria-hidden="true"><i class="fas fa-school"></i></span>
+                        <span class="sidebar-menu-label">Hope Academy</span>
                     </a>
                 </li>
             }
