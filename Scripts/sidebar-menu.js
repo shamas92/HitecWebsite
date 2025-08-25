@@ -40,4 +40,47 @@ $(function(){
   if($('.sidebar-menu').length) {
     $('.sidebar-menu').css('visibility', 'visible');
   }
+  
+  (function(){
+    function isTouch(){ return ('ontouchstart' in window) || navigator.maxTouchPoints > 0; }
+
+    function initSidebarTwoTap(){
+        var menu = document.querySelector('.sidebar-menu');
+        if(!menu) return;
+        var links = menu.querySelectorAll('.sidebar-menu-item > a.sidebar-menu-link');
+        var lastExpanded = null;
+        links.forEach(function(a){
+            // ensure role button for a11y when first tap
+            a.addEventListener('click', function(e){
+                if(!isTouch()) return; // desktop normal
+                var li = a.parentElement;
+                var already = li.classList.contains('expanded');
+                if(!already){
+                    // first tap -> expand
+                    e.preventDefault();
+                    // collapse others
+                    menu.querySelectorAll('.sidebar-menu-item.expanded').forEach(function(open){ if(open!==li) open.classList.remove('expanded'); });
+                    li.classList.add('expanded');
+                    lastExpanded = li;
+                } else {
+                    // second tap -> allow navigation (do nothing so default proceeds)
+                }
+            }, false);
+        });
+
+        // collapse when tapping outside
+        document.addEventListener('click', function(ev){
+            if(!isTouch()) return;
+            if(!menu.contains(ev.target)){
+                menu.querySelectorAll('.sidebar-menu-item.expanded').forEach(function(open){ open.classList.remove('expanded'); });
+            }
+        });
+    }
+
+    if(document.readyState === 'loading'){
+        document.addEventListener('DOMContentLoaded', initSidebarTwoTap);
+    } else {
+        initSidebarTwoTap();
+    }
+  })();
 });
