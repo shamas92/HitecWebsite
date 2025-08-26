@@ -2,8 +2,62 @@
 @using HitecCM.Models
 
 <ul class="main-menu">
-    @foreach (var menu in Model)
+    @{
+        // Flag to check if we found an Events menu item in the database
+        bool eventsMenuFound = false;
+        HitecCM.Models.tblMenus eventsMenu = null;
+        
+        // Look for a menu item named "Events" - case insensitive check
+        foreach (var menu in Model)
+        {
+            if (string.Equals(menu.MenuName, "Events", StringComparison.OrdinalIgnoreCase))
+            {
+                eventsMenuFound = true;
+                eventsMenu = menu;
+                break;
+            }
+        }
+        
+        // Sort menu items by SortingOrder 
+        var sortedMenus = Model.OrderBy(m => m.SortingOrder).ToList();
+    }
+
+    @foreach (var menu in sortedMenus)
     {
+        // Skip rendering the Events menu here if found in database - we'll handle it separately based on its sorting order
+        if (eventsMenuFound && menu.MenuID == eventsMenu.MenuID)
+        {
+            // Render Events menu with dynamic submenu at its proper sorting position
+            <li class="menu-item-has-children @(IsMenuActive(eventsMenu) || Request.Url.AbsolutePath.StartsWith("/Events") ? "active" : "")">
+                @if (!string.IsNullOrEmpty(eventsMenu.MenuLink))
+                {
+                    <a href="@eventsMenu.MenuLink">
+                        @if (!string.IsNullOrEmpty(eventsMenu.SvgIcon))
+                        {
+                            <img src="@Url.Content("~/Content/img/menuicon/" + eventsMenu.SvgIcon)" class="menu-icon" alt="@eventsMenu.MenuName icon" />
+                            <br />
+                        }
+                        <span>@eventsMenu.MenuName</span>
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Index", "Events")">
+                        @if (!string.IsNullOrEmpty(eventsMenu.SvgIcon))
+                        {
+                            <img src="@Url.Content("~/Content/img/menuicon/" + eventsMenu.SvgIcon)" class="menu-icon" alt="@eventsMenu.MenuName icon" />
+                            <br />
+                        }
+                        <span>@eventsMenu.MenuName</span>
+                    </a>
+                }
+                
+                @Html.Action("GetLatestEvents", "Events")
+            </li>
+            
+            continue;
+        }
+        
         <li class="@(menu.ChildMenus != null && menu.ChildMenus.Any() ? "menu-item-has-children" : "menu-item") @(IsMenuActive(menu) ? "active" : "")">
             @if (!string.IsNullOrEmpty(menu.MenuLink))
             {
@@ -65,6 +119,17 @@
                     }
                 </ul>
             }
+        </li>
+    }
+    
+    @if (!eventsMenuFound)
+    {
+        <!-- Fallback: Special Events menu with dynamic latest events submenu if no Events menu found in database -->
+        <li class="menu-item-has-children @(Request.Url.AbsolutePath.StartsWith("/Events") ? "active" : "")">
+            <a href="@Url.Action("Index", "Events")">
+                <span>Events</span>
+            </a>
+            @Html.Action("GetLatestEvents", "Events")
         </li>
     }
 </ul>

@@ -8,15 +8,36 @@ namespace Website.Controllers
 {
     public class EventsController : Controller
     {
-        // GET: /Events/Details/5
-        public ActionResult Details(int id)
+        // GET: Events
+        public ActionResult Index()
         {
+            using (var db = new Model1())
+            {
+                var events = db.tblEvents
+                    .Include(e => e.tblEventHead) // Eagerly load the tblEventHead to prevent ObjectDisposedException
+                    .Where(e => e.Active == true)
+                    .OrderByDescending(e => e.EventDate)
+                    .ToList();
+
+                return View(events);
+            }
+        }
+        // GET: /Events/Details/5
+        public ActionResult Details(int? id)
+        {
+            // If id is not provided, redirect to the index page
+            if (!id.HasValue)
+            {
+                return RedirectToAction("Index");
+            }
+
             using (var db = new Model1())
             {
                 var ev = db.tblEvents
                     .Include(e => e.tblEventPhotos)
                     .Include(e => e.tblEventVideos)
-                    .FirstOrDefault(e => e.EventID == id);
+                    .Include(e => e.tblEventHead)
+                    .FirstOrDefault(e => e.EventID == id.Value);
 
                 if (ev == null)
                 {
@@ -31,21 +52,29 @@ namespace Website.Controllers
                 return View(ev);
             }
         }
-        
-        // GET: /Events/OpenHouse
-        public ActionResult OpenHouse()
+
+        // Action method to get latest events for the navigation menu
+        [ChildActionOnly]
+        public ActionResult GetLatestEvents()
         {
-            using (var db = new Model1())
+            try
             {
-                // Filter events with "Open House" in their title or events where the title contains "Open"
-                var openHouseEvents = db.tblEvents
-                    .Where(e => (e.Title != null && (e.Title.Contains("Open House") || e.Title.Contains("Open Day"))) 
-                            || (e.EventHeadID != null && db.tblEventHeads.Any(h => h.EventHeadID == e.EventHeadID && h.Title.Contains("Open House"))))
-                    .Where(e => e.Active == true)
-                    .OrderByDescending(e => e.EventDate)
-                    .ToList();
-                
-                return View(openHouseEvents);
+                using (var db = new Model1())
+                {
+                    var latestEvents = db.tblEvents
+                        .Include(e => e.tblEventHead) // Eagerly load the tblEventHead to prevent ObjectDisposedException
+                        .Where(e => e.Active == true)
+                        .OrderByDescending(e => e.EventDate)
+                        .Take(3)
+                        .ToList();
+
+                    return PartialView("_LatestEventsMenu", latestEvents);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in GetLatestEvents: {ex.Message}");
+                return Content("<!-- Latest Events Error -->");
             }
         }
     }

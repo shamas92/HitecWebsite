@@ -1,0 +1,22 @@
+@model IEnumerable<Website.Models.tblEvent>
+
+@if (Model != null && Model.Any())
+{
+    <ul class="submenu">
+        @foreach (var eventItem in Model)
+        {
+            <li>
+                <a href="@Url.Action("Details", "Events", new { id = eventItem.EventID })">
+                    @(eventItem.Title?.Length > 30 ? eventItem.Title.Substring(0, 30) + "..." : eventItem.Title)
+                </a>
+            </li>
+        }
+        <li><a href="@Url.Action("Index", "Events")">All Events <i class="fas fa-arrow-right"></i></a></li>
+    </ul>
+}
+else
+{
+    <ul class="submenu">
+        <li><a href="@Url.Action("Index", "Events")">View All Events</a></li>
+    </ul>
+}

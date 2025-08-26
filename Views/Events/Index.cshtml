@@ -1,0 +1,324 @@
+@model IEnumerable<Website.Models.tblEvent>
+@{
+    ViewBag.Title = "Events";
+    
+    // SEO Meta Tags
+    ViewBag.MetaDescription = "Browse all events hosted by HITEC University. Stay updated with upcoming seminars, workshops, conferences, and campus activities.";
+    ViewBag.MetaKeywords = "HITEC University, events, campus events, university events, seminars, workshops, conferences";
+}
+
+@section Styles {
+    <style>
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-gap: 30px;
+            margin-top: 40px;
+        }
+
+        .event-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        .event-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .event-card:hover .event-image img {
+            transform: scale(1.05);
+        }
+
+        .event-date-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: var(--color-primary);
+            color: white;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: 600;
+            border-top-left-radius: 8px;
+        }
+
+        .event-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .event-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--color-heading);
+            line-height: 1.4;
+        }
+
+        .event-meta {
+            margin-bottom: 15px;
+        }
+
+        .event-meta-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            color: var(--color-text);
+            font-size: 14px;
+        }
+
+        .event-meta-icon {
+            margin-right: 8px;
+            color: var(--color-primary);
+            font-size: 16px;
+        }
+
+        .event-excerpt {
+            margin-bottom: 20px;
+            color: var(--color-text);
+            font-size: 15px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .event-read-more {
+            display: inline-flex;
+            align-items: center;
+            font-weight: 600;
+            color: var(--color-primary);
+            transition: color 0.3s ease;
+            margin-top: auto;
+            text-decoration: none;
+        }
+
+        .event-read-more:hover {
+            color: var(--color-secondary);
+        }
+
+        .event-read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .event-read-more:hover i {
+            transform: translateX(3px);
+        }
+
+        .no-events {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .no-events h3 {
+            font-size: 24px;
+            color: var(--color-heading);
+            margin-bottom: 15px;
+        }
+
+        .no-events p {
+            font-size: 16px;
+            color: var(--color-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-filter {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            background-color: #f5f5f5;
+            border: none;
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--color-primary);
+            color: white;
+        }
+    </style>
+}
+
+@section Meta {
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta property="og:title" content="@ViewBag.Title - HITEC University" />
+    <meta property="og:description" content="@ViewBag.MetaDescription" />
+    <meta property="og:type" content="website" />
+}
+
+<div class="body_wrap">
+    <!-- main area start  -->
+    <main>
+        <!-- breadcrumb start -->
+        <section class="breadcrumb bg_img ul_li" data-background="/Content/img/bg/about_bg.jpg">
+            <div class="container">
+                <div class="breadcrumb__content text-center">
+                    <h1 class="breadcrumb__title">Events</h1>
+                    <ul class="breadcrumb__list">
+                        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                        <li>Events</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+
+        <!-- events list start -->
+        <section class="event-list-section pt-80 pb-120">
+            <div class="container">
+                <div class="section-title text-center mb-40">
+                    <span class="sub-title">Campus Activities</span>
+                    <h2 class="title">University Events</h2>
+                </div>
+
+                @if (Model != null && Model.Any())
+                {
+                    <div class="section-filter">
+                        <button class="filter-btn active" data-filter="*">All Events</button>
+                        @*<button class="filter-btn" data-filter="upcoming">Upcoming</button>*@
+                        <button class="filter-btn" data-filter="past">Past Events</button>
+                        <button class="filter-btn" data-filter="alumni">Alumni Events</button>
+                    </div>
+
+                    <div class="events-grid">
+                        @foreach (var eventItem in Model)
+                        {
+                            var isPast = eventItem.EventDate.HasValue && eventItem.EventDate.Value < DateTime.Now;
+                            var isUpcoming = eventItem.EventDate.HasValue && eventItem.EventDate.Value >= DateTime.Now;
+                            var isAlumni = eventItem.AlumniEvent.HasValue && eventItem.AlumniEvent.Value;
+                            
+                            var filterClasses = "";
+                            if (isPast) { filterClasses += " past"; }
+                            if (isUpcoming) { filterClasses += " upcoming"; }
+                            if (isAlumni) { filterClasses += " alumni"; }
+
+                            <div class="event-item @filterClasses">
+                                <div class="event-card">
+                                    <div class="event-image">
+                                        @if (!string.IsNullOrEmpty(eventItem.Banner))
+                                        {
+                                            <img src="@(eventItem.Banner.StartsWith("~") || eventItem.Banner.StartsWith("/") 
+                                                ? Url.Content(eventItem.Banner) 
+                                                : Url.Content("~/Content/uploads/events/" + eventItem.Banner))"
+                                                 alt="@eventItem.Title"
+                                                 onerror="this.src='@Url.Content("~/Content/img/news/news-img01.jpg")';" />
+                                        }
+                                        else
+                                        {
+                                            <img src="@Url.Content("~/Content/img/news/news-img01.jpg")" alt="@eventItem.Title" />
+                                        }
+
+                                        @if (eventItem.EventDate.HasValue)
+                                        {
+                                            <div class="event-date-badge">
+                                                @eventItem.EventDate.Value.ToString("dd MMM yyyy")
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="event-content">
+                                        <h3 class="event-title">@eventItem.Title</h3>
+                                        <div class="event-meta">
+                                            @if (eventItem.EventDate.HasValue)
+                                            {
+                                                <div class="event-meta-item">
+                                                    <i class="event-meta-icon far fa-calendar-alt"></i>
+                                                    <span>@eventItem.EventDate.Value.ToString("dddd, MMMM dd, yyyy")</span>
+                                                </div>
+                                            }
+                                            @if (!string.IsNullOrEmpty(eventItem.Venue))
+                                            {
+                                                <div class="event-meta-item">
+                                                    <i class="event-meta-icon far fa-map-marker-alt"></i>
+                                                    <span>@eventItem.Venue</span>
+                                                </div>
+                                            }
+                                            @if (eventItem.tblEventHead != null && !string.IsNullOrEmpty(eventItem.tblEventHead.Title))
+                                            {
+                                                <div class="event-meta-item">
+                                                    <i class="event-meta-icon far fa-tag"></i>
+                                                    <span>@eventItem.tblEventHead.Title</span>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="event-excerpt">
+                                            @if (!string.IsNullOrEmpty(eventItem.Details))
+                                            {
+                                                var plainText = System.Text.RegularExpressions.Regex.Replace(eventItem.Details, "<.*?>", string.Empty);
+                                                @(plainText.Length > 150 ? plainText.Substring(0, 150) + "..." : plainText)
+                                            }
+                                        </div>
+                                        <a href="@Url.Action("Details", "Events", new { id = eventItem.EventID })" class="event-read-more">
+                                            Read More <i class="far fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="no-events">
+                        <h3>No Events Found</h3>
+                        <p>There are currently no events to display. Please check back later for upcoming university events and activities.</p>
+                    </div>
+                }
+            </div>
+        </section>
+        <!-- events list end -->
+    </main>
+    <!-- main area end  -->
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Filter functionality
+            $('.filter-btn').on('click', function() {
+                $('.filter-btn').removeClass('active');
+                $(this).addClass('active');
+                
+                var filterValue = $(this).data('filter');
+                
+                if (filterValue === '*') {
+                    $('.event-item').show();
+                } else {
+                    $('.event-item').hide();
+                    $('.event-item.' + filterValue).show();
+                }
+            });
+        });
+    </script>
+}

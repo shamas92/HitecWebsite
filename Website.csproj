@@ -721,7 +721,6 @@
     <Content Include="Views\About\ChairmanMessage.cshtml" />
     <Content Include="Views\About\VcMessage.cshtml" />
     <Content Include="Views\About\Motto.cshtml" />
-    <Content Include="Views\Events\Details.cshtml" />
     <Content Include="Views\About\VisionMission.cshtml" />
     <Content Include="Views\About\Emblem.cshtml" />
     <Content Include="Views\Menu\_TopMenu.cshtml" />
@@ -745,9 +744,10 @@
     <Content Include="Views\Program\ME.cshtml" />
     <Content Include="Views\Facilities\Transport.cshtml" />
     <Content Include="Views\HR\TypesAndClassification.cshtml" />
-    <Content Include="Views\Events\Index.cshtml" />
-    <Content Include="Views\Events\OpenHouse.cshtml" />
     <Content Include="Views\Menu\_SidebarMenu.cshtml" />
+    <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Events\_LatestEventsMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
