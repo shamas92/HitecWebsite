@@ -134,6 +134,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analytics\AnalyticsTracker.cs" />
+    <Compile Include="Analytics\AnalyticsTrackingFilter.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -195,6 +197,7 @@
     <Compile Include="Models\Leave_EnQtlement.cs" />
     <Compile Include="Models\Leave_Types.cs" />
     <Compile Include="Models\MechanicalEngineering.cs" />
+    <Compile Include="Models\Model1.Analytics.cs" />
     <Compile Include="Models\Model1.cs" />
     <Compile Include="Models\MSRulesAndRegulaQon.cs" />
     <Compile Include="Models\MS_Islamic_Studies.cs" />
@@ -257,6 +260,7 @@
     <Compile Include="Models\tblNewsHead.cs" />
     <Compile Include="Models\tblNewsPhoto.cs" />
     <Compile Include="Models\tblNoticeBoard.cs" />
+    <Compile Include="Models\tblPageView.cs" />
     <Compile Include="Models\tblPolicyCategory.cs" />
     <Compile Include="Models\tblPolicyItem.cs" />
     <Compile Include="Models\tblProgram.cs" />
@@ -278,6 +282,7 @@
     <Compile Include="Models\tblTransportNote.cs" />
     <Compile Include="Models\tblTransportRefundPolicy.cs" />
     <Compile Include="Models\tblUser.cs" />
+    <Compile Include="Models\tblVisitSession.cs" />
     <Compile Include="Models\Transport_Info.cs" />
     <Compile Include="Models\UniversityDocument.cs" />
     <Compile Include="Models\Wards_Fee_Concession.cs" />
