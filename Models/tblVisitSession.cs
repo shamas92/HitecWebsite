@@ -20,6 +20,11 @@ namespace HitecCM.Models
         [StringLength(64)]
         public string SessionKey { get; set; }
 
+        // NOTE: Column may not yet exist in production DB. Marked NotMapped to avoid insert errors.
+        [NotMapped]
+        [StringLength(64)]
+        public string LongTermId { get; set; }  // Optional long-term tracking id (ignored if column absent)
+
         public int? UserId { get; set; }
 
         public DateTime FirstSeenUtc { get; set; }
