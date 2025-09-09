@@ -17,6 +17,11 @@ namespace Website.Analytics
     {
         private const string SessionCookieName = "vw_sid";
         private static readonly string IpSalt = System.Configuration.ConfigurationManager.AppSettings["AnalyticsIpSalt"] ?? "static-fallback-salt-change";
+        
+        // Configurable session duration - defaults to 30 days if not specified
+        private static readonly TimeSpan SessionDuration = TimeSpan.FromDays(
+            int.TryParse(System.Configuration.ConfigurationManager.AppSettings["AnalyticsSessionDurationDays"], out int days) 
+            ? days : 30);
 
         public void Track(HttpContextBase httpContext)
         {
@@ -39,8 +44,33 @@ namespace Website.Analytics
 
                 using (var db = new Model1())
                 {
+                    // test database connectivity early
+                    try
+                    {
+                        if (!db.Database.Exists())
+                        {
+                            System.Diagnostics.Debug.WriteLine("Analytics: database does not exist / unreachable for connection string 'Model1'.");
+                            return;
+                        }
+                    }
+                    catch (Exception exConn)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Analytics: database.Exists check failed: " + exConn.Message);
+                        return;
+                    }
+
                     // Find or create session
-                    var session = db.tblVisitSessions.FirstOrDefault(s => s.SessionKey == sessionKey);
+                    tblVisitSession session = null;
+                    try
+                    {
+                        session = db.tblVisitSessions.FirstOrDefault(s => s.SessionKey == sessionKey);
+                    }
+                    catch (Exception exQuery)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Analytics: query tblVisitSessions failed: " + exQuery.Message);
+                        return; // cannot proceed if table missing
+                    }
+
                     if (session == null)
                     {
                         session = new tblVisitSession
@@ -55,7 +85,15 @@ namespace Website.Analytics
                             IsBot = isBot
                         };
                         db.tblVisitSessions.Add(session);
-                        db.SaveChanges(); // need identity before adding page view
+                        try
+                        {
+                            db.SaveChanges(); // need identity before adding page view
+                        }
+                        catch (Exception exInsertSession)
+                        {
+                            System.Diagnostics.Debug.WriteLine("Analytics: inserting session failed: " + exInsertSession.Message);
+                            return;
+                        }
                     }
                     else
                     {
@@ -82,12 +120,20 @@ namespace Website.Analytics
                     session.PageViews += 1;
                     db.Entry(session).Property(x => x.PageViews).IsModified = true;
 
-                    db.SaveChanges();
+                    try
+                    {
+                        db.SaveChanges();
+                    }
+                    catch (Exception exSavePage)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Analytics: saving page view failed: " + exSavePage.Message);
+                    }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // swallow errors
+                System.Diagnostics.Debug.WriteLine("Analytics outer exception: " + ex.Message);
+                // swallow errors but we now log for diagnosis
             }
         }
 
@@ -98,7 +144,8 @@ namespace Website.Analytics
             var key = System.Guid.NewGuid().ToString("N");
             var newCookie = new HttpCookie(SessionCookieName, key)
             {
-                Expires = System.DateTime.UtcNow.AddYears(1),
+                // Now uses configurable SessionDuration instead of hardcoded 1 year
+                Expires = System.DateTime.UtcNow.Add(SessionDuration),
                 HttpOnly = true,
                 Secure = request.IsSecureConnection,
                 SameSite = SameSiteMode.Lax
