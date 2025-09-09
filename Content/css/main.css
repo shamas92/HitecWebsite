@@ -3014,17 +3014,18 @@ body[data-aos-easing=ease] [data-aos] {
       position: relative; }
       .main-menu ul li .submenu li {
         margin-right: 0; }
-      .main-menu ul li a {
-        text-align: center;
-        display: inline-block;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: 600;
-        color: var(--color-heading);
-        padding: 27px 22px 27px 18px;
-        position: relative;
-        text-transform: capitalize;
-        letter-spacing: 0.02em; }
+        .main-menu ul li a {
+            text-align: center;
+            display: inline-block;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-heading);
+            padding: 25px 22px 20px 18px;
+            position: relative;
+            text-transform: capitalize;
+            letter-spacing: 0.02em;
+        }
         .main-menu ul li a:hover {
             background: rgb(0, 33, 85);
         }

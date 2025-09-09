@@ -746,7 +746,6 @@
     <Content Include="Views\Menu\_MobileTopMenu.cshtml" />
     <Content Include="Views\Menu\_NewsMenu.cshtml" />
     <Content Include="Views\Admission\AcademicCalendar.cshtml" />
-    <Content Include="Views\Program\ME.cshtml" />
     <Content Include="Views\Facilities\Transport.cshtml" />
     <Content Include="Views\HR\TypesAndClassification.cshtml" />
     <Content Include="Views\Menu\_SidebarMenu.cshtml" />
