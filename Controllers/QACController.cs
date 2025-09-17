@@ -109,11 +109,14 @@ namespace Website.Controllers
 
         public ActionResult RIPE()
         {
-            // No table detected for RIPE; show dummy content
-            ViewBag.Title = "RIPE";
-            ViewBag.ActiveQAC = "RIPE";
-            ViewBag.RIPEHtml = "<p>RIPE information is currently unavailable. Please check back later.</p>";
-            return View();
+            using (var db = new Model1())
+            {
+                var ripe = db.tblQACRIPEs.OrderByDescending(x => x.ModifiedDate ?? x.UploadedDate).FirstOrDefault()
+                           ?? new tblQACRIPE { PageTitle = "RIPE", PageText = "<p>RIPE information is currently unavailable. Please check back later.</p>" };
+                ViewBag.Title = ripe.PageTitle ?? "RIPE";
+                ViewBag.ActiveQAC = "RIPE";
+                return View(ripe);
+            }
         }
 
         public ActionResult PGPR()

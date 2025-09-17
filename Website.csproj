@@ -272,6 +272,7 @@
     <Compile Include="Models\tblQACIPE.cs" />
     <Compile Include="Models\tblQACOrganogram.cs" />
     <Compile Include="Models\tblQACPGPR.cs" />
+    <Compile Include="Models\tblQACRIPE.cs" />
     <Compile Include="Models\tblQACSAR.cs" />
     <Compile Include="Models\tblQACSurvay.cs" />
     <Compile Include="Models\tblQAPolicy.cs" />
@@ -614,6 +615,7 @@
     <Content Include="Content\img\program\program-img01.png" />
     <Content Include="Content\img\program\program-img02.png" />
     <Content Include="Content\img\program\program-img03.png" />
+    <Content Include="Content\img\qac\Organogram.png" />
     <Content Include="Content\img\shape\about-shape.png" />
     <Content Include="Content\img\shape\angle-shape01.png" />
     <Content Include="Content\img\shape\angle-shape02.png" />
@@ -684,6 +686,7 @@
     <Content Include="Content\img\event\fwd5thinternationalconferencepnqahe\Writeup.docx" />
     <Content Include="Content\img\event\fwdindustrialvisittorawallakewatertreatmentplantci\Rawal lake treatment plant website.docx" />
     <Content Include="Content\img\event\fwdrequestforshareworkshopdetailsatofficialwebsite\Revit Workshop Broucher A.pdf" />
+    <Content Include="Content\pdf\qac\NDMA Advisory.pdf" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -764,6 +767,7 @@
     <Content Include="Views\QAC\Survey.cshtml" />
     <Content Include="Views\QAC\Accreditation.cshtml" />
     <Content Include="Views\QAC\Contact.cshtml" />
+    <Content Include="Views\QAC\Page.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

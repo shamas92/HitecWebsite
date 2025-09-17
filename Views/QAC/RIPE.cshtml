@@ -1,3 +1,4 @@
+@model Website.Models.tblQACRIPE
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -10,10 +11,37 @@
             <div class="col-xl-8 col-lg-7 mt-30">
                 <div class="xb-about__content">
                     <div class="section-title mb-20">
-                        <h2 class="title">RIPE</h2>
+                        <h2 class="title">@Model.PageTitle</h2>
                     </div>
-                    <div class="content">
-                        @Html.Raw(ViewBag.RIPEHtml)
+                    <div class="content" style="line-height:1.9;font-size:18px">
+                        @{
+                            // Normalize relative src/href paths in DB HTML to root-relative and fix backslashes
+                            var html = Model.PageText ?? string.Empty;
+                            html = System.Text.RegularExpressions.Regex.Replace(
+                                html,
+                                "(?<attr>\\b(?:src|href))\\s*=\\s*(?<q>['\"])(?<url>(?!https?:|//|~/|/)[^'\"]+)\\k<q>",
+                                m => {
+                                    var url = m.Groups["url"].Value.Replace("\\\\", "/"); // fix backslashes
+                                    url = url.TrimStart('/');
+                                    var resolved = Url.Content("~/" + url);
+                                    return string.Format("{0}={1}{2}{1}", m.Groups["attr"].Value, m.Groups["q"].Value, resolved);
+                                }
+                            );
+                        }
+                        @Html.Raw(html)
+
+                        @if (!string.IsNullOrWhiteSpace(Model.PageImage))
+                        {
+                            var imgPath = Model.PageImage.Replace("\\", "/");
+                            <div class="mt-20">
+                                <img src="@Url.Content(imgPath)" alt="@Model.PageTitle" style="max-width:100%;height:auto;" />
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrWhiteSpace(Model.PdfFilePath))
+                        {
+                            <p class="mt-20"><a class="thm-btn" href="@Url.Content(Model.PdfFilePath)" target="_blank">Download @Model.PageTitle Document</a></p>
+                        }
                     </div>
                 </div>
             </div>

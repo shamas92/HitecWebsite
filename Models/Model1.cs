@@ -123,6 +123,7 @@ namespace Website.Models
         public virtual DbSet<tblQACIPE> tblQACIPEs { get; set; }
         public virtual DbSet<tblQACOrganogram> tblQACOrganograms { get; set; }
         public virtual DbSet<tblQACPGPR> tblQACPGPRs { get; set; }
+        public virtual DbSet<tblQACRIPE> tblQACRIPEs { get; set; }
         public virtual DbSet<tblQACSAR> tblQACSARs { get; set; }
         public virtual DbSet<tblQACSurvay> tblQACSurvays { get; set; }
         public virtual DbSet<tblQAPolicy> tblQAPolicies { get; set; }
@@ -902,8 +903,6 @@ namespace Website.Models
                 .WithOptional(e => e.tblEvent)
                 .WillCascadeOnDelete();
 
-
-
             modelBuilder.Entity<tblFacultiesET>()
                 .Property(e => e.VisionText)
                 .IsUnicode(false);
@@ -1044,6 +1043,14 @@ namespace Website.Models
             modelBuilder.Entity<Welfare_Fund>()
                 .Property(e => e.Amount_Granted)
                 .HasPrecision(10, 2);
+
+            modelBuilder.Entity<tblQACRIPE>()
+                .Property(e => e.PageTitle)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<tblQACRIPE>()
+                .Property(e => e.PageText)
+                .IsUnicode(false);
         }
     }
 }
