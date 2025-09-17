@@ -124,3 +124,31 @@
     order: 1;
   }
 } 
+
+/* QAC page overflow and media safety */
+.qac-page { overflow-x: hidden; }
+.qac-page .xb-about__content .title { /* balance heading size */
+  font-size: 34px;
+  line-height: 1.25;
+}
+.qac-page .content {
+  font-size: 17px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.qac-page .content img,
+.qac-page .content video,
+.qac-page .content iframe {
+  max-width: 100%;
+  height: auto;
+}
+.qac-page .content table { /* prevent tables pushing layout */
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+
+@media (max-width: 992px) {
+  .qac-page .xb-about__content .title { font-size: 28px; }
+}

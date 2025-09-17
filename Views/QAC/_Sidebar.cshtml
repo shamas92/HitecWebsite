@@ -1,0 +1,23 @@
+@functions{
+    public string Active(string key)
+    {
+        var active = ViewBag.ActiveQAC as string;
+        return string.Equals(active, key, System.StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty;
+    }
+}
+<div class="faculty-sidebar">
+    <div class="faculty-sidebar__title">Quality Assurance &amp; Collaborations (QA&amp;C)</div>
+    <ul class="faculty-sidebar__menu">
+        <li><a class="@Active("About")" href="@Url.Action("Index","QAC")">About QA&amp;C</a></li>
+        <li><a class="@Active("Policy")" href="@Url.Action("Policy","QAC")">Quality Assurance Policy Statement</a></li>
+        <li><a class="@Active("AnnualActivityCalendar")" href="@Url.Action("AnnualActivityCalendar","QAC")">Annual Activity Calendar</a></li>
+        <li><a class="@Active("Organogram")" href="@Url.Action("Organogram","QAC")">Organogram</a></li>
+        <li><a class="@Active("IPE")" href="@Url.Action("IPE","QAC")">IPE</a></li>
+        <li><a class="@Active("RIPE")" href="@Url.Action("RIPE","QAC")">RIPE</a></li>
+        <li><a class="@Active("PGPR")" href="@Url.Action("PGPR","QAC")">PGPR</a></li>
+        <li><a class="@Active("SAR")" href="@Url.Action("SAR","QAC")">SARs</a></li>
+        <li><a class="@Active("Survey")" href="@Url.Action("Survey","QAC")">Surveys</a></li>
+        <li><a class="@Active("Accreditation")" href="@Url.Action("Accreditation","QAC")">Accreditation</a></li>
+        <li><a class="@Active("Contact")" href="@Url.Action("Contact","QAC")">Contacts</a></li>
+    </ul>
+</div>

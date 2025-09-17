@@ -1,0 +1,30 @@
+@model Website.Models.tblQACAnnualActivityCalender
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="about pt-40 pb-120 qac-page">
+    <div class="container">
+        <div class="row mt-none-30">
+            <div class="col-xl-3 col-lg-5 mt-30">
+                @Html.Partial("_Sidebar")
+            </div>
+            <div class="col-xl-8 col-lg-7 mt-30">
+                <div class="xb-about__content">
+                    <div class="section-title mb-20">
+                        <h2 class="title">@ViewBag.Title</h2>
+                    </div>
+                    <div class="content">
+                        @if (!string.IsNullOrEmpty(Model.PdfFilePath))
+                        {
+                            <p><a class="thm-btn" href="@Url.Content(Model.PdfFilePath)" target="_blank">Download Annual Activity Calendar</a></p>
+                        }
+                        else
+                        {
+                            <p>Annual activity calendar is currently unavailable. Please check back later.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

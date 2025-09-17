@@ -149,6 +149,7 @@
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\ProgramController.cs" />
+    <Compile Include="Controllers\QACController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -676,7 +677,6 @@
     <Content Include="Scripts\image-crop.js" />
     <Content Include="Scripts\imagesloaded.pkgd.min.js" />
     <Content Include="Scripts\isotope.pkgd.min.js" />
-    <Content Include="PROGRAM_UPDATE_SUMMARY.md" />
     <Content Include="Content\img\event\2025-03-25 Oath Taking Ceremony of IEEE Hierarchy-20250822T042813Z-1-001\2025-03-25 Oath Taking Ceremony of IEEE Hierarchy\Copy of IMG_0604.HEIC" />
     <Content Include="Content\img\event\2025-03-25 Oath Taking Ceremony of IEEE Hierarchy-20250822T042813Z-1-001\2025-03-25 Oath Taking Ceremony of IEEE Hierarchy\Copy of IMG_0605.HEIC" />
     <Content Include="Content\img\event\2025-03-25 Oath Taking Ceremony of IEEE Hierarchy-20250822T042813Z-1-001\2025-03-25 Oath Taking Ceremony of IEEE Hierarchy\Copy of IMG_0608.HEIC" />
@@ -752,6 +752,18 @@
     <Content Include="Views\Events\Details.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Events\_LatestEventsMenu.cshtml" />
+    <Content Include="Views\QAC\Index.cshtml" />
+    <Content Include="Views\QAC\_Sidebar.cshtml" />
+    <Content Include="Views\QAC\Policy.cshtml" />
+    <Content Include="Views\QAC\AnnualActivityCalendar.cshtml" />
+    <Content Include="Views\QAC\Organogram.cshtml" />
+    <Content Include="Views\QAC\IPE.cshtml" />
+    <Content Include="Views\QAC\RIPE.cshtml" />
+    <Content Include="Views\QAC\PGPR.cshtml" />
+    <Content Include="Views\QAC\SAR.cshtml" />
+    <Content Include="Views\QAC\Survey.cshtml" />
+    <Content Include="Views\QAC\Accreditation.cshtml" />
+    <Content Include="Views\QAC\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
