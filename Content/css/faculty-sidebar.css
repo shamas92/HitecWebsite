@@ -9,7 +9,10 @@
   top: 30px;
   height: fit-content;
 }
-
+.qac-sidebar {
+    margin-top: 0!important;
+    position: static !important;
+}
 .faculty-sidebar__title {
   font-size: 20px;
   font-weight: 700;
