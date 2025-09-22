@@ -132,6 +132,18 @@
         
         <div class="test-grid">
             <div class="test-card">
+                <div class="test-icon" style="color: #007bff;">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <h3 class="test-title">Admin Panel</h3>
+                <p class="test-description">
+                    Configure error handling settings, toggle between custom and debug views.
+                </p>
+                <a href="@Url.Action("AdminPanel", "Error")" class="test-btn">
+                    <i class="fas fa-tools"></i> Admin Panel
+                </a>
+            </div>
+            <div class="test-card">
                 <div class="test-icon" style="color: #6c757d;">
                     <i class="fas fa-exclamation-triangle"></i>
                 </div>
@@ -196,18 +208,6 @@
                 </a>
             </div>
 
-            <div class="test-card">
-                <div class="test-icon" style="color: #007bff;">
-                    <i class="fas fa-cog"></i>
-                </div>
-                <h3 class="test-title">Admin Panel</h3>
-                <p class="test-description">
-                    Configure error handling settings, toggle between custom and debug views.
-                </p>
-                <a href="@Url.Action("AdminPanel", "Error")" class="test-btn">
-                    <i class="fas fa-tools"></i> Admin Panel
-                </a>
-            </div>
 
             <div class="test-card">
                 <div class="test-icon" style="color: #007bff;">
@@ -222,7 +222,7 @@
                 </a>
             </div>
         </div>
-        
+   
         <div style="margin-top: 3rem; text-align: center; color: #6c757d;">
             <h4 style="font-weight: 300; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">How to Use These Error Pages in Production:</h4>
             <div style="text-align: left; max-width: 800px; margin: 0 auto; background: #fafafa; padding: 2rem; border-radius: 12px; margin-top: 1rem; border: 1px solid #f1f3f4;">
