@@ -38,5 +38,52 @@ namespace Website
                 System.Diagnostics.Debug.WriteLine("Analytics BeginRequest error: " + ex.Message);
             }
         }
+
+        // Enhanced error handling - handles different types of errors appropriately
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+            
+            if (exception != null)
+            {
+                // Log error details for debugging purposes
+                System.Diagnostics.Debug.WriteLine($"Application Error: {exception.Message}");
+                System.Diagnostics.Debug.WriteLine($"Stack Trace: {exception.StackTrace}");
+                
+                // Get the HTTP status code if available
+                var httpException = exception as HttpException;
+                int statusCode = httpException?.GetHttpCode() ?? 500;
+                
+                // Clear the error to prevent default error handling
+                Server.ClearError();
+                
+                // Route to appropriate error page based on status code
+                var routeData = new RouteData();
+                routeData.Values["controller"] = "Error";
+                
+                switch (statusCode)
+                {
+                    case 404:
+                        routeData.Values["action"] = "NotFound";
+                        break;
+                    case 403:
+                        routeData.Values["action"] = "AccessDenied";
+                        break;
+                    case 503:
+                        routeData.Values["action"] = "Maintenance";
+                        break;
+                    default:
+                        routeData.Values["action"] = "Index";
+                        break;
+                }
+                
+                routeData.Values["statusCode"] = statusCode;
+                
+                // Execute the error controller
+                IController errorController = new Website.Controllers.ErrorController();
+                var requestContext = new RequestContext(new HttpContextWrapper(Context), routeData);
+                errorController.Execute(requestContext);
+            }
+        }
     }
 }

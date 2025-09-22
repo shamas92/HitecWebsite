@@ -1,0 +1,61 @@
+@{
+    ViewBag.Title = ViewBag.Title ?? "Under Construction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/error-pages.css")" />
+}
+
+<div class="error-container construction-container">
+    <div class="error-side-content">
+        <div class="error-suggestions">
+            <h4><i class="fas fa-rocket"></i> What's coming?</h4>
+            <ul>
+                <li><i class="fas fa-mobile-alt"></i> Enhanced mobile experience</li>
+                <li><i class="fas fa-tachometer-alt"></i> Improved performance</li>
+                <li><i class="fas fa-sync"></i> Try refreshing the page</li>
+                <li><i class="fas fa-user-friends"></i> Better user interface</li>
+                <li><i class="fas fa-star"></i> New exciting features</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="error-main-content">
+        
+        <div class="error-code construction">@ViewBag.ErrorCode</div>
+        <h1 class="error-title">@ViewBag.ErrorType</h1>
+        <h2 class="error-subtitle">Amazing things are coming soon!</h2>
+        <div class="error-message">
+            <p>@ViewBag.ErrorMessage</p>
+            <p>We're building something awesome for you. This section will be available very soon with enhanced features and improved user experience.</p>
+        </div>
+        
+        <div class="error-actions">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary">
+                <i class="fas fa-home"></i> Return to Homepage
+            </a>
+            <a href="@Url.Action("About", "Home")" class="btn btn-secondary">
+                <i class="fas fa-info-circle"></i> About HITEC
+            </a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add some interactive animation for construction page
+        document.addEventListener('DOMContentLoaded', function() {
+            const constructionIcon = document.querySelector('.construction svg');
+            setInterval(function() {
+                constructionIcon.style.transform = 'rotate(15deg)';
+                setTimeout(function() {
+                    constructionIcon.style.transform = 'rotate(-15deg)';
+                    setTimeout(function() {
+                        constructionIcon.style.transform = 'rotate(0deg)';
+                    }, 200);
+                }, 200);
+            }, 3000);
+        });
+    </script>
+}

@@ -1,0 +1,594 @@
+/* Error Pages Styling - Clean White Design */
+.error-container {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 40px 20px;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+    gap: 3rem;
+    /* ensure the error content stays centered like other pages */
+    margin: 0 auto;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Large Visual Problem Indicator */
+.problem-indicator {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 200px;
+    height: 200px;
+    background: rgba(0, 33, 85, 0.05);
+    border: 2px solid rgba(253, 183, 20, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: subtle-pulse 4s ease-in-out infinite;
+    z-index: 1;
+}
+
+.problem-indicator::before {
+    content: '⚠️';
+    font-size: 4rem;
+    animation: gentle-bounce 3s ease-in-out infinite;
+}
+
+.problem-indicator.construction::before {
+    content: '🚧';
+}
+
+.problem-indicator.maintenance::before {
+    content: '🔧';
+}
+
+.problem-indicator.server-error::before {
+    content: '⚡';
+}
+
+.problem-indicator.access-denied::before {
+    content: '🔒';
+}
+
+.error-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 33, 85, 0.02);
+    z-index: 1;
+}
+
+.error-container > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Side content area - LEFT SIDE with website colors */
+.error-side-content {
+    flex: 0 0 280px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    order: 1;
+    position: sticky;
+    top: 30px;
+    height: fit-content;
+}
+
+/* Main content area - RIGHT SIDE */
+.error-main-content {
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+    max-width: 600px;
+    order: 2;
+}
+
+/* Large Visual Indicator - Website Color Theme */
+.error-visual-indicator {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 2rem;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(0, 33, 85, 0.15);
+    animation: gentle-float 4s ease-in-out infinite;
+    border: 3px solid #002155;
+    position: relative;
+}
+
+.error-visual-indicator svg {
+    width: 80px;
+    height: 80px;
+    opacity: 0.9;
+}
+
+.error-visual-indicator.debugging svg {
+    stroke: #002155;
+    animation: simple-pulse 2s infinite;
+}
+
+.error-visual-indicator.construction svg {
+    stroke: #fdb714;
+    animation: simple-rotate 3s infinite;
+}
+
+.error-visual-indicator.maintenance svg {
+    stroke: #002155;
+    animation: simple-spin 4s linear infinite;
+}
+
+.error-visual-indicator.notfound svg {
+    stroke: #002155;
+}
+
+.error-visual-indicator.access svg {
+    stroke: #002155;
+}
+
+.error-code {
+    font-size: 12rem;
+    font-weight: 200;
+    color: #495057;
+    margin-bottom: 2rem;
+    letter-spacing: -4px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    animation: gentle-pulse 3s infinite;
+    text-shadow: 0 6px 20px rgba(73, 80, 87, 0.15);
+    line-height: 0.9;
+}
+
+.error-code.construction {
+    font-size: 14rem;
+    color: #6c757d;
+    margin-bottom: 2rem;
+    line-height: 0.8;
+}
+
+.error-icon {
+    font-size: 8rem;
+    color: #adb5bd;
+    margin-bottom: 3rem;
+    animation: gentle-float 4s ease-in-out infinite;
+    filter: drop-shadow(0 6px 20px rgba(173, 181, 189, 0.2));
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.error-icon.debugging-icon {
+    color: #6c757d;
+}
+
+.error-icon.construction-icon {
+    color: #6c757d;
+}
+
+.error-icon.maintenance-icon {
+    color: #6c757d;
+}
+
+.error-title {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #002155;
+    margin-bottom: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: -1px;
+}
+
+.error-subtitle {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #002155;
+    margin-bottom: 2.5rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.error-message {
+    max-width: 600px;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #002155;
+    font-weight: 400;
+}
+
+.error-message p {
+    margin-bottom: 1rem;
+}
+
+.error-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.error-actions .btn {
+    padding: 15px 35px;
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.error-actions .btn-primary {
+    background: #002155;
+    color: white;
+    border-color: #002155;
+}
+
+.error-actions .btn-primary:hover {
+    background: #001a44;
+    border-color: #001a44;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0, 33, 85, 0.3);
+}
+
+.error-actions .btn-secondary {
+    background: transparent;
+    color: #002155;
+    border-color: #002155;
+}
+
+.error-actions .btn-secondary:hover {
+    background: #002155;
+    color: white;
+    border-color: #002155;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0, 33, 85, 0.2);
+}
+
+.error-actions .btn-success {
+    background: #fdb714;
+    color: #002155;
+    border-color: #fdb714;
+    font-weight: 500;
+}
+
+.error-actions .btn-success:hover {
+    background: #e5a512;
+    color: #002155;
+    border-color: #e5a512;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(253, 183, 20, 0.3);
+}
+
+.error-suggestions {
+    max-width: 520px;
+    text-align: left;
+    background: #fafafa;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 33, 85, 0.08);
+    border: 1px solid #002155;
+    border-left: 6px solid #002155;
+    border-right: 3px solid #fdb714;
+}
+
+.error-suggestions h4 {
+    color: #002155;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.1rem;
+}
+
+.error-suggestions ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.error-suggestions li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f1f3f4;
+    color: #002155;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 400;
+}
+
+.error-suggestions li:last-child {
+    border-bottom: none;
+}
+
+.error-suggestions li i {
+    color: #fdb714;
+    width: 16px;
+    font-size: 0.9rem;
+}
+
+.progress-indicator {
+    max-width: 420px;
+    background: #fafafa;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 33, 85, 0.08);
+    margin-top: 2rem;
+    border: 1px solid #002155;
+    border-left: 6px solid #002155;
+    border-right: 3px solid #fdb714;
+}
+
+.progress-indicator h5 {
+    color: #002155;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.1rem;
+}
+
+.progress-bar-container {
+    background: #f1f3f4;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #fdb714;
+    border-radius: 4px;
+    animation: progress-animate 4s ease-in-out infinite;
+}
+
+.progress-text {
+    font-size: 0.9rem;
+    color: #002155;
+    text-align: center;
+    font-weight: 400;
+}
+
+/* Refined Animations */
+@keyframes gentle-pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.02); opacity: 0.9; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes gentle-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes progress-animate {
+    0% { width: 0%; }
+    50% { width: 60%; }
+    100% { width: 0%; }
+}
+
+@keyframes subtle-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 0.9; }
+}
+
+@keyframes gentle-bounce {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-5px) rotate(-5deg); }
+    75% { transform: translateY(-2px) rotate(5deg); }
+}
+
+@keyframes debug-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes construction-shake {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
+}
+
+@keyframes maintenance-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Simple Clean Animations */
+@keyframes simple-pulse {
+    0%, 100% { opacity: 0.85; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes simple-rotate {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
+}
+
+@keyframes simple-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Construction specific styling - Clean white theme */
+.construction-container {
+    background: #ffffff;
+}
+
+.construction-container .error-code {
+    color: #6c757d;
+    animation: gentle-float 4s ease-in-out infinite;
+}
+
+/* Maintenance specific styling - Clean white theme */
+.maintenance-container {
+    background: #ffffff;
+}
+
+.maintenance-container .error-code {
+    color: #6c757d;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .error-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 15px;
+        min-height: 60vh;
+        gap: 2rem;
+        max-width: 700px;
+    }
+    
+    .error-main-content {
+        text-align: center;
+    }
+    
+    .error-side-content {
+        flex: none;
+        width: 100%;
+        max-width: 500px;
+        position: static;
+        margin-left: 0;
+    }
+    
+    .error-visual-indicator {
+        width: 140px;
+        height: 140px;
+        margin-bottom: 1.5rem;
+    }
+    
+    .error-visual-indicator svg {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .error-code {
+        font-size: 4rem;
+    }
+    
+    .error-code.construction {
+        font-size: 6rem;
+    }
+    
+    .error-title {
+        font-size: 2rem;
+    }
+    
+    .error-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .error-message {
+        font-size: 1rem;
+    }
+    
+    .error-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .error-actions .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+    
+    .error-suggestions,
+    .progress-indicator {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .error-visual-indicator {
+        width: 110px;
+        height: 110px;
+        margin-bottom: 1rem;
+    }
+    
+    .error-visual-indicator svg {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .error-code {
+        font-size: 6rem;
+        letter-spacing: -1px;
+    }
+    
+    .error-code.construction {
+        font-size: 8rem;
+    }
+    
+    .error-icon {
+        font-size: 4rem;
+    }
+    
+    .problem-indicator {
+        width: 80px;
+        height: 80px;
+        top: 2%;
+        right: 2%;
+    }
+    
+    .problem-indicator::before {
+        font-size: 1.8rem;
+    }
+}
+
+/* Dark mode support - Refined */
+@media (prefers-color-scheme: dark) {
+    .error-container {
+        background: #fafafa;
+        color: #212529;
+    }
+    
+    .error-title {
+        color: #212529;
+    }
+    
+    .error-subtitle {
+        color: #495057;
+    }
+    
+    .error-message {
+        color: #495057;
+    }
+    
+    .error-suggestions,
+    .progress-indicator {
+        background: #ffffff;
+        border-color: #e9ecef;
+        color: #212529;
+    }
+    
+    .error-suggestions h4,
+    .progress-indicator h5 {
+        color: #212529;
+    }
+    
+    .error-suggestions li {
+        color: #495057;
+        border-bottom-color: #e9ecef;
+    }
+    
+    .progress-text {
+        color: #495057;
+    }
+}

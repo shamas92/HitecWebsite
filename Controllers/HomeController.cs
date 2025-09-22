@@ -287,5 +287,25 @@ namespace Website.Controllers
 
             return View();
         }
+
+        // Helper method for redirecting to Under Construction page
+        // This can be used in any action method where a feature is not ready
+        protected ActionResult UnderConstructionRedirect()
+        {
+            return RedirectToAction("UnderConstruction", "Error");
+        }
+
+        // Example usage for features under development
+        public ActionResult StudentPortal()
+        {
+            // Redirect to under construction page until feature is ready
+            return UnderConstructionRedirect();
+        }
+
+        public ActionResult OnlineApplications()
+        {
+            // Redirect to under construction page until feature is ready
+            return UnderConstructionRedirect();
+        }
     }
 }

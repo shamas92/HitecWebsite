@@ -142,6 +142,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AdmissionController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FacilitiesController.cs" />
     <Compile Include="Controllers\FacultiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -295,6 +296,7 @@
     <Content Include="Content\css\admission-modal.css" />
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\error-pages.css" />
     <Content Include="Content\css\faculty-components.css" />
     <Content Include="Content\css\faculty-sidebar.css" />
     <Content Include="Content\css\fontawesome.css" />
@@ -768,6 +770,13 @@
     <Content Include="Views\QAC\Accreditation.cshtml" />
     <Content Include="Views\QAC\Contact.cshtml" />
     <Content Include="Views\QAC\Page.cshtml" />
+    <Content Include="Views\Shared\_ErrorLayout.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\UnderConstruction.cshtml" />
+    <Content Include="Views\Error\AccessDenied.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Error\Maintenance.cshtml" />
+    <Content Include="Views\Error\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

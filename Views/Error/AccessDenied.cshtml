@@ -1,0 +1,43 @@
+@{
+    ViewBag.Title = ViewBag.Title ?? "Access Denied";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/error-pages.css")" />
+}
+
+<div class="error-container">
+    <div class="error-side-content">
+        <div class="error-suggestions">
+            <h4><i class="fas fa-key"></i> Need access?</h4>
+            <ul>
+                <li><i class="fas fa-sign-in-alt"></i> Try logging in with your credentials</li>
+                <li><i class="fas fa-sync"></i> Try refreshing the page</li>
+                <li><i class="fas fa-user-check"></i> Verify you have the required permissions</li>
+                <li><i class="fas fa-envelope"></i> Contact the administrator</li>
+                <li><i class="fas fa-question-circle"></i> Check if this is a restricted area</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="error-main-content">
+
+        <div class="error-code">@ViewBag.ErrorCode</div>
+        <h1 class="error-title">@ViewBag.ErrorType</h1>
+        <h2 class="error-subtitle">You don't have permission to access this resource</h2>
+        <div class="error-message">
+            <p>@ViewBag.ErrorMessage</p>
+            <p>If you believe you should have access to this content, please contact the system administrator or try logging in with appropriate credentials.</p>
+        </div>
+        
+        <div class="error-actions">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary">
+                <i class="fas fa-home"></i> Return to Homepage
+            </a>
+            <a href="javascript:history.back()" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Go Back
+            </a>
+        </div>
+    </div>
+</div>

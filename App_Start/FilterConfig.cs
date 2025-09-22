@@ -8,7 +8,14 @@ namespace Website
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            var handleError = new HandleErrorAttribute
+            {
+                View = "Error", // use our custom Error view for MVC exceptions
+                ExceptionType = typeof(System.Exception),
+                Order = 1
+            };
+            // Render error views with minimal layout to avoid nested failures
+            filters.Add(handleError);
             filters.Add(new AnalyticsTrackingFilter()); // analytics tracking
         }
     }

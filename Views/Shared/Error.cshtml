@@ -1,13 +1,22 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
-</head>
-<body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
-    </hgroup>
-</body>
-</html>
+﻿@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_ErrorLayout.cshtml";
+}
+
+<div class="error-container">
+    <div class="error-code">Error Code: 500</div>
+    <div class="error-icon debugging-icon">
+        <i class="fas fa-bug"></i>
+    </div>
+    <h1 class="error-title">Something Went Wrong</h1>
+    <h2 class="error-subtitle">We're working to fix the issue</h2>
+    <div class="error-message">
+        <p>We apologize for the inconvenience. Our team has been notified and is working on resolving the problem as quickly as possible.</p>
+        <p>Please try again later or return to the homepage to continue browsing other sections of our website.</p>
+    </div>
+    <div class="error-actions">
+        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">
+            <i class="fas fa-home mr-2"></i> Return to Homepage
+        </a>
+    </div>
+</div>

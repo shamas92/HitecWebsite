@@ -1,0 +1,198 @@
+@{
+    ViewBag.Title = "Error Page Testing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/error-pages.css")" />
+    <style>
+        .test-container {
+            min-height: 80vh;
+            padding: 40px 20px;
+            background: #ffffff;
+        }
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .test-card {
+            background: #fafafa;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.04);
+            text-align: center;
+            border: 1px solid #f1f3f4;
+            transition: all 0.3s ease;
+        }
+        .test-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .test-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .test-title {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: #495057;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .test-description {
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        .test-btn {
+            background: #212529;
+            color: white;
+            padding: 12px 24px;
+            border: 1px solid #212529;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .test-btn:hover {
+            background: #343a40;
+            border-color: #343a40;
+            transform: translateY(-1px);
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(33, 37, 41, 0.15);
+        }
+        .test-btn.construction { background: #6c757d; border-color: #6c757d; }
+        .test-btn.maintenance { background: #6c757d; border-color: #6c757d; }
+        .test-btn.access { background: #6c757d; border-color: #6c757d; }
+        .test-btn.server { background: #6c757d; border-color: #6c757d; }
+        .test-btn.notfound { background: #6c757d; border-color: #6c757d; }
+        
+        .main-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #495057;
+            font-weight: 300;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .warning-note {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            color: #495057;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 300;
+        }
+    </style>
+}
+
+<div class="test-container">
+    <div class="container">
+        <h1 class="main-title">Error Page Testing Center</h1>
+        
+        <div class="warning-note">
+            <strong>Development Testing Only:</strong> These links test error page designs with consistent SVG warning icons.
+        </div>
+        
+        <div class="test-grid">
+            <div class="test-card">
+                <div class="test-icon" style="color: #6c757d;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3 class="test-title">404 - Page Not Found</h3>
+                <p class="test-description">
+                    Test the 404 error page that displays when users try to access a page that doesn't exist.
+                </p>
+                <a href="@Url.Action("Test404")" class="test-btn notfound">
+                    <i class="fas fa-search"></i> Test 404 Page
+                </a>
+            </div>
+
+            <div class="test-card">
+                <div class="test-icon" style="color: #dc3545;">
+                    <i class="fas fa-bug"></i>
+                </div>
+                <h3 class="test-title">500 - Server Error</h3>
+                <p class="test-description">
+                    Test the 500 error page that displays when there's an internal server error or debugging needed.
+                </p>
+                <a href="@Url.Action("Test500")" class="test-btn server">
+                    <i class="fas fa-tools"></i> Test 500 Page
+                </a>
+            </div>
+
+            <div class="test-card">
+                <div class="test-icon" style="color: #fd7e14;">
+                    <i class="fas fa-hard-hat"></i>
+                </div>
+                <h3 class="test-title">Under Construction</h3>
+                <p class="test-description">
+                    Test the under construction page for features that are being developed or enhanced.
+                </p>
+                <a href="@Url.Action("TestConstruction")" class="test-btn construction">
+                    <i class="fas fa-hammer"></i> Test Construction
+                </a>
+            </div>
+
+            <div class="test-card">
+                <div class="test-icon" style="color: #ffc107;">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3 class="test-title">Maintenance Mode</h3>
+                <p class="test-description">
+                    Test the maintenance page that displays during scheduled system maintenance periods.
+                </p>
+                <a href="@Url.Action("TestMaintenance")" class="test-btn maintenance">
+                    <i class="fas fa-wrench"></i> Test Maintenance
+                </a>
+            </div>
+
+            <div class="test-card">
+                <div class="test-icon" style="color: #dc3545;">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3 class="test-title">403 - Access Denied</h3>
+                <p class="test-description">
+                    Test the access denied page for restricted resources that require special permissions.
+                </p>
+                <a href="@Url.Action("TestAccessDenied")" class="test-btn access">
+                    <i class="fas fa-shield-alt"></i> Test Access Denied
+                </a>
+            </div>
+
+            <div class="test-card">
+                <div class="test-icon" style="color: #007bff;">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3 class="test-title">Return Home</h3>
+                <p class="test-description">
+                    Return to the main homepage to continue browsing the website normally.
+                </p>
+                <a href="@Url.Action("Index", "Home")" class="test-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+        
+        <div style="margin-top: 3rem; text-align: center; color: #6c757d;">
+            <h4 style="font-weight: 300; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">How to Use These Error Pages in Production:</h4>
+            <div style="text-align: left; max-width: 800px; margin: 0 auto; background: #fafafa; padding: 2rem; border-radius: 12px; margin-top: 1rem; border: 1px solid #f1f3f4;">
+                <ul style="line-height: 1.8; font-weight: 300;">
+                    <li><strong>404 Errors:</strong> Automatically triggered when URLs don't match any routes</li>
+                    <li><strong>500 Errors:</strong> Automatically triggered on unhandled exceptions</li>
+                    <li><strong>Under Construction:</strong> Use <code style="background: #e9ecef; padding: 2px 6px; border-radius: 4px; font-size: 0.9em;">return RedirectToAction("UnderConstruction", "Error");</code> in controller actions</li>
+                    <li><strong>Maintenance:</strong> Use for scheduled downtime announcements</li>
+                    <li><strong>Access Denied:</strong> Use for permission-based restrictions</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
