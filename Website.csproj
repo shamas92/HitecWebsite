@@ -777,6 +777,7 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\Maintenance.cshtml" />
     <Content Include="Views\Error\Test.cshtml" />
+    <Content Include="Views\Error\AdminPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

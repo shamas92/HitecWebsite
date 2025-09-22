@@ -1,0 +1,257 @@
+@{
+    ViewBag.Title = "Error Handling Admin Panel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <style>
+        .admin-panel {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 33, 85, 0.1);
+            border: 1px solid #002155;
+        }
+        
+        .admin-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #002155;
+            border-bottom: 3px solid #fdb714;
+            padding-bottom: 1rem;
+        }
+        
+        .admin-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #fafafa;
+            border-radius: 8px;
+            border-left: 4px solid #002155;
+        }
+        
+        .admin-section h3 {
+            color: #002155;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .status-enabled {
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+            border: 1px solid rgba(40, 167, 69, 0.3);
+        }
+        
+        .status-disabled {
+            background: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+            border: 1px solid rgba(220, 53, 69, 0.3);
+        }
+        
+        .admin-btn {
+            padding: 12px 24px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-right: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .btn-toggle {
+            background: #002155;
+            color: white;
+        }
+        
+        .btn-toggle:hover {
+            background: #001a44;
+            transform: translateY(-1px);
+        }
+        
+        .btn-test {
+            background: #fdb714;
+            color: #002155;
+        }
+        
+        .btn-test:hover {
+            background: #e5a512;
+            color: #002155;
+            text-decoration: none;
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        
+        .alert {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            border: 1px solid transparent;
+        }
+        
+        .alert-success {
+            background: rgba(40, 167, 69, 0.1);
+            color: #155724;
+            border-color: rgba(40, 167, 69, 0.3);
+        }
+        
+        .alert-danger {
+            background: rgba(220, 53, 69, 0.1);
+            color: #721c24;
+            border-color: rgba(220, 53, 69, 0.3);
+        }
+        
+        .test-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .feature-description {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #856404;
+        }
+        
+        .code-snippet {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 0.75rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+    </style>
+}
+
+<div class="admin-panel">
+    <div class="admin-header">
+        <h1><i class="fas fa-cog"></i> Error Handling Admin Panel</h1>
+        <p>Configure error page behavior for development and production</p>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            <i class="fas fa-check-circle"></i> @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            <i class="fas fa-exclamation-triangle"></i> @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <div class="admin-section">
+        <h3><i class="fas fa-eye"></i> Custom Error Pages</h3>
+        <div class="feature-description">
+            When enabled, users see friendly custom error pages. When disabled, developers see detailed ASP.NET error information with stack traces.
+        </div>
+        
+        <div class="status-indicator @(ViewBag.EnableCustomErrorPages ? "status-enabled" : "status-disabled")">
+            <i class="fas fa-@(ViewBag.EnableCustomErrorPages ? "check" : "times")-circle"></i>
+            Status: @(ViewBag.EnableCustomErrorPages ? "Enabled" : "Disabled")
+        </div>
+        
+        @using (Html.BeginForm("ToggleCustomErrorPages", "Error", FormMethod.Post))
+        {
+            <button type="submit" class="admin-btn btn-toggle">
+                <i class="fas fa-toggle-@(ViewBag.EnableCustomErrorPages ? "off" : "on")"></i>
+                @(ViewBag.EnableCustomErrorPages ? "Disable" : "Enable") Custom Error Pages
+            </button>
+        }
+    </div>
+
+    <div class="admin-section">
+        <h3><i class="fas fa-bug"></i> Admin Debug Mode</h3>
+        <div class="feature-description">
+            When enabled, admins see detailed error information even when custom error pages are enabled. This allows testing with real error details.
+        </div>
+        
+        <div class="status-indicator @(ViewBag.AdminDebugMode ? "status-enabled" : "status-disabled")">
+            <i class="fas fa-@(ViewBag.AdminDebugMode ? "check" : "times")-circle"></i>
+            Status: @(ViewBag.AdminDebugMode ? "Enabled" : "Disabled")
+        </div>
+        
+        @using (Html.BeginForm("ToggleAdminDebugMode", "Error", FormMethod.Post))
+        {
+            <button type="submit" class="admin-btn btn-toggle">
+                <i class="fas fa-toggle-@(ViewBag.AdminDebugMode ? "off" : "on")"></i>
+                @(ViewBag.AdminDebugMode ? "Disable" : "Enable") Admin Debug Mode
+            </button>
+        }
+    </div>
+
+    
+
+    <div class="admin-section">
+        <h3><i class="fas fa-info-circle"></i> Configuration Details</h3>
+        <div class="feature-description">
+            Current configuration settings in Web.config:
+        </div>
+        
+        <div class="code-snippet">
+            EnableCustomErrorPages: @ViewBag.EnableCustomErrorPages.ToString().ToLower()<br/>
+            AdminDebugMode: @ViewBag.AdminDebugMode.ToString().ToLower()
+        </div>
+        
+        <div class="warning-box">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>Important:</strong> Changes to these settings modify your Web.config file and may require application restart in some hosting environments.
+        </div>
+    </div>
+
+    
+</div>
+
+@section Scripts {
+    <script>
+        // Add confirmation for destructive actions
+        document.addEventListener('DOMContentLoaded', function() {
+            const dangerButtons = document.querySelectorAll('.btn-danger');
+            dangerButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (!confirm('This will trigger a real exception. Continue?')) {
+                        e.preventDefault();
+                    }
+                });
+            });
+        });
+    </script>
+}

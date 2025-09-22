@@ -39,7 +39,7 @@ namespace Website
             }
         }
 
-        // Enhanced error handling - handles different types of errors appropriately
+        // Enhanced error handling with configurable custom error pages
         protected void Application_Error(object sender, EventArgs e)
         {
             Exception exception = Server.GetLastError();
@@ -49,6 +49,16 @@ namespace Website
                 // Log error details for debugging purposes
                 System.Diagnostics.Debug.WriteLine($"Application Error: {exception.Message}");
                 System.Diagnostics.Debug.WriteLine($"Stack Trace: {exception.StackTrace}");
+                
+                // Check if custom error pages are enabled
+                bool enableCustomErrorPages = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["EnableCustomErrorPages"] ?? "true");
+                bool adminDebugMode = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["AdminDebugMode"] ?? "false");
+                
+                // If custom error pages are disabled or admin debug mode is enabled, allow default ASP.NET error handling
+                if (!enableCustomErrorPages || adminDebugMode)
+                {
+                    return; // Let ASP.NET handle the error with detailed error pages
+                }
                 
                 // Get the HTTP status code if available
                 var httpException = exception as HttpException;
@@ -78,6 +88,7 @@ namespace Website
                 }
                 
                 routeData.Values["statusCode"] = statusCode;
+                routeData.Values["exception"] = exception; // Pass exception for debug view
                 
                 // Execute the error controller
                 IController errorController = new Website.Controllers.ErrorController();

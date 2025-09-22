@@ -1,4 +1,5 @@
 using System;
+using System.Configuration;
 using System.Web;
 using System.Web.Mvc;
 
@@ -6,6 +7,17 @@ namespace Website.Controllers
 {
     public class ErrorController : Controller
     {
+        // Helper method to check if custom error pages are enabled
+        private bool IsCustomErrorPagesEnabled()
+        {
+            return bool.Parse(ConfigurationManager.AppSettings["EnableCustomErrorPages"] ?? "true");
+        }
+        
+        // Helper method to check if admin debug mode is enabled
+        private bool IsAdminDebugMode()
+        {
+            return bool.Parse(ConfigurationManager.AppSettings["AdminDebugMode"] ?? "false");
+        }
         // GET: Error/NotFound (404)
         public ActionResult NotFound()
         {
@@ -96,13 +108,103 @@ namespace Website.Controllers
             return View("Index");
         }
 
+        // Admin Panel for Error Handling Configuration
+        public ActionResult AdminPanel()
+        {
+            ViewBag.Title = "Error Handling Admin Panel";
+            ViewBag.EnableCustomErrorPages = IsCustomErrorPagesEnabled();
+            ViewBag.AdminDebugMode = IsAdminDebugMode();
+            
+            return View();
+        }
+        
+        // Toggle Custom Error Pages
+        [HttpPost]
+        public ActionResult ToggleCustomErrorPages()
+        {
+            try
+            {
+                var config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+                var appSettings = config.AppSettings.Settings;
+                
+                bool currentValue = bool.Parse(appSettings["EnableCustomErrorPages"]?.Value ?? "true");
+                bool newValue = !currentValue;
+                
+                if (appSettings["EnableCustomErrorPages"] == null)
+                {
+                    appSettings.Add("EnableCustomErrorPages", newValue.ToString());
+                }
+                else
+                {
+                    appSettings["EnableCustomErrorPages"].Value = newValue.ToString();
+                }
+                
+                config.Save();
+                
+                TempData["SuccessMessage"] = $"Custom error pages {(newValue ? "enabled" : "disabled")} successfully!";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Failed to toggle custom error pages: {ex.Message}";
+            }
+            
+            return RedirectToAction("AdminPanel");
+        }
+        
+        // Toggle Admin Debug Mode
+        [HttpPost]
+        public ActionResult ToggleAdminDebugMode()
+        {
+            try
+            {
+                var config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+                var appSettings = config.AppSettings.Settings;
+                
+                bool currentValue = bool.Parse(appSettings["AdminDebugMode"]?.Value ?? "false");
+                bool newValue = !currentValue;
+                
+                if (appSettings["AdminDebugMode"] == null)
+                {
+                    appSettings.Add("AdminDebugMode", newValue.ToString());
+                }
+                else
+                {
+                    appSettings["AdminDebugMode"].Value = newValue.ToString();
+                }
+                
+                config.Save();
+                
+                TempData["SuccessMessage"] = $"Admin debug mode {(newValue ? "enabled" : "disabled")} successfully!";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Failed to toggle admin debug mode: {ex.Message}";
+            }
+            
+            return RedirectToAction("AdminPanel");
+        }
+        
+        // Debug view for detailed error information
+        public ActionResult Debug(int? statusCode = null, string exceptionMessage = null, string stackTrace = null)
+        {
+            ViewBag.Title = "Error Debug Information";
+            ViewBag.StatusCode = statusCode;
+            ViewBag.ExceptionMessage = exceptionMessage ?? "No exception details available";
+            ViewBag.StackTrace = stackTrace ?? "No stack trace available";
+            ViewBag.IsAdminDebugMode = IsAdminDebugMode();
+            ViewBag.EnableCustomErrorPages = IsCustomErrorPagesEnabled();
+            
+            return View();
+        }
+
         // Test page to demonstrate all error types (for development/testing)
         public ActionResult Test()
         {
             ViewBag.Title = "Error Page Test";
+            ViewBag.EnableCustomErrorPages = IsCustomErrorPagesEnabled();
+            ViewBag.AdminDebugMode = IsAdminDebugMode();
             return View();
         }
-
         // Test methods to trigger different error types
         public ActionResult Test404()
         {
@@ -127,6 +229,12 @@ namespace Website.Controllers
         public ActionResult TestAccessDenied()
         {
             return RedirectToAction("AccessDenied");
+        }
+        
+        // Test method to trigger actual exception for debugging
+        public ActionResult TestException()
+        {
+            throw new InvalidOperationException("This is a test exception for debugging purposes.");
         }
     }
 }

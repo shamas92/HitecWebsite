@@ -98,6 +98,34 @@
     <div class="container">
         <h1 class="main-title">Error Page Testing Center</h1>
         
+        @if (ViewBag.EnableCustomErrorPages != null || ViewBag.AdminDebugMode != null)
+        {
+            <div class="warning-note">
+                <strong>Current Configuration:</strong> 
+                Custom Error Pages: 
+                @if (ViewBag.EnableCustomErrorPages)
+                {
+                    <span style="color: #28a745;">Enabled</span>
+                }
+                else
+                {
+                    <span style="color: #dc3545;">Disabled</span>
+                }
+                | 
+                Admin Debug Mode: 
+                @if (ViewBag.AdminDebugMode)
+                {
+                    <span style="color: #28a745;">Enabled</span>
+                }
+                else
+                {
+                    <span style="color: #dc3545;">Disabled</span>
+                }
+                <br/>
+                <a href="@Url.Action("AdminPanel", "Error")" style="color: #002155; font-weight: 500;">&#128295; Go to Admin Panel</a>
+            </div>
+        }
+        
         <div class="warning-note">
             <strong>Development Testing Only:</strong> These links test error page designs with consistent SVG warning icons.
         </div>
@@ -170,6 +198,19 @@
 
             <div class="test-card">
                 <div class="test-icon" style="color: #007bff;">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <h3 class="test-title">Admin Panel</h3>
+                <p class="test-description">
+                    Configure error handling settings, toggle between custom and debug views.
+                </p>
+                <a href="@Url.Action("AdminPanel", "Error")" class="test-btn">
+                    <i class="fas fa-tools"></i> Admin Panel
+                </a>
+            </div>
+
+            <div class="test-card">
+                <div class="test-icon" style="color: #007bff;">
                     <i class="fas fa-home"></i>
                 </div>
                 <h3 class="test-title">Return Home</h3>
@@ -188,7 +229,7 @@
                 <ul style="line-height: 1.8; font-weight: 300;">
                     <li><strong>404 Errors:</strong> Automatically triggered when URLs don't match any routes</li>
                     <li><strong>500 Errors:</strong> Automatically triggered on unhandled exceptions</li>
-                    <li><strong>Under Construction:</strong> Use <code style="background: #e9ecef; padding: 2px 6px; border-radius: 4px; font-size: 0.9em;">return RedirectToAction("UnderConstruction", "Error");</code> in controller actions</li>
+                    <li><strong>Under Construction:</strong> Use <code style="background: #e9ecef; padding: 2px 6px; border-radius: 4px; font-size: 0.9em;">return RedirectToAction('UnderConstruction', 'Error');</code> in controller actions</li>
                     <li><strong>Maintenance:</strong> Use for scheduled downtime announcements</li>
                     <li><strong>Access Denied:</strong> Use for permission-based restrictions</li>
                 </ul>
