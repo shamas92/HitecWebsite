@@ -97,6 +97,7 @@ namespace Website.Models
         public virtual DbSet<tblDepartmentUpcomingEvent> tblDepartmentUpcomingEvents { get; set; }
         public virtual DbSet<tblDesignation> tblDesignations { get; set; }
         public virtual DbSet<tblDownload> tblDownloads { get; set; }
+        public virtual DbSet<tblDownloadsNew> tblDownloadsNews { get; set; }
         public virtual DbSet<tblEventHead> tblEventHeads { get; set; }
         public virtual DbSet<tblEventPhoto> tblEventPhotos { get; set; }
         public virtual DbSet<tblEvent> tblEvents { get; set; }

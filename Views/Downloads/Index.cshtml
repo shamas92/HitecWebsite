@@ -1,0 +1,203 @@
+@model IEnumerable<HitecCM.Models.tblDownloadsNew>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="about pt-40 pb-120 qac-page">
+    <div class="container">
+        <div class="row mt-none-30">
+            <div class="col-xl-3 col-lg-5 mt-30">
+                @Html.Partial("_Sidebar")
+            </div>
+            <div class="col-xl-8 col-lg-7 mt-30">
+                <div class="xb-about__content">
+
+                    
+                    <div class="content">
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var download in Model)
+                            {
+                                <div class="download-section">
+                                    @if (!string.IsNullOrEmpty(download.PageTitle))
+                                    {
+                                        <h3 class="title">@download.PageTitle</h3>
+                                    }
+                                    @if (!string.IsNullOrEmpty(download.PageData))
+                                    {
+                                        @Html.Raw(download.PageData)
+                                    }
+                                    else
+                                    {
+                                        <p class="text-muted">No content available for this download.</p>
+                                    }
+                                    @if (Model.Count() > 1)
+                                    {
+                                        <hr class="download-separator" />
+                                    }
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="no-content">
+                                <div class="alert alert-warning" style="background: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 20px; border-radius: 8px;">
+                                    <h4><i class="fa fa-exclamation-triangle"></i> No Downloads Found</h4>
+                                    <p>No downloads are currently available in the database.</p>
+                                    @if (ViewBag.ErrorMessage == null)
+                                    {
+                                        <p><strong>Possible reasons:</strong></p>
+                                        <ul>
+                                            <li>The table is empty</li>
+                                            <li>Database connection issues</li>
+                                            <li>Table mapping problems</li>
+                                        </ul>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .qac-page .download-section {
+        margin-bottom: 30px;
+    }
+
+    .qac-page .download-section:last-child {
+        margin-bottom: 0;
+    }
+
+    .qac-page .download-item-title {
+        color: #2c3e50;
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        line-height: 1.3;
+    }
+
+    .qac-page .download-meta {
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 20px;
+    }
+
+    .qac-page .download-meta i {
+        margin-right: 5px;
+        color: #6c757d;
+    }
+
+    .qac-page .download-separator {
+        margin: 40px 0;
+        border: 0;
+        border-top: 2px solid #f8f9fa;
+    }
+
+    .qac-page .no-content {
+        text-align: center;
+        padding: 60px 20px;
+        color: #6c757d;
+        font-size: 16px;
+    }
+
+    /* QAC-style content formatting */
+    .qac-page .content p {
+        margin-bottom: 15px;
+        line-height: 1.7;
+        color: #495057;
+    }
+
+    .qac-page .content ul,
+    .qac-page .content ol {
+        margin-bottom: 20px;
+        padding-left: 30px;
+    }
+
+    .qac-page .content li {
+        margin-bottom: 8px;
+        line-height: 1.6;
+        color: #495057;
+    }
+
+    .qac-page .content a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .qac-page .content a:hover {
+        color: #0056b3;
+        text-decoration: underline;
+    }
+
+    .qac-page .content h4,
+    .qac-page .content h5,
+    .qac-page .content h6 {
+        color: #2c3e50;
+        margin-top: 25px;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .qac-page .content blockquote {
+        border-left: 4px solid #007bff;
+        padding-left: 20px;
+        margin: 20px 0;
+        font-style: italic;
+        color: #6c757d;
+    }
+
+    .qac-page .content table {
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+
+    .qac-page .content table th,
+    .qac-page .content table td {
+        padding: 12px;
+        border: 1px solid #dee2e6;
+        text-align: left;
+    }
+
+    .qac-page .content table th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    /* Alert styles */
+    .alert {
+        margin-bottom: 20px;
+        border-radius: 8px;
+    }
+
+    .alert h4 {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .alert ul {
+        margin-bottom: 0;
+        margin-top: 10px;
+    }
+
+    /* Responsive design */
+    @@media (max-width: 768px) {
+        .qac-page .download-item-title {
+            font-size: 20px;
+        }
+
+        .qac-page .download-separator {
+            margin: 30px 0;
+        }
+
+        .qac-page .no-content {
+            padding: 40px 15px;
+            font-size: 14px;
+        }
+    }
+</style>

@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -42,6 +42,27 @@ namespace Website
                 name: "ErrorAccessDenied",
                 url: "Error/AccessDenied",
                 defaults: new { controller = "Error", action = "AccessDenied" }
+            );
+
+            // Add specific route for Downloads categories
+            routes.MapRoute(
+                name: "DownloadsCategory",
+                url: "Downloads/Category/{categoryName}",
+                defaults: new { controller = "Downloads", action = "Category" },
+                constraints: new { categoryName = @"^[a-zA-Z]+$" }
+            );
+
+            // Add specific route for Downloads
+            routes.MapRoute(
+                name: "Downloads",
+                url: "Downloads",
+                defaults: new { controller = "Downloads", action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "DownloadsAction",
+                url: "Downloads/{action}",
+                defaults: new { controller = "Downloads", action = "Index" }
             );
 
             routes.MapRoute(

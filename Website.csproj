@@ -142,6 +142,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AdmissionController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\DownloadsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FacilitiesController.cs" />
     <Compile Include="Controllers\FacultiesController.cs" />
@@ -241,6 +242,7 @@
     <Compile Include="Models\tblDepartmentUpcomingEvent.cs" />
     <Compile Include="Models\tblDesignation.cs" />
     <Compile Include="Models\tblDownload.cs" />
+    <Compile Include="Models\tblDownloadsNew.cs" />
     <Compile Include="Models\tblEvent.cs" />
     <Compile Include="Models\tblEventHead.cs" />
     <Compile Include="Models\tblEventPhoto.cs" />
@@ -778,6 +780,8 @@
     <Content Include="Views\Error\Maintenance.cshtml" />
     <Content Include="Views\Error\Test.cshtml" />
     <Content Include="Views\Error\AdminPanel.cshtml" />
+    <Content Include="Views\Downloads\Index.cshtml" />
+    <Content Include="Views\Downloads\_Sidebar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
