@@ -62,6 +62,11 @@
 </nav>
 
 @functions {
+    private bool IsHomePage()
+    {
+        var path = Request?.Url?.AbsolutePath ?? string.Empty;
+        return path == "/" || path.Equals("/Home", StringComparison.OrdinalIgnoreCase) || path.Equals("/Home/Index", StringComparison.OrdinalIgnoreCase);
+    }
     private string InferLevelFromName(string name)
     {
         if (string.IsNullOrWhiteSpace(name)) return null;
@@ -117,6 +122,11 @@
         var effective = GetEffectiveMenuLink(menu, parent); if (string.IsNullOrWhiteSpace(effective)) return false;
         string comparable = effective;
         if (effective.StartsWith("http", StringComparison.OrdinalIgnoreCase)) { try { comparable = new Uri(effective).PathAndQuery; } catch { return false; } }
+        // Prevent unrelated items showing active on home page
+        if (IsHomePage() && !(comparable == "/" || comparable.Equals("/Home", StringComparison.OrdinalIgnoreCase) || comparable.StartsWith("/Home/Index", StringComparison.OrdinalIgnoreCase)))
+        {
+            return false;
+        }
         if (currentPathAndQuery.Equals(comparable, StringComparison.OrdinalIgnoreCase)) return true;
         if (comparable.IndexOf("/Faculties/Programs", StringComparison.OrdinalIgnoreCase) >= 0 &&
             comparable.IndexOf("level=undergraduate", StringComparison.OrdinalIgnoreCase) >= 0 &&

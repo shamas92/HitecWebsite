@@ -142,7 +142,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AdmissionController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
-    <Compile Include="Controllers\PolicyController .cs" />
+    <Compile Include="Controllers\PolicyController.cs" />
     <Compile Include="Controllers\DownloadsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FacilitiesController.cs" />
@@ -321,6 +321,7 @@
     <Content Include="Content\img\about\logoReport.png" />
     <Content Include="Content\img\about\pelican_noao_big.jpg" />
     <Content Include="Content\img\about\VC.jpg" />
+    <Content Include="Content\img\admissions\AdmissionAd.jpg" />
     <Content Include="Content\img\bg\about_bg.jpg" />
     <Content Include="Content\img\bg\campus-bg.jpg" />
     <Content Include="Content\img\bg\cta-bg02.png" />

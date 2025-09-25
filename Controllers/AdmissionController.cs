@@ -12,5 +12,6 @@ namespace Website.Controllers
             ViewBag.MetaKeywords = "Academic Calendar, admissions, semester dates, exam schedule, HITEC University";
             return View();
         }
+
     }
 }

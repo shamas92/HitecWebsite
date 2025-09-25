@@ -3,11 +3,9 @@
 
 <ul class="main-menu">
     @{
-        // Flag to check if we found an Events menu item in the database
         bool eventsMenuFound = false;
         HitecCM.Models.tblMenus eventsMenu = null;
-        
-        // Look for a menu item named "Events" - case insensitive check
+
         foreach (var menu in Model)
         {
             if (string.Equals(menu.MenuName, "Events", StringComparison.OrdinalIgnoreCase))
@@ -17,17 +15,14 @@
                 break;
             }
         }
-        
-        // Sort menu items by SortingOrder 
+
         var sortedMenus = Model.OrderBy(m => m.SortingOrder).ToList();
     }
 
     @foreach (var menu in sortedMenus)
     {
-        // Skip rendering the Events menu here if found in database - we'll handle it separately based on its sorting order
         if (eventsMenuFound && menu.MenuID == eventsMenu.MenuID)
         {
-            // Render Events menu with dynamic submenu at its proper sorting position
             <li class="menu-item-has-children @(IsMenuActive(eventsMenu) || Request.Url.AbsolutePath.StartsWith("/Events") ? "active" : "")">
                 @{
                     var effectiveLink = GetEffectiveMenuLink(eventsMenu);
@@ -54,13 +49,13 @@
                         <span>@eventsMenu.MenuName</span>
                     </a>
                 }
-                
+
                 @Html.Action("GetLatestEvents", "Events")
             </li>
-            
+
             continue;
         }
-        
+
         <li class="@(menu.ChildMenus != null && menu.ChildMenus.Any() ? "menu-item-has-children" : "menu-item") @(IsMenuActive(menu) ? "active" : "")">
             @{
                 var effectiveMenuLink = GetEffectiveMenuLink(menu);
@@ -94,17 +89,38 @@
                     @foreach (var childMenu in menu.ChildMenus)
                     {
                         var effectiveChildLink = GetEffectiveMenuLink(childMenu);
+                        bool isAdvertisement = !string.IsNullOrEmpty(childMenu.MenuName) &&
+                                               childMenu.MenuName.Equals("Advertisement", StringComparison.OrdinalIgnoreCase);
+
                         <li class="@(childMenu.ChildMenus != null && childMenu.ChildMenus.Any() ? "menu-item-has-children " : "")@(IsChildMenuActive(childMenu) ? "active" : "")">
-                            @if (!string.IsNullOrEmpty(effectiveChildLink)) { <a href="@effectiveChildLink">@childMenu.MenuName</a> } else { <a href="#">@childMenu.MenuName</a> }
+                            @if (!string.IsNullOrEmpty(effectiveChildLink))
+                            {
+                                <a href="@effectiveChildLink" @(isAdvertisement ? "target=\"_blank\" rel=\"noopener noreferrer\"" : "")>
+                                    @childMenu.MenuName
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="#" @(isAdvertisement ? "target=\"_blank\" rel=\"noopener noreferrer\"" : "")>
+                                    @childMenu.MenuName
+                                </a>
+                            }
+
                             @if (childMenu.ChildMenus != null && childMenu.ChildMenus.Any())
                             {
                                 <ul class="submenu">
                                     @foreach (var grandChildMenu in childMenu.ChildMenus)
                                     {
-                                        // Use parent context so department links differ per level
                                         var effectiveGrandChildLink = GetEffectiveMenuLink(grandChildMenu, childMenu);
                                         <li class="@(IsGrandChildMenuActive(grandChildMenu, childMenu) ? "active" : "")">
-                                            @if (!string.IsNullOrEmpty(effectiveGrandChildLink)) { <a href="@effectiveGrandChildLink">@grandChildMenu.MenuName</a> } else { <a href="#">@grandChildMenu.MenuName</a> }
+                                            @if (!string.IsNullOrEmpty(effectiveGrandChildLink))
+                                            {
+                                                <a href="@effectiveGrandChildLink">@grandChildMenu.MenuName</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="#">@grandChildMenu.MenuName</a>
+                                            }
                                         </li>
                                     }
                                 </ul>
@@ -115,10 +131,9 @@
             }
         </li>
     }
-    
+
     @if (!eventsMenuFound)
     {
-        <!-- Fallback: Special Events menu with dynamic latest events submenu if no Events menu found in database -->
         <li class="menu-item-has-children @(Request.Url.AbsolutePath.StartsWith("/Events") ? "active" : "")">
             <a href="@Url.Action("Index", "Events")">
                 <span>Events</span>
@@ -129,7 +144,12 @@
 </ul>
 
 @functions {
-    // Base helper – infer level from own name
+    private bool IsHomePage()
+    {
+        var path = Request?.Url?.AbsolutePath ?? string.Empty;
+        return path == "/" || path.Equals("/Home", StringComparison.OrdinalIgnoreCase) || path.Equals("/Home/Index", StringComparison.OrdinalIgnoreCase);
+    }
+
     private string InferLevelFromName(string name)
     {
         if (string.IsNullOrWhiteSpace(name)) return null;
@@ -139,32 +159,23 @@
         return null;
     }
 
-    // Existing helper (no parent context)
-    private string GetEffectiveMenuLink(tblMenus menu)
-    {
-        return GetEffectiveMenuLink(menu, null);
-    }
+    private string GetEffectiveMenuLink(tblMenus menu) => GetEffectiveMenuLink(menu, null);
 
-    // Overload with parent context – ensures department (grandchild) links differ per level
     private string GetEffectiveMenuLink(tblMenus menu, tblMenus parent)
     {
         if (menu == null || string.IsNullOrWhiteSpace(menu.MenuLink)) return menu?.MenuLink;
         if (menu.MenuLink.IndexOf("/Faculties/Programs", StringComparison.OrdinalIgnoreCase) < 0) return menu.MenuLink;
 
-        // Determine level: own name first then parent name
         var level = InferLevelFromName(menu.MenuName) ?? InferLevelFromName(parent?.MenuName);
-        if (string.IsNullOrEmpty(level)) return menu.MenuLink; // not a level-specific link
+        if (string.IsNullOrEmpty(level)) return menu.MenuLink;
 
-        // Undergraduate departments keep base URL (no level param) for backward compatibility / default highlight
         if (string.Equals(level, "undergraduate", StringComparison.OrdinalIgnoreCase))
         {
-            // If user already added level param manually we still respect it
             if (menu.MenuLink.IndexOf("level=", StringComparison.OrdinalIgnoreCase) >= 0) return menu.MenuLink;
-            return menu.MenuLink; // no change
+            return menu.MenuLink;
         }
 
-        // For postgraduate & phd ensure a level param exists so their department links differ from undergraduate
-        if (menu.MenuLink.IndexOf("level=", StringComparison.OrdinalIgnoreCase) >= 0) return menu.MenuLink; // already has one
+        if (menu.MenuLink.IndexOf("level=", StringComparison.OrdinalIgnoreCase) >= 0) return menu.MenuLink;
         var separator = menu.MenuLink.Contains("?") ? "&" : "?";
         return menu.MenuLink + separator + "level=" + level;
     }
@@ -182,12 +193,15 @@
         {
             try { comparableMenuLink = new Uri(originalLink).PathAndQuery; } catch { return false; }
         }
+        if (IsHomePage() && !(comparableMenuLink == "/" || comparableMenuLink.Equals("/Home", StringComparison.OrdinalIgnoreCase) || comparableMenuLink.StartsWith("/Home/Index", StringComparison.OrdinalIgnoreCase)))
+        {
+            return false;
+        }
         if (currentPathAndQuery.Equals(comparableMenuLink, StringComparison.OrdinalIgnoreCase)) return true;
 
-        // Fallback: base URL without level param highlights undergraduate only
         if (comparableMenuLink.IndexOf("/Faculties/Programs", StringComparison.OrdinalIgnoreCase) >= 0 &&
             comparableMenuLink.IndexOf("level=undergraduate", StringComparison.OrdinalIgnoreCase) >= 0 &&
-            currentPathAndQuery.StartsWith(comparableMenuLink.Replace("level=undergraduate", string.Empty).TrimEnd('&','?'), StringComparison.OrdinalIgnoreCase) &&
+            currentPathAndQuery.StartsWith(comparableMenuLink.Replace("level=undergraduate", string.Empty).TrimEnd('&', '?'), StringComparison.OrdinalIgnoreCase) &&
             currentPathAndQuery.IndexOf("level=", StringComparison.OrdinalIgnoreCase) < 0)
         {
             return true;
@@ -218,7 +232,5 @@
     }
 
     private bool IsGrandChildMenuActive(tblMenus grandChildMenu, tblMenus parentMenu)
-    {
-        return IsMenuLinkActive(grandChildMenu, parentMenu);
-    }
+        => IsMenuLinkActive(grandChildMenu, parentMenu);
 }
