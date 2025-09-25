@@ -115,6 +115,7 @@ namespace Website.Models
         public virtual DbSet<tblMiscellaneousCharge> tblMiscellaneousCharges { get; set; }
         public virtual DbSet<tblMiscellaneousNote> tblMiscellaneousNotes { get; set; }
         public virtual DbSet<tblNoticeBoard> tblNoticeBoards { get; set; }
+        public virtual DbSet<tblPolicy> tblPolicys { get; set; }
         public virtual DbSet<tblPolicyCategory> tblPolicyCategories { get; set; }
         public virtual DbSet<tblPolicyItem> tblPolicyItems { get; set; }
         public virtual DbSet<tblQAC> tblQACs { get; set; }

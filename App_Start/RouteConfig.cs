@@ -44,6 +44,21 @@ namespace Website
                 defaults: new { controller = "Error", action = "AccessDenied" }
             );
 
+            // Add specific route for Policy categories
+            routes.MapRoute(
+                name: "PolicyCategory",
+                url: "Policy/Category/{categoryName}",
+                defaults: new { controller = "Policy", action = "Category" },
+                constraints: new { categoryName = @"^[a-zA-Z]+$" }
+            );
+
+            // Add specific route for Policy
+            routes.MapRoute(
+                name: "Policy",
+                url: "Policy",
+                defaults: new { controller = "Policy", action = "Index" }
+            );
+
             // Add specific route for Downloads categories
             routes.MapRoute(
                 name: "DownloadsCategory",
