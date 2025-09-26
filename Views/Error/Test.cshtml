@@ -112,16 +112,7 @@
                     <span style="color: #dc3545;">Disabled</span>
                 }
                 | 
-                Admin Debug Mode: 
-                @if (ViewBag.AdminDebugMode)
-                {
-                    <span style="color: #28a745;">Enabled</span>
-                }
-                else
-                {
-                    <span style="color: #dc3545;">Disabled</span>
-                }
-                <br/>
+               
                 <a href="@Url.Action("AdminPanel", "Error")" style="color: #002155; font-weight: 500;">&#128295; Go to Admin Panel</a>
             </div>
         }

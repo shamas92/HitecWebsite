@@ -191,7 +191,12 @@
         string comparableMenuLink = originalLink;
         if (originalLink.StartsWith("http", StringComparison.OrdinalIgnoreCase))
         {
-            try { comparableMenuLink = new Uri(originalLink).PathAndQuery; } catch { return false; }
+            try {
+                var extUri = new Uri(originalLink);
+                // New logic: Do not mark external-domain links active (e.g. https://careers.example/ -> '/').
+                if (!string.Equals(extUri.Host, currentUri.Host, StringComparison.OrdinalIgnoreCase)) return false;
+                comparableMenuLink = extUri.PathAndQuery;
+            } catch { return false; }
         }
         if (IsHomePage() && !(comparableMenuLink == "/" || comparableMenuLink.Equals("/Home", StringComparison.OrdinalIgnoreCase) || comparableMenuLink.StartsWith("/Home/Index", StringComparison.OrdinalIgnoreCase)))
         {
