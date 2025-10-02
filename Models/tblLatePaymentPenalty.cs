@@ -1,4 +1,4 @@
-namespace Website.Models
+namespace HitecCM.Models
 {
     using System;
     using System.Collections.Generic;
@@ -12,10 +12,8 @@ namespace Website.Models
         public int PenaltyID { get; set; }
 
         [Required]
-        [StringLength(255)]
-        public string TimelineDescription { get; set; }
 
-        [Required]
+        
         public string PenaltyDetail { get; set; }
 
         public DateTime? CreatedDate { get; set; }

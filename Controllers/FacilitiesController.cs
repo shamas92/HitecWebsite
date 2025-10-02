@@ -1,9 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Website.Models;
 
 namespace Website.Controllers
 {
@@ -20,17 +16,13 @@ namespace Website.Controllers
         {
             try
             {
-                using (var db = new Model1())
-                {
-                    var transportRoutes = db.Transport_Info.ToList();
-                    return View(transportRoutes);
-                }
+                // Transport_Info entity was removed; render static informative page.
+                return View();
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error in Transport: {ex.Message}");
-                // Return the view without model data, the view will handle empty model
-                return View(new List<Transport_Info>());
+                return View();
             }
         }
 

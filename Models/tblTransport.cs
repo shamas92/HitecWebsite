@@ -1,4 +1,4 @@
-namespace Website.Models
+namespace HitecCM.Models
 {
     using System;
     using System.Collections.Generic;
@@ -10,19 +10,18 @@ namespace Website.Models
     public partial class tblTransport
     {
         [Key]
-        public int TransportID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ID { get; set; }
 
         [Required]
-        public string Description { get; set; }
+        [StringLength(255)]
+        public string Title { get; set; }
+
+        public string PageData { get; set; }
 
         [Required]
-        [StringLength(500)]
-        public string CoverageAreas { get; set; }
+        public DateTime CreatedAt { get; set; }
 
-        public decimal? TransportChargesPerSemester { get; set; }
-
-        public DateTime? CreatedDate { get; set; }
-
-        public DateTime? ModifiedDate { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

@@ -1,4 +1,3 @@
-@model List<Website.Models.Transport_Info>
 @{
     ViewBag.Title = "Transport Facilities";
     
@@ -235,87 +234,53 @@
                         <h3 class="title">Available Routes</h3>
                     </div>
 
-                    @if (Model != null && Model.Any())
-                    {
-                        <div class="row">
-                            @foreach (var route in Model)
-                            {
-                                <div class="col-lg-6">
-                                    <div class="route-card">
-                                        <h4 class="route-title">
-                                            <i class="fas fa-bus"></i> @route.Route_Name
-                                        </h4>
-                                        <div class="route-info">
-                                            @Html.Raw(route.DescripQon)
-                                        </div>
-                                        @if (!string.IsNullOrEmpty(route.PDF_Link))
-                                        {
-                                            <div class="route-actions">
-                                                <a href="@route.PDF_Link" target="_blank" class="route-link">
-                                                    <i class="fas fa-file-pdf"></i> View Schedule
-                                                </a>
-                                            </div>
-                                        }
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="faculty-no-results">
-                            <h3>Route Information Currently Unavailable</h3>
-                            <p>We are updating our route information. Please contact the Transport Office for the latest information about available routes and schedules.</p>
-                        </div>
-
-                        <!-- Sample Routes for Display when no data is available -->
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="route-card">
-                                    <h4 class="route-title">
-                                        <i class="fas fa-bus"></i> Taxila - University Route
-                                    </h4>
-                                    <div class="route-info">
-                                        <p>This route serves areas of Taxila city, including PMA Road, GT Road, and Margalla Town. Multiple pickup points are available along the route.</p>
-                                        <p><strong>Departure Times:</strong> 7:30 AM, 9:30 AM, 1:30 PM, 3:30 PM, 5:30 PM</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="route-card">
-                                    <h4 class="route-title">
-                                        <i class="fas fa-bus"></i> Wah Cantt - University Route
-                                    </h4>
-                                    <div class="route-info">
-                                        <p>This route covers Wah Cantt areas including Mall Road, Lalarukh, Aslam Market, and Kashmir Road with designated pickup points.</p>
-                                        <p><strong>Departure Times:</strong> 7:00 AM, 9:00 AM, 1:00 PM, 3:00 PM, 5:00 PM</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="route-card">
-                                    <h4 class="route-title">
-                                        <i class="fas fa-bus"></i> Rawalpindi Route
-                                    </h4>
-                                    <div class="route-info">
-                                        <p>This route connects Rawalpindi areas including Saddar, Committee Chowk, and Morgah with the university campus.</p>
-                                        <p><strong>Departure Times:</strong> 6:45 AM, 5:45 PM</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="route-card">
-                                    <h4 class="route-title">
-                                        <i class="fas fa-bus"></i> Islamabad Route
-                                    </h4>
-                                    <div class="route-info">
-                                        <p>Limited service connecting key areas of Islamabad including G-sectors and H-sectors to the university campus.</p>
-                                        <p><strong>Departure Times:</strong> 6:30 AM, 6:00 PM</p>
-                                    </div>
+                    <!-- Static sample route cards retained when no DB model is present -->
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="route-card">
+                                <h4 class="route-title">
+                                    <i class="fas fa-bus"></i> Taxila - University Route
+                                </h4>
+                                <div class="route-info">
+                                    <p>This route serves areas of Taxila city, including PMA Road, GT Road, and Margalla Town. Multiple pickup points are available along the route.</p>
+                                    <p><strong>Departure Times:</strong> 7:30 AM, 9:30 AM, 1:30 PM, 3:30 PM, 5:30 PM</p>
                                 </div>
                             </div>
                         </div>
-                    }
+                        <div class="col-lg-6">
+                            <div class="route-card">
+                                <h4 class="route-title">
+                                    <i class="fas fa-bus"></i> Wah Cantt - University Route
+                                </h4>
+                                <div class="route-info">
+                                    <p>This route covers Wah Cantt areas including Mall Road, Lalarukh, Aslam Market, and Kashmir Road with designated pickup points.</p>
+                                    <p><strong>Departure Times:</strong> 7:00 AM, 9:00 AM, 1:00 PM, 3:00 PM, 5:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="route-card">
+                                <h4 class="route-title">
+                                    <i class="fas fa-bus"></i> Rawalpindi Route
+                                </h4>
+                                <div class="route-info">
+                                    <p>This route connects Rawalpindi areas including Saddar, Committee Chowk, and Morgah with the university campus.</p>
+                                    <p><strong>Departure Times:</strong> 6:45 AM, 5:45 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="route-card">
+                                <h4 class="route-title">
+                                    <i class="fas fa-bus"></i> Islamabad Route
+                                </h4>
+                                <div class="route-info">
+                                    <p>Limited service connecting key areas of Islamabad including G-sectors and H-sectors to the university campus.</p>
+                                    <p><strong>Departure Times:</strong> 6:30 AM, 6:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Transport Fees -->
                     <div class="transport-fees">

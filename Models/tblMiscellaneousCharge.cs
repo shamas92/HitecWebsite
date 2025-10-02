@@ -1,10 +1,7 @@
-namespace Website.Models
+namespace HitecCM.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     public partial class tblMiscellaneousCharge
     {
@@ -14,10 +11,6 @@ namespace Website.Models
         [Required]
         [StringLength(500)]
         public string Description { get; set; }
-
-        [Required]
-        [StringLength(500)]
-        public string AmountRates { get; set; }
 
         public DateTime? CreatedDate { get; set; }
 

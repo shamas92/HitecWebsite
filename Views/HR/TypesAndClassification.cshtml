@@ -1,4 +1,3 @@
-@model IEnumerable<Website.Models.Employment_Types>
 @{
     ViewBag.Title = "Employment Types & Classification";
 
@@ -298,74 +297,53 @@
                         <h3 class="title">Primary Employment Types</h3>
                     </div>
 
-                    @if (Model != null && Model.Any())
-                    {
-                        <div class="row">
-                            @foreach (var type in Model)
-                            {
-                                <div class="col-lg-6">
-                                    <div class="employment-card">
-                                        <h4 class="type-title">
-                                            <i class="fas fa-user-tie"></i> @type.Type_Name
-                                        </h4>
-                                        <div class="type-info">
-                                            @Html.Raw(type.DescripQon)
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    }
-                    else
-                    {
-                        <!-- Default Employment Types when no data is available -->
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="employment-card">
-                                    <h4 class="type-title">
-                                        <i class="fas fa-user-tie"></i> Permanent Employees
-                                    </h4>
-                                    <div class="type-info">
-                                        <p>Permanent employees have ongoing employment with HITEC University with no specified end date. They receive full benefits and are entitled to all university services and facilities as per their position and grade.</p>
-                                        <p>Permanent positions typically require a probation period of 6-12 months before confirmation. After confirmation, these positions offer greater job security and career advancement opportunities.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="employment-card">
-                                    <h4 class="type-title">
-                                        <i class="fas fa-user-tie"></i> Contract Employees
-                                    </h4>
-                                    <div class="type-info">
-                                        <p>Contract employees are hired for a specific period, typically 1-3 years, with the possibility of renewal based on performance and university requirements. These positions may lead to permanent employment after multiple successful contract terms.</p>
-                                        <p>Contract employees receive defined benefits as specified in their employment agreement, which may differ from those provided to permanent staff.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="employment-card">
-                                    <h4 class="type-title">
-                                        <i class="fas fa-user-tie"></i> Visiting Faculty
-                                    </h4>
-                                    <div class="type-info">
-                                        <p>Visiting faculty members are typically industry professionals or academics from other institutions who teach specific courses on a semester basis. Their engagement is usually part-time and limited to teaching responsibilities.</p>
-                                        <p>Compensation is generally based on credit hours taught or a fixed remuneration for the semester, with limited additional benefits.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="employment-card">
-                                    <h4 class="type-title">
-                                        <i class="fas fa-user-tie"></i> Temporary/Adjunct Staff
-                                    </h4>
-                                    <div class="type-info">
-                                        <p>Temporary or adjunct staff members are hired for short-term assignments, special projects, or to fill temporary vacancies. Employment duration is typically less than one year with the possibility of extension.</p>
-                                        <p>These positions offer limited benefits and are focused on specific deliverables or outcomes for the designated period.</p>
-                                    </div>
+                    <!-- Static content retained as informative default -->
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="employment-card">
+                                <h4 class="type-title">
+                                    <i class="fas fa-user-tie"></i> Permanent Employees
+                                </h4>
+                                <div class="type-info">
+                                    <p>Permanent employees have ongoing employment with HITEC University with no specified end date. They receive full benefits and are entitled to all university services and facilities as per their position and grade.</p>
+                                    <p>Permanent positions typically require a probation period of 6-12 months before confirmation. After confirmation, these positions offer greater job security and career advancement opportunities.</p>
                                 </div>
                             </div>
                         </div>
-                    }
+                        <div class="col-lg-6">
+                            <div class="employment-card">
+                                <h4 class="type-title">
+                                    <i class="fas fa-user-tie"></i> Contract Employees
+                                </h4>
+                                <div class="type-info">
+                                    <p>Contract employees are hired for a specific period, typically 1-3 years, with the possibility of renewal based on performance and university requirements. These positions may lead to permanent employment after multiple successful contract terms.</p>
+                                    <p>Contract employees receive defined benefits as specified in their employment agreement, which may differ from those provided to permanent staff.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="employment-card">
+                                <h4 class="type-title">
+                                    <i class="fas fa-user-tie"></i> Visiting Faculty
+                                </h4>
+                                <div class="type-info">
+                                    <p>Visiting faculty members are typically industry professionals or academics from other institutions who teach specific courses on a semester basis. Their engagement is usually part-time and limited to teaching responsibilities.</p>
+                                    <p>Compensation is generally based on credit hours taught or a fixed remuneration for the semester, with limited additional benefits.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="employment-card">
+                                <h4 class="type-title">
+                                    <i class="fas fa-user-tie"></i> Temporary/Adjunct Staff
+                                </h4>
+                                <div class="type-info">
+                                    <p>Temporary or adjunct staff members are hired for short-term assignments, special projects, or to fill temporary vacancies. Employment duration is typically less than one year with the possibility of extension.</p>
+                                    <p>These positions offer limited benefits and are focused on specific deliverables or outcomes for the designated period.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Classification Groups -->
                     <div class="section-title mt-60 mb-40">

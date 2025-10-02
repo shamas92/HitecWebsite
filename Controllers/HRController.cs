@@ -1,9 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Website.Models;
 
 namespace Website.Controllers
 {
@@ -20,17 +16,14 @@ namespace Website.Controllers
         {
             try
             {
-                using (var db = new Model1())
-                {
-                    var employmentTypes = db.Employment_Types.ToList();
-                    return View(employmentTypes);
-                }
+                // Under current schema, Employment_Types entity/table was removed.
+                // Render static informative page; view no longer requires a model.
+                return View();
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error in TypesAndClassification: {ex.Message}");
-                // Return the view without model data, the view will handle empty model
-                return View(new List<Employment_Types>());
+                return View();
             }
         }
 
