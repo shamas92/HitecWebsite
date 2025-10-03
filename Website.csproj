@@ -168,6 +168,7 @@
     <Compile Include="Models\tblAccommodationNote.cs" />
     <Compile Include="Models\tblAccommodationRefundPolicy.cs" />
     <Compile Include="Models\tblBMEOBECurriculum.cs" />
+    <Compile Include="Models\tblCafeteria.cs" />
     <Compile Include="Models\tblCsOBECurriculum.cs" />
     <Compile Include="Models\tblDepartment.cs" />
     <Compile Include="Models\tblDepartmentChairperson.cs" />
@@ -732,6 +733,9 @@
     <Content Include="Views\Downloads\_Sidebar.cshtml" />
     <Content Include="Views\Policy\Index.cshtml" />
     <Content Include="Views\Policy\_Sidebar.cshtml" />
+    <Content Include="Views\Facilities\Hostel.cshtml" />
+    <Content Include="Views\Facilities\Sports.cshtml" />
+    <Content Include="Views\Facilities\Cafeteria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,82 @@
+@model HitecCM.Models.tblHostel
+@{
+    ViewBag.Title = !string.IsNullOrEmpty(Model?.Title) ? Model.Title : "Hostel Facilities";
+    
+    // SEO Meta Tags
+    ViewBag.MetaDescription = "Discover the hostel facilities and accommodation services at HITEC University.";
+    ViewBag.MetaKeywords = "HITEC University, hostel, accommodation, on-campus housing, dormitory, student residence";
+}
+
+
+
+@section Meta {
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta property="og:title" content="@ViewBag.Title - HITEC University" />
+    <meta property="og:description" content="@ViewBag.MetaDescription" />
+    <meta property="og:type" content="website" />
+}
+
+<div class="body_wrap">
+    <main>
+        <!-- breadcrumb start -->
+        <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
+            <div class="container">
+                <div class="breadcrumb__content text-center">
+                    <h1 class="breadcrumb__title mt-25" style="color: #000">@ViewBag.Title</h1>
+                    <p class="breadcrumb__desc mb-50" style="color: #000">On-Campus Accommodation</p>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+
+        <!-- content section start -->
+        <section class="facility-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title mb-40">
+                            <span class="sub-title">Campus Services</span>
+                            <h2 class="title">University Hostel Facilities</h2>
+                        </div>
+
+                        @if (Model != null && !string.IsNullOrEmpty(Model.PageData))
+                        {
+                            <div class="content-box">
+                                <h4><i class="fas fa-home"></i> Hostel Information</h4>
+                                @Html.Raw(Model.PageData)
+                                @if (Model.UpdatedAt.HasValue || Model.CreatedAt != default(DateTime))
+                                {
+                                    <p class="mt-3"><small><em>Last Updated: @(Model.UpdatedAt?.ToString("MMM dd, yyyy") ?? Model.CreatedAt.ToString("MMM dd, yyyy"))</em></small></p>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="no-content">
+                                <i class="fas fa-info-circle" style="font-size: 48px; margin-bottom: 20px;"></i>
+                                <h3>No Hostel Information Available</h3>
+                                <p>Hostel information is currently being updated. Please contact the Student Affairs Office for current information.</p>
+                            </div>
+                        }
+
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- content section end -->
+    </main>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('#preloader').fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            }, 500);
+        });
+    </script>
+}

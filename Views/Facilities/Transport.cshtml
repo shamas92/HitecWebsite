@@ -1,164 +1,13 @@
+@model HitecCM.Models.tblTransport
 @{
-    ViewBag.Title = "Transport Facilities";
+    ViewBag.Title = !string.IsNullOrEmpty(Model?.Title) ? Model.Title : "Transport Facilities";
     
     // SEO Meta Tags
-    ViewBag.MetaDescription = "Learn about the transport facilities and shuttle services provided by HITEC University. View information about available routes, schedules, and transportation policies.";
+    ViewBag.MetaDescription = "Learn about the transport facilities and shuttle services provided by HITEC University.";
     ViewBag.MetaKeywords = "HITEC University, transport, shuttle service, bus routes, student transportation, campus commute";
 }
 
-@section Styles {
-    <style>
-        /* Transport Page Specific Styles */
-        .transport-section {
-            padding: 50px 0;
-        }
 
-        .route-card {
-            background: var(--color-white);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            margin-bottom: 30px;
-            padding: 25px;
-            border-left: 5px solid #1a4578;
-        }
-
-        .route-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-        }
-
-        .route-title {
-            font-family: var(--font-heading);
-            font-size: 22px;
-            font-weight: 600;
-            color: var(--color-heading);
-            margin-bottom: 15px;
-            line-height: 1.3;
-            display: flex;
-            align-items: center;
-        }
-
-        .route-title i {
-            color: #1a4578;
-            margin-right: 10px;
-            font-size: 24px;
-        }
-
-        .route-info {
-            color: var(--color-default);
-            line-height: 1.6;
-            font-size: 15px;
-            margin-bottom: 20px;
-        }
-
-        .route-actions {
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .route-link {
-            display: inline-flex;
-            align-items: center;
-            padding: 8px 15px;
-            background-color: #1a4578;
-            color: white;
-            border-radius: 5px;
-            font-size: 14px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .route-link:hover {
-            background-color: #0d2b4d;
-            transform: translateY(-2px);
-        }
-
-        .route-link i {
-            margin-right: 5px;
-        }
-
-        .transport-info-box {
-            background-color: #f5f7fa;
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 30px;
-            border-left: 4px solid #1a4578;
-        }
-
-        .transport-info-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--color-heading);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .transport-info-title i {
-            margin-right: 10px;
-            color: #1a4578;
-        }
-
-        .transport-fees {
-            margin-top: 40px;
-            padding: 30px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .transport-contact {
-            background-color: #1a4578;
-            color: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 40px;
-        }
-
-        .transport-contact h3 {
-            color: white;
-            font-size: 22px;
-            margin-bottom: 15px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .contact-item i {
-            margin-right: 10px;
-            font-size: 18px;
-        }
-
-        .transport-rules {
-            margin-top: 40px;
-        }
-
-        .rule-item {
-            display: flex;
-            margin-bottom: 10px;
-            align-items: flex-start;
-        }
-
-        .rule-number {
-            background-color: #1a4578;
-            color: white;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            margin-right: 10px;
-            flex-shrink: 0;
-        }
-    </style>
-}
 
 @section Meta {
     <meta name="description" content="@ViewBag.MetaDescription" />
@@ -169,238 +18,60 @@
 }
 
 <div class="body_wrap">
-    <!-- main area start  -->
     <main>
         <!-- breadcrumb start -->
         <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
             <div class="container">
                 <div class="breadcrumb__content text-center">
-                    <h1 class="breadcrumb__title mt-25" style="color: #000">Transport Facilities</h1>
-                    <p class="breadcrumb__desc mb-50" style="color: #000">Campus Commute Services</p>
+                    <h1 class="breadcrumb__title mt-25" style="color: #000">@ViewBag.Title</h1>
+                    <p class="breadcrumb__desc mb-50" style="color: #000">Campus Transport Services</p>
                 </div>
             </div>
         </section>
         <!-- breadcrumb end -->
 
-        <!-- transport section start -->
-        <section class="transport-section">
+        <!-- content section start -->
+        <section class="facility-content">
             <div class="container">
-                <div class="about-content mt-60">
-                    <div class="section-title mb-40">
-                        <span class="sub-title">Campus Services</span>
-                        <h2 class="title">University Transport Services</h2>
-                    </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title mb-40">
+                            <span class="sub-title">Campus Services</span>
+                            <h2 class="title">University Transport Services</h2>
+                        </div>
 
-                    <div class="transport-info-box">
-                        <div class="transport-info-title">
-                            <i class="fas fa-info-circle"></i> About Our Transport Service
-                        </div>
-                        <p>HITEC University provides convenient and reliable transport facilities for students, faculty, and staff members. Our fleet of modern buses operates on multiple routes covering major areas of Taxila, Wah Cantt, and neighboring regions. The transport service is designed to ensure safe and punctual commuting to and from the university campus.</p>
-                    </div>
+                        @if (Model != null && !string.IsNullOrEmpty(Model.PageData))
+                        {
+                            <div class="content-box">
+                                <h4><i class="fas fa-bus"></i> Transport Information</h4>
+                                @Html.Raw(Model.PageData)
+                                @if (Model.UpdatedAt.HasValue || Model.CreatedAt != default(DateTime))
+                                {
+                                    <p class="mt-3"><small><em>Last Updated: @(Model.UpdatedAt?.ToString("MMM dd, yyyy") ?? Model.CreatedAt.ToString("MMM dd, yyyy"))</em></small></p>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="no-content">
+                                <i class="fas fa-info-circle" style="font-size: 48px; margin-bottom: 20px;"></i>
+                                <h3>No Transport Information Available</h3>
+                                <p>Transport information is currently being updated. Please contact the Transport Office for current information.</p>
+                            </div>
+                        }
 
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="transport-info-box">
-                                <div class="transport-info-title">
-                                    <i class="fas fa-clock"></i> Operating Hours
-                                </div>
-                                <p>Our transport services operate according to the university academic schedule:</p>
-                                <ul>
-                                    <li><strong>Weekdays (Monday-Friday):</strong> 7:00 AM - 6:00 PM</li>
-                                    <li><strong>Weekend Classes (Saturday):</strong> 8:00 AM - 2:00 PM</li>
-                                    <li><strong>Special Events:</strong> As announced</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="transport-info-box">
-                                <div class="transport-info-title">
-                                    <i class="fas fa-hand-point-right"></i> Key Features
-                                </div>
-                                <ul>
-                                    <li>Modern, well-maintained fleet of buses</li>
-                                    <li>Professional and experienced drivers</li>
-                                    <li>GPS tracking for real-time bus location</li>
-                                    <li>Air-conditioned transport (select routes)</li>
-                                    <li>Female-only seating sections available</li>
-                                    <li>Flexible pick-up and drop-off points</li>
-                                </ul>
-                            </div>
-                        </div>
+                        
                     </div>
-
-                    <!-- Routes Section -->
-                    <div class="section-title mt-60 mb-40">
-                        <h3 class="title">Available Routes</h3>
-                    </div>
-
-                    <!-- Static sample route cards retained when no DB model is present -->
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="route-card">
-                                <h4 class="route-title">
-                                    <i class="fas fa-bus"></i> Taxila - University Route
-                                </h4>
-                                <div class="route-info">
-                                    <p>This route serves areas of Taxila city, including PMA Road, GT Road, and Margalla Town. Multiple pickup points are available along the route.</p>
-                                    <p><strong>Departure Times:</strong> 7:30 AM, 9:30 AM, 1:30 PM, 3:30 PM, 5:30 PM</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="route-card">
-                                <h4 class="route-title">
-                                    <i class="fas fa-bus"></i> Wah Cantt - University Route
-                                </h4>
-                                <div class="route-info">
-                                    <p>This route covers Wah Cantt areas including Mall Road, Lalarukh, Aslam Market, and Kashmir Road with designated pickup points.</p>
-                                    <p><strong>Departure Times:</strong> 7:00 AM, 9:00 AM, 1:00 PM, 3:00 PM, 5:00 PM</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="route-card">
-                                <h4 class="route-title">
-                                    <i class="fas fa-bus"></i> Rawalpindi Route
-                                </h4>
-                                <div class="route-info">
-                                    <p>This route connects Rawalpindi areas including Saddar, Committee Chowk, and Morgah with the university campus.</p>
-                                    <p><strong>Departure Times:</strong> 6:45 AM, 5:45 PM</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="route-card">
-                                <h4 class="route-title">
-                                    <i class="fas fa-bus"></i> Islamabad Route
-                                </h4>
-                                <div class="route-info">
-                                    <p>Limited service connecting key areas of Islamabad including G-sectors and H-sectors to the university campus.</p>
-                                    <p><strong>Departure Times:</strong> 6:30 AM, 6:00 PM</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Transport Fees -->
-                    <div class="transport-fees">
-                        <div class="section-title mb-30">
-                            <h3 class="title">Transport Fee Structure</h3>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Route</th>
-                                        <th>Distance Range</th>
-                                        <th>Fee per Semester</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Short Routes (Taxila)</td>
-                                        <td>0-10 km</td>
-                                        <td>PKR 12,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Medium Routes (Wah Cantt)</td>
-                                        <td>11-25 km</td>
-                                        <td>PKR 15,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Long Routes (Rawalpindi)</td>
-                                        <td>26-50 km</td>
-                                        <td>PKR 20,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Extended Routes (Islamabad)</td>
-                                        <td>Above 50 km</td>
-                                        <td>PKR 25,000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <p class="mt-3"><small><em>* Fees are subject to revision. Please confirm current rates from the Transport Office.</em></small></p>
-                    </div>
-
-                    <!-- Transport Rules -->
-                    <div class="transport-rules">
-                        <div class="section-title mb-30">
-                            <h3 class="title">Transport Rules & Regulations</h3>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="rule-item">
-                                    <div class="rule-number">1</div>
-                                    <div>Students must carry their university ID cards while using the transport facility.</div>
-                                </div>
-                                <div class="rule-item">
-                                    <div class="rule-number">2</div>
-                                    <div>Transport facility can only be used by registered students who have paid the transport fee.</div>
-                                </div>
-                                <div class="rule-item">
-                                    <div class="rule-number">3</div>
-                                    <div>Students should reach the pickup points 5 minutes before the scheduled departure time.</div>
-                                </div>
-                                <div class="rule-item">
-                                    <div class="rule-number">4</div>
-                                    <div>Buses will not wait for late-coming students under any circumstances.</div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="rule-item">
-                                    <div class="rule-number">5</div>
-                                    <div>Maintain discipline and respect for fellow passengers and transport staff.</div>
-                                </div>
-                                <div class="rule-item">
-                                    <div class="rule-number">6</div>
-                                    <div>Any damage to university transport will be charged to the responsible student(s).</div>
-                                </div>
-                                <div class="rule-item">
-                                    <div class="rule-number">7</div>
-                                    <div>Female students must occupy the designated female section of the bus.</div>
-                                </div>
-                                <div class="rule-item">
-                                    <div class="rule-number">8</div>
-                                    <div>Report any issues related to transport to the Transport Office immediately.</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Transport Contact -->
-                    <div class="transport-contact">
-                        <h3>Transport Office Contact</h3>
-                        <div class="contact-item">
-                            <i class="fas fa-phone-alt"></i>
-                            <span>051-9047851-60 (Ext. 321)</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>transport@hitecuni.edu.pk</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Transport Office, Admin Block, HITEC University, Taxila Cantt</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-clock"></i>
-                            <span>Office Hours: Monday to Friday (8:00 AM - 4:00 PM)</span>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>
-        <!-- transport section end -->
+        <!-- content section end -->
     </main>
-    <!-- main area end  -->
 </div>
 
 @section Scripts {
     <script>
         $(document).ready(function () {
-            // Force hide preloader
             setTimeout(function () {
                 $('#preloader').fadeOut('slow', function () {
                     $(this).remove();

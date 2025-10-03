@@ -92,6 +92,7 @@ namespace Website.Models
         public virtual DbSet<tblHostel> tblHostels { get; set; }
         public virtual DbSet<tblAcademicRegulation> tblAcademicRegulations { get; set; }
         public virtual DbSet<tblAcademicDeficiency> tblAcademicDeficiencies { get; set; }
+        public virtual DbSet<tblCafeteria> tblCafeterias { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

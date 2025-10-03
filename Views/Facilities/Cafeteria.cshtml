@@ -1,0 +1,143 @@
+@model HitecCM.Models.tblCafeteria
+@{
+    ViewBag.Title = !string.IsNullOrEmpty(Model?.Title) ? Model.Title : "Cafeteria Facilities";
+    
+    // SEO Meta Tags
+    ViewBag.MetaDescription = "Discover the cafeteria and dining facilities at HITEC University. Comprehensive food services, meal plans, and dining options available for students and staff.";
+    ViewBag.MetaKeywords = "HITEC University, cafeteria, dining, food services, meal plans, campus food, university dining, student meals";
+}
+
+@section Styles {
+    <style>
+        .cafeteria-content {
+            line-height: 1.6;
+        }
+        .cafeteria-content h3 {
+            color: #781921;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        .cafeteria-content h4 {
+            color: #781921;
+            margin: 25px 0 15px 0;
+            font-size: 20px;
+        }
+        .cafeteria-content ul {
+            margin-bottom: 20px;
+        }
+        .cafeteria-content ul li {
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+        .cafeteria-content .row {
+            margin-bottom: 25px;
+        }
+        .no-content {
+            text-align: center;
+            padding: 60px 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin: 40px 0;
+        }
+        .no-content i {
+            color: #781921;
+        }
+        .no-content h3 {
+            color: #333;
+            margin: 20px 0 15px 0;
+        }
+        .content-box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 30px 0;
+        }
+        .content-box h4 {
+            color: #781921;
+            border-bottom: 2px solid #781921;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+        .content-box h4 i {
+            margin-right: 10px;
+        }
+    </style>
+}
+
+@section Meta {
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta property="og:title" content="@ViewBag.Title - HITEC University" />
+    <meta property="og:description" content="@ViewBag.MetaDescription" />
+    <meta property="og:type" content="website" />
+}
+
+<div class="body_wrap">
+    <main>
+        <!-- breadcrumb start -->
+        <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
+            <div class="container">
+                <div class="breadcrumb__content text-center">
+                    <h1 class="breadcrumb__title mt-25" style="color: #000">@ViewBag.Title</h1>
+                    <p class="breadcrumb__desc mb-50" style="color: #000">Dining & Food Services</p>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+
+        <!-- content section start -->
+        <section class="facility-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title mb-40">
+                            <span class="sub-title">Campus Services</span>
+                            <h2 class="title">University Dining Services</h2>
+                        </div>
+
+                        @if (Model != null && !string.IsNullOrEmpty(Model.PageData))
+                        {
+                            <div class="content-box">
+                                <h4><i class="fas fa-utensils"></i> @Model.Title</h4>
+                                @Html.Raw(Model.PageData)
+                                @if (Model.UpdatedAt.HasValue)
+                                {
+                                    <p class="mt-3"><small><em>Last Updated: @Model.UpdatedAt.Value.ToString("MMM dd, yyyy")</em></small></p>
+                                }
+                                else if (Model.CreatedAt != default(DateTime))
+                                {
+                                    <p class="mt-3"><small><em>Created: @Model.CreatedAt.ToString("MMM dd, yyyy")</em></small></p>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="no-content">
+                                <i class="fas fa-info-circle" style="font-size: 48px; margin-bottom: 20px;"></i>
+                                <h3>No Cafeteria Information Available</h3>
+                                <p>Cafeteria information is currently being updated. Please contact the Cafeteria Management for current information.</p>
+                                <p><strong>For immediate assistance, please contact:</strong></p>
+                                <p>?? Phone: +92-51-5160666<br>
+                                   ?? Email: info@hitecuni.edu.pk</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- content section end -->
+    </main>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('#preloader').fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            }, 500);
+        });
+    </script>
+}
