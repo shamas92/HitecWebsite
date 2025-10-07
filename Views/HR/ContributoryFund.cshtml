@@ -1,0 +1,770 @@
+﻿@{
+    ViewBag.Title = "Contributory Fund";
+
+    // SEO Meta Tags
+    ViewBag.MetaDescription = "Comprehensive information about HITEC University's Contributory Fund including contributions, eligibility, entitlements, advances, and fund management for employee financial security.";
+    ViewBag.MetaKeywords = "HITEC University, contributory fund, employee savings, retirement benefits, university contribution, fund management, advances, financial security";
+}
+
+@section Styles {
+    <style>
+        /* Modern Contributory Fund Styles with Official Website Theme */
+        .fund-section {
+            padding: 60px 0;
+            background: #f8f6f0;
+        }
+
+        /* Hero Header */
+        .fund-hero {
+            background: linear-gradient(135deg, #002155 0%, #001a44 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 50px 40px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fund-hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: rgba(253, 183, 20, 0.1);
+            border-radius: 50%;
+        }
+
+        .fund-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .fund-hero p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .fund-hero .accent-line {
+            width: 80px;
+            height: 4px;
+            background: #fdb714;
+            margin: 20px 0;
+            border-radius: 2px;
+        }
+
+        .fund-hero .subtitle {
+            color: #fdb714;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin: 0;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            margin-top: 60px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: #170006;
+            margin-bottom: 15px;
+        }
+
+        .section-header .subtitle {
+            color: #002155;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .section-header .divider {
+            width: 60px;
+            height: 3px;
+            background: #fdb714;
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        /* Fund Cards - Matching TypesAndClassification Style */
+        .fund-card {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 35px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 33, 85, 0.1);
+            transition: all 0.4s ease;
+            display: none;
+        }
+
+        .fund-card:hover {
+            box-shadow: 0 12px 40px rgba(0, 33, 85, 0.18);
+            transform: translateY(-5px);
+        }
+
+        .fund-header {
+            background: linear-gradient(135deg, #002155 0%, #001a44 100%);
+            color: white;
+            padding: 30px 35px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .fund-badge {
+            width: 70px;
+            height: 70px;
+            background: #fdb714;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: #002155;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .fund-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            margin: 0;
+            color: white;
+        }
+
+        .fund-content {
+            padding: 35px;
+        }
+
+        .fund-content p {
+            color: #5c5c54;
+            line-height: 1.7;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .fund-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .fund-content ul li {
+            padding: 10px 0 10px 30px;
+            position: relative;
+            color: #170006;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .fund-content ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #fdb714;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .fund-highlight {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #002155;
+        }
+
+        .fund-highlight strong {
+            color: #002155;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .fund-highlight p {
+            margin: 0;
+            color: #170006;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Info Box Styles */
+        .info-box-wrapper {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 5px 25px rgba(0, 33, 85, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-box-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(253, 183, 20, 0.1) 0%, transparent 70%);
+        }
+
+        .info-box-wrapper h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #002155;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-box-wrapper h3 i {
+            color: #fdb714;
+            font-size: 36px;
+        }
+
+        .info-item {
+            padding: 15px 0 15px 35px;
+            position: relative;
+            color: #5c5c54;
+            font-size: 15px;
+            line-height: 1.7;
+            border-bottom: 1px solid #f8f6f0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-item::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #fdb714;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .info-item strong {
+            color: #002155;
+        }
+
+        /* Termination Box */
+        .termination-box {
+            background: linear-gradient(135deg, #002155 0%, #001a44 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .termination-box::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            left: -60px;
+            width: 250px;
+            height: 250px;
+            background: rgba(253, 183, 20, 0.08);
+            border-radius: 50%;
+        }
+
+        .termination-box h3 {
+            font-family: 'Playfair Display', serif;
+            color: #fdb714;
+            margin-bottom: 25px;
+            font-size: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .termination-box p, .termination-box ul li {
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.8;
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .termination-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .termination-box ul li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+        }
+
+        .termination-box ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #fdb714;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .termination-box ul li strong {
+            color: white;
+        }
+
+        /* Contact Section */
+        .hr-contact-box {
+            background: linear-gradient(135deg, #002155 0%, #001a44 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 50px;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hr-contact-box::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: rgba(253, 183, 20, 0.08);
+            border-radius: 50%;
+        }
+
+        .hr-contact-box h4 {
+            font-family: 'Playfair Display', serif;
+            color: #fdb714;
+            margin-bottom: 25px;
+            font-size: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hr-contact-box p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 18px 20px;
+            border-radius: 10px;
+            border-left: 4px solid #fdb714;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+
+        .contact-item i {
+            color: #fdb714;
+            font-size: 20px;
+            flex-shrink: 0;
+            width: 24px;
+        }
+
+        .contact-item span {
+            color: white;
+            font-size: 15px;
+        }
+
+        /* Responsive */
+        media (max-width: 768px) {
+            .fund-hero {
+                padding: 35px 25px;
+            }
+
+            .fund-hero h1 {
+                font-size: 32px;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+            }
+
+            .fund-header {
+                padding: 25px 20px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .fund-badge {
+                width: 60px;
+                height: 60px;
+                font-size: 28px;
+            }
+
+            .fund-title {
+                font-size: 22px;
+            }
+
+            .fund-content {
+                padding: 25px 20px;
+            }
+
+            .info-box-wrapper {
+                padding: 25px 20px;
+            }
+
+            .termination-box {
+                padding: 30px 25px;
+            }
+
+            .hr-contact-box {
+                padding: 35px 25px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+}
+
+@section Meta {
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta property="og:title" content="@ViewBag.Title - HITEC University" />
+    <meta property="og:description" content="@ViewBag.MetaDescription" />
+    <meta property="og:type" content="website" />
+}
+
+<div class="body_wrap">
+    <!-- main area start  -->
+    <main>
+        <!-- breadcrumb start -->
+        <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
+            <div class="container">
+                <div class="breadcrumb__content text-center">
+                    <h1 class="breadcrumb__title mt-25" style="color: #000">Contributory Fund</h1>
+                    <p class="breadcrumb__desc mb-50" style="color: #000">Human Resources Department</p>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+
+        <!-- fund section start -->
+        <section class="fund-section">
+            <div class="container">
+                <!-- Hero Header -->
+                <div class="fund-hero">
+                    <div class="subtitle">HUMAN RESOURCES</div>
+                    <div class="accent-line"></div>
+                    <h1>Contributory Fund</h1>
+                    <p>HITEC University's Contributory Fund scheme provides financial security and retirement benefits for confirmed employees. The fund operates through mutual contributions from both employees and the university, with benefits managed as per Financial Statutes to ensure long-term financial well-being of our valued employees.</p>
+                </div>
+
+                <!-- General & Eligibility -->
+                <div class="section-header">
+                    <span class="subtitle">FUND OVERVIEW</span>
+                    <h2>General Provisions & Eligibility</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="info-box-wrapper">
+                    <h3><i class="fas fa-info-circle"></i> General Provisions</h3>
+                    <div class="info-item">
+                        <strong>Confirmed employees shall contribute to Contributory Fund</strong> as laid down in Financial Statutes and shall be eligible for its benefits thereof.
+                    </div>
+                    <div class="info-item">
+                        <strong>Eligibility:</strong> All confirmed employees of HITEC University <strong>(excluding those working on visiting basis)</strong> are eligible for the membership of the Contributory Fund.
+                    </div>
+                </div>
+
+                <!-- Termination of Membership -->
+                <div class="termination-box">
+                    <h3><i class="fas fa-user-times"></i> Termination of Membership</h3>
+                    <p>Membership of Contributory Fund will be terminated under the following circumstances:</p>
+                    <ul>
+                        <li>An employee <strong>resigns from the service</strong></li>
+                        <li>Employee is <strong>dismissed from service</strong></li>
+                        <li>Employee's <strong>contract expires</strong></li>
+                        <li>Employee <strong>dies</strong> while in service</li>
+                    </ul>
+                </div>
+
+                <!-- Contributions -->
+                <div class="section-header">
+                    <span class="subtitle">CONTRIBUTION STRUCTURE</span>
+                    <h2>Members' & University Contribution</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <!-- Member Contribution Card -->
+                <div class="fund-card">
+                    <div class="fund-header">
+                        <div class="fund-badge">1</div>
+                        <h3 class="fund-title">Members' Contribution</h3>
+                    </div>
+                    <div class="fund-content">
+                        <p>All members are required to contribute a fixed percentage of their monthly salary to the Contributory Fund.</p>
+                        <ul>
+                            <li>All members shall be required to contribute <strong>5% of their salaries to the Fund each month</strong></li>
+                            <li><strong>Member's subscription will be deducted by the Treasurer Branch</strong> from their monthly salaries</li>
+                            <li><strong>Any changes in the contribution will be effective from the month of July</strong> of the year</li>
+                        </ul>
+                        <div class="fund-highlight">
+                            <strong>Monthly Contribution: 5% of Salary</strong>
+                            <p>Automatic deduction through payroll. Changes effective from July each year.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- University Contribution Card -->
+                <div class="fund-card">
+                    <div class="fund-header">
+                        <div class="fund-badge">2</div>
+                        <h3 class="fund-title">University Contribution</h3>
+                    </div>
+                    <div class="fund-content">
+                        <p>The University matches each member's contribution to support long-term financial security.</p>
+                        <div class="fund-highlight">
+                            <strong>University Matching: 5% of Salary</strong>
+                            <p>The University will contribute to the fund, for each contributing member, an amount equal to the total member's contribution each month.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fund Maintenance -->
+                <div class="section-header">
+                    <span class="subtitle">FUND MANAGEMENT</span>
+                    <h2>Maintenance of Contributory Fund Account</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="info-box-wrapper">
+                    <h3><i class="fas fa-university"></i> Fund Account Management</h3>
+                    <div class="info-item">
+                        <strong>Separate Bank Account:</strong> A separate Bank Account will be opened with a scheduled Bank for the Fund Contribution
+                    </div>
+                    <div class="info-item">
+                        <strong>Deposits:</strong> All amounts recovered from the members along with the University contribution will be placed in the Contributory Fund Account
+                    </div>
+                    <div class="info-item">
+                        <strong>Investment:</strong> The amount will be placed in most profitable manner periodically
+                    </div>
+                    <div class="info-item">
+                        <strong>Withdrawals:</strong> No sum shall be withdrawn from the account except for the payment to the member or the nominee of the member
+                    </div>
+                    <div class="info-item">
+                        <strong>Bank Charges:</strong> Bank Charges etc accrued will be paid from the account of Contributory Fund and the profit will be paid proportionately
+                    </div>
+                    <div class="info-item">
+                        <strong>Account Statement:</strong> Statement of account may be provided to the members at the end of the year if required
+                    </div>
+                    <div class="info-item">
+                        <strong>Islamic Banking Option:</strong> An option for investment in Islamic Banking will be available for the members
+                    </div>
+                </div>
+
+                <!-- Entitlement -->
+                <div class="section-header">
+                    <span class="subtitle">BENEFITS & ENTITLEMENT</span>
+                    <h2>Fund Entitlement</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <!-- Entitlement Card 1 -->
+                <div class="fund-card">
+                    <div class="fund-header">
+                        <div class="fund-badge">3</div>
+                        <h3 class="fund-title">Three Years Service Completion</h3>
+                    </div>
+                    <div class="fund-content">
+                        <p>Members who complete three years of service are entitled to full benefits.</p>
+                        <ul>
+                            <li>Members need to complete a <strong>minimum period of three years of service</strong> to get the benefit of University contribution towards Contributory Fund</li>
+                            <li>On completion of three years of service, member will be entitled to their <strong>full contribution with accrued profit on it</strong></li>
+                            <li><strong>Plus equal amount contributed by the University</strong></li>
+                        </ul>
+                        <div class="fund-highlight">
+                            <strong>Full Benefits After 3 Years</strong>
+                            <p>Member contribution + University contribution + accrued profit on both amounts.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entitlement Card 2 -->
+                <div class="fund-card">
+                    <div class="fund-header">
+                        <div class="fund-badge">4</div>
+                        <h3 class="fund-title">Less Than Three Years Service</h3>
+                    </div>
+                    <div class="fund-content">
+                        <p>Members with service less than three years receive partial benefits.</p>
+                        <div class="fund-highlight">
+                            <strong>Limited Benefits</strong>
+                            <p>Any member under 3 years of service shall be entitled to the amount contributed by them and the profit accrued on it (University contribution not included).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entitlement Card 3 -->
+                <div class="fund-card">
+                    <div class="fund-header">
+                        <div class="fund-badge">5</div>
+                        <h3 class="fund-title">Termination or Contract Expiry</h3>
+                    </div>
+                    <div class="fund-content">
+                        <p>In case of termination or contract expiry, limited benefits apply.</p>
+                        <ul>
+                            <li>Any member <strong>terminated from the service</strong> or whose <strong>contract is expired</strong>, at any time, shall be entitled to <strong>the amount contributed by the member only</strong></li>
+                            <li>In case of <strong>renewal of contract</strong> of a member, their <strong>membership shall continue as normal</strong></li>
+                            <li>When member's subscription is terminated and they <strong>owe any money to the University, that amount shall be deducted</strong> before final payment is made</li>
+                        </ul>
+                        <div class="fund-highlight">
+                            <strong>Member Contribution Only</strong>
+                            <p>No university contribution or profit included. Outstanding dues deducted from final payment.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advances -->
+                <div class="section-header">
+                    <span class="subtitle">FINANCIAL ASSISTANCE</span>
+                    <h2>Advances Against Contributory Fund</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="fund-card">
+                    <div class="fund-header">
+                        <div class="fund-badge">6</div>
+                        <h3 class="fund-title">Advance Facility</h3>
+                    </div>
+                    <div class="fund-content">
+                        <p>Members can obtain advances against their contributory fund contribution on special grounds.</p>
+                        <ul>
+                            <li>Advances against contributory Fund shall be <strong>sanctioned by the Vice Chancellor on special grounds</strong></li>
+                            <li>The advance shall <strong>not exceed 80% of the contribution of the member</strong></li>
+                            <li>The amount received as advance will be <strong>recovered with interest in not more than 24 equal installments</strong></li>
+                        </ul>
+                        <div class="fund-highlight">
+                            <strong>Maximum Advance: 80% of Member Contribution</strong>
+                            <p>Repayment with interest over maximum 24 months. Approval by Vice Chancellor required.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nomination Forms -->
+                <div class="section-header">
+                    <span class="subtitle">BENEFICIARY DESIGNATION</span>
+                    <h2>Nomination Forms</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="info-box-wrapper">
+                    <h3><i class="fas fa-file-signature"></i> Nominee Designation</h3>
+                    <div class="info-item">
+                        <strong>Nomination Form Submission:</strong> Every member shall submit a nomination form on the prescribed Proforma, indicating the person whom, in the event of death, the payment shall be made
+                    </div>
+                    <div class="info-item">
+                        <strong>Change of Nomination:</strong> The employee can change such nominations any time or replace by the fresh one
+                    </div>
+                </div>
+
+                <!-- Continuity of Scheme -->
+                <div class="termination-box">
+                    <h3><i class="fas fa-gavel"></i> Continuity of Scheme</h3>
+                    <p><strong>Continuation of the scheme depends upon the approval of Board.</strong> The Management has the right to modify these rules, any time with the approval of Board.</p>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="hr-contact-box">
+                    <h4><i class="fas fa-headset"></i> Contributory Fund Administration</h4>
+                    <p>For questions about contributory fund membership, contributions, entitlements, advances, or nomination forms, please contact the Finance Department:</p>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>finance@hitecuni.edu.pk</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>051-9047851-60 (Ext. 126)</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Finance Department, Admin Block, HITEC University</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Monday to Friday (8:30 AM - 4:30 PM)</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- fund section end -->
+    </main>
+    <!-- main area end  -->
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Force hide preloader
+            setTimeout(function () {
+                $('#preloader').fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            }, 500);
+
+            // Smooth animations
+            $('.fund-card').each(function(i) {
+                $(this).delay(100 * i).fadeIn(500);
+            });
+        });
+    </script>
+}

@@ -27,7 +27,74 @@ namespace Website.Controllers
             }
         }
 
-        // Other HR-related actions can be added here
-        // Like Policies, Benefits, etc.
+        // GET: HR/EligibilityRecruitment
+        public ActionResult EligibilityRecruitment()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in EligibilityRecruitment: {ex.Message}");
+                return View();
+            }
+        }
+
+        // GET: HR/PerksPrivileges
+        public ActionResult PerksPrivileges()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in PerksPrivileges: {ex.Message}");
+                return View();
+            }
+        }
+
+        // GET: HR/Leave
+        public ActionResult Leave()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Leave: {ex.Message}");
+                return View();
+            }
+        }
+
+        // GET: HR/ContributoryFund
+        public ActionResult ContributoryFund()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in ContributoryFund: {ex.Message}");
+                return View();
+            }
+        }
+
+        // GET: HR/ConductDiscipline
+        public ActionResult ConductDiscipline()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in ConductDiscipline: {ex.Message}");
+                return View();
+            }
+        }
     }
 }

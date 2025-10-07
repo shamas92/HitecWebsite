@@ -736,6 +736,11 @@
     <Content Include="Views\Facilities\Hostel.cshtml" />
     <Content Include="Views\Facilities\Sports.cshtml" />
     <Content Include="Views\Facilities\Cafeteria.cshtml" />
+    <Content Include="Views\HR\EligibilityRecruitment.cshtml" />
+    <Content Include="Views\HR\PerksPrivileges.cshtml" />
+    <Content Include="Views\HR\Leave.cshtml" />
+    <Content Include="Views\HR\ContributoryFund.cshtml" />
+    <Content Include="Views\HR\ConductDiscipline.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
