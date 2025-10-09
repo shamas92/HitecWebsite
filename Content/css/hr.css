@@ -1,0 +1,403 @@
+﻿/* HR shared stylesheet
+   Scope: Only included on HR views via section Styles in each view
+   Theme colors: navy #002155, deep navy #001a44, gold #fdb714, text dark #170006, muted #5c5c54, light bg #f8f6f0
+*/
+
+/* Breadcrumb text color for HR pages */
+.breadcrumb__content .breadcrumb__title,
+.breadcrumb__content .breadcrumb__desc { color: #000; }
+
+/* Common section wrapper backgrounds */
+.employment-section,
+.conduct-section,
+.leave-section,
+.perks-section,
+.eligibility-section,
+.fund-section { padding: 60px 0; background: #f8f6f0; }
+
+/* Hero containers */
+.classification-hero,
+.conduct-hero,
+.leave-hero,
+.perks-hero,
+.eligibility-hero,
+.fund-hero {
+  background: linear-gradient(135deg, #002155 0%, #001a44 100%);
+  color: #fff;
+  border-radius: 16px;
+  padding: 50px 40px;
+  margin-bottom: 50px;
+  position: relative;
+  overflow: hidden;
+}
+/* Unique decorative blobs for each hero */
+.classification-hero::before { content:''; position:absolute; top:-50%; right:-10%; width:500px; height:500px; background:rgba(253,183,20,.1); border-radius:50%; }
+.conduct-hero::after { content:''; position:absolute; top:50%; left:-10%; width:450px; height:450px; background:rgba(253,183,20,.1); border-radius:50%; transform:translateY(-50%); }
+.leave-hero::after { content:''; position:absolute; bottom:-20%; right:-5%; width:400px; height:400px; background:rgba(253,183,20,.1); border-radius:50%; }
+.perks-hero::before { content:''; position:absolute; top:50%; right:-10%; width:450px; height:450px; background:rgba(253,183,20,.1); border-radius:50%; transform:translateY(-50%); }
+.eligibility-hero::after { content:''; position:absolute; bottom:-30%; left:-5%; width:400px; height:400px; background:rgba(253,183,20,.08); border-radius:50%; }
+.fund-hero::before { content:''; position:absolute; top:-30%; left:-5%; width:400px; height:400px; background:rgba(253,183,20,.1); border-radius:50%; }
+
+/* Hero content */
+.classification-hero h1,
+.conduct-hero h1,
+.leave-hero h1,
+.perks-hero h1,
+.eligibility-hero h1,
+.fund-hero h1 { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; color: #fff; margin-bottom: 15px; position: relative; z-index: 1; }
+.classification-hero p,
+.conduct-hero p,
+.leave-hero p,
+.perks-hero p,
+.eligibility-hero p,
+.fund-hero p { font-size: 18px; color: rgba(255,255,255,0.9); margin: 0; position: relative; z-index: 1; max-width: 900px; }
+.classification-hero .accent-line,
+.conduct-hero .accent-line,
+.leave-hero .accent-line,
+.perks-hero .accent-line,
+.eligibility-hero .accent-line,
+.fund-hero .accent-line { width: 80px; height: 4px; background: #fdb714; margin: 20px 0; border-radius: 2px; }
+.classification-hero .subtitle,
+.conduct-hero .subtitle,
+.leave-hero .subtitle,
+.perks-hero .subtitle,
+.eligibility-hero .subtitle,
+.fund-hero .subtitle { color:#fdb714; font-size:14px; text-transform:uppercase; letter-spacing:2px; font-weight:600; margin:0; display:block; position:relative; z-index:1; }
+
+/* Section headers */
+.section-header { text-align:center; margin-bottom:50px; margin-top:60px; }
+.section-header h2 { font-family:'Playfair Display',serif; font-size:38px; font-weight:700; color:#170006; margin-bottom:15px; }
+.section-header .subtitle { color:#002155; font-size:14px; text-transform:uppercase; letter-spacing:2px; font-weight:600; margin-bottom:10px; display:block; }
+.section-header .divider { width:60px; height:3px; background:#fdb714; margin:20px auto; border-radius:2px; }
+.section-header p { color:#5c5c54; font-size:16px; max-width: 800px; margin: 15px auto 0; line-height:1.7; }
+
+/* Generic card containers (white panels) */
+.group-card,
+.conduct-card,
+.leave-card,
+.benefit-card,
+.fund-card,
+.selection-board,
+.welfare-fund-card,
+.rewards-table-wrapper,
+.general-provisions,
+.rules-box,
+.breach-box,
+.info-box-wrapper { background:#fff; border-radius:16px; box-shadow:0 5px 25px rgba(0,33,85,.1); overflow:hidden; }
+.group-card,
+.conduct-card,
+.leave-card,
+.benefit-card,
+.fund-card { margin-bottom:35px; transition:all .4s ease; }
+.group-card:hover,
+.conduct-card:hover,
+.leave-card:hover,
+.benefit-card:hover,
+.fund-card:hover { box-shadow:0 12px 40px rgba(0,33,85,.18); transform: translateY(-5px); }
+/* Special case: fund cards initially hidden to reveal via jQuery fadeIn as in original */
+.fund-card { display:none; }
+/* Info Box + General Provisions (shared styles) */
+.info-box-wrapper,
+.general-provisions {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px;
+  margin: 40px 0;
+  box-shadow: 0 5px 25px rgba(0, 33, 85, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+.info-box-wrapper::before,
+.general-provisions::before { content: ''; position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(253, 183, 20, 0.1) 0%, transparent 70%); }
+.info-box-wrapper h3,
+.general-provisions h3 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #002155; margin-bottom: 25px; display: flex; align-items: center; gap: 15px; position: relative; z-index: 1; }
+.info-box-wrapper h3 i,
+.general-provisions h3 i { color: #fdb714; font-size: 36px; }
+
+.provision-item { padding: 15px 0 15px 35px; position: relative; color: #5c5c54; font-size: 15px; line-height: 1.7; border-bottom: 1px solid #f8f6f0; z-index: 1; }
+.provision-item:last-child { border-bottom: none; }
+.provision-item::before { content: '▸'; position: absolute; left: 0; color: #fdb714; font-weight: 700; font-size: 20px; }
+.provision-item strong { color: #002155; }
+/* Highlight panels (shared styles) */
+.leave-highlight,
+.benefit-highlight,
+.fund-highlight,
+.conduct-highlight { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 4px solid #002155; }
+.leave-highlight strong,
+.benefit-highlight strong,
+.fund-highlight strong,
+.conduct-highlight strong { color: #002155; font-size: 18px; display: block; margin-bottom: 8px; }
+.leave-highlight p,
+.benefit-highlight p,
+.fund-highlight p,
+.conduct-highlight p { margin: 0; color: #170006; font-size: 14px; line-height: 1.6; }
+/* Gradient headers for cards */
+.group-header,
+.conduct-header,
+.leave-header,
+.benefit-header,
+.fund-header { background: linear-gradient(135deg, #002155 0%, #001a44 100%); color:#fff; padding:30px 35px; display:flex; align-items:center; gap:20px; }
+/* Round badges */
+.group-badge,
+.conduct-badge,
+.leave-badge,
+.benefit-badge,
+.fund-badge { width:70px; height:70px; background:#fdb714; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:32px; font-weight:700; color:#002155; flex-shrink:0; box-shadow:0 4px 15px rgba(0,0,0,.2); }
+/* Title styles inside headers */
+.group-title,
+.conduct-title,
+.leave-title,
+.benefit-title,
+.fund-title { font-family:'Playfair Display',serif; font-size:28px; font-weight:600; margin:0; color:#fff; }
+/* Card content padding and text styles */
+.group-content,
+.conduct-content,
+.leave-content,
+.benefit-content,
+.fund-content { padding:35px; }
+.conduct-content p,
+.leave-content p,
+.fund-content p,
+.benefit-content p { color:#5c5c54; line-height:1.7; font-size:15px; }
+.conduct-content ul,
+.leave-content ul,
+.fund-content ul,
+.benefit-content ul { list-style:none; padding:0; margin:0; }
+.conduct-content ul li,
+.leave-content ul li,
+.fund-content ul li,
+.benefit-content ul li { padding:10px 0 10px 30px; position:relative; color:#170006; font-size:15px; line-height:1.6; }
+.conduct-content ul li::before,
+.leave-content ul li::before,
+.fund-content ul li::before,
+.benefit-content ul li::before { content:'✓'; position:absolute; left:0; color:#fdb714; font-weight:700; font-size:18px; }
+/* Appointment cards */
+.appointment-section { margin:50px 0; }
+.appointment-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap:30px; margin:40px 0; }
+.appointment-card { background:#fff; border-radius:12px; padding:35px; box-shadow:0 4px 20px rgba(0,33,85,.08); transition: all .4s cubic-bezier(.4,0,.2,1); position:relative; overflow:hidden; }
+.appointment-card::before { content:''; position:absolute; top:0; left:0; width:5px; height:100%; background:linear-gradient(180deg,#fdb714 0%, #e5a512 100%); transform:scaleY(0); transform-origin:bottom; transition: transform .4s ease; }
+.appointment-card:hover { transform: translateY(-8px); box-shadow:0 12px 35px rgba(0,33,85,.15); }
+.appointment-card:hover::before { transform: scaleY(1); }
+.appointment-card .card-icon { width:60px; height:60px; background: linear-gradient(135deg,#fdb714 0%, #e5a512 100%); border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:25px; transition: all .3s ease; }
+.appointment-card:hover .card-icon { transform: rotate(-5deg) scale(1.1); }
+.appointment-card .card-icon i { font-size:28px; color:#002155; }
+.appointment-card h4 { font-family:'Playfair Display',serif; font-size:24px; font-weight:600; color:#170006; margin-bottom:15px; }
+.appointment-card p { color:#5c5c54; line-height:1.7; font-size:15px; margin:0; }
+/* Position grid */
+.position-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap:15px; }
+.position-item { padding:15px 20px 15px 30px; background:#f8f6f0; border-radius:8px; color:#170006; font-size:15px; font-weight:500; transition: all .3s ease; border-left:3px solid transparent; position:relative; }
+.position-item::before { content:'>'; color:#fdb714; font-size:20px; position:absolute; left:12px; top:50%; transform: translateY(-50%); }
+.position-item:hover { background:#fff; border-left-color:#fdb714; transform: translateX(5px); box-shadow:0 3px 10px rgba(0,33,85,.1); }
+/* Highlight info panels */
+.info-highlight { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius:12px; padding:30px; margin:40px 0; border-left:5px solid #002155; }
+.info-highlight h5, .info-highlight h4 { color:#002155; font-family:'Playfair Display',serif; font-weight:600; margin-bottom:15px; font-size:22px; display:flex; align-items:center; }
+.info-highlight h5 i, .info-highlight h4 i { color:#002155; margin-right:12px; font-size:24px; }
+.info-highlight p { color:#170006; margin:0; line-height:1.8; font-size:15px; }
+/* Important note box */
+.important-note { background:#fff; border:2px solid #002155; border-radius:12px; padding:35px; margin:50px 0; position:relative; }
+.important-note::before { content:''; position:absolute; top:-2px; left:-2px; right:-2px; bottom:-2px; background:linear-gradient(135deg,#fdb714 0%, #002155 100%); border-radius:12px; z-index:-1; opacity:.1; }
+.important-note h5 { color:#002155; font-family:'Playfair Display',serif; font-weight:600; margin-bottom:20px; font-size:24px; display:flex; align-items:center; }
+.important-note h5 i { background:#fdb714; color:#002155; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-right:15px; flex-shrink:0; }
+.important-note p { color:#170006; line-height:1.8; font-size:16px; margin:0; }
+/* Contact sections (supports both hr-contact and hr-contact-box) */
+.hr-contact, .hr-contact-box { background: linear-gradient(135deg, #002155 0%, #001a44 100%); color:#fff; border-radius:16px; padding:50px; margin-top:60px; position:relative; overflow:hidden; }
+.hr-contact::before, .hr-contact-box::before { content:''; position:absolute; top:-100px; right:-100px; width:300px; height:300px; background: rgba(253,183,20,.1); border-radius:50%; }
+.hr-contact h4, .hr-contact-box h4 { font-family:'Playfair Display',serif; color:#fdb714; margin-bottom:25px; font-size:32px; position:relative; z-index:1; }
+.hr-contact p, .hr-contact-box p { color: rgba(255,255,255,.9); font-size:16px; line-height:1.7; margin-bottom:30px; position:relative; z-index:1; }
+.contact-details, .contact-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:25px; position:relative; z-index:1; }
+.contact-item { background: rgba(255,255,255,0.1); padding: 18px 20px; border-radius:10px; border-left:4px solid #fdb714; transition: all .3s ease; display:flex; align-items:center; gap:12px; }
+.contact-item:hover { background: rgba(255,255,255,0.15); transform: translateX(5px); }
+.contact-item i { color:#fdb714; font-size:20px; flex-shrink:0; width:24px; }
+.contact-item span { color:#fff; font-size:15px; }
+/* Rules and breach boxes */
+.rules-box, .breach-box { padding:40px; margin:40px 0; position:relative; overflow:hidden; }
+.rules-box::before { content:''; position:absolute; top:-50px; right:-50px; width:200px; height:200px; background: radial-gradient(circle, rgba(253,183,20,.1) 0%, transparent 70%); }
+.rules-box h3, .breach-box h3 { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#002155; margin-bottom:25px; display:flex; align-items:center; gap:15px; position:relative; z-index:1; }
+.rules-box h3 i, .breach-box h3 i { color:#fdb714; font-size:36px; }
+.rules-box p { color:#5c5c54; font-size:16px; line-height:1.8; margin-bottom:15px; position:relative; z-index:1; }
+.breach-item { padding:15px 0 15px 35px; position:relative; color:#5c5c54; font-size:15px; line-height:1.7; border-bottom:1px solid #f8f6f0; position:relative; z-index:1; }
+.breach-item:last-child { border-bottom:none; }
+.breach-item::before { content:'▸'; position:absolute; left:0; color:#fdb714; font-weight:700; font-size:20px; }
+.breach-item strong { color:#002155; }
+/* Inquiry / timeline steps */
+.inquiry-timeline, .process-timeline { padding:30px 0; }
+.inquiry-step, .timeline-item { display:flex; gap:25px; margin-bottom:30px; position:relative; }
+.inquiry-step:not(:last-child)::after { content:''; position:absolute; left:35px; top:70px; width:3px; height:calc(100% - 40px); background: linear-gradient(180deg, #fdb714 0%, rgba(253,183,20,.3) 100%); }
+.timeline-item:not(:last-child) .timeline-number::after { content:''; position:absolute; top:70px; left:50%; transform:translateX(-50%); width:3px; height:60px; background: linear-gradient(180deg, #fdb714 0%, rgba(253,183,20,.3) 100%); }
+.inquiry-number, .timeline-number { width:70px; height:70px; background: linear-gradient(135deg, #fdb714 0%, #e5a512 100%); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:700; color:#002155; flex-shrink:0; box-shadow:0 4px 15px rgba(253,183,20,.3); position:relative; z-index:2; }
+.inquiry-content, .timeline-content { flex:1; background:#fff; padding:25px 30px; border-radius:12px; box-shadow:0 3px 15px rgba(0,33,85,.08); transition: all .3s ease; }
+.inquiry-content:hover, .timeline-content:hover { box-shadow:0 8px 25px rgba(0,33,85,.12); transform: translateX(5px); }
+.inquiry-content h4, .timeline-content h4 { font-family:'Playfair Display',serif; font-size:22px; font-weight:600; color:#002155; margin-bottom:12px; }
+.inquiry-content p, .timeline-content p { color:#5c5c54; line-height:1.7; font-size:15px; margin:0; }
+/* Gradient callouts (authority/penalties/termination/emergency) */
+.authority-box,
+.penalties-box,
+.termination-box,
+.emergency-benefits { background: linear-gradient(135deg, #002155 0%, #001a44 100%); color:#fff; border-radius:16px; padding:40px; margin:50px 0; position:relative; overflow:hidden; }
+.authority-box::after { content:''; position:absolute; top:-60px; left:-60px; width:250px; height:250px; background: rgba(253,183,20,.08); border-radius:50%; }
+.penalties-box::after { content:''; position:absolute; top:-60px; right:-60px; width:250px; height:250px; background: rgba(253,183,20,.08); border-radius:50%; }
+.emergency-benefits::after { content:''; position:absolute; bottom:-60px; right:-60px; width:250px; height:250px; background: rgba(253,183,20,.08); border-radius:50%; }
+.termination-box::after { content:''; position:absolute; bottom:-60px; left:-60px; width:250px; height:250px; background: rgba(253,183,20,.08); border-radius:50%; }
+.penalties-box h3, .authority-box h3, .termination-box h3, .emergency-benefits h3 { font-family:'Playfair Display',serif; color:#fdb714; margin-bottom:25px; font-size:32px; position:relative; z-index:1; }
+.penalties-box h4 { color:#fdb714; font-size:22px; margin:25px 0 15px 0; position:relative; z-index:1; }
+.penalties-box p,
+.penalties-box ul li,
+.authority-box p,
+.authority-box ul li,
+.termination-box p,
+.termination-box ul li,
+.emergency-benefits p,
+.emergency-benefits ul li { color: rgba(255,255,255,.95); line-height:1.8; font-size:16px; position:relative; z-index:1; }
+.penalties-box ul,
+.authority-box ul,
+.termination-box ul,
+.emergency-benefits ul { list-style:none; padding:0; margin:20px 0 0 0; position:relative; z-index:1; }
+.penalties-box ul li,
+.authority-box ul li,
+.termination-box ul li,
+.emergency-benefits ul li { padding:12px 0 12px 35px; position:relative; }
+.penalties-box ul li::before,
+.authority-box ul li::before,
+.termination-box ul li::before,
+.emergency-benefits ul li::before { content:'✓'; position:absolute; left:0; color:#fdb714; font-weight:700; font-size:20px; }
+.authority-box ul li strong, .emergency-benefits ul li strong { color:#fff; }
+/* Rewards table (Perks page) */
+.rewards-table-wrapper { padding:40px; margin:40px 0; }
+.rewards-table-wrapper h3 { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#002155; margin-bottom:30px; display:flex; align-items:center; gap:15px; }
+.rewards-table-wrapper h3 i { color:#fdb714; font-size:36px; }
+.rewards-section { margin-bottom:40px; }
+.rewards-section:last-child { margin-bottom:0; }
+.rewards-section h4 { color:#002155; font-family:'Playfair Display',serif; font-size:24px; margin-bottom:20px; padding-bottom:10px; border-bottom:2px solid #f8f6f0; }
+.rewards-table { width:100%; }
+.rewards-table tbody tr { border-bottom:2px solid #f8f6f0; transition: all .3s ease; }
+.rewards-table tbody tr:hover { background:#f8f6f0; }
+.rewards-table tbody tr:last-child { border-bottom:none; }
+.rewards-table td { padding:20px 15px; vertical-align: middle; }
+.rewards-table td:first-child { width:60%; }
+.reward-item { display:flex; align-items:center; gap:15px; }
+.reward-icon { width:50px; height:50px; background:#002155; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.reward-icon i { color:#fdb714; font-size:22px; }
+.reward-details h5 { margin:0 0 5px 0; color:#002155; font-weight:600; font-size:18px; }
+.reward-details p { margin:0; color:#5c5c54; font-size:14px; }
+.reward-amount { text-align:right; }
+.reward-amount .amount { font-size:28px; font-weight:700; color:#fdb714; display:block; line-height:1.2; }
+.reward-amount .currency { font-size:14px; color:#5c5c54; display:block; margin-top:5px; }
+/* Welfare fund */
+.welfare-fund-card { padding:40px; margin:40px 0; position:relative; overflow:hidden; }
+.welfare-fund-card::before { content:''; position:absolute; top:-50px; left:-50px; width:200px; height:200px; background: radial-gradient(circle, rgba(253,183,20,.1) 0%, transparent 70%); }
+.contribution-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:25px; margin-top:30px; position:relative; z-index:1; }
+.contribution-item { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); padding:25px; border-radius:12px; border-left:5px solid #002155; transition: all .3s ease; }
+.contribution-item:hover { transform: translateX(5px); box-shadow:0 5px 15px rgba(0,33,85,.15); }
+.contribution-item h5 { color:#002155; font-weight:600; margin-bottom:12px; font-size:18px; }
+.contribution-item .amount { font-size:32px; font-weight:700; color:#fdb714; display:block; margin:10px 0; }
+.contribution-item p { margin:0; color:#170006; font-size:14px; }
+.fund-uses { background:#f8f6f0; padding:25px; border-radius:10px; margin-top:30px; position:relative; z-index:1; }
+.fund-uses h5 { color:#002155; font-weight:600; margin-bottom:15px; font-size:20px; }
+.fund-uses ul { list-style:none; padding:0; margin:0; }
+.fund-uses ul li { padding:10px 0 10px 30px; position:relative; color:#170006; font-size:15px; line-height:1.6; }
+.fund-uses ul li::before { content:'▸'; position:absolute; left:0; color:#fdb714; font-weight:700; font-size:18px; }
+/* Eligibility page cards */
+.eligibility-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:30px; margin:40px 0; }
+.eligibility-card { background:#fff; border-radius:12px; padding:30px; box-shadow:0 4px 20px rgba(0,33,85,.08); transition: all .4s cubic-bezier(.4,0,.2,1); position:relative; border-top:4px solid #002155; }
+.eligibility-card:hover { transform: translateY(-8px); box-shadow:0 12px 35px rgba(0,33,85,.15); }
+.eligibility-card .card-header { display:flex; align-items:center; gap:15px; margin-bottom:20px; }
+.eligibility-card .icon-wrapper { width:55px; height:55px; background: linear-gradient(135deg, #002155 0%, #001a44 100%); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.eligibility-card .icon-wrapper i { font-size:26px; color:#fdb714; }
+.eligibility-card h4 { font-family:'Playfair Display',serif; font-size:22px; font-weight:600; color:#170006; margin:0; }
+.eligibility-card p { color:#5c5c54; line-height:1.7; font-size:15px; margin:0 0 15px 0; }
+.eligibility-card ul { list-style:none; padding:0; margin:0; }
+.eligibility-card ul li { padding:10px 0 10px 30px; position:relative; color:#170006; font-size:15px; line-height:1.6; }
+.eligibility-card ul li::before { content:'✓'; position:absolute; left:0; color:#fdb714; font-weight:700; font-size:18px; }
+/* Selection board */
+.selection-board { padding:40px; margin:50px 0; position:relative; overflow:hidden; }
+.selection-board::before { content:''; position:absolute; top:0; right:0; width:200px; height:200px; background: radial-gradient(circle, rgba(253,183,20,.1) 0%, transparent 70%); }
+.selection-board h3 { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#002155; margin-bottom:25px; display:flex; align-items:center; gap:15px; }
+.selection-board h3 i { color:#fdb714; font-size:36px; }
+.board-members { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:20px; margin:30px 0; }
+.member-item { background:#f8f6f0; padding:18px 20px 18px 50px; border-radius:10px; position:relative; transition: all .3s ease; border-left:4px solid #fdb714; }
+.member-item:hover { background:#fff; transform: translateX(5px); box-shadow:0 3px 12px rgba(0,33,85,.1); }
+.member-item::before { content:'▸'; position:absolute; left:20px; color:#002155; font-size:18px; font-weight:700; }
+.member-item p { margin:0; color:#170006; font-size:15px; font-weight:500; }
+.board-details { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:25px; margin-top:30px; }
+.detail-box { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); padding:20px; border-radius:10px; border-left:4px solid #002155; }
+.detail-box h5 { color:#002155; font-weight:600; margin-bottom:10px; font-size:18px; }
+.detail-box p { color:#170006; margin:0; font-size:14px; line-height:1.6; }
+/* Alerts and steps */
+.alert-box { background:#fff; border:2px solid #fdb714; border-radius:12px; padding:30px; margin:40px 0; position:relative; }
+.alert-box::before { content:''; position:absolute; top:-2px; left:-2px; right:-2px; bottom:-2px; background: linear-gradient(135deg, #fdb714 0%, #002155 100%); border-radius:12px; z-index:-1; opacity:.1; }
+.alert-box h5 { color:#002155; font-family:'Playfair Display',serif; font-weight:600; margin-bottom:15px; font-size:22px; display:flex; align-items:center; gap:12px; }
+.alert-box h5 i { background:#fdb714; color:#002155; width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.alert-box p, .alert-box ul { color:#170006; line-height:1.8; font-size:15px; }
+.alert-box ul { margin:15px 0 0 0; padding-left:25px; }
+.alert-box ul li { margin:8px 0; }
+.process-steps { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:25px; margin:40px 0; }
+.step-card { background:#fff; border-radius:12px; padding:30px; box-shadow:0 4px 15px rgba(0,33,85,.08); position:relative; transition: all .3s ease; border-bottom:4px solid transparent; }
+.step-card:nth-child(1) { border-bottom-color:#e74c3c; }
+.step-card:nth-child(2) { border-bottom-color:#f39c12; }
+.step-card:nth-child(3) { border-bottom-color:#27ae60; }
+.step-card:nth-child(4) { border-bottom-color:#3498db; }
+.step-card:nth-child(5) { border-bottom-color:#9b59b6; }
+.step-card:nth-child(6) { border-bottom-color:#1abc9c; }
+.step-card:hover { transform: translateY(-5px); box-shadow:0 10px 30px rgba(0,33,85,.15); }
+.step-card .step-number { position:absolute; top:-15px; right:20px; width:35px; height:35px; background:#fdb714; color:#002155; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:16px; box-shadow:0 3px 10px rgba(0,0,0,.2); }
+.step-card h5 { color:#002155; font-family:'Playfair Display',serif; font-weight:600; font-size:20px; margin-bottom:12px; }
+.step-card p { color:#5c5c54; font-size:14px; line-height:1.7; margin:0; }
+/* Info list items (generic) */
+.info-item { padding:15px 0 15px 35px; position:relative; color:#5c5c54; font-size:15px; line-height:1.7; border-bottom:1px solid #f8f6f0; position:relative; z-index:1; }
+.info-item:last-child { border-bottom:none; }
+.info-item::before { content:'▸'; position:absolute; left:0; color:#fdb714; font-weight:700; font-size:20px; }
+.info-item strong { color:#002155; }
+/* Responsive */
+@media (max-width: 768px) {
+  .classification-hero,
+  .conduct-hero,
+  .leave-hero,
+  .perks-hero,
+  .eligibility-hero,
+  .fund-hero { padding:35px 25px; }
+  .classification-hero h1,
+  .conduct-hero h1,
+  .leave-hero h1,
+  .perks-hero h1,
+  .eligibility-hero h1,
+  .fund-hero h1 { font-size:32px; }
+  .section-header h2 { font-size:28px; }
+  .appointment-grid { grid-template-columns: 1fr; }
+  .group-header,
+  .conduct-header,
+  .leave-header,
+  .benefit-header,
+  .fund-header { padding:25px 20px; flex-direction:column; text-align:center; }
+  .group-badge,
+  .conduct-badge,
+  .leave-badge,
+  .benefit-badge,
+  .fund-badge { width:60px; height:60px; font-size:28px; }
+  .group-title,
+  .conduct-title,
+  .leave-title,
+  .benefit-title,
+  .fund-title { font-size:22px; }
+  .group-content,
+  .conduct-content,
+  .leave-content,
+  .benefit-content,
+  .fund-content { padding:25px 20px; }
+  .position-grid { grid-template-columns: 1fr; }
+  .rules-box,
+  .breach-box,
+  .general-provisions,
+  .selection-board,
+  .rewards-table-wrapper,
+  .welfare-fund-card,
+  .authority-box,
+  .penalties-box,
+  .termination-box,
+  .emergency-benefits { padding:25px 20px; }
+  .inquiry-step, .timeline-item { flex-direction:column; }
+  .inquiry-step:not(:last-child)::after, .timeline-item:not(:last-child) .timeline-number::after { display:none; }
+  .hr-contact, .hr-contact-box { padding:35px 25px; }
+  .contact-details, .contact-grid { grid-template-columns: 1fr; }
+  .rewards-table td { display:block; width:100% !important; }
+  .reward-amount { text-align:left; margin-top:10px; }
+}

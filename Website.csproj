@@ -250,6 +250,7 @@
     <Content Include="Content\css\faculty-components.css" />
     <Content Include="Content\css\faculty-sidebar.css" />
     <Content Include="Content\css\fontawesome.css" />
+    <Content Include="Content\css\hr.css" />
     <Content Include="Content\css\image-crop.css" />
     <Content Include="Content\css\magnific-popup.css" />
     <Content Include="Content\css\main.css" />
