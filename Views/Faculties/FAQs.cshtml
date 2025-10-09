@@ -1,4 +1,4 @@
-@model List<Website.Models.tblDepartmentFAQ>
+@model List<Website.Models.tblFAQ>
 @{
     ViewBag.Title = "FAQs";
     var department = ViewBag.Department as Website.Models.tblDepartment;
@@ -16,105 +16,21 @@
     <link href="~/Content/css/faculty-components.css" rel="stylesheet" />
     <link href="~/Content/css/faculty-sidebar.css" rel="stylesheet" />
     <style>
-        .faq-accordion {
-            margin-top: 40px;
-        }
-
-        .faq-item {
-            background: var(--color-white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .faq-item:hover {
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        }
-
-        .faq-question {
-            padding: 20px 25px;
-            background: var(--color-white);
-            border: none;
-            width: 100%;
-            text-align: left;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--color-heading);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .faq-question:hover {
-            background: var(--color-sec-bg);
-        }
-
-        .faq-question.active {
-            background: var(--color-primary);
-            color: var(--color-white);
-        }
-
-        .faq-icon {
-            font-size: 14px;
-            transition: transform 0.3s ease;
-        }
-
-        .faq-question.active .faq-icon {
-            transform: rotate(180deg);
-        }
-
-        .faq-answer {
-            padding: 0 25px;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            background: var(--color-white);
-        }
-
-        .faq-answer.active {
-            padding: 20px 25px;
-            max-height: 1000px;
-        }
-
-        .faq-answer-content {
-            color: var(--color-default);
-            line-height: 1.6;
-            font-size: 15px;
-        }
-
-        .faq-search {
-            margin-bottom: 30px;
-        }
-
-        .faq-search input {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            font-size: 16px;
-            font-family: var(--font-body);
-            transition: border-color 0.3s ease;
-        }
-
-        .faq-search input:focus {
-            outline: none;
-            border-color: var(--color-primary);
-        }
-
-        media (max-width: 768px) {
-            .faq-question {
-                padding: 15px 20px;
-                font-size: 15px;
-            }
-
-            .faq-answer.active {
-                padding: 15px 20px;
-            }
-        }
+        .faq-accordion { margin-top: 40px; }
+        .faq-item { background: var(--color-white); border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); margin-bottom: 15px; overflow: hidden; transition: all 0.3s ease; }
+        .faq-item:hover { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); }
+        .faq-question { padding: 20px 25px; background: var(--color-white); border: none; width: 100%; text-align: left; font-size: 16px; font-weight: 600; color: var(--color-heading); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
+        .faq-question:hover { background: var(--color-sec-bg); }
+        .faq-question.active { background: var(--color-primary); color: var(--color-white); }
+        .faq-icon { font-size: 14px; transition: transform 0.3s ease; }
+        .faq-question.active .faq-icon { transform: rotate(180deg); }
+        .faq-answer { padding: 0 25px; max-height: 0; overflow: hidden; transition: all 0.3s ease; background: var(--color-white); }
+        .faq-answer.active { padding: 20px 25px; max-height: 1000px; }
+        .faq-answer-content { color: var(--color-default); line-height: 1.6; font-size: 15px; }
+        .faq-search { margin-bottom: 30px; }
+        .faq-search input { width: 100%; padding: 15px 20px; border: 2px solid rgba(0, 0, 0, 0.1); border-radius: 10px; font-size: 16px; font-family: var(--font-body); transition: border-color 0.3s ease; }
+        .faq-search input:focus { outline: none; border-color: var(--color-primary); }
+        media (max-width: 768px) { .faq-question { padding: 15px 20px; font-size: 15px; } .faq-answer.active { padding: 15px 20px; } }
     </style>
 }
 
@@ -133,24 +49,10 @@
                 <div class="container">
                     <div class="breadcrumb__content text-center">
                         <h1 class="breadcrumb__title mt-25" style="color: #000">
-                            @if (department != null)
-                            {
-                                @($"FAQs - {department.Title}")
-                            }
-                            else
-                            {
-                                @("FAQs")
-                            }
+                            @(department != null ? $"FAQs - {department.Title}" : "FAQs")
                         </h1>
                         <p class="breadcrumb__desc mb-50" style="color: #000">
-                            @if (department != null)
-                            {
-                                @($"{department.Code} Department Frequently Asked Questions")
-                            }
-                            else
-                            {
-                                @("Frequently Asked Questions")
-                            }
+                            @(department != null ? $"{department.Code} Department Frequently Asked Questions" : "Frequently Asked Questions")
                         </p>
                     </div>
                 </div>
@@ -163,26 +65,14 @@
                             <div class="about-content mt-60">
                                 <div class="section-title mb-40">
                                     <span class="sub-title">Information</span>
-                                    <h2 class="title">
-                                        @if (department != null)
-                                        {
-                                            @($"{department.Title} FAQs")
-                                        }
-                                        else
-                                        {
-                                            @("Frequently Asked Questions")
-                                        }
-                                    </h2>
+                                    <h2 class="title">@(department != null ? $"{department.Title} FAQs" : "Frequently Asked Questions")</h2>
                                 </div>
 
-                                @if (department != null)
-                                {
-                                    <p>Find answers to commonly asked questions about the @department.Title department, our programs, admission requirements, and other important information. We've compiled this FAQ section to help you quickly find the information you need.</p>
-                                }
-                                else
-                                {
-                                    <p>Find answers to commonly asked questions about our departments, programs, admission requirements, and other important information. We've compiled this FAQ section to help you quickly find the information you need.</p>
-                                }
+                                <p>
+                                    @(department != null
+                                        ? $"Find answers to commonly asked questions about the {department.Title} department, our programs, admission requirements, and other important information. We've compiled this FAQ section to help you quickly find the information you need."
+                                        : "Find answers to commonly asked questions about our departments, programs, admission requirements, and other important information. We've compiled this FAQ section to help you quickly find the information you need.")
+                                </p>
 
                                 @if (Model != null && Model.Any())
                                 {
@@ -219,14 +109,11 @@
                                 {
                                     <div class="faculty-no-results">
                                         <h3>No FAQs Available</h3>
-                                        @if (department != null)
-                                        {
-                                            <p>FAQ information for the @department.Title department is currently being compiled. Please check back later or contact the department directly for answers to your questions.</p>
-                                        }
-                                        else
-                                        {
-                                            <p>FAQ information is currently being compiled. Please check back later or contact us directly for answers to your questions.</p>
-                                        }
+                                        <p>
+                                            @(department != null
+                                                ? $"FAQ information for the {department.Title} department is currently being compiled. Please check back later or contact the department directly for answers to your questions."
+                                                : "FAQ information is currently being compiled. Please check back later or contact us directly for answers to your questions.")
+                                        </p>
                                     </div>
                                 }
                             </div>

@@ -73,6 +73,21 @@
   border-radius: 2px;
 }
 
+/* Dynamic submenu under Facilities */
+.faculty-sidebar__subwrap {
+  padding: 0 0 10px 10px;
+}
+.faculty-sidebar__submenu {
+  list-style: none;
+  margin: 0 0 10px 0;
+  padding-left: 10px;
+}
+.faculty-sidebar__submenu li a {
+  padding: 8px 0;
+  font-size: 14px;
+  line-height: 22px;
+}
+
 /* Responsive Design */
 @media (max-width: 991px) {
   .faculty-sidebar {

@@ -1,0 +1,118 @@
+@model Website.ViewModels.DepartmentEventsViewModel
+@{
+    var department = Model.Department;
+    ViewBag.Title = department != null ? $"Events - {department.Title}" : "Events";
+
+    ViewBag.MetaDescription = department != null
+        ? $"Discover upcoming and past events for the {department.Title} department at HITEC University."
+        : "Discover upcoming and past events across HITEC University departments.";
+}
+
+@section Styles {
+    <link href="~/Content/css/faculty-sidebar.css" rel="stylesheet" />
+    <style>
+        .events-split { display: grid; grid-template-columns: 1fr; gap: 30px; }
+        .event-card { background:#fff; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,.08); overflow:hidden; border-left:5px solid var(--color-primary); }
+        .event-image { height: 180px; overflow:hidden; position:relative; }
+        .event-image img { width:100%; height:100%; object-fit:cover; }
+        .event-badge { position:absolute; top:12px; right:12px; background:var(--color-primary); color:#fff; border-radius:6px; padding:6px 10px; font-weight:600; font-size:12px; }
+        .event-body { padding:20px; }
+        .event-title { font-size:20px; font-weight:700; color:var(--color-heading); margin:0 0 10px; }
+        .event-meta { color:#777; font-size:14px; margin-bottom:10px; display:flex; gap:15px; flex-wrap:wrap; }
+    </style>
+}
+
+<body>
+<div class="body_wrap">
+    <main>
+        <section class="breadcrumb bg_img ul_li" style="padding:0;min-height:0;" data-background="/Content/img/bg/about_bg.jpg">
+            <div class="container">
+                <div class="breadcrumb__content text-center">
+                    <h1 class="breadcrumb__title mt-25" style="color:#000">@ViewBag.Title</h1>
+                    <p class="breadcrumb__desc mb-50" style="color:#000">@((department!=null)? $"{department.Code} Department Activities" : "Department Activities")</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about pb-120">
+            <div class="container">
+                <div class="faculty-page-layout">
+                    <div class="faculty-page-content">
+                        <div class="about-content mt-60">
+                            <div class="section-title mb-40">
+                                <span class="sub-title">Events</span>
+                                <h2 class="title">@((department!=null)? $"{department.Title} Events" : "Events")</h2>
+                            </div>
+
+                            @if (Model.Upcoming != null && Model.Upcoming.Any())
+                            {
+                                <h3 class="section-sub">Upcoming</h3>
+                                <div class="events-split">
+                                    @foreach (var e in Model.Upcoming.OrderBy(x => x.EventDate))
+                                    {
+                                        <div class="event-card">
+                                            @if (!string.IsNullOrEmpty(e.Banner))
+                                            {
+                                                <div class="event-image">
+                                                    <img src="@Url.Content("~/Content/uploads/events/" + e.Banner)" alt="@e.Title" />
+                                                    @if (e.EventDate.HasValue) { <span class="event-badge">@e.EventDate.Value.ToString("MMM dd")</span> }
+                                                </div>
+                                            }
+                                            <div class="event-body">
+                                                <h4 class="event-title">@(e.Title ?? "Event")</h4>
+                                                <div class="event-meta">
+                                                    @if (e.EventDate.HasValue) { <span>@e.EventDate.Value.ToString("MMMM dd, yyyy")</span> }
+                                                    @if (!string.IsNullOrWhiteSpace(e.Venue)) { <span>@e.Venue</span> }
+                                                </div>
+                                                @if (!string.IsNullOrEmpty(e.Details)) { @Html.Raw(e.Details) } else { <p>Details will be announced soon.</p> }
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+
+                            @if (Model.Past != null && Model.Past.Any())
+                            {
+                                <h3 class="section-sub">Past</h3>
+                                <div class="events-split">
+                                    @foreach (var e in Model.Past.OrderByDescending(x => x.EventDate))
+                                    {
+                                        <div class="event-card">
+                                            @if (!string.IsNullOrEmpty(e.Banner))
+                                            {
+                                                <div class="event-image">
+                                                    <img src="@Url.Content("~/Content/uploads/events/" + e.Banner)" alt="@e.Title" />
+                                                    @if (e.EventDate.HasValue) { <span class="event-badge">@e.EventDate.Value.ToString("MMM dd")</span> }
+                                                </div>
+                                            }
+                                            <div class="event-body">
+                                                <h4 class="event-title">@(e.Title ?? "Event")</h4>
+                                                <div class="event-meta">
+                                                    @if (e.EventDate.HasValue) { <span>@e.EventDate.Value.ToString("MMMM dd, yyyy")</span> }
+                                                    @if (!string.IsNullOrWhiteSpace(e.Venue)) { <span>@e.Venue</span> }
+                                                </div>
+                                                @if (!string.IsNullOrEmpty(e.Details)) { @Html.Raw(e.Details) } else { <p>Details will be added soon.</p> }
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+
+                            @if ((Model.Upcoming==null || !Model.Upcoming.Any()) && (Model.Past==null || !Model.Past.Any()))
+                            {
+                                <div class="faculty-no-results">
+                                    <h3>No Events</h3>
+                                    <p>There are currently no events to display.</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="faculty-page-sidebar">
+                        @Html.Partial("_FacultySidebar")
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>

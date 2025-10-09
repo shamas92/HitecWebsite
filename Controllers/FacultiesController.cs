@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.IO;
 using System;
+using Website.ViewModels;
 
 namespace Website.Controllers
 {
@@ -194,29 +195,29 @@ namespace Website.Controllers
             {
                 using (var db = new Model1())
                 {
-                    var programs = new List<tblDepartmentProgram>();
                     tblDepartment departmentInfo = null;
 
                     if (!string.IsNullOrEmpty(department))
                     {
-                        departmentInfo = db.tblDepartments.FirstOrDefault(d => d.Code == department);
+                        // Allow both codes and slugged department names
+                        var departmentCode = MapDepartmentNameToCode(department);
 
-                        if (departmentInfo != null)
-                        {
-                            programs = db.tblDepartmentPrograms
-                                .Where(p => p.DepartmentId == departmentInfo.DepartmentID)
-                                .OrderBy(p => p.CreatedDate)
-                                .ToList();
-                        }
+                        departmentInfo = db.tblDepartments
+                            .FirstOrDefault(d => d.Code == departmentCode) ??
+                                       db.tblDepartments.FirstOrDefault(d => d.Title.Replace(" ", "-").ToLower() == department.ToLower());
                     }
-                    else
+
+                    // If no department specified or not found, return 404 to avoid showing wrong content
+                    if (departmentInfo == null)
                     {
-                        programs = db.tblDepartmentPrograms.OrderBy(p => p.CreatedDate).ToList();
+                        return HttpNotFound("Department not found.");
                     }
 
                     ViewBag.Department = departmentInfo;
                     ViewBag.DepartmentCode = department;
-                    return View(programs);
+
+                    // Return the department so the view can render the Programs column (HTML) directly
+                    return View(departmentInfo);
                 }
             }
             catch (Exception ex)
@@ -232,24 +233,34 @@ namespace Website.Controllers
             {
                 using (var db = new Model1())
                 {
-                    var facilities = new List<tblDepartmentFacility>();
+                    var facilities = new List<tblFacilite>();
                     tblDepartment departmentInfo = null;
 
                     if (!string.IsNullOrEmpty(department))
                     {
-                        departmentInfo = db.tblDepartments.FirstOrDefault(d => d.Code == department);
+                        // Support both code and slug
+                        var departmentCode = MapDepartmentNameToCode(department);
+                        departmentInfo = db.tblDepartments.FirstOrDefault(d => d.Code == departmentCode) ??
+                                         db.tblDepartments.FirstOrDefault(d => d.Title.Replace(" ", "-").ToLower() == department.ToLower());
 
                         if (departmentInfo != null)
                         {
-                            facilities = db.tblDepartmentFacilities
-                                .Where(f => f.DepartmentId == departmentInfo.DepartmentID)
-                                .OrderBy(f => f.CreatedDate)
+                            facilities = db.tblFacilites
+                                .Where(f => f.DepartmentID == departmentInfo.DepartmentID && (f.Active == true || f.Active == null))
+                                .OrderBy(f => f.C_Order)
+                                .ThenBy(f => f.Title)
                                 .ToList();
                         }
                     }
                     else
                     {
-                        facilities = db.tblDepartmentFacilities.OrderBy(f => f.CreatedDate).ToList();
+                        // If no department specified, show all active facilities grouped later by department
+                        facilities = db.tblFacilites
+                            .Where(f => f.Active == true || f.Active == null)
+                            .OrderBy(f => f.DepartmentID)
+                            .ThenBy(f => f.C_Order)
+                            .ThenBy(f => f.Title)
+                            .ToList();
                     }
 
                     ViewBag.Department = departmentInfo;
@@ -331,29 +342,42 @@ namespace Website.Controllers
             {
                 using (var db = new Model1())
                 {
-                    var schemeOfStudies = new List<tblDepartmentSchemeOfStudy>();
+                    var scheme = new List<tblSchemeOfStudy>();
                     tblDepartment departmentInfo = null;
 
                     if (!string.IsNullOrEmpty(department))
                     {
-                        departmentInfo = db.tblDepartments.FirstOrDefault(d => d.Code == department);
+                        // Support both department code and slug
+                        var departmentCode = MapDepartmentNameToCode(department);
+                        departmentInfo = db.tblDepartments.FirstOrDefault(d => d.Code == departmentCode) ??
+                                         db.tblDepartments.FirstOrDefault(d => d.Title.Replace(" ", "-").ToLower() == department.ToLower());
 
                         if (departmentInfo != null)
                         {
-                            schemeOfStudies = db.tblDepartmentSchemeOfStudies
-                                .Where(s => s.DepartmentId == departmentInfo.DepartmentID)
-                                .OrderBy(s => s.CreatedDate)
+                            scheme = db.tblSchemeOfStudies
+                                .Where(s => s.DepartmentID == departmentInfo.DepartmentID)
+                                .OrderBy(s => s.Program)
+                                .ThenBy(s => s.Semester)
+                                .ThenBy(s => s.Code)
+                                .ThenBy(s => s.Title)
                                 .ToList();
                         }
                     }
                     else
                     {
-                        schemeOfStudies = db.tblDepartmentSchemeOfStudies.OrderBy(s => s.CreatedDate).ToList();
+                        // Fallback: show all schemes ordered by department then program
+                        scheme = db.tblSchemeOfStudies
+                            .OrderBy(s => s.DepartmentID)
+                            .ThenBy(s => s.Program)
+                            .ThenBy(s => s.Semester)
+                            .ThenBy(s => s.Code)
+                            .ThenBy(s => s.Title)
+                            .ToList();
                     }
 
                     ViewBag.Department = departmentInfo;
                     ViewBag.DepartmentCode = department;
-                    return View(schemeOfStudies);
+                    return View(scheme);
                 }
             }
             catch (Exception ex)
@@ -365,82 +389,14 @@ namespace Website.Controllers
 
         public ActionResult PastEvents(string department)
         {
-            try
-            {
-                using (var db = new Model1())
-                {
-                    var pastEvents = new List<tblDepartmentPastEvent>();
-                    tblDepartment departmentInfo = null;
-
-                    if (!string.IsNullOrEmpty(department))
-                    {
-                        departmentInfo = db.tblDepartments.FirstOrDefault(d => d.Code == department);
-
-                        if (departmentInfo != null)
-                        {
-                            pastEvents = db.tblDepartmentPastEvents
-                                .Where(e => e.DepartmentId == departmentInfo.DepartmentID)
-                                .OrderByDescending(e => e.EventDate)
-                                .ToList();
-                        }
-                    }
-                    else
-                    {
-                        pastEvents = db.tblDepartmentPastEvents.OrderByDescending(e => e.EventDate).ToList();
-                    }
-
-                    ViewBag.Department = departmentInfo;
-                    ViewBag.DepartmentCode = department;
-                    return View(pastEvents);
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Error in PastEvents: {ex.Message}");
-                return View("Error");
-            }
+            // Legacy route preserved: redirect to unified Events page for the same department
+            return RedirectToAction("Events", new { department });
         }
 
         public ActionResult UpcomingEvents(string department)
         {
-            try
-            {
-                using (var db = new Model1())
-                {
-                    var upcomingEvents = new List<tblDepartmentUpcomingEvent>();
-                    tblDepartment departmentInfo = null;
-
-                    if (!string.IsNullOrEmpty(department))
-                    {
-                        departmentInfo = db.tblDepartments.FirstOrDefault(d => d.Code == department);
-
-                        if (departmentInfo != null)
-                        {
-                            upcomingEvents = db.tblDepartmentUpcomingEvents
-                                .Where(e => e.DepartmentId == departmentInfo.DepartmentID)
-                                .Where(e => e.EventDate >= DateTime.Today)
-                                .OrderBy(e => e.EventDate)
-                                .ToList();
-                        }
-                    }
-                    else
-                    {
-                        upcomingEvents = db.tblDepartmentUpcomingEvents
-                            .Where(e => e.EventDate >= DateTime.Today)
-                            .OrderBy(e => e.EventDate)
-                            .ToList();
-                    }
-
-                    ViewBag.Department = departmentInfo;
-                    ViewBag.DepartmentCode = department;
-                    return View(upcomingEvents);
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Error in UpcomingEvents: {ex.Message}");
-                return View("Error");
-            }
+            // Legacy route preserved: redirect to unified Events page for the same department
+            return RedirectToAction("Events", new { department });
         }
 
         public ActionResult SuccessStories(string department)
@@ -451,8 +407,6 @@ namespace Website.Controllers
                 {
                     var successStories = new List<tblSuccessStory>();
                     tblDepartment departmentInfo = null;
-
-
 
                     if (!string.IsNullOrEmpty(department))
                     {
@@ -503,24 +457,33 @@ namespace Website.Controllers
             {
                 using (var db = new Model1())
                 {
-                    var faqs = new List<tblDepartmentFAQ>();
+                    var faqs = new List<tblFAQ>();
                     tblDepartment departmentInfo = null;
 
                     if (!string.IsNullOrEmpty(department))
                     {
-                        departmentInfo = db.tblDepartments.FirstOrDefault(d => d.Code == department);
+                        // Support both department code and slug
+                        var departmentCode = MapDepartmentNameToCode(department);
+                        departmentInfo = db.tblDepartments.FirstOrDefault(d => d.Code == departmentCode) ??
+                                          db.tblDepartments.FirstOrDefault(d => d.Title.Replace(" ", "-").ToLower() == department.ToLower());
 
                         if (departmentInfo != null)
                         {
-                            faqs = db.tblDepartmentFAQs
-                                .Where(f => f.DepartmentId == departmentInfo.DepartmentID)
-                                .OrderBy(f => f.CreatedDate)
+                            faqs = db.tblFAQs
+                                .Where(f => f.DepartmentID == departmentInfo.DepartmentID)
+                                .OrderBy(f => f.FAQID)
+                                .ThenBy(f => f.Question)
                                 .ToList();
                         }
                     }
                     else
                     {
-                        faqs = db.tblDepartmentFAQs.OrderBy(f => f.CreatedDate).ToList();
+                        // No department specified, show all
+                        faqs = db.tblFAQs
+                            .OrderBy(f => f.DepartmentID)
+                            .ThenBy(f => f.FAQID)
+                            .ThenBy(f => f.Question)
+                            .ToList();
                     }
 
                     ViewBag.Department = departmentInfo;
@@ -541,34 +504,107 @@ namespace Website.Controllers
             {
                 using (var db = new Model1())
                 {
-                    var contacts = new List<tblDepartmentContact>();
                     tblDepartment departmentInfo = null;
 
                     if (!string.IsNullOrEmpty(department))
                     {
-                        departmentInfo = db.tblDepartments.FirstOrDefault(d => d.Code == department);
-
-                        if (departmentInfo != null)
-                        {
-                            contacts = db.tblDepartmentContacts
-                                .Where(c => c.DepartmentId == departmentInfo.DepartmentID)
-                                .OrderBy(c => c.CreatedDate)
-                                .ToList();
-                        }
-                    }
-                    else
-                    {
-                        contacts = db.tblDepartmentContacts.OrderBy(c => c.CreatedDate).ToList();
+                        // Support both department code and slug
+                        var departmentCode = MapDepartmentNameToCode(department);
+                        departmentInfo = db.tblDepartments.FirstOrDefault(d => d.Code == departmentCode) ??
+                                         db.tblDepartments.FirstOrDefault(d => d.Title.Replace(" ", "-").ToLower() == department.ToLower());
                     }
 
                     ViewBag.Department = departmentInfo;
                     ViewBag.DepartmentCode = department;
-                    return View(contacts);
+                    return View(departmentInfo);
                 }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error in Contacts: {ex.Message}");
+                return View("Error");
+            }
+        }
+
+        public ActionResult SidebarFacilities(string department)
+        {
+            try
+            {
+                using (var db = new Model1())
+                {
+                    var facilities = new List<tblFacilite>();
+
+                    if (!string.IsNullOrWhiteSpace(department))
+                    {
+                        // Support both code and slug
+                        var departmentCode = MapDepartmentNameToCode(department);
+                        var dept = db.tblDepartments.FirstOrDefault(d => d.Code == departmentCode) ??
+                                   db.tblDepartments.FirstOrDefault(d => d.Title.Replace(" ", "-").ToLower() == department.ToLower());
+
+                        if (dept != null)
+                        {
+                            facilities = db.tblFacilites
+                                .Where(f => f.Active == true && f.DepartmentID == dept.DepartmentID)
+                                .OrderBy(f => f.C_Order)
+                                .ThenBy(f => f.Title)
+                                .ToList();
+                        }
+                    }
+
+                    return PartialView("_SidebarFacilities", facilities);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in SidebarFacilities: {ex.Message}");
+                return PartialView("_SidebarFacilities", new List<tblFacilite>());
+            }
+        }
+
+        public ActionResult Events(string department)
+        {
+            try
+            {
+                using (var db = new Model1())
+                {
+                    tblDepartment departmentInfo = null;
+                    var vm = new Website.ViewModels.DepartmentEventsViewModel();
+
+                    if (!string.IsNullOrEmpty(department))
+                    {
+                        var departmentCode = MapDepartmentNameToCode(department);
+                        departmentInfo = db.tblDepartments.FirstOrDefault(d => d.Code == departmentCode) ??
+                                         db.tblDepartments.FirstOrDefault(d => d.Title.Replace(" ", "-").ToLower() == department.ToLower());
+                        if (departmentInfo != null)
+                        {
+                            var query = db.tblEvents.Where(e => (e.Active == true || e.Active == null) && e.DepartmentID == departmentInfo.DepartmentID);
+                            vm.Upcoming = query.Where(e => e.EventDate.HasValue && e.EventDate.Value >= DateTime.Today)
+                                               .OrderBy(e => e.EventDate)
+                                               .ToList();
+                            vm.Past = query.Where(e => e.EventDate.HasValue && e.EventDate.Value < DateTime.Today)
+                                           .OrderByDescending(e => e.EventDate)
+                                           .ToList();
+                        }
+                    }
+                    else
+                    {
+                        var query = db.tblEvents.Where(e => e.Active == true || e.Active == null);
+                        vm.Upcoming = query.Where(e => e.EventDate.HasValue && e.EventDate.Value >= DateTime.Today)
+                                           .OrderBy(e => e.EventDate).ToList();
+                        vm.Past = query.Where(e => e.EventDate.HasValue && e.EventDate.Value < DateTime.Today)
+                                       .OrderByDescending(e => e.EventDate).ToList();
+                    }
+
+                    vm.Department = departmentInfo;
+                    vm.DepartmentCode = department;
+                    ViewBag.Department = departmentInfo;
+                    ViewBag.DepartmentCode = department;
+                    return View(vm);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in Events: {ex.Message}");
                 return View("Error");
             }
         }

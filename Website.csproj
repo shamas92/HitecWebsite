@@ -240,6 +240,7 @@
     <Compile Include="Models\tblUniversityFacilities.cs" />
     <Compile Include="Models\tblUser.cs" />
     <Compile Include="Models\tblVisitSession.cs" />
+    <Compile Include="Models\ViewModels\DepartmentEventsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -693,7 +694,6 @@
     <Content Include="Views\Faculties\Contacts.cshtml" />
     <Content Include="Views\Faculties\Facilities.cshtml" />
     <Content Include="Views\Faculties\FAQs.cshtml" />
-    <Content Include="Views\Faculties\PastEvents.cshtml" />
     <Content Include="Views\Faculties\Programs.cshtml" />
     <Content Include="Views\Faculties\SchemeOfStudies.cshtml" />
     <Content Include="Views\Faculties\SuccessStories.cshtml" />
@@ -742,6 +742,8 @@
     <Content Include="Views\HR\Leave.cshtml" />
     <Content Include="Views\HR\ContributoryFund.cshtml" />
     <Content Include="Views\HR\ConductDiscipline.cshtml" />
+    <Content Include="Views\Faculties\_SidebarFacilities.cshtml" />
+    <Content Include="Views\Faculties\Events.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

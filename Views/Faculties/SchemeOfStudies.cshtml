@@ -1,9 +1,39 @@
+@model List<Website.Models.tblSchemeOfStudy>
 @{
     ViewBag.Title = "Scheme of Studies";
+    var department = ViewBag.Department as Website.Models.tblDepartment;
+    var departmentCode = ViewBag.DepartmentCode as string;
+
+    ViewBag.MetaDescription = department != null
+        ? $"Explore the detailed scheme of studies for the {department.Title} department including program-wise and semester-wise course structure."
+        : "Explore program-wise and semester-wise scheme of studies at HITEC University.";
+    ViewBag.MetaKeywords = department != null
+        ? $"{department.Title}, scheme of studies, curriculum, program structure, HITEC University, {department.Code}"
+        : "scheme of studies, curriculum, program structure, HITEC University";
 }
 
-<!-- backtotop - start -->
-<!-- backtotop - end -->
+@section Styles {
+    <link href="~/Content/css/faculty-sidebar.css" rel="stylesheet" />
+    <style>
+        .sos-container { background: var(--color-white); border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.06); padding: 25px; }
+        .sos-group { margin-bottom: 35px; }
+        .sos-program { font-family: var(--font-heading); font-weight: 700; font-size: 22px; color: var(--color-heading); margin: 0 0 15px; }
+        .sos-table { width: 100%; border-collapse: collapse; }
+        .sos-table th, .sos-table td { padding: 10px 12px; border-bottom: 1px solid #eee; font-size: 14px; }
+        .sos-table th { text-transform: uppercase; font-weight: 700; color: var(--color-secondary); background: #fafafa; }
+        .sos-sem { font-weight: 600; color: var(--color-primary); }
+        .sos-badge { display:inline-block; padding: 3px 10px; background: #F1F1E9; border-radius: 20px; font-size: 12px; color: #5C5C54; }
+        media (max-width: 768px) { .sos-table th, .sos-table td { font-size: 13px; } }
+    </style>
+}
+
+@section Meta {
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta property="og:title" content="@ViewBag.Title - HITEC University" />
+    <meta property="og:description" content="@ViewBag.MetaDescription" />
+    <meta property="og:type" content="website" />
+}
 
 <body>
     <div class="body_wrap">
@@ -15,8 +45,8 @@
             <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
                 <div class="container">
                     <div class="breadcrumb__content text-center">
-                        <h2 class="breadcrumb__title mt-25" style="color: #000">Scheme of Studies</h2>
-                        <p class="breadcrumb__desc mb-50" style="color: #000">Curriculum Structure</p>
+                        <h2 class="breadcrumb__title mt-25" style="color:#000">@((department!=null)? $"Scheme of Studies - {department.Title}" : "Scheme of Studies")</h2>
+                        <p class="breadcrumb__desc mb-50" style="color:#000">@((department!=null)? $"{department.Code} Department Curriculum" : "Curriculum Structure")</p>
                     </div>
                 </div>
             </section>
@@ -28,13 +58,65 @@
                     <div class="faculty-page-layout">
                         <div class="faculty-page-content">
                             <div class="about-content mt-60">
-                                <div class="section-title mb-60">
+                                <div class="section-title mb-40">
                                     <span class="sub-title">Curriculum</span>
-                                    <h2 class="title">Scheme of Studies</h2>
+                                    <h2 class="title">@((department!=null)? $"{department.Title} Scheme of Studies" : "Scheme of Studies")</h2>
                                 </div>
-                                <p>Our scheme of studies is designed to provide students with a comprehensive understanding of their field while developing critical thinking, problem-solving, and practical skills. The curriculum is structured to ensure progressive learning and skill development.</p>
-                                <p>Each program follows a carefully planned sequence of courses that build upon previous knowledge and prepare students for advanced concepts. We emphasize both theoretical foundations and practical applications throughout the curriculum.</p>
-                                <p>The scheme includes core courses, elective courses, laboratory work, projects, and internships. This balanced approach ensures that students receive a well-rounded education that prepares them for professional success.</p>
+
+                                @if (Model != null && Model.Any())
+                                {
+                                    // Group by Program then Semester for clean rendering
+                                    var byProgram = Model
+                                        .GroupBy(s => s.Program ?? "Program")
+                                        .OrderBy(g => g.Key);
+
+                                    <div class="sos-container">
+                                        @foreach (var prog in byProgram)
+                                        {
+                                            var bySem = prog.GroupBy(s => s.Semester ?? "Semester").OrderBy(g => g.Key);
+                                            <div class="sos-group" id="prog-@prog.Key.Replace(" ","-").ToLower()">
+                                                <h3 class="sos-program">@prog.Key <span class="sos-badge">@prog.Count() courses</span></h3>
+                                                @foreach (var sem in bySem)
+                                                {
+                                                    <h4 class="sos-sem">@sem.Key</h4>
+                                                    <table class="sos-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="width:120px">Code</th>
+                                                                <th>Title</th>
+                                                                <th style="width:90px">CH</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var c in sem)
+                                                            {
+                                                                <tr>
+                                                                    <td>@c.Code</td>
+                                                                    <td>@c.Title</td>
+                                                                    <td>@c.CH</td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="faculty-no-results">
+                                        <h3>No Scheme of Studies Available</h3>
+                                        @if (department != null)
+                                        {
+                                            <p>The scheme of studies for the @department.Title department is being updated. Please check back later.</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Scheme of studies is being updated. Please check back later.</p>
+                                        }
+                                    </div>
+                                }
                             </div>
                         </div>
                         <div class="faculty-page-sidebar">
@@ -50,4 +132,4 @@
 
     </div>
 
-</body> 
+</body>

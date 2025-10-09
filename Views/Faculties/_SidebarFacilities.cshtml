@@ -1,0 +1,21 @@
+@model IEnumerable<Website.Models.tblFacilite>
+@{
+    // Renders a small list used inside the faculty sidebar
+}
+@if (Model != null && Model.Any())
+{
+    <ul class="faculty-sidebar__submenu">
+        @foreach (var item in Model)
+        {
+            <li>
+                <a href="@Url.Action("Facilities", "Faculties", new { department = Request.QueryString["department"] })#facility-@item.FacilityID">
+                    @(string.IsNullOrWhiteSpace(item.Title) ? "Facility" : item.Title)
+                </a>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <!-- No department specific facilities to show in sidebar -->
+}
