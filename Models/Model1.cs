@@ -77,6 +77,7 @@ namespace Website.Models
         public virtual DbSet<tblNewsPhoto> tblNewsPhotos { get; set; }
         public virtual DbSet<tblProgram> tblPrograms { get; set; }
         public virtual DbSet<FeeStructureWithHostel> FeeStructureWithHostels { get; set; }
+        public virtual DbSet<tblFeeStructure> tblFeeStructures { get; set; }
 
         // Newly added content models (HitecCM.Models)
         public virtual DbSet<tblUniversityFacilities> tblUniversityFacilities { get; set; }

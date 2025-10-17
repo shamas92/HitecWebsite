@@ -1,0 +1,51 @@
+@{
+    var currentAction = ViewContext.RouteData.Values["Action"].ToString();
+}
+
+<div class="faculty-sidebar mr-20 mt-40">
+    <h3 class="faculty-sidebar__title">Admissions</h3>
+    <ul class="faculty-sidebar__menu">
+        <li>
+            <a href="@Url.Action("AcademicCalendar", "Admission")" class="@(currentAction == "AcademicCalendar" ? "active" : "")">Academic Calendar</a>
+        </li>
+        <li>
+            <a href="@Url.Action("FeeStructure", "Admission")" class="@(currentAction == "FeeStructure" ? "active" : "")">Fee Structure</a>
+        </li>
+        <li>
+            <a href="@Url.Action("FinancialAssistance", "Admission")" class="@(currentAction == "FinancialAssistance" ? "active" : "")">Financial Assistance</a>
+        </li>
+        <li>
+            <a href="@Url.Action("RefundPolicy", "Admission")" class="@(currentAction == "RefundPolicy" ? "active" : "")">Refund Policy</a>
+        </li>
+        <li>
+            <a href="@Url.Action("FinesPenaltiesOnLatePayments", "Admission")" class="@(currentAction == "FinesPenaltiesOnLatePayments" ? "active" : "")">Fines/Penalties on Late Payments</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Accommodation", "Admission")" class="@(currentAction == "Accommodation" ? "active" : "")">Accomodation</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Transport", "Admission")" class="@(currentAction == "Transport" ? "active" : "")">Transport</a>
+        </li>
+        <li>
+            <a href="@Url.Action("MiscellaneousCharges", "Admission")" class="@(currentAction == "MiscellaneousCharges" ? "active" : "")">Miscellaneous Charges</a>
+        </li>
+        <li>
+            <a href="@Url.Action("AdmissionPolicy", "Admission")" class="@(currentAction == "AdmissionPolicy" ? "active" : "")">Admission Policy</a>
+        </li>
+        <li>
+            <a href="@Url.Action("AcademicRegulations", "Admission")" class="@(currentAction == "AcademicRegulations" ? "active" : "")">Academic Regulations</a>
+        </li>
+        <li>
+            <a href="@Url.Action("AcademicDeficiencies", "Admission")" class="@(currentAction == "AcademicDeficiencies" ? "active" : "")">Academic Deficiencies</a>
+        </li>
+        <li>
+            <a href="@Url.Action("RulesAndRegulationsMS", "Admission")" class="@(currentAction == "RulesAndRegulationsMS" ? "active" : "")">Rules &amp; Regulations (MS)</a>
+        </li>
+        <li>
+            <a href="@Url.Action("RulesAndRegulationsPhD", "Admission")" class="@(currentAction == "RulesAndRegulationsPhD" ? "active" : "")">Rules &amp; Regulations (PhD)</a>
+        </li>
+        <li>
+            <a href="https://localhost:44347/Content/pdf/admissions/THE_HITEC_UNIVERSITY_OF_TAXILA_ACT,_2009.pdf" >HITEC University Act 2009</a>
+        </li>
+    </ul>
+</div>

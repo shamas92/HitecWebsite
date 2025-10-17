@@ -1,0 +1,106 @@
+﻿/* Admissions CSS - Comprehensive & Minimized
+   Combined from all admission pages
+   Theme: Navy #002155, Gold #fdb714, White #fff, Text #5c5c54
+*/
+
+/* Base Section Backgrounds & Reset */
+.reg-section,.def-section,.ms-section,.phd-section,.cal-section,.employment-section,.fund-section{padding:60px 0}
+.about,.about .container,.about .faculty-page-layout,.about .faculty-page-content,.about .about-content{background:transparent!important;border:0!important;box-shadow:none!important}
+
+/* Hero Sections - Common Styles */
+.fund-hero,.cal-hero{background:linear-gradient(135deg,#002155 0%,#001a44 100%);color:#fff;border-radius:16px;padding:50px 40px;margin-bottom:50px;position:relative;overflow:hidden}
+.fund-hero::before,.cal-hero::before{content:'';position:absolute;width:450px;height:450px;background:rgba(253,183,20,.08);border-radius:50%}
+.fund-hero::before{top: -45%;left: 65%;width: 400px;height: 400px;}
+.fund-hero .subtitle,.cal-hero .subtitle{color:#fdb714;font-size:14px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin:0;display:block;position:relative;z-index:1}
+.fund-hero h1,.fund-hero h2,.fund-hero h3,.cal-hero h1{color:#fff!important;font-family:'Playfair Display',serif;font-weight:700;font-size:42px;margin:10px 0 8px;position:relative;z-index:1}
+.fund-hero .accent-line,.cal-hero .accent-line{width:80px;height:4px;background:#fdb714;border-radius:2px;margin:14px 0 18px}
+.fund-hero p,.cal-hero p{max-width:900px;color:rgba(255,255,255,.92);font-size:18px;margin:0;position:relative;z-index:1}
+
+/* Card System - Common */
+.fund-card,.cal-card{background:#fff;border-radius:16px;box-shadow:0 5px 25px rgba(0,33,85,.1);overflow:hidden;margin-bottom:30px;transition:all .3s ease;display:block}
+.fund-card:hover,.cal-card:hover{box-shadow:0 12px 40px rgba(0,33,85,.18);transform:translateY(-5px)}
+
+/* Card Headers */
+.fund-header,.cal-header{background:linear-gradient(135deg,#002155 0%,#001a44 100%);color:#fff;padding:24px 28px;display:flex;align-items:center;gap:18px}
+.fund-badge,.cal-badge{width:60px;height:60px;border-radius:50%;background:#fdb714;color:#002155;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:26px;flex-shrink:0;box-shadow:0 4px 15px rgba(0,0,0,.2)}
+.fund-badge i{color:#002155}
+.fund-title,.cal-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin:0;color:#fff!important}
+
+/* Card Content */
+.fund-content,.cal-content{padding:28px}
+.fund-content p,.cal-content p{color:#5c5c54;line-height:1.75;margin-bottom:12px;font-size:15px}
+.fund-content h4{color:#002155;font-family:'Playfair Display',serif;font-size:24px;margin-bottom:20px}
+.fund-content ul,.fund-content ol{margin:0;padding-left:20px}
+.fund-content li{color:#170006;margin:6px 0;line-height:1.65}
+.fund-content ol li{color:#170006;margin:8px 0;line-height:1.65}
+
+/* Tables - Fee & Calendar */
+.fee-table,.cal-table{width:100%;border-collapse:collapse;margin:16px 0;border:1px solid #E6E6E6;border-radius:8px;overflow:hidden}
+.fee-table th,.fee-table td,.cal-table th,.cal-table td{padding:12px 14px;text-align:left;border-bottom:1px solid #EAEAEA}
+.fee-table th,.cal-table th{background:#f7f9fc;color:#002155;font-weight:600;font-size:14px}
+.cal-table th{text-transform:uppercase;letter-spacing:.02em}
+.fee-table tbody tr:nth-child(even),.cal-table tbody tr:nth-child(even){background:#fcfcfd}
+.fee-table tbody tr:hover,.cal-table tbody tr:hover{background:#f3f6fb;transition:background .2s ease}
+.fee-table .numeric,.text-right{text-align:right}
+.program-category{background:#eef2f7!important;color:#001a44!important;font-weight:600;text-align:left}
+.fee-subhead{background:#f0f2f5;color:#5c5c54;font-size:13px}
+.amount{text-align:right;font-weight:600;color:#002155}
+.dash{color:#9aa4b2}
+
+/* Note & Info Boxes */
+.note-box,.cal-note{background:#f7f9fc;border-left:4px solid #002155;padding:16px;border-radius:8px;color:#5c5c54;margin:16px 0}
+.cal-note{padding:14px 16px;margin:0 0 16px}
+.requirement-item{background:#f8f9ff;border-radius:8px;padding:16px 20px;margin:12px 0;border-left:4px solid #fdb714}
+.requirement-item strong{color:#002155}
+
+/* Warning & Special Boxes */
+.warning-box{background:linear-gradient(135deg,#fff3cd 0%,#ffeaa7 100%);border:1px solid #ffeaa7;border-radius:8px;padding:16px;margin:16px 0}
+.warning-box strong{color:#856404}
+.research-box{background:linear-gradient(135deg,#e8f5e8 0%,#d4f2d4 100%);border:1px solid #c3e6c3;border-radius:8px;padding:18px;margin:16px 0}
+.research-box strong{color:#0d5016}
+.important-note{background:#f0f8ff;border:1px solid #add8e6;border-radius:8px;padding:16px;margin:16px 0;border-left:4px solid #4169e1;position:relative}
+.important-note strong,.important-note h5{color:#4169e1}
+
+/* Highlight Panels */
+.fund-highlight,.leave-highlight,.benefit-highlight,.conduct-highlight{background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 100%);padding:20px;border-radius:10px;margin-top:20px;border-left:4px solid #002155}
+.fund-highlight strong,.leave-highlight strong,.benefit-highlight strong,.conduct-highlight strong{color:#002155;font-size:18px;display:block;margin-bottom:8px}
+.fund-highlight p,.leave-highlight p,.benefit-highlight p,.conduct-highlight p{margin:0;color:#170006;font-size:14px;line-height:1.6}
+
+/* Info Box & General Provisions */
+.info-box-wrapper,.general-provisions{background:#fff;border-radius:16px;padding:40px;margin:40px 0;box-shadow:0 5px 25px rgba(0,33,85,.1);position:relative;overflow:hidden}
+.info-box-wrapper::before,.general-provisions::before{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:radial-gradient(circle,rgba(253,183,20,.1) 0%,transparent 70%)}
+.info-box-wrapper h3,.general-provisions h3{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#002155;margin-bottom:25px;display:flex;align-items:center;gap:15px;position:relative;z-index:1}
+.info-box-wrapper h3 i,.general-provisions h3 i{color:#fdb714;font-size:36px}
+.provision-item{padding:15px 0 15px 35px;position:relative;color:#5c5c54;font-size:15px;line-height:1.7;border-bottom:1px solid #f8f6f0;z-index:1}
+.provision-item:last-child{border-bottom:none}
+.provision-item::before{content:'▸';position:absolute;left:0;color:#fdb714;font-weight:700;font-size:20px}
+.provision-item strong{color:#002155}
+
+/* Contact Box */
+.hr-contact-box{background:linear-gradient(135deg,#002155 0%,#001a44 100%);color:#fff;border-radius:16px;padding:50px;margin-top:60px;position:relative;overflow:hidden}
+.hr-contact-box::before{content:'';position:absolute;top:-100px;right:-100px;width:300px;height:300px;background:rgba(253,183,20,.1);border-radius:50%}
+.hr-contact-box h4{font-family:'Playfair Display',serif;color:#fdb714;margin-bottom:25px;font-size:32px;position:relative;z-index:1}
+.hr-contact-box p{color:rgba(255,255,255,.9);font-size:16px;line-height:1.7;margin-bottom:30px;position:relative;z-index:1}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;position:relative;z-index:1}
+.contact-item{background:rgba(255,255,255,.1);padding:18px 20px;border-radius:10px;border-left:4px solid #fdb714;transition:all .3s ease;display:flex;align-items:center;gap:12px}
+.contact-item:hover{background:rgba(255,255,255,.15);transform:translateX(5px)}
+.contact-item i{color:#fdb714;font-size:20px;flex-shrink:0;width:24px;text-align:center}
+.contact-item span{color:#fff;font-size:15px}
+
+/* Calendar Specific */
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 0}
+.chip{background:#f1f1e9;color:#170006;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:600}
+
+/* Responsive Media Queries */
+@media (max-width:768px){
+.fund-hero,.cal-hero{padding:36px 24px}
+.fund-hero h1,.cal-hero h1{font-size:32px}
+.fund-header,.cal-header{padding:20px;flex-direction:column;text-align:center}
+.fund-badge,.cal-badge{width:54px;height:54px;font-size:22px}
+.fund-title,.cal-title{font-size:20px}
+.fund-content,.cal-content{padding:22px}
+.cal-table th,.cal-table td,.fee-table th,.fee-table td{padding:10px 12px;font-size:14px}
+.info-box-wrapper,.general-provisions,.hr-contact-box{padding:25px 20px}
+.contact-grid{grid-template-columns:1fr}
+.fee-table td{display:block;width:100%!important}
+}

@@ -12,57 +12,328 @@
     <meta property="og:type" content="website" />
 }
 
-<body>
-    <div class="body_wrap">
-        <main aria-labelledby="title">
-            <!-- breadcrumb start -->
-            <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
-                <div class="container">
-                    <div class="breadcrumb__content text-center">
-                        <h1 class="breadcrumb__title mt-25" style="color: #000">Academic Calendar</h1>
-                        <p class="breadcrumb__desc mb-50" style="color: #000">Important Dates & Schedules</p>
-                    </div>
-                </div>
-            </section>
-            <!-- breadcrumb end -->
+@section Styles {
+    <link href="~/Content/css/admissions.css" rel="stylesheet" />
+}
 
-            <!-- content start -->
-            <section class="about pb-120">
-                <div class="container">
-                    <div class="faculty-page-layout">
-                        <div class="faculty-page-content">
-                            <div class="about-content mt-60">
-                                <div class="section-title mb-40">
-                                    <span class="sub-title">Admissions</span>
-                                    <h2 class="title">Academic Calendar</h2>
-                                </div>
-                                <p>
-                                    The academic calendar outlines important dates for admissions, semester timelines, examinations, and university events.
-                                    This placeholder page will soon be updated with the official schedule and downloadable resources.
-                                </p>
-                                <div class="programs-container" style="margin-top: 25px;">
-                                    <div class="program-card">
-                                        <h3 class="program-title">Coming Soon</h3>
-                                        <div class="program-content">
-                                            <ul>
-                                                <li>Admission opening and closing dates</li>
-                                                <li>Semester start and end dates</li>
-                                                <li>Midterm and final examination windows</li>
-                                                <li>Public holidays and term breaks</li>
-                                            </ul>
-                                            <p>For any immediate queries, please contact the Admissions Office.</p>
-                                        </div>
-                                    </div>
+<div class="body_wrap">
+    <main aria-labelledby="title">
+        <!-- breadcrumb start -->
+        <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
+            <div class="container">
+                <div class="breadcrumb__content text-center">
+                    <h1 class="breadcrumb__title mt-25" style="color: #000">Academic Calendar</h1>
+                    <p class="breadcrumb__desc mb-50" style="color: #000">Important Dates & Schedules (2025 - 26)</p>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+
+        <!-- content start -->
+        <section class="about pb-120 cal-section">
+            <div class="container">
+                <div class="faculty-page-layout">
+                    <div class="faculty-page-content">
+                        <div class="about-content mt-60">
+
+                            <!-- Hero -->
+                            <div class="fund-hero">
+                                <div class="subtitle">Official Schedule</div>
+                                <h1>Academic Calendar 2025-26</h1>
+                                <div class="accent-line"></div>
+                                <p>Key dates for Fall 2025, Spring 2026 and Summer 2026 including teaching weeks, examinations, semester breaks and gazetted holidays.</p>
+                                <div class="legend">
+                                    <span class="chip">Classes</span>
+                                    <span class="chip">Exams</span>
+                                    <span class="chip">Breaks</span>
+                                    <span class="chip">Holidays</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="faculty-page-sidebar">
-                            @Html.Partial("_FacultySidebar")
+
+                            <!-- Fall Semester 2025 -->
+                            <div class="cal-card">
+                                <div class="cal-header">
+                                    <div class="cal-badge">F25</div>
+                                    <h3 class="cal-title">Fall Semester 2025</h3>
+                                </div>
+                                <div class="cal-content">
+                                    <table class="cal-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:45%">Events</th>
+                                                <th style="width:20%">Start Date</th>
+                                                <th style="width:20%">End Date</th>
+                                                <th class="text-right" style="width:15%">Weeks</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Orientation of the Freshmen</td>
+                                                <td>Monday, September 29, 2025</td>
+                                                <td class="dash">—</td>
+                                                <td class="text-right">—</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Last date of Add/Drop of Courses</td>
+                                                <td>Friday, October 10, 2025</td>
+                                                <td class="dash">—</td>
+                                                <td class="text-right">—</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Commencement of Classes</td>
+                                                <td>Monday, September 29, 2025</td>
+                                                <td>Friday, November 21, 2025</td>
+                                                <td class="text-right">8 weeks</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Midterm Examination</td>
+                                                <td>Monday, November 24, 2025</td>
+                                                <td>Friday, November 28, 2025</td>
+                                                <td class="text-right">1 week</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Classes</td>
+                                                <td>Monday, December 1, 2025</td>
+                                                <td>Friday, December 26, 2025</td>
+                                                <td class="text-right">4 weeks</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Winter Holidays</td>
+                                                <td>Monday, December 29, 2025</td>
+                                                <td>Friday, January 9, 2026</td>
+                                                <td class="text-right">2 week</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Classes</td>
+                                                <td>Monday, January 12, 2026</td>
+                                                <td>Friday, February 6, 2026</td>
+                                                <td class="text-right">4 weeks</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Final Examination</td>
+                                                <td>Monday, February 9, 2026</td>
+                                                <td>Friday, February 13, 2026</td>
+                                                <td class="text-right">1 week</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Semester Break</td>
+                                                <td>Monday, February 16, 2026</td>
+                                                <td>Friday, February 20, 2026</td>
+                                                <td class="text-right">1 weeks</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Submission of result to CoE</td>
+                                                <td>Tuesday, February 24, 2026</td>
+                                                <td class="dash">—</td>
+                                                <td class="text-right">—</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Notification of Semester Result</td>
+                                                <td>Friday, March 06, 2026</td>
+                                                <td class="dash">—</td>
+                                                <td class="text-right">—</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Spring Semester 2026 -->
+                            <div class="cal-card">
+                                <div class="cal-header">
+                                    <div class="cal-badge">S26</div>
+                                    <h3 class="cal-title">Spring Semester 2026</h3>
+                                </div>
+                                <div class="cal-content">
+                                    <table class="cal-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Events</th>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th class="text-right">Weeks</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Spring Semester Begins</td>
+                                                <td>Monday, February 23, 2026</td>
+                                                <td class="dash">—</td>
+                                                <td class="text-right">—</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Last date of Add/Drop of Courses</td>
+                                                <td>Friday, March 06, 2026</td>
+                                                <td class="dash">—</td>
+                                                <td class="text-right">—</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Commencement of Classes</td>
+                                                <td>Monday, February 23, 2026</td>
+                                                <td>Friday, March 13, 2026</td>
+                                                <td class="text-right">3 weeks</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Eid-ul-Fitar</td>
+                                                <td>Monday, March 16, 2026</td>
+                                                <td>Friday, March 20, 2026</td>
+                                                <td class="text-right">1 week</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Commencement of Classes</td>
+                                                <td>Tuesday, March 24, 2026</td>
+                                                <td>Friday, April 24, 2026</td>
+                                                <td class="text-right">5 weeks</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Midterm Examination</td>
+                                                <td>Monday, April 27, 2026</td>
+                                                <td>Friday, May 1, 2026</td>
+                                                <td class="text-right">1 week</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Classes</td>
+                                                <td>Monday, May 4, 2026</td>
+                                                <td>Friday, May 22, 2026</td>
+                                                <td class="text-right">3 weeks</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Eid-ul-Azha</td>
+                                                <td>Monday, May 25, 2026</td>
+                                                <td>Friday, May 29, 2026</td>
+                                                <td class="text-right">1 week</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Classes</td>
+                                                <td>Monday, June 1, 2026</td>
+                                                <td>Friday, July 3, 2026</td>
+                                                <td class="text-right">5 weeks</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Final Examination</td>
+                                                <td>Monday, July 6, 2026</td>
+                                                <td>Friday, July 10, 2026</td>
+                                                <td class="text-right">1 week</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Semester Break</td>
+                                                <td>Monday, July 13, 2026</td>
+                                                <td>Friday, July 17, 2026</td>
+                                                <td class="text-right">1 weeks</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Submission of result to CoE</td>
+                                                <td>Tuesday, July 21, 2026</td>
+                                                <td class="dash">—</td>
+                                                <td class="text-right">—</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Notification of Semester Result</td>
+                                                <td>Friday, July 31, 2026</td>
+                                                <td class="dash">—</td>
+                                                <td class="text-right">—</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Summer Semester 2026 -->
+                            <div class="cal-card">
+                                <div class="cal-header">
+                                    <div class="cal-badge">U26</div>
+                                    <h3 class="cal-title">Summer Semester 2026</h3>
+                                </div>
+                                <div class="cal-content">
+                                    <table class="cal-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Events</th>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th class="text-right">Weeks</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Summer Semester Begins</td>
+                                                <td>Monday, July 20, 2026</td>
+                                                <td class="dash">—</td>
+                                                <td class="text-right">—</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Commencement of Classes</td>
+                                                <td>Monday, July 20, 2026</td>
+                                                <td>Friday, August 14, 2026</td>
+                                                <td class="text-right">4 weeks</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Midterm Examination</td>
+                                                <td>Monday, August 17, 2026</td>
+                                                <td>Friday, August 21, 2026</td>
+                                                <td class="text-right">1 week</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Classes</td>
+                                                <td>Monday, August 24, 2026</td>
+                                                <td>Friday, September 18, 2026</td>
+                                                <td class="text-right">4 weeks</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Final Examination</td>
+                                                <td>Monday, September 21, 2026</td>
+                                                <td>Friday, September 25, 2026</td>
+                                                <td class="text-right">1 week</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tentative Commencement Fall 2025</td>
+                                                <td>Monday, September 28, 2026</td>
+                                                <td class="dash">—</td>
+                                                <td class="text-right">—</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Gazetted Holidays -->
+                            <div class="cal-card">
+                                <div class="cal-header">
+                                    <div class="cal-badge">GH</div>
+                                    <h3 class="cal-title">Gazetted Holidays 2025-26</h3>
+                                </div>
+                                <div class="cal-content">
+                                    <div class="cal-note">Muslim holidays are subject to moon appearance.</div>
+                                    <table class="cal-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:40%">Date(s)</th>
+                                                <th>Holiday</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td>Thursday, December 25, 2025</td><td>Quaid-e-Azam Birthday</td></tr>
+                                            <tr><td>Thursday, February 5, 2026</td><td>Kashmir Day</td></tr>
+                                            <tr><td>Monday, March 23, 2026</td><td>Pakistan Day</td></tr>
+                                            <tr><td>March 19 - March 21, 2026</td><td>Eid-ul Fitar (Muslim holidays subject to moon appearance)</td></tr>
+                                            <tr><td>Friday, May 1, 2026</td><td>Labour Day</td></tr>
+                                            <tr><td>May 26-27, 2026</td><td>Eid-ul-Adha (Muslim holidays subject to moon appearance)</td></tr>
+                                            <tr><td>June 25-26, 2026</td><td>Aashura (Muslim holidays subject to moon appearance)</td></tr>
+                                            <tr><td>Friday, August 14, 2026</td><td>Independence Day</td></tr>
+                                            <tr><td>Wednesday, August 26, 2026</td><td>Eid Milad-un Nabi (Muslim holidays subject to moon appearance)</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
+                    <div class="faculty-page-sidebar">
+                        @Html.Partial("_AdmissionSidebar")
+                    </div>
                 </div>
-            </section>
-            <!-- content end -->
-        </main>
-    </div>
-</body>
+            </div>
+        </section>
+        <!-- content end -->
+    </main>
+</div>

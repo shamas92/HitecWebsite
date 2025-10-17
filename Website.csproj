@@ -185,6 +185,7 @@
     <Compile Include="Models\tblDepartmentUpcomingEvent.cs" />
     <Compile Include="Models\tblDesignation.cs" />
     <Compile Include="Models\tblDownload.cs" />
+    <Compile Include="Models\tblFeeStructure.cs" />
     <Compile Include="Models\tblHostel.cs" />
     <Compile Include="Models\tblHrClassificationServices.cs" />
     <Compile Include="Models\tblHrContributoryFund.cs" />
@@ -245,6 +246,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\admission-modal.css" />
+    <Content Include="Content\css\admissions.css" />
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\error-pages.css" />
@@ -744,6 +746,12 @@
     <Content Include="Views\HR\ConductDiscipline.cshtml" />
     <Content Include="Views\Faculties\_SidebarFacilities.cshtml" />
     <Content Include="Views\Faculties\Events.cshtml" />
+    <Content Include="Views\Admission\_AdmissionSidebar.cshtml" />
+    <Content Include="Views\Admission\FeeStructure.cshtml" />
+    <Content Include="Views\Admission\AcademicRegulations.cshtml" />
+    <Content Include="Views\Admission\AcademicDeficiencies.cshtml" />
+    <Content Include="Views\Admission\RulesAndRegulationsMS.cshtml" />
+    <Content Include="Views\Admission\RulesAndRegulationsPhD.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
