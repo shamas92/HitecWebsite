@@ -1,5 +1,6 @@
+@model HitecCM.Models.tblRulesRegulationsPhd
 @{
-    ViewBag.Title = ViewBag.Title ?? "Rules & Regulations for PhD";
+    ViewBag.Title = string.IsNullOrWhiteSpace(Model?.Title) ? "Rules & Regulations for PhD" : Model.Title;
     ViewBag.MetaDescription = ViewBag.MetaDescription ?? "Comprehensive rules and regulations for Doctor of Philosophy (PhD) degree programs at HITEC University including admission requirements, research guidelines, dissertation procedures and academic standards.";
     ViewBag.MetaKeywords = ViewBag.MetaKeywords ?? "PhD rules, doctorate degree, doctoral regulations, dissertation guidelines, admission requirements, research standards, HITEC University";
 }
@@ -16,413 +17,55 @@
     <meta property="og:type" content="website" />
 }
 
-<!-- breadcrumb start -->
-<section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
-    <div class="container">
-        <div class="breadcrumb__content text-center">
-            <h1 class="breadcrumb__title mt-25" style="color: #000">Rules & Regulations for PhD</h1>
-            <p class="breadcrumb__desc mb-50" style="color: #000">Doctor of Philosophy program guidelines</p>
-        </div>
-    </div>
-</section>
-<!-- breadcrumb end -->
-
-<!-- content start -->
-<section class="about pb-120 phd-section">
-    <div class="container">
-        <div class="faculty-page-layout">
-            <div class="faculty-page-content">
-                <div class="about-content mt-60">
-
-                    <!-- Hero -->
-                    <div class="fund-hero">
-                        <div class="subtitle">Doctoral Education</div>
-                        <h1>Rules & Regulations for PhD</h1>
-                        <div class="accent-line"></div>
-                        <p>
-                            Comprehensive guidelines for Doctor of Philosophy (PhD) degree programs at HITEC University covering admission criteria, research requirements, dissertation procedures and academic excellence standards.
-                        </p>
-                    </div>
-
-                    <!-- Award of PhD Degree -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-graduation-cap"></i></div>
-                            <h3 class="fund-title">Award of PhD Degree</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>HITEC University, on recommendations of Board of Advanced Studies and Research (BAS&R), shall award the degree of Doctor of Philosophy (PhD) to students who satisfy the following conditions:</p>
-                            
-                            <div class="requirement-item">
-                                <strong>Course Work/Residency:</strong> The minimum course work required shall be 18 credits of graduate level courses and two years of Residency. The courses shall be offered through regular classes (i.e., classes taught on campus by full-time faculty members of the university). Only relevant graduate level courses or equivalent shall be counted towards the total course work requirements of PhD.
-                            </div>
-                            
-                            <div class="requirement-item">
-                                <strong>Research Work:</strong> In addition to the course work, all students shall register for 30 Credit Hours of doctoral research and volume of research work to be determined by the Guidance Evaluation Committee.
-                            </div>
-                            
-                            <div class="requirement-item">
-                                <strong>Successful Dissertation Defense:</strong> Details are given in paragraphs 18-21 of this Chapter.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Eligibility for Admission -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-user-graduate"></i></div>
-                            <h3 class="fund-title">Eligibility for Admission</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>To be eligible for admission to PhD a candidate:</p>
-                            <ol>
-                                <li>Shall possess MS/MPhil (18+ years) degree or its equivalent with a minimum CGPA 3.00 out of 4.00 (Semester system) or 60% (in the annual system). For students with CGPA less than 3.00 or 60% marks in annual exams shall be processed in the light of provision of prevailing HEC Graduate Education Policy.</li>
-                                <li>In case the candidate is serving in a private or government organization, he/she shall also attach a "No Objection Certificate" from his/her employer, and route the admission form through proper channel.</li>
-                                <li>Shall submit statement of purpose in line with the provisions of HEC Graduate Education Policy.</li>
-                                <li>Shall pass admission test as per criteria mentioned in HEC Graduate Education Policy.</li>
-                                <li>A student previously withdrawn from HITEC University on disciplinary grounds will not be eligible to apply again for any degree program.</li>
-                                <li>In case of dispute, decision of the Vice Chancellor shall be final for grant of admission to any student in PhD program.</li>
-                                <li>Interdisciplinary admission shall be processed as per guidelines listed in Graduate Education Policy issued by HEC.</li>
-                            </ol>
-                        </div>
-                    </div>
-
-                    <!-- Application/Registration -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-file-alt"></i></div>
-                            <h3 class="fund-title">Application/Registration</h3>
-                        </div>
-                        <div class="fund-content">
-                            <ol>
-                                <li>Desirous applicants shall apply to the Registrar HITEC University on the prescribed application form along with necessary documents (in duplicate) to the Admission Office, as per advertised schedule of admissions. The Admission Office will issue a receipt of acknowledgement to the candidate.</li>
-                                <li>After initial scrutiny as per the eligibility of the candidate, the application form will be forwarded to the concerned department for evaluation and recommendations.</li>
-                                <li>Each department will form a PhD Admission Committee headed by the Chairperson with 2-3 PhD faculty members as approved by the VC. The Committee will scrutinize each case for the approval of VC, as per following guidelines:
-                                    <ul>
-                                        <li>Appraisal of academic profile of the candidate and the accompanying letters of recommendation.</li>
-                                        <li>The research proposal will also be carefully assessed.</li>
-                                        <li>The candidate could be called for an interview by the committee.</li>
-                                        <li>Availability of a suitably qualified and experienced supervisor in the relevant field of research and his acceptance of the candidate are essential for the grant of admission to a candidate.</li>
-                                    </ul>
-                                </li>
-                                <li>After receiving approval of VC, the Registrar shall issue notification of the candidate as a provisional PhD student with intimation to all concerned. The letter will be issued to each successful/unsuccessful candidate.</li>
-                                <li>At the beginning of the program, every student shall register with the University in the discipline for which he/she has been recommended by the Admission Committee.</li>
-                                <li>Each student so selected shall be required to register and pay security and admission fee within 30 days from the date of issuance of the notification of registration.</li>
-                            </ol>
-                            
-                            <div class="warning-box">
-                                <strong>Important:</strong> All admissions shall be liable to be cancelled until the submission of:
-                                <ul>
-                                    <li>Required/pre-requisite and attested documents.</li>
-                                    <li>Full security and admission fee as laid down.</li>
-                                    <li>Any other supporting documents that may be required.</li>
-                                    <li>Attested copies of certificate within two weeks of declaration of results by the candidates awaiting result is mandatory, otherwise the University will cancel their admission.</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="important-note">
-                                <strong>Note:</strong> At the time of registration, candidates will provide original certificates also, which will be retained by the Admission Office till completion of the program.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Academic Deficiencies -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-exclamation-triangle"></i></div>
-                            <h3 class="fund-title">Academic Deficiencies</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>A student shall be dropped from the PhD degree program if:</p>
-                            
-                            <div class="warning-box">
-                                <ul>
-                                    <li>Receives 'F' grade in more than one course.</li>
-                                    <li>Fails after repeating the course.</li>
-                                    <li>On completion of course work and even after availing the chances for improvement of grades, the CGPA remains below 3.00</li>
-                                    <li>Fails twice in the comprehensive examination.</li>
-                                    <li>On disciplinary grounds when recommended by the Discipline Committee.</li>
-                                    <li>Other conditions are also applicable as mentioned in these rules.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Improvement of CGPA -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-chart-line"></i></div>
-                            <h3 class="fund-title">Improvement of CGPA</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>Before taking the comprehensive examination, a student may repeat only two courses having grade point average of less than 3.00. Procedure for repeating the course(s) shall be as under:</p>
-                            
-                            <ol>
-                                <li>The candidate shall apply to the Chairperson for permission to repeat a course. The Chairperson, in consultation with the Supervisor, may permit the student to repeat the course, subject to its offering.</li>
-                                <li>The transcript shall show both the old and the new earned grades but the CGPA shall be based on the better grade.</li>
-                                <li>The student shall have to repeat the course within the time limit given in the university regulations.</li>
-                                <li>In addition to clearance of the 'F' grade, a student shall be allowed to repeat a maximum of two courses only during his/her entire PhD coursework.</li>
-                            </ol>
-                        </div>
-                    </div>
-
-                    <!-- Confirmation of Admission -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-check-circle"></i></div>
-                            <h3 class="fund-title">Confirmation of Admission</h3>
-                        </div>
-                        <div class="fund-content">
-                            <ol>
-                                <li>After successful completion of graduate level courses or equivalent (minimum 18 credit hours) a student shall appear and pass the comprehensive examination to be granted candidacy as a PhD researcher.</li>
-                                <li>Comprehensive Examination shall be conducted as per guidelines stipulated in line with the provision of the HEC Graduate Education Policy.</li>
-                                <li>A Comprehensive Examination shall be conducted by the PhD Examination Committee approved by the VC on the recommendations of the Chairperson of the Department and Dean of the Faculty concerned in consultation with the Supervisor/Guidance Evaluation Committee.</li>
-                                <li>The Supervisor of the student will be the Chairman of this Committee.</li>
-                                <li>A maximum of two chances including retake will be available for clearing the comprehensive examination.</li>
-                                <li>After passing the comprehensive examination, the student with the guidance of supervisor will submit a synopsis of the proposed research topic for the approval of Board of Advanced Studies and Research.</li>
-                            </ol>
-                            
-                            <div class="warning-box">
-                                <strong>Time Limits:</strong>
-                                <ul>
-                                    <li>Failure to complete the course work, comprehensive examination and defense of synopsis within the specified time may result in cancellation of registration of the candidate.</li>
-                                    <li>The required coursework, comprehensive exam, and defense of synopsis/research proposals shall be completed within the first six semesters of the registration into a PhD program.</li>
-                                    <li>However, the maximum duration for completion of course shall be 2 years (4 semesters).</li>
-                                    <li>The responsibility in this regard rests collectively with the PhD student and the university.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Supervision and Committee Structure -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-users"></i></div>
-                            <h3 class="fund-title">Supervision and Committee Structure</h3>
-                        </div>
-                        <div class="fund-content">
-                            <div class="research-box">
-                                <strong>Appointment of Supervisor:</strong> The Board of Studies shall recommend the name of Supervisor from the relevant field for newly admitted PhD scholars and the OIC PG-Cell shall sent the case along with minutes of the meeting through the Chairperson and Dean to the Director ASR for onward submission to secretary BAS&R. Board of Advanced Studies and Research shall appoint a supervisor as proposed or otherwise.
-                            </div>
-                            
-                            <div class="research-box">
-                                <strong>Guidance and Evaluation Committee (GEC):</strong> The Supervisor within two weeks after its appointment shall propose Guidance and Evaluation Committee (GEC) in consultation with the student. GEC shall comprise of minimum three PhD members including the supervisor, one member from the department and one external member from a reputed national university or research organization/relevant industry.
-                            </div>
-                            
-                            <div class="research-box">
-                                <strong>Co-Supervisor:</strong> A co-supervisor, if required, will be appointed with the mutual consent of student and supervisor. A co-supervisor should be a PhD, and shall be either from another department within HITEC University or outside the university/research organization.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Progress Monitoring -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-chart-area"></i></div>
-                            <h3 class="fund-title">Progress Monitoring</h3>
-                        </div>
-                        <div class="fund-content">
-                            <div class="requirement-item">
-                                <strong>Progress Reports:</strong> A PhD student shall submit the duly filled biannual progress report on the prescribed proforma in the first week of January and July respectively to Supervisor. The supervisor after examination and comments shall send the report to the OIC PG-Cell.
-                            </div>
-                            
-                            <div class="requirement-item">
-                                <strong>Progress Presentation:</strong> The scholar shall appear before the board of studies along with progress presentation on the notified date. In case, if scholar desires to appear online due to commitments/constrains he/she may appear online, but will be required to submit progress report duly filled and signed to supervisor.
-                            </div>
-                            
-                            <div class="warning-box">
-                                <strong>Consequences:</strong>
-                                <ul>
-                                    <li>In case of two consecutive unsatisfactory reports by the Supervisor, the case will be recommended to BAS&R for cancellation of admission.</li>
-                                    <li>The scholar will not be allowed to present progress presentation if progress report is not submitted.</li>
-                                    <li>Failure to submit the progress report, unsatisfactory report may be assigned by the Supervisor in consultation with the board of studies.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Title/Synopsis Defense -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-presentation"></i></div>
-                            <h3 class="fund-title">Title/Synopsis Defense and Seminars</h3>
-                        </div>
-                        <div class="fund-content">
-                            <div class="research-box">
-                                <strong>Title/Synopsis Defense:</strong> The PhD scholar student shall submit a synopsis of the proposed research topic to the supervisor within the given timeline. The supervisor shall submit the same to the OIC PG-Cell for plagiarism checking and if the plagiarism report is within limits, then the OIC PG-Cell in consultation with Chairperson and Supervisor shall prepare the case for scheduling of GEC meeting.
-                            </div>
-                            
-                            <div class="requirement-item">
-                                <strong>Seminars/Workshops:</strong> It is mandatory for the PhD scholar to attend one conference/workshop/PhD defense seminar or give workshop/seminar on his PhD work or attend poster presentation/PhD student conference arranged by HITEC University.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Change of Supervisor/Topic -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-exchange-alt"></i></div>
-                            <h3 class="fund-title">Change of Supervisor/Topic</h3>
-                        </div>
-                        <div class="fund-content">
-                            <ul>
-                                <li>Any subsequent changes in the proposal will be forwarded to BAS&R through concerned Department and Dean.</li>
-                                <li>Request for change in PhD supervisor or if a supervisor opts to withdraw from supervision of a candidate will be sent to BAS&R for approval through the Chairperson of concerned department.</li>
-                                <li><strong>No relaxation in the completion time will be granted on this basis.</strong></li>
-                                <li>The change request of supervisor and topic is allowed once during entire PhD coursework.</li>
-                                <li>In case of change of topic/supervisor on cogent reasons, the case of PhD scholar shall be discussed in the meeting of GEC.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Duration and Medium -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-clock"></i></div>
-                            <h3 class="fund-title">Duration and Medium of Instructions</h3>
-                        </div>
-                        <div class="fund-content">
-                            <div class="requirement-item">
-                                <strong>Duration:</strong> Minimum period for completion of PhD program shall be three years whereas the maximum period shall be eight years and shall include two years of residency.
-                            </div>
-                            
-                            <div class="requirement-item">
-                                <strong>Residency:</strong> During residency, the University staff(s) selected to undergo the PhD program shall temporarily discontinue teaching (for residency period only) and will be paid scholarship/stipend as applicable/authorized from time to time.
-                            </div>
-                            
-                            <div class="requirement-item">
-                                <strong>Medium of Instructions:</strong> The medium of instructions, writing and examination shall be English unless otherwise approved by the VC.
-                            </div>
-                            
-                            <div class="requirement-item">
-                                <strong>Research Publication:</strong> As per the requirement mentioned in HEC PG Policy.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Dissertation Evaluation -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-microscope"></i></div>
-                            <h3 class="fund-title">Dissertation Evaluation Process</h3>
-                        </div>
-                        <div class="fund-content">
-                            <div class="research-box">
-                                <strong>Pre-Defense before GEC:</strong> On completion of research work, the scholar shall submit the request on the prescribed proforma along with the hard (Spiral Binding)/soft copy of thesis and soft copy of presentation with the recommendation of supervisor to the OIC PG-Cell. The OIC PG-Cell shall submit the same for plagiarism checking to QA&C.
-                            </div>
-                            
-                            <div class="research-box">
-                                <strong>External Examiners:</strong> The GEC shall suggest a panel of at least eight external examiners (four local and four foreign experts) from the approved list. The VC in consultation with Dean shall appoint two external and two local examiners from the suggested panel to evaluate the dissertation.
-                            </div>
-                            
-                            <div class="requirement-item">
-                                <strong>Plagiarism Test:</strong> Plagiarism Test must be conducted on the dissertation before its submission to foreign and local experts by the QAC.
-                            </div>
-                            
-                            <div class="requirement-item">
-                                <strong>Evaluation Criteria:</strong> Dissertation must be evaluated by experts as per criteria given in HEC Graduate Education Policy.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Evaluation Outcomes -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-clipboard-check"></i></div>
-                            <h3 class="fund-title">Evaluation Outcomes and Resubmission</h3>
-                        </div>
-                        <div class="fund-content">
-                            <div class="research-box">
-                                <strong>Positive Evaluation:</strong> Final presentation of dissertation will be given after obtaining unanimous positive evaluation report by all the experts.
-                            </div>
-                            
-                            <div class="warning-box">
-                                <strong>Rejection/Resubmission:</strong>
-                                <ul>
-                                    <li>In case of rejection by one of the expert, the dissertation will be sent to the expert from the originally proposed panel for obtaining the final opinion.</li>
-                                    <li>In case, if two of the experts ask for a resubmission, the candidate will be asked to work on the dissertation for a maximum period of six months before submitting it for re-evaluation.</li>
-                                    <li>Re-submission may be allowed at least three months after intimation to the concerned supervisor.</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="requirement-item">
-                                <strong>Incorporation of Suggestions:</strong> The scholar after addressing all the suggestion/comments in the Thesis shall submit it to the supervisor. The supervisor after ensuring that the scholar has completely incorporated all the suggestions as advised in the report shall send the request for scheduling of GEC meeting to the OIC PG-Cell.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Dissertation Defense -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-podium"></i></div>
-                            <h3 class="fund-title">Dissertation Defense</h3>
-                        </div>
-                        <div class="fund-content">
-                            <div class="research-box">
-                                <strong>Defense Panel:</strong> The Dissertation Defense shall be conducted by the panel of examiners consisting of two local examiners (who had reviewed the dissertation), members of the GEC (including the supervisor) and the Chairperson of the Department.
-                            </div>
-                            
-                            <ol>
-                                <li>The Controller of Examinations will notify the date and place for holding the open Defense.</li>
-                                <li>Prior to candidate's presentation, the Supervisor will introduce the student.</li>
-                                <li>The candidate will make a detailed presentation of the research work.</li>
-                                <li>For maximum participation, the schedule of open Defense of the Dissertation by the candidate shall be announced at least four weeks prior to its conduct.</li>
-                                <li>The Dissertation Defense shall be open to the public but the evaluation will be done by the panel of examiners.</li>
-                                <li>Consequent to the open Defense, the panel of examiners will give its decision by a majority vote.</li>
-                            </ol>
-                        </div>
-                    </div>
-
-                    <!-- Dissertation Submission -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-file-upload"></i></div>
-                            <h3 class="fund-title">Submission of Dissertation</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>The dissertation submitted by PhD candidate shall comply with the following conditions:</p>
-                            
-                            <ul>
-                                <li>It shall form a distinct contribution to knowledge and afford evidence of originality, shown by the discovery of new facts, by the exercise of independent critical judgment, and/by the invention of new methods of investigation.</li>
-                                <li>It shall not include research work for which a degree has already been conferred in this or any other university.</li>
-                                <li>Initially, the candidate shall submit four spiral bound copies of completed dissertation along with an application on prescribed form, duly recommended by the supervisor and the Chairman of the Department to the CoE, for evaluation of dissertation.</li>
-                                <li>At final submission six hard bound copies of dissertation with a soft copy each on CD, will be prepared for submitting of four copies to the University (out of which one set will be sent to HEC), one copy for the Department, one copy for the Supervisor, one for Library and one student copy.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Award and Ethics -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-medal"></i></div>
-                            <h3 class="fund-title">Award of PhD Degree & Code of Ethics</h3>
-                        </div>
-                        <div class="fund-content">
-                            <div class="research-box">
-                                <strong>Degree Award:</strong>
-                                <ul>
-                                    <li>The candidate who successfully completes all the requirements including passing of Dissertation Defense shall be awarded, with the approval of the Board of Advanced Studies and Research; the degree of PhD under the Seal of the University in the relevant discipline.</li>
-                                    <li>The VC may approve the recommendations of the Board of Advanced Studies and Research on behalf of the Board of Governors regarding the award of PhD degree to the candidate.</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="warning-box">
-                                <strong>Code of Ethics:</strong>
-                                <ul>
-                                    <li>The candidate or his spouse or his relatives shall not communicate with external examiner(s) directly or indirectly.</li>
-                                    <li>Any faculty member of the department shall not participate in the PhD process of a candidate at any stage, if the candidate is his blood relation or his spouse or the faculty member is a candidate himself.</li>
-                                    <li>External examiners may not be co-author of any publication with the candidate or his spouse or his blood relative or supervisor.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
+<div class="body_wrap">
+    <main aria-labelledby="title">
+        <!-- breadcrumb start -->
+        <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
+            <div class="container">
+                <div class="breadcrumb__content text-center">
+                    <h1 class="breadcrumb__title mt-25" style="color: #000">@ViewBag.Title</h1>
+                    <p class="breadcrumb__desc mb-50" style="color: #000">Doctor of Philosophy program guidelines</p>
                 </div>
             </div>
-            <div class="faculty-page-sidebar">
-                @Html.Partial("_AdmissionSidebar")
+        </section>
+        <!-- breadcrumb end -->
+
+        <!-- content start -->
+        <section class="about pb-120 phd-section">
+            <div class="container">
+                <div class="faculty-page-layout">
+                    <div class="faculty-page-content">
+                        @if (!string.IsNullOrWhiteSpace(Model?.PageData))
+                        {
+                            <!-- Dynamic content from database -->
+                            @Html.Raw(Model.PageData)
+                        }
+
+                    </div>
+                    <div class="faculty-page-sidebar">
+                        @Html.Partial("_AdmissionSidebar")
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
-<!-- content end -->
+        </section>
+        <!-- content end -->
+    </main>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Force hide preloader
+            setTimeout(function () {
+                $('#preloader').fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            }, 500);
+
+            // Smooth animations for cards
+            $('.fund-card').each(function(i) {
+                $(this).delay(100 * i).fadeIn(500);
+            });
+        });
+    </script>
+}

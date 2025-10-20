@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = ViewBag.Title ?? "Fee Structure";
+﻿@model HitecCM.Models.tblFeeStructure
+@{
+    ViewBag.Title = string.IsNullOrWhiteSpace(Model?.Title) ? "Fee Structure" : Model.Title;
     ViewBag.MetaDescription = ViewBag.MetaDescription ?? "Detailed fee structure for all programs at HITEC University including tuition fees, hostel charges, transport charges and miscellaneous fees for academic year 2025-26.";
     ViewBag.MetaKeywords = ViewBag.MetaKeywords ?? "HITEC University, fee structure, tuition fees, admission fees, hostel charges, transport charges, education cost";
 }
@@ -16,419 +17,39 @@
     <meta property="og:type" content="website" />
 }
 
-<!-- breadcrumb start -->
-<section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
-    <div class="container">
-        <div class="breadcrumb__content text-center">
-            <h1 class="breadcrumb__title mt-25" style="color: #000">Fee Structure</h1>
-            <p class="breadcrumb__desc mb-50" style="color: #000">Academic Year 2025-26</p>
-        </div>
-    </div>
-</section>
-<!-- breadcrumb end -->
-
-<!-- content start -->
-<section class="about pb-120">
-    <div class="container">
-        <div class="faculty-page-layout">
-            <div class="faculty-page-content">
-                <div class="about-content mt-20">
-                  
-                    
-                    <!-- fee structure section start -->
-                    <div class="employment-section">
-                        
-                        <!-- Hero Header -->
-                        <div class="fund-hero">
-                            <div class="subtitle">Financial Information</div>
-                            <h1>Fee Structure</h1>
-                            <div class="accent-line"></div>
-                            <p>The fee structure for students registered in the academic year 2025-26 in different disciplines of undergraduate & postgraduate programs. All amounts are in Pakistani Rupees.</p>
-                        </div>
-
-                        <!-- Fee Structure Table -->
-                        <div class="fund-card">
-                            <div class="fund-header">
-                                <div class="fund-badge"><span>&#8360;</span></div>
-                                <h3 class="fund-title">Program Fee Structure 2025-26</h3>
-                            </div>
-                            <div class="fund-content">
-                                <table class="fee-table">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 8%">Sr#</th>
-                                            <th style="width: 35%">Program Name</th>
-                                            <th style="width: 15%">Admission Fee</th>
-                                            <th style="width: 20%">Security/Convocation Charges</th>
-                                            <th style="width: 22%">Tuition Fee (Per Semester)</th>
-                                        </tr>
-                                        <tr class="fee-subhead">
-                                            <th colspan="2">Program Categories</th>
-                                            <th class="numeric">(In Rupees)</th>
-                                            <th class="numeric">(In Rupees)</th>
-                                            <th class="numeric">For Intake Fall-2025</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="program-category">
-                                            <td colspan="5">5x BE Engineering Programs</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><strong>Electrical Engineering</strong><br>
-                                                <small>Mechanical Engineering, Civil Engineering, Computer Engineering, Biomedical Engineering</small></td>
-                                            <td class="amount">30,000</td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">150,000</td>
-                                        </tr>
-                                        
-                                        <tr class="program-category">
-                                            <td colspan="5">5x BS Technology Programs</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td><strong>BS Computer Science</strong><br>
-                                                <small>BS Software Engineering, BS Computer Engineering (NC), BS Artificial Intelligence, BS Cyber Security</small></td>
-                                            <td class="amount">40,000</td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">130,000</td>
-                                        </tr>
-                                        
-                                        <tr class="program-category">
-                                            <td colspan="5">2x BS Technology Programs</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td><strong>BS Robotics & Automation</strong><br>
-                                                <small>BS Internet of Things</small></td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">95,000</td>
-                                        </tr>
-                                        
-                                        <tr class="program-category">
-                                            <td colspan="5">Basic Sciences Programs</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td><strong>BS Mathematics</strong></td>
-                                            <td class="amount">15,000</td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">63,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td><strong>BS Islamic Studies</strong></td>
-                                            <td class="amount">15,000</td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">37,500</td>
-                                        </tr>
-                                        
-                                        <tr class="program-category">
-                                            <td colspan="5">2x UG Management Sciences Programs</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td><strong>BS Accounting & Finance</strong><br>
-                                                <small>BBA</small></td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">110,000</td>
-                                        </tr>
-                                        
-                                        <tr class="program-category">
-                                            <td colspan="5">MS Programs</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td><strong>MS (Engineering & Technology)</strong></td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">7,500 (Per Cr. Hr.)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td><strong>MS Management Sciences</strong></td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">7,500 (Per Cr. Hr.)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>9</td>
-                                            <td><strong>MS Mathematics</strong></td>
-                                            <td class="amount">15,000</td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">7,500 (Per Cr. Hr.)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td><strong>MS Islamic Studies</strong></td>
-                                            <td class="amount">15,000</td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">7,500 (Per Cr. Hr.)</td>
-                                        </tr>
-                                        
-                                        <tr class="program-category">
-                                            <td colspan="5">PhD Programs</td>
-                                        </tr>
-                                        <tr>
-                                            <td>11</td>
-                                            <td><strong>PhD (Engineering & Technology)</strong></td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">7,500 (Per Cr. Hr.)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>12</td>
-                                            <td><strong>PhD Islamic Studies</strong></td>
-                                            <td class="amount">15,000</td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">7,500 (Per Cr. Hr.)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>13</td>
-                                            <td><strong>PhD Mathematics</strong></td>
-                                            <td class="amount">15,000</td>
-                                            <td class="amount">25,000</td>
-                                            <td class="amount">7,500 (Per Cr. Hr.)</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                
-
-                                <div class="fund-highlight">
-                                    <strong>Important Notes:</strong>
-                                    <p><strong>MS Thesis Supervisory and Evaluation Charges:</strong> PKR 25,000</p>
-                                    <p><strong>PhD Thesis Supervisory and Evaluation Charges:</strong> PKR 35,000</p>
-                                    <p><strong>Note:</strong> The University will not accept any claim of security deposit refund after three years of completion of degree/withdrawal from university and amount of security deposit will be transferred to HITEC UNIVERSITY FUND.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Transport Charges -->
-                        <div class="fund-card">
-                            <div class="fund-header">
-                                <div class="fund-badge"><i class="fas fa-bus"></i></div>
-                                <h3 class="fund-title">Transport Charges</h3>
-                            </div>
-                            <div class="fund-content">
-                                <h4>Transport Charges Detail</h4>
-                                <p>The Transport Charges FY 2025–26 are given below:</p>
-                                
-                                <table class="fee-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Service</th>
-                                            <th>Amount (PKR)</th>
-                                            <th>Duration</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>Transport Charges</strong></td>
-                                            <td class="amount">38,000</td>
-                                            <td>Per Semester</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                
-                                <div class="fund-highlight">
-                                    <strong>Note:</strong>
-                                    <p>The Management can revise the Transport charges subject to escalation in prices of fuel.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Miscellaneous Fee -->
-                        <div class="fund-card">
-                            <div class="fund-header">
-                                <div class="fund-badge"><i class="fas fa-clipboard-list"></i></div>
-                                <h3 class="fund-title">Miscellaneous Fee</h3>
-                            </div>
-                            <div class="fund-content">
-                                <table class="fee-table">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 8%">Sr#</th>
-                                            <th style="width: 60%">Description</th>
-                                            <th style="width: 32%">Amount/Rates</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Course Repeat Fee/Additional Course/Summer Semester fee</td>
-                                            <td class="amount">PKR 7,500/- Per Credit Hour</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Semester Freeze Fee</td>
-                                            <td class="amount">25% of Semester fee for each semester (UG)<br>PKR 10,000/- Per Semester (G & PG)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Migration Fee</td>
-                                            <td class="amount">PKR 1,500/- Migration Application Fee<br>25% of semester fee for each exempted semester</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Complete Transcript Fee</td>
-                                            <td class="amount">PKR 4,000/- (Urgent)<br>PKR 2,000/- (Normal)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Incomplete Transcript Fee</td>
-                                            <td class="amount">PKR 2,000/- (Urgent)<br>PKR 1,000/- (Normal)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>Degree Fee</td>
-                                            <td class="amount">PKR 8,000/- (Urgent)<br>PKR 5,000/- (Normal)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td>Additional Grade Report including Attestation</td>
-                                            <td class="amount">PKR 500/- Per Semester</td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>Recalculation Charges (Per Course)</td>
-                                            <td class="amount">PKR 1,000/-</td>
-                                        </tr>
-                                        <tr>
-                                            <td>9</td>
-                                            <td>Attestation (Per Document)</td>
-                                            <td class="amount">PKR 500 per Document</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td>Duplicate Admit Card (Per Course)</td>
-                                            <td class="amount">PKR 500/-</td>
-                                        </tr>
-                                        <tr>
-                                            <td>11</td>
-                                            <td>Student Card Fee</td>
-                                            <td class="amount">PKR 3,000/-</td>
-                                        </tr>
-                                        <tr>
-                                            <td>12</td>
-                                            <td>Verification Fee</td>
-                                            <td class="amount">PKR 2,000/- Local<br>PKR 8,000/- Overseas</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <!-- Hostel Charges -->
-                        <div class="fund-card">
-                            <div class="fund-header">
-                                <div class="fund-badge"><i class="fas fa-home"></i></div>
-                                <h3 class="fund-title">Hostel Charges</h3>
-                            </div>
-                            <div class="fund-content">
-                                <p>The Hostel/Accommodation charges FY 2025-26 are given below:</p>
-                                
-                                <table class="fee-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Description</th>
-                                            <th>Boys Hostel</th>
-                                            <th>Girls Hostel</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>Hostel Security (Refundable)</strong></td>
-                                            <td class="amount">Rs. 72,000/-</td>
-                                            <td class="amount">Rs. 72,000/-</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Monthly Hostel charges</strong></td>
-                                            <td class="amount">Rs. 36,000/-</td>
-                                            <td class="amount">Rs. 36,000/-</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <!-- Refund Policy -->
-                        <div class="info-box-wrapper">
-                            <h3><i class="fas fa-undo"></i> Refund Policy</h3>
-                            <p>For refund of dues to student, HITEC University will follow the HEC National Fee Refund Policy (NFRP) Revised 2024 issued vide Registrar Office Notification No. REG/HEC/25/13408 dated January 06, 2025.</p>
-                        </div>
-
-                        <!-- Payment Instructions -->
-                        <div class="general-provisions">
-                            <h3><i class="fas fa-credit-card"></i> Payment of Dues</h3>
-                            <div class="provision-item">
-                                <strong>Registration Process:</strong> The Student will be required to register/enroll the courses through portal using their official email address and enroll the course.
-                            </div>
-                            <div class="provision-item">
-                                <strong>Fee Voucher:</strong> After the successful enrollment of courses, semester fee voucher will be available for downloading and printing.
-                            </div>
-                            <div class="provision-item">
-                                <strong>Download Process:</strong> The University Fee Voucher will be downloaded by the student logging into MIS user ID.
-                            </div>
-                            <div class="provision-item">
-                                <strong>Payment Method:</strong> The student will print the semester fee voucher and pay the semester fee by the due date at cash counter of any branch of Askari Bank Ltd or Accounts office of HITEC University.
-                            </div>
-                            <div class="provision-item">
-                                <strong>Advance Payment:</strong> All registered students of the University should deposit their semester fee and allied charges in advance on due date before commencement of classes of that semester, thereafter, fine/penalty will be charged as per the University policy.
-                            </div>
-                            <div class="provision-item">
-                                <strong>Admission Payment:</strong> At the time of admission students have to pay the admission & registration fee, security deposit and full semester fee in advance.
-                            </div>
-                        </div>
-
-                        <!-- Important Instructions -->
-                        <div class="important-note">
-                            <h5><i class="fas fa-exclamation-triangle"></i> Students are to ensure the followings:</h5>
-                            <p><strong>1. Original Copy Submission:</strong> Submission of original copy of paid fee voucher to the Treasurer office – Collection section of the University</p>
-                            <p><strong>2. Digital Submission:</strong> Submission of the copy of paid fee voucher through WhatsApp and email to the following:</p>
-                            <ul style="margin-left: 20px; margin-top: 10px;">
-                                <li><strong>Mobile Number:</strong> 03155169152</li>
-                                <li><strong>Email address:</strong> fee@hitecuni.edu.pk</li>
-                            </ul>
-                            <p style="margin-top: 15px;"><strong>Warning:</strong> In case the student fails to submit his original copy of paid fee voucher to the account office, his/her name will appear in the list of student with outstanding dues.</p>
-                        </div>
-
-                        <!-- Contact Information -->
-                        <div class="hr-contact-box">
-                            <h4>Need Help with Fee Structure?</h4>
-                            <p>For any queries regarding fee structure, payment procedures, or financial matters, please contact our Finance Department.</p>
-                            <div class="contact-grid">
-                                <div class="contact-item">
-                                    <i class="fas fa-envelope"></i>
-                                    <span>fee@hitecuni.edu.pk</span>
-                                </div>
-                                <div class="contact-item">
-                                    <i class="fas fa-phone"></i>
-                                    <span>+92 (315) 516-9152</span>
-                                </div>
-                                <div class="contact-item">
-                                    <i class="fas fa-building"></i>
-                                    <span>Finance Department, HITEC University</span>
-                                </div>
-                                <div class="contact-item">
-                                    <i class="fas fa-clock"></i>
-                                    <span>Mon-Fri: 9:00 AM - 5:00 PM</span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- fee structure section end -->
+<div class="body_wrap">
+    <main aria-labelledby="title">
+        <!-- breadcrumb start -->
+        <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
+            <div class="container">
+                <div class="breadcrumb__content text-center">
+                    <h1 class="breadcrumb__title mt-25" style="color: #000">@ViewBag.Title</h1>
+                    <p class="breadcrumb__desc mb-50" style="color: #000">Academic Year 2025-26</p>
                 </div>
             </div>
-            <div class="faculty-page-sidebar">
-                @Html.Partial("_AdmissionSidebar")
+        </section>
+        <!-- breadcrumb end -->
+
+        <!-- content start -->
+        <section class="about pb-120">
+            <div class="container">
+                <div class="faculty-page-layout">
+                    <div class="faculty-page-content">
+                        @if (!string.IsNullOrWhiteSpace(Model?.PageData))
+                        {
+                            <!-- Dynamic content from database -->
+                            @Html.Raw(Model.PageData)
+                        }
+                    </div>
+                    <div class="faculty-page-sidebar">
+                        @Html.Partial("_AdmissionSidebar")
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
-<!-- content end -->
+        </section>
+        <!-- content end -->
+    </main>
+</div>
 
 @section Scripts {
     <script>

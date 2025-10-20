@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = ViewBag.Title ?? "Academic Regulations";
+﻿@model HitecCM.Models.tblAcademicRegulation
+@{
+    ViewBag.Title = string.IsNullOrWhiteSpace(Model?.Title) ? "Academic Regulations" : Model.Title;
     ViewBag.MetaDescription = ViewBag.MetaDescription ?? "Official academic regulations at HITEC University covering registration, attendance, examinations, grading, integrity, probation and degree completion.";
     ViewBag.MetaKeywords = ViewBag.MetaKeywords ?? "Academic regulations, rules, grading policy, attendance, probation, examinations, HITEC University";
 }
@@ -16,351 +17,54 @@
     <meta property="og:type" content="website" />
 }
 
-<!-- breadcrumb start -->
-<section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
-    <div class="container">
-        <div class="breadcrumb__content text-center">
-            <h1 class="breadcrumb__title mt-25" style="color: #000">Academic Regulations</h1>
-            <p class="breadcrumb__desc mb-50" style="color: #000">Policies and procedures for students</p>
-        </div>
-    </div>
-</section>
-<!-- breadcrumb end -->
-
-<!-- content start -->
-<section class="about pb-120 reg-section">
-    <div class="container">
-        <div class="faculty-page-layout">
-            <div class="faculty-page-content">
-                <div class="about-content mt-60">
-
-                    <!-- Hero -->
-                    <div class="fund-hero">
-                        <div class="subtitle">Academic Regulations (Common to all)</div>
-                        <h1>Academic Regulations</h1>
-                        <div class="accent-line"></div>
-                        <p>
-                            The HITEC University Taxila follows semester system, quite akin to that in vogue in American universities. Singular features of this system are highly focused well delivered classroom lectures, extensive experimentation and continuous assessment of students' performance. It aims to infuse habits of regularity and competitiveness amongst the students. Definition of various terms applicable to our system and a summary of regulations are given below. Please do take few minutes to peruse through them.
-                        </p>
-                    </div>
-
-                    <!-- Academic Calendar -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="far fa-calendar"></i></div>
-                            <h3 class="fund-title">Academic Calendar</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>
-                                It consists of two regular and a Summer Semester. Duration of regular semesters is nineteen weeks each which includes sixteen weeks of teaching and three weeks of examinations. The Summer Semester (conducted for undergraduate programs only) is condensed to eight weeks duration, but the credit hours taught for a course are equal to a regular semester. The schedule of semesters for the year 2020-2021 is:-
-                            </p>
-                            <table class="fee-table">
-                                <thead>
-                                    <tr>
-                                        <th>Term</th>
-                                        <th>Dates</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Fall Semester 2020</td>
-                                        <td>September 07, 2020 - January 15, 2021</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Spring Semester 2021</td>
-                                        <td>February 01, 2021 - June 11, 2021</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Summer Semester 2021</td>
-                                        <td>June 14, 2021 - August 20, 2021</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Definitions -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="far fa-clock"></i></div>
-                            <h3 class="fund-title">Contact Hour</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>
-                                One hour including ten minutes break spent on academic and research related activities including instructional work/tutorials, laboratory work (practical), research work, projects, seminars, workshops, internships, etc during the course of studies at the University.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-book"></i></div>
-                            <h3 class="fund-title">Credit Course</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>A course of which enrolment and successful completion is a mandatory requirement for the award of degree.</p>
-                        </div>
-                    </div>
-
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="far fa-hourglass"></i></div>
-                            <h3 class="fund-title">Credit Hour (Cr Hr)</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>
-                                lecture of one hour duration (including ten minutes break) delivered per week per semester for a course countable towards a student's Cumulative Grade Point Average. However, in case of seminars, tutorials and laboratory work (practical), one credit hour may require two or three contact hours depending upon the nature of the subject.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Grading System -->
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-calculator"></i></div>
-                            <h3 class="fund-title">Grading System</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>
-                                The performance of each student in a course of study is based on relative grading system except otherwise mentioned. The grades and grade points in case of relative grading are as follows:-
-                            </p>
-                            <table class="fee-table">
-                                <thead>
-                                    <tr>
-                                        <th>Grade</th>
-                                        <th class="numeric">Grade Point</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td>A</td><td class="numeric">4.00</td></tr>
-                                    <tr><td>A-</td><td class="numeric">3.67</td></tr>
-                                    <tr><td>B+</td><td class="numeric">3.33</td></tr>
-                                    <tr><td>B</td><td class="numeric">3.00</td></tr>
-                                    <tr><td>B-</td><td class="numeric">2.67</td></tr>
-                                    <tr><td>C+</td><td class="numeric">2.33</td></tr>
-                                    <tr><td><strong>*C</strong></td><td class="numeric">2.00</td></tr>
-                                    <tr><td>C-</td><td class="numeric">1.67</td></tr>
-                                    <tr><td>D</td><td class="numeric">1.00</td></tr>
-                                    <tr><td>F</td><td class="numeric">0.00</td></tr>
-                                    <tr><td>I</td><td class="numeric">Incomplete</td></tr>
-                                </tbody>
-                            </table>
-                            <p class="note-box">* Lowest grade in case of Graduate Programs</p>
-
-                            <p>Note: In all cases of project, thesis, dissertation evaluation and where the class strength is 10 or less students, the performance will be based on the marks obtained by a student and the grades and grade points will be as follows:-</p>
-                            <table class="fee-table">
-                                <thead>
-                                    <tr>
-                                        <th>Marks</th>
-                                        <th>Grade</th>
-                                        <th class="numeric">Grade Point</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td>90-100</td><td>A</td><td class="numeric">4.00</td></tr>
-                                    <tr><td>85-89</td><td>A-</td><td class="numeric">3.67</td></tr>
-                                    <tr><td>80-84</td><td>B+</td><td class="numeric">3.33</td></tr>
-                                    <tr><td>75-79</td><td>B</td><td class="numeric">3.00</td></tr>
-                                    <tr><td>70-74</td><td>B-</td><td class="numeric">2.67</td></tr>
-                                    <tr><td>65-69</td><td>C+</td><td class="numeric">2.33</td></tr>
-                                    <tr><td>60-64</td><td><strong>*C</strong></td><td class="numeric">2.00</td></tr>
-                                    <tr><td>55-59</td><td>C-</td><td class="numeric">1.67</td></tr>
-                                    <tr><td>50-54</td><td>D</td><td class="numeric">1.00</td></tr>
-                                    <tr><td>less than 50</td><td>F</td><td class="numeric">0.00</td></tr>
-                                    <tr><td>-</td><td>I</td><td class="numeric">Incomplete</td></tr>
-                                </tbody>
-                            </table>
-                            <p class="note-box">* Lowest grade in case of Graduate Programs</p>
-                        </div>
-                    </div>
-
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-times-circle"></i></div>
-                            <h3 class="fund-title">Award of Grade 'F'</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>
-                                In addition to 'F' grade awarded on the basis of academic failure, a student shall not be allowed to appear in end semester examination of a subject in which his/her attendance is less than 75%, and he/she shall be awarded 'F' grade in that subject. The 'F' grade so obtained shall only be cleared by repeating the same course whenever offered.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-question-circle"></i></div>
-                            <h3 class="fund-title">Award of Grade 'I'</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>
-                                A student, who, because of illness or other acceptable reason(s) approved by the Departmental Board of Studies/ Board of Faculty, fails to appear in end semester examination, provided his/her overall attendance is not less than 75%, is given 'I' as a grade. The student receiving such a grade makes up the unfinished portion of his course and is given a grade at the discretion of the faculty without prejudice to the previous grade 'I'. In case the student fails to make up the course work, he/ she receives a grade 'F' unless further extension is given by the Board of Faculty. He/she shall pay the prescribed fee for re-appearing in the end semester paper. Following procedure should be adopted to remove 'I' grade:-
-                            </p>
-                            <ul>
-                                <li><strong>Sessional Examinations.</strong> Whenever a student misses sessional examination due to reasons acceptable to Departmental Board of Studies, make up test shall be arranged within the period to be decided by the Departmental Board of Studies but not later than four weeks from original date of missed sessional examination. Makeup test for Mid-term examination of two hours duration (only for lab courses) will also be governed accordingly.</li>
-                                <li><strong>End Semester Examination.</strong> Whenever a student misses end semester examination due to reasons acceptable to the Departmental Board of Studies, make up examination shall be arranged within first six weeks after the beginning of the subsequent semester.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="far fa-clipboard"></i></div>
-                            <h3 class="fund-title">Attendance Rule & Averages</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p><strong>Attendance Rule.</strong> A student shall not be allowed to appear in end semester examination of a subject in which his/her attendance is less than 75%, and he/she shall be awarded 'F' grade.</p>
-                            <p><strong>Cumulative Grade Point Average (CGPA).</strong> The summation of grade points of all credit courses divided by the total number of credit hours taken by a student, i.e. <em>CGPA = Sum of (P×N) / Sum of N</em>, where P is grade point and N is credit hours.</p>
-                            <p><strong>Semester Grade Point Average (GPA).</strong> The summation of grade points of the particular semester credit courses divided by the total number of credit hours taken by a student in that semester.</p>
-                        </div>
-                    </div>
-
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-redo-alt"></i></div>
-                            <h3 class="fund-title">Repetition of Course(s)</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>
-                                A student can repeat a course to obtain minimum CGPA laid down for the prescribed program or to improve the CGPA. It is the responsibility of the student to clear the failed course(s) or improve CGPA by applying (subject to course offering) to the respective chairperson and get the approval to repeat the course.
-                            </p>
-                            <p>
-                                While repeating a course, a student will undergo all the formalities applicable to regular semester i.e. pay the fee, attend the classes and appear in the quizzes, assignments, projects, practical examination, sessional examinations and end semester examination as planned for the course. During Summer Semester a maximum of 'B' grade shall be awarded.
-                            </p>
-                            <p>
-                                Opting to repeat a course(s) a student shall not be eligible for top honors/awards even if he/she improves and obtains equal or better CGPA. The student transcript shall show both old and new earned grades, but the CGPA shall be based on better earned grade. Apart from clearance of 'F' grade an undergraduate student can repeat a maximum of six courses and graduate student can repeat a maximum of two courses.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="far fa-snowflake"></i></div>
-                            <h3 class="fund-title">Semester Freeze</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>
-                                Based on the positive recommendation of the Chairperson of the Department/ College/ Institution; semester freeze up to one year from course work is allowed to students facing acute domestic problems or on other valid reason(s). During semester freeze period an undergraduate and a graduate student shall pay the laid down fee to continue his/her registration with the University. Prior to resumption of studies after the semester freeze, it shall be mandatory to clear all the previous outstanding dues, if any. Freezing of first semester is not allowed.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-check-circle"></i></div>
-                            <h3 class="fund-title">Final Grade</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>
-                                The grade earned by a student in home assignments, quizzes, case studies, viva voce, practical/laboratory work, sessional examinations, end semester examination and projects etc, are formalized into final result by the concerned faculty member. All the examination answer books/sheets including end semester examination are marked and shown to the students. The marks obtained by the student in each examination are also displayed on notice boards at least one week prior to commencement of end semester examinations. The faculty members prepare the final results of the students on the award list in duplicate and submit it to the Departmental Board of Studies. The award list of each course duly approved by the Departmental Board of Studies is then sent to the Office of the Controller of Examinations.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-sync-alt"></i></div>
-                            <h3 class="fund-title">Recalculation/Change of Grade</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>
-                                There shall be no re-evaluation of answer scripts of the end semester examination. However, a candidate shall be allowed to have his/her answer scripts rechecked by the Controller of Examinations on payment of prescribed fee within 30 days of the declaration of the result. The Dean of the Faculty concerned, on the recommendation of the concerned Chairperson, may condone the delay up to a maximum period of 15 days on payment of double fee.
-                            </p>
-                            <p>The Controller of Examinations and a faculty member of the concerned department shall check the answer scripts of the end semester examination of the applicant and satisfy themselves regarding following aspects and certify that:-</p>
-                            <ul>
-                                <li>The script belongs to the applicant and that it has not been changed.</li>
-                                <li>No portion of the script has been left unmarked.</li>
-                                <li>The marks awarded in the script have been correctly brought out/ reproduced on its cover.</li>
-                                <li>The grand total on the cover of the script is correct.</li>
-                                <li>The grand total on the cover of the script is correctly transferred to the award list.</li>
-                                <li>The result has been correctly posted and notified.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-tools"></i></div>
-                            <h3 class="fund-title">Change in Pre-End Semester Examination Result(s)</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>
-                                After notification/declaration of final results by the Controller of Examinations, pre-end semester examination results will not be changed e.g. quizzes, assignments, sessional examinations or any other activity which was assigned marks. Only the application(s) raising query in final paper will be accepted. Student(s) seeking change/rectification of pre-end semester examination results due to erroneous entry of marks by the concerned faculty member will be admitted and processed through Chairperson of concerned Departments/Institutes/ Colleges.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-language"></i></div>
-                            <h3 class="fund-title">Medium of Instruction</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>The medium of instruction will be English except where permitted by the competent authority.</p>
-                        </div>
-                    </div>
-
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="far fa-file-alt"></i></div>
-                            <h3 class="fund-title">Semester Enrolment</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>
-                                Enrolment in each regular and Summer Semester is mandatory for every student. List of enrolled students will be notified by the Registrar Office within first two weeks of commencement of each semester and Controller of Examinations shall publish results on the basis of that list. Enrolment forms are available with each Department and if a student fails to enroll for the semester, his/her name will be struck off the university rolls and will be included in the list of suspended students. The registration will be restored after paying the laid down fee and the fine imposed as per rules.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-plus-circle"></i></div>
-                            <h3 class="fund-title">Course Add/Drop</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p><strong>Undergraduate Programs.</strong> A student, if allowed to enroll in additional course(s) in a regular semester or during Summer Semester, can add or drop a course(s) on the basis of conflict in weekly program or on personal grounds within first two weeks of commencement of semester. In this case fee will not be charged, nor will the result be announced. In all other situations a student is liable to pay the fee and his/her result will also be announced.</p>
-                            <p><strong>Graduate Programs.</strong> A student can apply and get approval by the respective Chairperson of department/ school/institution, to add or drop course(s) due to conflict in weekly program or on personal grounds within first two weeks of commencement of regular semester. In this case fee will not be charged, nor will the result be announced. In case a student applies for dropping a course(s) within two weeks after first sessional examination, fee will be charged, but the result will not be announced. In all other situations a student is liable to pay the fee and his/her result will also be announced.</p>
-                        </div>
-                    </div>
-
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-layer-group"></i></div>
-                            <h3 class="fund-title">Semester Credit Load</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>
-                                In every semester, undergraduate students must enroll in all the courses prescribed for that semester (as specified in the road map of the Program). The academic load in each semester ranges from fifteen to eighteen credit hours for undergraduate, maximum twelve credit hours for MS and nine credit hours for PhD Programs. In Summer Semester, an undergraduate student can enroll in the number of courses not exceeding nine credit hours.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="fund-card">
-                        <div class="fund-header">
-                            <div class="fund-badge"><i class="fas fa-poll"></i></div>
-                            <h3 class="fund-title">Academic Performance Evaluation</h3>
-                        </div>
-                        <div class="fund-content">
-                            <p>The students are evaluated as per following criteria:-</p>
-                            <ul>
-                                <li>Quizzes</li>
-                                <li>Home Assignments</li>
-                                <li>Case Studies/Seminars/Workshops</li>
-                                <li>Practical/Laboratory Tests</li>
-                                <li>Project</li>
-                                <li>Internship</li>
-                                <li>Viva Voce</li>
-                                <li>Sessional Examinations</li>
-                                <li>End Semester Examination</li>
-                            </ul>
-                        </div>
-                    </div>
-
+<div class="body_wrap">
+    <main aria-labelledby="title">
+        <!-- breadcrumb start -->
+        <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
+            <div class="container">
+                <div class="breadcrumb__content text-center">
+                    <h1 class="breadcrumb__title mt-25" style="color: #000">@ViewBag.Title</h1>
+                    <p class="breadcrumb__desc mb-50" style="color: #000">Policies and procedures for students</p>
                 </div>
             </div>
-            <div class="faculty-page-sidebar">
-                @Html.Partial("_AdmissionSidebar")
+        </section>
+        <!-- breadcrumb end -->
+
+        <!-- content start -->
+        <section class="about pb-120 reg-section">
+            <div class="container">
+                <div class="faculty-page-layout">
+                    <div class="faculty-page-content">
+                        @if (!string.IsNullOrWhiteSpace(Model?.PageData))
+                        {
+                            <!-- Dynamic content from database -->
+                            @Html.Raw(Model.PageData)
+                        }
+                    </div>
+                    <div class="faculty-page-sidebar">
+                        @Html.Partial("_AdmissionSidebar")
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
-<!-- content end -->
+        </section>
+        <!-- content end -->
+    </main>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Force hide preloader
+            setTimeout(function () {
+                $('#preloader').fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            }, 500);
+
+            // Smooth animations for cards
+            $('.fund-card').each(function(i) {
+                $(this).delay(100 * i).fadeIn(500);
+            });
+        });
+    </script>
+}

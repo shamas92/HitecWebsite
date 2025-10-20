@@ -1,4 +1,8 @@
+using System;
+using System.Linq;
 using System.Web.Mvc;
+using Website.Models;
+using HitecCM.Models;
 
 namespace Website.Controllers
 {
@@ -7,22 +11,84 @@ namespace Website.Controllers
         // GET: /Admission/AcademicCalendar
         public ActionResult AcademicCalendar()
         {
-            ViewBag.Title = "Academic Calendar";
-            ViewBag.MetaDescription = "View the academic calendar including important dates for admissions, semesters, and examinations at HITEC University.";
-            ViewBag.MetaKeywords = "Academic Calendar, admissions, semester dates, exam schedule, HITEC University";
-            return View();
+            try
+            {
+                using (var db = new Model1())
+                {
+                    var data = db.AcademicCalendars
+                        .OrderByDescending(x => (DateTime?)x.UpdatedAt ?? x.CreatedAt)
+                        .FirstOrDefault();
+
+                    if (data == null)
+                    {
+                        data = new AcademicCalendar
+                        {
+                            CalendarID = 0,
+                            Title = "Academic Calendar",
+                            DescripQon = null,
+                            CreatedAt = DateTime.Now,
+                            UpdatedAt = null
+                        };
+                    }
+
+                    return View(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in AcademicCalendar: {ex.Message}");
+                var emptyModel = new AcademicCalendar
+                {
+                    CalendarID = 0,
+                    Title = "Academic Calendar",
+                    DescripQon = null,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = null
+                };
+                return View(emptyModel);
+            }
         }
 
-        // Admissions pages
+        // GET: /Admission/FeeStructure
         public ActionResult FeeStructure()
         {
-            ViewBag.Title = "Fee Structure";
-            ViewBag.MetaDescription = "Detailed fee structure for all programs at HITEC University including tuition fees, hostel charges, transport charges and miscellaneous fees for academic year 2025-26.";
-            ViewBag.MetaKeywords = "HITEC University, fee structure, tuition fees, admission fees, hostel charges, transport charges, education cost";
-            return View();
+            try
+            {
+                using (var db = new Model1())
+                {
+                    var data = db.tblFeeStructures
+                        .OrderByDescending(x => (DateTime?)x.UpdatedAt ?? x.CreatedAt)
+                        .FirstOrDefault();
+
+                    if (data == null)
+                    {
+                        data = new tblFeeStructure
+                        {
+                            ID = 0,
+                            Title = "Fee Structure",
+                            PageData = null,
+                            CreatedAt = DateTime.Now,
+                            UpdatedAt = null
+                        };
+                    }
+
+                    return View(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in FeeStructure: {ex.Message}");
+                var emptyModel = new tblFeeStructure
+                {
+                    ID = 0,
+                    Title = "Fee Structure",
+                    PageData = null,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = null
+                };
+                return View(emptyModel);
+            }
         }
-
-
 
         public ActionResult FinancialMatters()
         {
@@ -72,28 +138,168 @@ namespace Website.Controllers
             return View();
         }
 
+        // GET: /Admission/AcademicRegulations
         public ActionResult AcademicRegulations()
         {
-            ViewBag.Title = "Academic Regulations";
-            return View();
+            try
+            {
+                using (var db = new Model1())
+                {
+                    var data = db.tblAcademicRegulations
+                        .OrderByDescending(x => (DateTime?)x.UpdatedAt ?? x.CreatedAt)
+                        .FirstOrDefault();
+
+                    if (data == null)
+                    {
+                        data = new tblAcademicRegulation
+                        {
+                            ID = 0,
+                            Title = "Academic Regulations",
+                            PageData = null,
+                            CreatedAt = DateTime.Now,
+                            UpdatedAt = null
+                        };
+                    }
+
+                    return View(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in AcademicRegulations: {ex.Message}");
+                var emptyModel = new tblAcademicRegulation
+                {
+                    ID = 0,
+                    Title = "Academic Regulations",
+                    PageData = null,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = null
+                };
+                return View(emptyModel);
+            }
         }
 
+        // GET: /Admission/AcademicDeficiencies
         public ActionResult AcademicDeficiencies()
         {
-            ViewBag.Title = "Academic Deficiencies";
-            return View();
+            try
+            {
+                using (var db = new Model1())
+                {
+                    var data = db.tblAcademicDeficiencies
+                        .OrderByDescending(x => (DateTime?)x.UpdatedAt ?? x.CreatedAt)
+                        .FirstOrDefault();
+
+                    if (data == null)
+                    {
+                        data = new tblAcademicDeficiency
+                        {
+                            ID = 0,
+                            Title = "Academic Deficiencies",
+                            PageData = null,
+                            CreatedAt = DateTime.Now,
+                            UpdatedAt = null
+                        };
+                    }
+
+                    return View(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in AcademicDeficiencies: {ex.Message}");
+                var emptyModel = new tblAcademicDeficiency
+                {
+                    ID = 0,
+                    Title = "Academic Deficiencies",
+                    PageData = null,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = null
+                };
+                return View(emptyModel);
+            }
         }
 
+        // GET: /Admission/RulesAndRegulationsMS
         public ActionResult RulesAndRegulationsMS()
         {
-            ViewBag.Title = "Rules & Regulations (MS)";
-            return View();
+            try
+            {
+                using (var db = new Model1())
+                {
+                    var data = db.tblRulesRegulationsMS
+                        .OrderByDescending(x => (DateTime?)x.UpdatedAt ?? x.CreatedAt)
+                        .FirstOrDefault();
+
+                    if (data == null)
+                    {
+                        data = new tblRulesRegulationsMS
+                        {
+                            ID = 0,
+                            Title = "Rules & Regulations for MS",
+                            PageData = null,
+                            CreatedAt = DateTime.Now,
+                            UpdatedAt = null
+                        };
+                    }
+
+                    return View(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in RulesAndRegulationsMS: {ex.Message}");
+                var emptyModel = new tblRulesRegulationsMS
+                {
+                    ID = 0,
+                    Title = "Rules & Regulations for MS",
+                    PageData = null,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = null
+                };
+                return View(emptyModel);
+            }
         }
 
+        // GET: /Admission/RulesAndRegulationsPhD
         public ActionResult RulesAndRegulationsPhD()
         {
-            ViewBag.Title = "Rules & Regulations (PhD)";
-            return View();
+            try
+            {
+                using (var db = new Model1())
+                {
+                    var data = db.tblRulesRegulationsPhd
+                        .OrderByDescending(x => (DateTime?)x.UpdatedAt ?? x.CreatedAt)
+                        .FirstOrDefault();
+
+                    if (data == null)
+                    {
+                        data = new tblRulesRegulationsPhd
+                        {
+                            ID = 0,
+                            Title = "Rules & Regulations for PhD",
+                            PageData = null,
+                            CreatedAt = DateTime.Now,
+                            UpdatedAt = null
+                        };
+                    }
+
+                    return View(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in RulesAndRegulationsPhD: {ex.Message}");
+                var emptyModel = new tblRulesRegulationsPhd
+                {
+                    ID = 0,
+                    Title = "Rules & Regulations for PhD",
+                    PageData = null,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = null
+                };
+                return View(emptyModel);
+            }
         }
 
         public ActionResult HitecUniversityAct2009()

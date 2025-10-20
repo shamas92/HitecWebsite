@@ -752,6 +752,8 @@
     <Content Include="Views\Admission\AcademicDeficiencies.cshtml" />
     <Content Include="Views\Admission\RulesAndRegulationsMS.cshtml" />
     <Content Include="Views\Admission\RulesAndRegulationsPhD.cshtml" />
+    <Content Include="Views\Admission\_MSRulesStaticContent.cshtml" />
+    <Content Include="Views\Admission\_PhDRulesStaticContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
