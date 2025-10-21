@@ -18,10 +18,10 @@
             <a href="@Url.Action("RefundPolicy", "Admission")" class="@(currentAction == "RefundPolicy" ? "active" : "")">Refund Policy</a>
         </li>
         <li>
-            <a href="@Url.Action("FinesPenaltiesOnLatePayments", "Admission")" class="@(currentAction == "FinesPenaltiesOnLatePayments" ? "active" : "")">Fines/Penalties on Late Payments</a>
+            <a href="@Url.Action("Fines", "Admission")" class="@(currentAction == "Fines" ? "active" : "")">Fines/Penalties on Late Payments</a>
         </li>
         <li>
-            <a href="@Url.Action("Accommodation", "Admission")" class="@(currentAction == "Accommodation" ? "active" : "")">Accomodation</a>
+            <a href="@Url.Action("Accommodation", "Admission")" class="@(currentAction == "Accommodations" ? "active" : "")">Accommodation</a>
         </li>
         <li>
             <a href="@Url.Action("Transport", "Admission")" class="@(currentAction == "Transport" ? "active" : "")">Transport</a>
@@ -45,7 +45,7 @@
             <a href="@Url.Action("RulesAndRegulationsPhD", "Admission")" class="@(currentAction == "RulesAndRegulationsPhD" ? "active" : "")">Rules &amp; Regulations (PhD)</a>
         </li>
         <li>
-            <a href="https://localhost:44347/Content/pdf/admissions/THE_HITEC_UNIVERSITY_OF_TAXILA_ACT,_2009.pdf" >HITEC University Act 2009</a>
+            <a href="@Url.Action("HitecUniversityAct2009", "Admission")" class="@(currentAction == "HitecUniversityAct2009" ? "active" : "")">HITEC University Act 2009</a>
         </li>
     </ul>
 </div>

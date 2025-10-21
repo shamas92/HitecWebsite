@@ -1,0 +1,66 @@
+@model HitecCM.Models.tblLatePaymentPenalty
+@{
+    ViewBag.Title = "Fines/Penalties on Late Payments";
+    ViewBag.MetaDescription = "Learn about HITEC University's fines and penalties for late fee payments. Understand the consequences of delayed semester fee deposits and payment deadlines.";
+    ViewBag.MetaKeywords = "HITEC University, late payment fines, payment penalties, fee deadlines, semester fee, payment policy";
+}
+
+@section Meta {
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta property="og:title" content="@ViewBag.Title - HITEC University" />
+    <meta property="og:description" content="@ViewBag.MetaDescription" />
+    <meta property="og:type" content="website" />
+}
+
+<div class="body_wrap">
+    <main aria-labelledby="title">
+        <!-- breadcrumb start -->
+        <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
+            <div class="container">
+                <div class="breadcrumb__content text-center">
+                    <h1 class="breadcrumb__title mt-25" style="color: #000">@ViewBag.Title</h1>
+                    <p class="breadcrumb__desc mb-50" style="color: #000">Late Payment Policy</p>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+
+        <!-- content start -->
+        <section class="about pb-120 fines-section">
+            <div class="container">
+                <div class="faculty-page-layout">
+                    <div class="faculty-page-content">
+                        @if (!string.IsNullOrWhiteSpace(Model?.PenaltyDetail))
+                        {
+                            <!-- Dynamic content from database -->
+                            @Html.Raw(Model.PenaltyDetail)
+                        }
+                    </div>
+                    <div class="faculty-page-sidebar">
+                        @Html.Partial("_AdmissionSidebar")
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- content end -->
+    </main>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Force hide preloader
+            setTimeout(function () {
+                $('#preloader').fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            }, 500);
+
+            // Smooth animations for cards
+            $('.fines-card').each(function(i) {
+                $(this).delay(100 * i).fadeIn(500);
+            });
+        });
+    </script>
+}

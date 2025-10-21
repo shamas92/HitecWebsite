@@ -4,52 +4,90 @@
 */
 
 /* Base Section Backgrounds & Reset */
-.reg-section,.def-section,.ms-section,.phd-section,.cal-section,.employment-section,.fund-section{padding:60px 0}
+.reg-section,.def-section,.ms-section,.phd-section,.cal-section,.employment-section,.fund-section,.financial-section,.refund-section,.fines-section,.accommodation-section,.transport-section,.misc-section{padding:60px 0}
 .about,.about .container,.about .faculty-page-layout,.about .faculty-page-content,.about .about-content{background:transparent!important;border:0!important;box-shadow:none!important}
 
 /* Hero Sections - Common Styles */
-.fund-hero,.cal-hero{background:linear-gradient(135deg,#002155 0%,#001a44 100%);color:#fff;border-radius:16px;padding:50px 40px;margin-bottom:50px;position:relative;overflow:hidden}
-.fund-hero::before,.cal-hero::before{content:'';position:absolute;width:450px;height:450px;background:rgba(253,183,20,.08);border-radius:50%}
-.fund-hero::before{top: -45%;left: 65%;width: 400px;height: 400px;}
-.fund-hero .subtitle,.cal-hero .subtitle{color:#fdb714;font-size:14px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin:0;display:block;position:relative;z-index:1}
-.fund-hero h1,.fund-hero h2,.fund-hero h3,.cal-hero h1{color:#fff!important;font-family:'Playfair Display',serif;font-weight:700;font-size:42px;margin:10px 0 8px;position:relative;z-index:1}
-.fund-hero .accent-line,.cal-hero .accent-line{width:80px;height:4px;background:#fdb714;border-radius:2px;margin:14px 0 18px}
-.fund-hero p,.cal-hero p{max-width:900px;color:rgba(255,255,255,.92);font-size:18px;margin:0;position:relative;z-index:1}
+.fund-hero,.cal-hero,.financial-hero,.refund-hero,.fines-hero,.accommodation-hero,.transport-hero,.misc-hero{background:linear-gradient(135deg,#002155 0%,#001a44 100%);color:#fff;border-radius:16px;padding:50px 40px;margin-bottom:50px;position:relative;overflow:hidden}
+.fund-hero::before,.cal-hero::before,.financial-hero::before,.refund-hero::before,.fines-hero::before,.accommodation-hero::before,.transport-hero::before,.misc-hero::before{content:'';position:absolute;width:450px;height:450px;background:rgba(253,183,20,.08);border-radius:50%}
+.fund-hero::before,.financial-hero::before,.misc-hero::before{top:-45%;left:65%;width:400px;height:400px}
+.refund-hero::before,.fines-hero::before{top:-40%;right:60%;width:420px;height:420px}
+.accommodation-hero::before,.transport-hero::before{top:-35%;left:70%;width:380px;height:380px}
+.fund-hero .subtitle,.cal-hero .subtitle,.financial-hero .subtitle,.refund-hero .subtitle,.fines-hero .subtitle,.accommodation-hero .subtitle,.transport-hero .subtitle,.misc-hero .subtitle{color:#fdb714;font-size:14px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin:0;display:block;position:relative;z-index:1}
+.fund-hero h1,.fund-hero h2,.fund-hero h3,.cal-hero h1,.financial-hero h1,.refund-hero h1,.fines-hero h1,.accommodation-hero h1,.transport-hero h1,.misc-hero h1{color:#fff!important;font-family:'Playfair Display',serif;font-weight:700;font-size:42px;margin:10px 0 8px;position:relative;z-index:1}
+.fund-hero .accent-line,.cal-hero .accent-line,.financial-hero .accent-line,.refund-hero .accent-line,.fines-hero .accent-line,.accommodation-hero .accent-line,.transport-hero .accent-line,.misc-hero .accent-line{width:80px;height:4px;background:#fdb714;border-radius:2px;margin:14px 0 18px}
+.fund-hero p,.cal-hero p,.financial-hero p,.refund-hero p,.fines-hero p,.accommodation-hero p,.transport-hero p,.misc-hero p{max-width:900px;color:rgba(255,255,255,.92);font-size:18px;margin:0;position:relative;z-index:1}
 
 /* Card System - Common */
-.fund-card,.cal-card{background:#fff;border-radius:16px;box-shadow:0 5px 25px rgba(0,33,85,.1);overflow:hidden;margin-bottom:30px;transition:all .3s ease;display:block}
-.fund-card:hover,.cal-card:hover{box-shadow:0 12px 40px rgba(0,33,85,.18);transform:translateY(-5px)}
+.fund-card,.cal-card,.financial-card,.refund-card,.fines-card,.accommodation-card,.transport-card,.misc-card{background:#fff;border-radius:16px;box-shadow:0 5px 25px rgba(0,33,85,.1);overflow:hidden;margin-bottom:30px;transition:all .3s ease;display:block}
+.fund-card:hover,.cal-card:hover,.financial-card:hover,.refund-card:hover,.fines-card:hover,.accommodation-card:hover,.transport-card:hover,.misc-card:hover{box-shadow:0 12px 40px rgba(0,33,85,.18);transform:translateY(-5px)}
 
 /* Card Headers */
-.fund-header,.cal-header{background:linear-gradient(135deg,#002155 0%,#001a44 100%);color:#fff;padding:24px 28px;display:flex;align-items:center;gap:18px}
-.fund-badge,.cal-badge{width:60px;height:60px;border-radius:50%;background:#fdb714;color:#002155;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:26px;flex-shrink:0;box-shadow:0 4px 15px rgba(0,0,0,.2)}
-.fund-badge i{color:#002155}
-.fund-title,.cal-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin:0;color:#fff!important}
+.fund-header,.cal-header,.financial-header,.refund-header,.fines-header,.accommodation-header,.transport-header,.misc-header{background:linear-gradient(135deg,#002155 0%,#001a44 100%);color:#fff;padding:24px 28px;display:flex;align-items:center;gap:18px}
+.fund-badge,.cal-badge,.financial-badge,.refund-badge,.fines-badge,.accommodation-badge,.transport-badge,.misc-badge{width:60px;height:60px;border-radius:50%;background:#fdb714;color:#002155;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:26px;flex-shrink:0;box-shadow:0 4px 15px rgba(0,0,0,.2)}
+.fund-badge i,.financial-badge i,.refund-badge i,.fines-badge i,.accommodation-badge i,.transport-badge i,.misc-badge i{color:#002155}
+.fund-title,.cal-title,.financial-title,.refund-title,.fines-title,.accommodation-title,.transport-title,.misc-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin:0;color:#fff!important}
 
 /* Card Content */
-.fund-content,.cal-content{padding:28px}
-.fund-content p,.cal-content p{color:#5c5c54;line-height:1.75;margin-bottom:12px;font-size:15px}
-.fund-content h4{color:#002155;font-family:'Playfair Display',serif;font-size:24px;margin-bottom:20px}
-.fund-content ul,.fund-content ol{margin:0;padding-left:20px}
-.fund-content li{color:#170006;margin:6px 0;line-height:1.65}
-.fund-content ol li{color:#170006;margin:8px 0;line-height:1.65}
+.fund-content,.cal-content,.financial-content,.refund-content,.fines-content,.accommodation-content,.transport-content,.misc-content{padding:28px}
+.fund-content p,.cal-content p,.financial-content p,.refund-content p,.fines-content p,.accommodation-content p,.transport-content p,.misc-content p{color:#5c5c54;line-height:1.75;margin-bottom:12px;font-size:15px}
+.fund-content h4,.financial-content h4,.refund-content h4,.fines-content h4,.accommodation-content h4,.transport-content h4,.misc-content h4{color:#002155;font-family:'Playfair Display',serif;font-size:24px;margin-bottom:20px}
+.fund-content ul,.fund-content ol,.financial-content ul,.refund-content ul,.fines-content ul,.accommodation-content ul,.transport-content ul,.misc-content ul{margin:0;padding-left:20px}
+.fund-content li,.financial-content li,.refund-content li,.fines-content li,.accommodation-content li,.transport-content li,.misc-content li{color:#170006;margin:6px 0;line-height:1.65}
+.fund-content ol li,.refund-content ol li,.fines-content ol li{color:#170006;margin:8px 0;line-height:1.65}
 
-/* Tables - Fee & Calendar */
-.fee-table,.cal-table{width:100%;border-collapse:collapse;margin:16px 0;border:1px solid #E6E6E6;border-radius:8px;overflow:hidden}
-.fee-table th,.fee-table td,.cal-table th,.cal-table td{padding:12px 14px;text-align:left;border-bottom:1px solid #EAEAEA}
-.fee-table th,.cal-table th{background:#f7f9fc;color:#002155;font-weight:600;font-size:14px}
-.cal-table th{text-transform:uppercase;letter-spacing:.02em}
-.fee-table tbody tr:nth-child(even),.cal-table tbody tr:nth-child(even){background:#fcfcfd}
-.fee-table tbody tr:hover,.cal-table tbody tr:hover{background:#f3f6fb;transition:background .2s ease}
+/* Tables - Fee, Calendar, Financial Assistance, Refund, Fines, Accommodation, Transport, Misc */
+.fee-table,.cal-table,.financial-table,.refund-table,.fines-table,.accommodation-table,.transport-table,.misc-table{width:100%;border-collapse:collapse;margin:16px 0;border:1px solid #E6E6E6;border-radius:8px;overflow:hidden}
+.fee-table th,.fee-table td,.cal-table th,.cal-table td,.financial-table th,.financial-table td,.refund-table th,.refund-table td,.fines-table th,.fines-table td,.accommodation-table th,.accommodation-table td,.transport-table th,.transport-table td,.misc-table th,.misc-table td{padding:12px 14px;text-align:left;border-bottom:1px solid #EAEAEA}
+.fee-table th,.cal-table th,.financial-table th,.refund-table th,.fines-table th,.accommodation-table th,.transport-table th,.misc-table th{background:#f7f9fc;color:#002155;font-weight:600;font-size:14px}
+.cal-table th,.financial-table th,.refund-table th,.fines-table th,.accommodation-table th,.transport-table th,.misc-table th{text-transform:uppercase;letter-spacing:.02em}
+.fee-table tbody tr:nth-child(even),.cal-table tbody tr:nth-child(even),.financial-table tbody tr:nth-child(even),.refund-table tbody tr:nth-child(even),.fines-table tbody tr:nth-child(even),.accommodation-table tbody tr:nth-child(even),.transport-table tbody tr:nth-child(even),.misc-table tbody tr:nth-child(even){background:#fcfcfd}
+.fee-table tbody tr:hover,.cal-table tbody tr:hover,.financial-table tbody tr:hover,.refund-table tbody tr:hover,.fines-table tbody tr:hover,.accommodation-table tbody tr:hover,.transport-table tbody tr:hover,.misc-table tbody tr:hover{background:#f3f6fb;transition:background .2s ease}
 .fee-table .numeric,.text-right{text-align:right}
-.program-category{background:#eef2f7!important;color:#001a44!important;font-weight:600;text-align:left}
+.program-category,.program-header{background:#eef2f7!important;color:#001a44!important;font-weight:600;text-align:left}
 .fee-subhead{background:#f0f2f5;color:#5c5c54;font-size:13px}
 .amount{text-align:right;font-weight:600;color:#002155}
 .dash{color:#9aa4b2}
 
+/* Intro Boxes */
+.financial-intro,.refund-intro,.fines-intro,.accommodation-intro,.transport-intro{background:linear-gradient(135deg,#f7f9fc 0%,#e8f2fc 100%);border-left:4px solid #002155;padding:20px 24px;border-radius:10px;margin-bottom:30px}
+.financial-intro p,.refund-intro p,.fines-intro p,.accommodation-intro p,.transport-intro p{color:#5c5c54;line-height:1.75;margin:0;font-size:15px}
+
+/* Charge Display Boxes */
+.charge-display{background:#fff;border-radius:12px;box-shadow:0 5px 20px rgba(0,33,85,.08);padding:24px;text-align:center;margin-bottom:24px;border-top:4px solid #fdb714}
+.charge-display h4{color:#002155;font-size:18px;font-weight:600;margin-bottom:12px}
+.charge-display .amount-large{font-size:36px;font-weight:700;color:#002155;display:block}
+.charge-display .amount-sub{font-size:14px;color:#5c5c54;margin-top:8px}
+
+/* Charges Grid (for multiple charges) */
+.charges-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-bottom:30px}
+
+/* Contact Section */
+.contact-section{background:#fff;border-radius:12px;padding:28px;box-shadow:0 5px 20px rgba(0,33,85,.08);margin-top:30px}
+.contact-section h4{color:#002155;font-family:'Playfair Display',serif;font-size:24px;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid #f7f9fc}
+.contact-person{padding:16px 0;border-bottom:1px solid #f7f9fc}
+.contact-person:last-child{border-bottom:none}
+.contact-person h5{color:#002155;font-size:18px;font-weight:600;margin-bottom:8px}
+.contact-person p{color:#5c5c54;margin:4px 0;font-size:15px}
+.contact-person strong{color:#002155}
+
 /* Note & Info Boxes */
-.note-box,.cal-note{background:#f7f9fc;border-left:4px solid #002155;padding:16px;border-radius:8px;color:#5c5c54;margin:16px 0}
-.cal-note{padding:14px 16px;margin:0 0 16px}
+.note-box,.cal-note,.refund-note,.fines-note,.accommodation-note,.transport-note{background:#f7f9fc;border-left:4px solid #002155;padding:16px;border-radius:8px;color:#5c5c54;margin:16px 0}
+.cal-note,.refund-note,.fines-note,.accommodation-note,.transport-note{padding:14px 16px;margin:0 0 16px}
+.refund-note{background:#fff9e6;border-left-color:#ffc107}
+.fines-note{background:#fff3e0;border-left-color:#ff9800}
+.accommodation-note{background:#fff3e0;border-left-color:#ff9800}
+.transport-note{background:#e3f2fd;border-left-color:#2196f3}
+.refund-note h4,.fines-note h4,.accommodation-note h4,.transport-note h4{font-size:16px;font-weight:600;color:#002155;margin-bottom:10px;display:flex;align-items:center}
+.refund-note h4 i{color:#ffc107;margin-right:10px}
+.fines-note h4 i,.accommodation-note h4 i{color:#ff9800;margin-right:10px}
+.transport-note h4 i{color:#2196f3;margin-right:10px}
+.refund-note ul,.fines-note ul,.accommodation-note ul,.transport-note ul{list-style:none;padding:0;margin:0}
+.refund-note li,.fines-note li,.accommodation-note li,.transport-note li{padding:8px 0 8px 25px;position:relative;color:#5c5c54;font-size:14px;line-height:1.6}
+.refund-note li::before{content:'▸';position:absolute;left:0;color:#ffc107;font-weight:700;font-size:18px}
+.fines-note li::before,.accommodation-note li::before{content:'▸';position:absolute;left:0;color:#ff9800;font-weight:700;font-size:18px}
+.transport-note li::before{content:'▸';position:absolute;left:0;color:#2196f3;font-weight:700;font-size:18px}
+
 .requirement-item{background:#f8f9ff;border-radius:8px;padding:16px 20px;margin:12px 0;border-left:4px solid #fdb714}
 .requirement-item strong{color:#002155}
 
@@ -70,7 +108,7 @@
 .info-box-wrapper,.general-provisions{background:#fff;border-radius:16px;padding:40px;margin:40px 0;box-shadow:0 5px 25px rgba(0,33,85,.1);position:relative;overflow:hidden}
 .info-box-wrapper::before,.general-provisions::before{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:radial-gradient(circle,rgba(253,183,20,.1) 0%,transparent 70%)}
 .info-box-wrapper h3,.general-provisions h3{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#002155;margin-bottom:25px;display:flex;align-items:center;gap:15px;position:relative;z-index:1}
-.info-box-wrapper h3 i,.general-provisions h3 i{color:#fdb714;font-size:36px}
+.info-box_wrapper h3 i,.general-provisions h3 i{color:#fdb714;font-size:36px}
 .provision-item{padding:15px 0 15px 35px;position:relative;color:#5c5c54;font-size:15px;line-height:1.7;border-bottom:1px solid #f8f6f0;z-index:1}
 .provision-item:last-child{border-bottom:none}
 .provision-item::before{content:'▸';position:absolute;left:0;color:#fdb714;font-weight:700;font-size:20px}
@@ -93,14 +131,15 @@
 
 /* Responsive Media Queries */
 @media (max-width:768px){
-.fund-hero,.cal-hero{padding:36px 24px}
-.fund-hero h1,.cal-hero h1{font-size:32px}
-.fund-header,.cal-header{padding:20px;flex-direction:column;text-align:center}
-.fund-badge,.cal-badge{width:54px;height:54px;font-size:22px}
-.fund-title,.cal-title{font-size:20px}
-.fund-content,.cal-content{padding:22px}
-.cal-table th,.cal-table td,.fee-table th,.fee-table td{padding:10px 12px;font-size:14px}
+.fund-hero,.cal-hero,.financial-hero,.refund-hero,.fines-hero,.accommodation-hero,.transport-hero,.misc-hero{padding:36px 24px}
+.fund-hero h1,.cal-hero h1,.financial-hero h1,.refund-hero h1,.fines-hero h1,.accommodation-hero h1,.transport-hero h1,.misc-hero h1{font-size:32px}
+.fund-header,.cal-header,.financial-header,.refund-header,.fines-header,.accommodation-header,.transport-header,.misc-header{padding:20px;flex-direction:column;text-align:center}
+.fund-badge,.cal-badge,.financial-badge,.refund-badge,.fines-badge,.accommodation-badge,.transport-badge,.misc-badge{width:54px;height:54px;font-size:22px}
+.fund-title,.cal-title,.financial-title,.refund-title,.fines-title,.accommodation-title,.transport-title,.misc-title{font-size:20px}
+.fund-content,.cal-content,.financial-content,.refund-content,.fines-content,.accommodation-content,.transport-content,.misc-content{padding:22px}
+.cal-table th,.cal-table td,.fee-table th,.fee-table td,.financial-table th,.financial-table td,.refund-table th,.refund-table td,.fines-table th,.fines-table td,.accommodation-table th,.accommodation-table td,.transport-table th,.transport-table td,.misc-table th,.misc-table td{padding:10px 12px;font-size:14px}
 .info-box-wrapper,.general-provisions,.hr-contact-box{padding:25px 20px}
-.contact-grid{grid-template-columns:1fr}
-.fee-table td{display:block;width:100%!important}
+.contact-grid,.charges-grid{grid-template-columns:1fr}
+.fee-table td,.misc-table td{display:block;width:100%!important}
+.charge-display .amount-large{font-size:28px}
 }

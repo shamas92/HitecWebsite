@@ -1,0 +1,66 @@
+@model HitecCM.Models.tblAdmTransport
+@{
+    ViewBag.Title = string.IsNullOrWhiteSpace(Model?.Title) ? "Transport" : Model.Title;
+    ViewBag.MetaDescription = "HITEC University provides transport facility for Islamabad and Rawalpindi areas on first come first served basis. Learn about transport charges and refund policy.";
+    ViewBag.MetaKeywords = "HITEC University, transport facility, bus service, transportation charges, Islamabad, Rawalpindi";
+}
+
+@section Meta {
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta property="og:title" content="@ViewBag.Title - HITEC University" />
+    <meta property="og:description" content="@ViewBag.MetaDescription" />
+    <meta property="og:type" content="website" />
+}
+
+<div class="body_wrap">
+    <main aria-labelledby="title">
+        <!-- breadcrumb start -->
+        <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
+            <div class="container">
+                <div class="breadcrumb__content text-center">
+                    <h1 class="breadcrumb__title mt-25" style="color: #000">@ViewBag.Title</h1>
+                    <p class="breadcrumb__desc mb-50" style="color: #000">Transportation Services</p>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+
+        <!-- content start -->
+        <section class="about pb-120 transport-section">
+            <div class="container">
+                <div class="faculty-page-layout">
+                    <div class="faculty-page-content">
+                        @if (!string.IsNullOrWhiteSpace(Model?.PageData))
+                        {
+                            <!-- Dynamic content from database -->
+                            @Html.Raw(Model.PageData)
+                        }
+                    </div>
+                    <div class="faculty-page-sidebar">
+                        @Html.Partial("_AdmissionSidebar")
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- content end -->
+    </main>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Force hide preloader
+            setTimeout(function () {
+                $('#preloader').fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            }, 500);
+
+            // Smooth animations for cards
+            $('.transport-card').each(function(i) {
+                $(this).delay(100 * i).fadeIn(500);
+            });
+        });
+    </script>
+}

@@ -164,9 +164,10 @@
     <Compile Include="Models\tblAbout.cs" />
     <Compile Include="Models\tblAcademicDeficiency.cs" />
     <Compile Include="Models\tblAcademicRegulation.cs" />
-    <Compile Include="Models\tblAccommodation.cs" />
     <Compile Include="Models\tblAccommodationNote.cs" />
     <Compile Include="Models\tblAccommodationRefundPolicy.cs" />
+    <Compile Include="Models\tblAccomodation.cs" />
+    <Compile Include="Models\tblAdmTransport.cs" />
     <Compile Include="Models\tblBMEOBECurriculum.cs" />
     <Compile Include="Models\tblCafeteria.cs" />
     <Compile Include="Models\tblCsOBECurriculum.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="Models\tblDesignation.cs" />
     <Compile Include="Models\tblDownload.cs" />
     <Compile Include="Models\tblFeeStructure.cs" />
+    <Compile Include="Models\tblFines.cs" />
     <Compile Include="Models\tblHostel.cs" />
     <Compile Include="Models\tblHrClassificationServices.cs" />
     <Compile Include="Models\tblHrContributoryFund.cs" />
@@ -193,6 +195,7 @@
     <Compile Include="Models\tblHrESTR.cs" />
     <Compile Include="Models\tblHrLeaves.cs" />
     <Compile Include="Models\tblHrPerks.cs" />
+    <Compile Include="Models\tblMiscellaneousCharge.cs" />
     <Compile Include="Models\tblPolicy.cs" />
     <Compile Include="Models\tblDownloadsNew.cs" />
     <Compile Include="Models\tblEvent.cs" />
@@ -210,7 +213,6 @@
     <Compile Include="Models\tblLatePaymentPenalty.cs" />
     <Compile Include="Models\tblMenus.cs" />
     <Compile Include="Models\tblMenuType.cs" />
-    <Compile Include="Models\tblMiscellaneousCharge.cs" />
     <Compile Include="Models\tblNew.cs" />
     <Compile Include="Models\tblNewsHead.cs" />
     <Compile Include="Models\tblNewsPhoto.cs" />
@@ -754,6 +756,13 @@
     <Content Include="Views\Admission\RulesAndRegulationsPhD.cshtml" />
     <Content Include="Views\Admission\_MSRulesStaticContent.cshtml" />
     <Content Include="Views\Admission\_PhDRulesStaticContent.cshtml" />
+    <Content Include="Views\Admission\Accommodation.cshtml" />
+    <Content Include="Views\Admission\FinancialAssistance.cshtml" />
+    <Content Include="Views\Admission\Fines.cshtml" />
+    <Content Include="Views\Admission\MiscellaneousCharges.cshtml" />
+    <Content Include="Views\Admission\RefundPolicy.cshtml" />
+    <Content Include="Views\Admission\Transport.cshtml" />
+    <Content Include="Views\Admission\Accommodations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

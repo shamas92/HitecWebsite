@@ -6,14 +6,13 @@ namespace HitecCM.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("tblLatePaymentPenalties")]
     public partial class tblLatePaymentPenalty
     {
         [Key]
         public int PenaltyID { get; set; }
 
         [Required]
-
-        
         public string PenaltyDetail { get; set; }
 
         public DateTime? CreatedDate { get; set; }

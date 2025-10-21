@@ -2,18 +2,24 @@ namespace HitecCM.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
+    [Table("tblMiscellaneousCharge")]
     public partial class tblMiscellaneousCharge
     {
         [Key]
-        public int ChargeID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ID { get; set; }
 
         [Required]
-        [StringLength(500)]
-        public string Description { get; set; }
+        [StringLength(255)]
+        public string Title { get; set; }
 
-        public DateTime? CreatedDate { get; set; }
+        public string PageData { get; set; }
 
-        public DateTime? ModifiedDate { get; set; }
+        [Required]
+        public DateTime CreatedAt { get; set; }
+
+        public DateTime? UpdatedAt { get; set; }
     }
 }

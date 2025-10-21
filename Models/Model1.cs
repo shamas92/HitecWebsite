@@ -13,9 +13,7 @@ namespace Website.Models
         // Core/site tables that still exist
         public virtual DbSet<AcademicCalendar> AcademicCalendars { get; set; }
         public virtual DbSet<AdverQsement> AdverQsements { get; set; }
-
         public virtual DbSet<tblAbout> tblAbouts { get; set; }
-        public virtual DbSet<tblAccommodation> tblAccommodations { get; set; }
         public virtual DbSet<tblAccommodationNote> tblAccommodationNotes { get; set; }
         public virtual DbSet<tblAccommodationRefundPolicy> tblAccommodationRefundPolicies { get; set; }
         public virtual DbSet<tblBMEOBECurriculum> tblBMEOBECurriculums { get; set; }
@@ -94,6 +92,8 @@ namespace Website.Models
         public virtual DbSet<tblAcademicRegulation> tblAcademicRegulations { get; set; }
         public virtual DbSet<tblAcademicDeficiency> tblAcademicDeficiencies { get; set; }
         public virtual DbSet<tblCafeteria> tblCafeterias { get; set; }
+        public virtual DbSet<tblAccomodation> tblAccomodations { get; set; }
+        public virtual DbSet<tblAdmTransport> tblAdmTransports { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
