@@ -30,8 +30,8 @@ namespace Website.Analytics
                 var request = httpContext.Request;
                 var response = httpContext.Response;
 
-                if (httpContext.Items.Contains("__AnalyticsTrackedCore")) return; // defensive
-                httpContext.Items["__AnalyticsTrackedCore"] = true;
+                if (httpContext.Items.Contains("__AnalyticsTracked")) return; // unified flag
+                httpContext.Items["__AnalyticsTracked"] = true;
 
                 if (!string.Equals(request.HttpMethod, "GET", System.StringComparison.OrdinalIgnoreCase)) return;
                 var path = request.Url?.AbsolutePath?.ToLowerInvariant() ?? string.Empty;
@@ -41,6 +41,7 @@ namespace Website.Analytics
                 bool isBot = IsLikelyBot(ua);
                 var sessionKey = EnsureSessionCookie(request, response);
                 var nowUtc = System.DateTime.UtcNow;
+                var userId = GetAuthenticatedUserId(httpContext);
 
                 using (var db = new Model1())
                 {
@@ -76,6 +77,7 @@ namespace Website.Analytics
                         session = new tblVisitSession
                         {
                             SessionKey = sessionKey,
+                            UserId = userId,
                             FirstSeenUtc = nowUtc,
                             LastSeenUtc = nowUtc,
                             PageViews = 0,
@@ -102,6 +104,12 @@ namespace Website.Analytics
                         {
                             session.IsBot = true;
                         }
+                        // Upgrade anonymous session to authenticated when user logs in
+                        if (session.UserId == null && userId.HasValue)
+                        {
+                            session.UserId = userId;
+                            db.Entry(session).Property(x => x.UserId).IsModified = true;
+                        }
                         db.Entry(session).Property(x => x.LastSeenUtc).IsModified = true;
                         if (isBot) db.Entry(session).Property(x => x.IsBot).IsModified = true;
                     }
@@ -113,7 +121,7 @@ namespace Website.Analytics
                         Path = Truncate(request.Url?.AbsolutePath, 300) ?? "/",
                         ViewUtc = nowUtc,
                         StatusCode = (short)response.StatusCode,
-                        UserId = null
+                        UserId = userId
                     };
                     db.tblPageViews.Add(pageView);
 
@@ -134,6 +142,47 @@ namespace Website.Analytics
             {
                 System.Diagnostics.Debug.WriteLine("Analytics outer exception: " + ex.Message);
                 // swallow errors but we now log for diagnosis
+            }
+        }
+
+        /// <summary>
+        /// Extracts the authenticated user ID from the current HTTP context.
+        /// Returns null if the user is not authenticated.
+        /// </summary>
+        private static int? GetAuthenticatedUserId(HttpContextBase httpContext)
+        {
+            if (httpContext?.User?.Identity?.IsAuthenticated != true)
+                return null;
+
+            try
+            {
+                // Attempt to parse user ID from Identity.Name
+                // Adjust this logic based on your authentication system:
+                
+                // Option 1: If Identity.Name contains the numeric user ID
+                if (int.TryParse(httpContext.User.Identity.Name, out int userId))
+                    return userId;
+
+                // Option 2: If using custom claims (uncomment if needed)
+                // var claimsIdentity = httpContext.User.Identity as System.Security.Claims.ClaimsIdentity;
+                // var userIdClaim = claimsIdentity?.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+                // if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
+                //     return userId;
+
+                // Option 3: If you need to look up user ID from database by username
+                // Note: This adds a database call per page view, consider caching
+                // using (var db = new Model1())
+                // {
+                //     var user = db.tblUsers.FirstOrDefault(u => u.Username == httpContext.User.Identity.Name);
+                //     return user?.UserId;
+                // }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Analytics: Error getting user ID: {ex.Message}");
+                return null;
             }
         }
 

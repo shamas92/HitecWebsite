@@ -13,8 +13,8 @@ namespace Website
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        // single shared tracker instance
-        private static readonly IAnalyticsTracker _analyticsTracker = new AnalyticsTracker();
+        // Analytics tracking is handled by AnalyticsTrackingFilter (registered in FilterConfig)
+        // No need for separate Application_BeginRequest tracking to avoid duplicates
 
         protected void Application_Start()
         {
@@ -24,20 +24,9 @@ namespace Website
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-        protected void Application_BeginRequest()
-        {
-            try
-            {
-                if (Context != null)
-                {
-                    _analyticsTracker.Track(new HttpContextWrapper(Context));
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Analytics BeginRequest error: " + ex.Message);
-            }
-        }
+        // REMOVED: Application_BeginRequest analytics tracking to prevent duplicate tracking
+        // Analytics is now handled exclusively by AnalyticsTrackingFilter for better
+        // control and integration with MVC pipeline
 
         // Enhanced error handling with configurable custom error pages
         protected void Application_Error(object sender, EventArgs e)

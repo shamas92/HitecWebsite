@@ -7,7 +7,7 @@ namespace Website.Analytics
     public class AnalyticsTrackingFilter : ActionFilterAttribute
     {
         private readonly IAnalyticsTracker _tracker;
-        private const string TrackedFlagKey = "__AnalyticsTracked";
+        private const string TrackedFlagKey = "__AnalyticsTracked"; // Unified flag with AnalyticsTracker
 
         public AnalyticsTrackingFilter() : this(new AnalyticsTracker()) { }
         public AnalyticsTrackingFilter(IAnalyticsTracker tracker) { _tracker = tracker; }
@@ -18,7 +18,7 @@ namespace Website.Analytics
             var ctx = filterContext.HttpContext;
             if (ctx == null) return;
 
-            // Skip if already tracked in this request
+            // Skip if already tracked in this request (unified flag prevents duplicates)
             if (ctx.Items[TrackedFlagKey] != null) return;
 
             // Skip child actions / partial invocations
@@ -34,9 +34,7 @@ namespace Website.Analytics
             // Skip AJAX requests
             if (ctx.Request.IsAjaxRequest()) return;
 
-            // Mark as tracked to avoid duplicates from other lifecycle events
-            ctx.Items[TrackedFlagKey] = true;
-
+            // Track the page view (tracker will set the flag)
             _tracker.Track(ctx);
         }
     }
