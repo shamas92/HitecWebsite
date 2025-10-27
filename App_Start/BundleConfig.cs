@@ -77,7 +77,7 @@ namespace Website
                 "~/Content/css/main.css",
                 "~/Content/css/swiper.min.css",
                 "~/Content/css/responsive.css",
-                "~/Content/css/faculty-components.css",
+                "~/Content/css/faculty.css",
                 "~/Content/css/admissions.css"
             ));
             bundles.Add(new ScriptBundle("~/bundles/main").Include(

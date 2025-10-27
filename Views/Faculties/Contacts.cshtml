@@ -1,8 +1,7 @@
 @model Website.Models.tblDepartment
 @{
-    ViewBag.Title = "Contacts";
     var department = Model; // same as ViewBag.Department
-    var departmentCode = ViewBag.DepartmentCode as string;
+    ViewBag.Title = department != null ? $"Contacts - {department.Title}" : "Contact Information";
 
     ViewBag.MetaDescription = department != null
         ? $"Contact the {department.Title} department at HITEC University. Find phone numbers, email addresses, office locations, and office hours for faculty and staff."
@@ -13,17 +12,7 @@
 }
 
 @section Styles {
-    <link href="~/Content/css/faculty-components.css" rel="stylesheet" />
-    <link href="~/Content/css/faculty-sidebar.css" rel="stylesheet" />
-    <style>
-        .contact-content { color: var(--color-default); line-height: 1.8; font-size: 16px; }
-        .contact-content a { color: var(--color-primary); text-decoration: none; }
-        .contact-content a:hover { text-decoration: underline; }
-        .contact-content table { display:block; width:100%; overflow-x:auto; }
-        .contact-content img, .contact-content iframe, .contact-content video { max-width: 100%; height: auto; }
-        .contact-card { background: var(--color-white); border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,.08); padding: 30px; margin-bottom: 30px; }
-        media (max-width: 768px) { .contact-card { padding: 20px; } }
-    </style>
+    <link href="~/Content/css/faculty.css" rel="stylesheet" />
 }
 
 @section Meta {
@@ -34,61 +23,151 @@
     <meta property="og:type" content="website" />
 }
 
-<body>
-    <div class="body_wrap">
-        <main aria-labelledby="title">
-            <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
-                <div class="container">
-                    <div class="breadcrumb__content text-center">
-                        <h1 class="breadcrumb__title mt-25" style="color: #000">
-                            @(department != null ? $"Contact - {department.Title}" : "Contact Information")
-                        </h1>
-                        <p class="breadcrumb__desc mb-50" style="color: #000">
-                            @(department != null ? $"Get in Touch with {department.Code} Department" : "Get in Touch")
-                        </p>
-                    </div>
+<div class="body_wrap">
+    <main aria-labelledby="title">
+        <!-- breadcrumb start -->
+        <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="/Content/img/bg/about_bg.jpg">
+            <div class="container">
+                <div class="breadcrumb__content text-center">
+                    <h1 class="breadcrumb__title mt-25" style="color: #000">@ViewBag.Title</h1>
+                    <p class="breadcrumb__desc mb-50" style="color: #000">
+                        @(department != null ? $"Get in Touch with {department.Code} Department" : "Get in Touch")
+                    </p>
                 </div>
-            </section>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
 
-            <section class="about pb-120">
-                <div class="container">
-                    <div class="faculty-page-layout">
-                        <div class="faculty-page-content">
-                            <div class="about-content mt-60">
-                                <div class="section-title mb-40">
-                                    <span class="sub-title">Contact</span>
-                                    <h2 class="title">@(department != null ? $"{department.Title} Contact Information" : "Contact Information")</h2>
-                                </div>
-
-                                @if (department != null && !string.IsNullOrWhiteSpace(department.Contacts))
-                                {
-                                    <div class="contact-card">
-                                        <div class="contact-content">
-                                            @Html.Raw(department.Contacts)
-                                        </div>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="contact-card">
-                                        <div class="contact-content">
-                                            <p>Contact information is being updated. Please check back later.</p>
-                                            <p><strong>General University Contact:</strong><br>
-                                                Phone: +92-51-9047851-60<br>
-                                                Email: info@hitecuni.edu.pk<br>
-                                                Address: HITEC University, Taxila Cantt, Pakistan
-                                            </p>
-                                        </div>
-                                    </div>
-                                }
+        <!-- content start -->
+        <section class="about pb-120 contact-section">
+            <div class="container">
+                <div class="faculty-page-layout">
+                    <div class="faculty-page-content">
+                        @if (department != null && !string.IsNullOrWhiteSpace(department.Contacts))
+                        {
+                            <!-- Hero Section -->
+                            <div class="faculty-hero">
+                                <span class="subtitle">CONTACT INFORMATION</span>
+                                <h1>@department.Title Contacts</h1>
+                                <div class="accent-line"></div>
+                                <p>
+                                    Get in touch with the @department.Title department for academic guidance, program information, and assistance.
+                                </p>
                             </div>
-                        </div>
-                        <div class="faculty-page-sidebar">
-                            @Html.Partial("_FacultySidebar")
-                        </div>
+
+                            <!-- Dynamic content from database -->
+                            @Html.Raw(department.Contacts)
+                        }
+                        else
+                        {
+                            <!-- Hero Section -->
+                            <div class="faculty-hero">
+                                <span class="subtitle">CONTACT INFORMATION</span>
+                                <h1>@(department != null ? department.Title : "Department") Contacts</h1>
+                                <div class="accent-line"></div>
+                                <p>
+                                    Get in touch with our department for academic guidance, program information, and assistance.
+                                </p>
+                            </div>
+
+                            <!-- Contact Card -->
+                            <div class="faculty-enhanced-card">
+                                <div class="faculty-card-header">
+                                    <div class="faculty-badge">
+                                        <i class="fas fa-address-book"></i>
+                                    </div>
+                                    <h3 class="faculty-card-title">Department Contact Details</h3>
+                                </div>
+                                <div class="faculty-card-content">
+                                    <div class="contact-grid" style="margin-bottom: 0;">
+                                        <div class="contact-item">
+                                            <i class="fas fa-phone"></i>
+                                            <div>
+                                                <strong>Phone:</strong>
+                                                <span>+92-51-9047851-60</span>
+                                            </div>
+                                        </div>
+                                        <div class="contact-item">
+                                            <i class="fas fa-envelope"></i>
+                                            <div>
+                                                <strong>Email:</strong>
+                                                <span>info@hitecuni.edu.pk</span>
+                                            </div>
+                                        </div>
+                                        <div class="contact-item">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <div>
+                                                <strong>Location:</strong>
+                                                <span>HITEC University, Taxila Cantt, Pakistan</span>
+                                            </div>
+                                        </div>
+                                        <div class="contact-item">
+                                            <i class="fas fa-clock"></i>
+                                            <div>
+                                                <strong>Office Hours:</strong>
+                                                <span>Monday - Friday: 8:00 AM - 4:00 PM</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Additional Information -->
+                            <div class="faculty-intro">
+                                <p>
+                                    <strong>Visit Us:</strong> Our department is located on campus and welcomes visitors during regular office hours. 
+                                    For specific faculty appointments, please contact us in advance to ensure availability.
+                                </p>
+                            </div>
+
+                            <!-- Contact Support Box -->
+                            <div class="faculty-contact-box">
+                                <h4>Need Assistance?</h4>
+                                <p>
+                                    Whether you're a prospective student, current student, or seeking collaboration opportunities, 
+                                    our team is ready to help. Contact us through any of the channels above, and we'll respond promptly.
+                                </p>
+                                <div class="contact-grid">
+                                    <div class="contact-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>Student Support & Advising</span>
+                                    </div>
+                                    <div class="contact-item">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>Academic Program Inquiries</span>
+                                    </div>
+                                    <div class="contact-item">
+                                        <i class="fas fa-handshake"></i>
+                                        <span>Research Collaboration</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="faculty-page-sidebar">
+                        @Html.Partial("_FacultySidebar")
                     </div>
                 </div>
-            </section>
-        </main>
-    </div>
-</body>
+            </div>
+        </section>
+        <!-- content end -->
+    </main>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Force hide preloader
+            setTimeout(function () {
+                $('#preloader').fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            }, 500);
+
+            // Smooth animations for contact items
+            $('.contact-item, .contact-person, .faculty-enhanced-card').each(function(i) {
+                $(this).delay(100 * i).fadeIn(500);
+            });
+        });
+    </script>
+}

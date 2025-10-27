@@ -4,7 +4,7 @@
 */
 
 /* Base Section Backgrounds & Reset */
-.reg-section,.def-section,.ms-section,.phd-section,.cal-section,.employment-section,.fund-section,.financial-section,.refund-section,.fines-section,.accommodation-section,.transport-section,.misc-section{padding:60px 0}
+.reg-section,.def-section,.ms-section,.phd-section,.cal-section,.employment-section,.fund-section,.financial-section,.refund-section,.fines-section,.accommodation-section,.transport-section,.misc-section,.contact-section{padding:60px 0}
 .about,.about .container,.about .faculty-page-layout,.about .faculty-page-content,.about .about-content{background:transparent!important;border:0!important;box-shadow:none!important}
 
 /* Hero Sections - Common Styles */
@@ -70,6 +70,21 @@
 .contact-person h5{color:#002155;font-size:18px;font-weight:600;margin-bottom:8px}
 .contact-person p{color:#5c5c54;margin:4px 0;font-size:15px}
 .contact-person strong{color:#002155}
+
+/* Contact Section Specific Enhancements */
+.contact-section .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;position:relative;z-index:1}
+.contact-section .contact-item{background:rgba(255,255,255,.1);padding:18px 20px;border-radius:10px;border-left:4px solid #fdb714;transition:all .3s ease;display:flex;align-items:flex-start;gap:12px}
+.contact-section .contact-item:hover{background:rgba(255,255,255,.15);transform:translateX(5px)}
+.contact-section .contact-item i{color:#fdb714;font-size:20px;flex-shrink:0;width:24px;text-align:center;margin-top:2px}
+.contact-section .contact-item div{flex:1}
+.contact-section .contact-item strong{display:block;color:inherit;font-size:14px;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.contact-section .contact-item span{color:inherit;font-size:15px;line-height:1.5}
+.contact-section .misc-content .contact-grid{background:transparent}
+.contact-section .misc-content .contact-item{background:#f7f9fc;border-left-color:#002155}
+.contact-section .misc-content .contact-item:hover{background:#eef2f7;transform:translateY(-2px)}
+.contact-section .misc-content .contact-item i{color:#002155}
+.contact-section .misc-content .contact-item strong{color:#002155}
+.contact-section .misc-content .contact-item span{color:#5c5c54}
 
 /* Note & Info Boxes */
 .note-box,.cal-note,.refund-note,.fines-note,.accommodation-note,.transport-note{background:#f7f9fc;border-left:4px solid #002155;padding:16px;border-radius:8px;color:#5c5c54;margin:16px 0}
