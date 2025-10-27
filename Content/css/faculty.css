@@ -340,10 +340,10 @@
 
 .faq-accordion{margin-top:40px}
 .faq-item{background:var(--color-white);border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,.05);margin-bottom:15px;overflow:hidden;transition:all .3s ease}
-.faq-item:hover{box-shadow:0 10px 25px rgba(0,0,0,.08)}
+.faq-item:hover{box-shadow:0 10px 25px #e9f2fc}
 .faq-question{padding:20px 25px;background:var(--color-white);border:none;width:100%;text-align:left;font-size:16px;font-weight:600;color:var(--color-heading);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:all .3s ease}
-.faq-question:hover{background:var(--color-sec-bg)}
-.faq-question.active{background:var(--color-primary);color:var(--color-white)}
+.faq-question:hover{background:#e9f2fc}
+.faq-question.active {background: #001d4a;color: var(--color-white)}
 .faq-icon{font-size:14px;transition:transform .3s ease}
 .faq-question.active .faq-icon{transform:rotate(180deg)}
 .faq-answer{padding:0 25px;max-height:0;overflow:hidden;transition:all .3s ease;background:var(--color-white)}
@@ -351,7 +351,7 @@
 .faq-answer-content{color:var(--color-default);line-height:1.6;font-size:15px}
 .faq-search{margin-bottom:30px}
 .faq-search input{width:100%;padding:15px 20px;border:2px solid rgba(0,0,0,.1);border-radius:10px;font-size:16px;font-family:var(--font-body);transition:border-color .3s ease}
-.faq-search input:focus{outline:none;border-color:var(--color-primary)}
+.faq-search input:focus{outline:none;border-color:#001d4a}
 
 /* ============================================
    SCHEME OF STUDIES
