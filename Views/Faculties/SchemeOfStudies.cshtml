@@ -1,4 +1,4 @@
-@model List<Website.Models.tblSchemeOfStudy>
+﻿@model List<Website.Models.tblSchemeOfStudy>
 @{
     ViewBag.Title = "Scheme of Studies";
     var department = ViewBag.Department as Website.Models.tblDepartment;
@@ -14,6 +14,342 @@
 
 @section Styles {
     <link href="~/Content/css/faculty.css" rel="stylesheet" />
+    <style>
+        /* Enhanced Scheme of Studies Styling - Matching Admission/HR Design */
+        .sos-container {
+            margin-top: 40px;
+        }
+
+        .sos-group {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 5px 25px rgba(0, 33, 85, .1);
+            overflow: hidden;
+            margin-bottom: 40px;
+            transition: all .3s ease;
+        }
+
+        .sos-group:hover {
+            box-shadow: 0 12px 40px rgba(0, 33, 85, .18);
+            transform: translateY(-5px);
+        }
+
+        .sos-program-header {
+            background: linear-gradient(135deg, #002155 0%, #001a44 100%);
+            color: #fff;
+            padding: 28px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .sos-program-title {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex: 1;
+        }
+
+        .sos-program-badge {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: #fdb714;
+            color: #002155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 28px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
+        }
+
+        .sos-program-badge i {
+            color: #002155;
+        }
+
+        .sos-program {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            margin: 0;
+            color: #fff !important;
+        }
+
+        .sos-badge {
+            background: rgba(253, 183, 20, .2);
+            color: #fdb714;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .sos-content {
+            padding: 35px;
+        }
+
+        .sos-sem {
+            color: #002155;
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin: 35px 0 20px 0;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #f7f9fc 0%, #e8f2fc 100%);
+            border-left: 4px solid #fdb714;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all .3s ease;
+            user-select: none;
+        }
+
+        .sos-sem:hover {
+            background: linear-gradient(135deg, #e8f2fc 0%, #d9ebfc 100%);
+            transform: translateX(5px);
+        }
+
+        .sos-sem:first-child {
+            margin-top: 0;
+        }
+
+        .sos-sem-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sos-sem-title::before {
+            content: '●';
+            color: #fdb714;
+            font-size: 14px;
+        }
+
+        .sos-sem-toggle {
+            font-size: 18px;
+            color: #002155;
+            transition: transform .3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sos-sem.collapsed .sos-sem-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .sos-sem-count {
+            font-size: 13px;
+            font-weight: 600;
+            color: #5c5c54;
+            background: rgba(0, 33, 85, .08);
+            padding: 4px 12px;
+            border-radius: 12px;
+        }
+
+        .sos-table-wrapper {
+            overflow: hidden;
+            transition: max-height .4s ease-in-out, opacity .3s ease, margin .4s ease;
+            opacity: 1;
+            margin: 20px 0 30px;
+        }
+
+        .sos-table-wrapper.collapsed {
+            max-height: 0 !important;
+            opacity: 0;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .sos-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #e6e6e6;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0, 33, 85, .05);
+        }
+
+        .sos-table thead {
+            background: linear-gradient(135deg, #f7f9fc 0%, #e8f2fc 100%);
+        }
+
+        .sos-table th {
+            padding: 16px 18px;
+            text-align: left;
+            color: #002155;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            border-bottom: 2px solid #e6e6e6;
+        }
+
+        .sos-table td {
+            padding: 14px 18px;
+            color: #5c5c54;
+            font-size: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .sos-table tbody tr {
+            transition: all .2s ease;
+        }
+
+        .sos-table tbody tr:nth-child(even) {
+            background: #fcfcfd;
+        }
+
+        .sos-table tbody tr:hover {
+            background: #f3f6fb;
+            transform: translateX(3px);
+        }
+
+        .sos-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .sos-table td:first-child {
+            font-weight: 600;
+            color: #002155;
+        }
+
+        .sos-table td:last-child {
+            font-weight: 700;
+            color: #fdb714;
+            text-align: center;
+        }
+
+        /* No results styling */
+        .faculty-no-results {
+            background: #fff;
+            border-radius: 16px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0, 33, 85, .1);
+        }
+
+        .faculty-no-results h3 {
+            color: #002155;
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .faculty-no-results p {
+            color: #5c5c54;
+            font-size: 16px;
+            line-height: 1.7;
+            margin: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Intro box styling */
+        .sos-intro {
+            background: linear-gradient(135deg, #f7f9fc 0%, #e8f2fc 100%);
+            border-left: 4px solid #002155;
+            padding: 24px 28px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+
+        .sos-intro p {
+            color: #5c5c54;
+            line-height: 1.75;
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .sos-intro strong {
+            color: #002155;
+        }
+
+        /* Responsive */
+        @@media (max-width: 768px) {
+            .sos-program-header {
+                padding: 24px 20px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .sos-program-badge {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+
+            .sos-program {
+                font-size: 22px;
+            }
+
+            .sos-content {
+                padding: 25px 20px;
+            }
+
+            .sos-sem {
+                font-size: 20px;
+                margin: 30px 0 15px 0;
+                padding: 14px 18px;
+            }
+
+            .sos-table th,
+            .sos-table td {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
+
+            .faculty-no-results {
+                padding: 40px 25px;
+            }
+
+            .faculty-no-results h3 {
+                font-size: 24px;
+            }
+        }
+
+        @@media (max-width: 576px) {
+            .sos-program-header {
+                padding: 20px 18px;
+            }
+
+            .sos-program {
+                font-size: 20px;
+            }
+
+            .sos-badge {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+
+            .sos-content {
+                padding: 22px 18px;
+            }
+
+            .sos-sem {
+                font-size: 18px;
+                padding: 12px 16px;
+            }
+
+            .sos-table {
+                font-size: 13px;
+            }
+
+            .sos-table th,
+            .sos-table td {
+                padding: 10px 12px;
+            }
+        }
+    </style>
 }
 
 @section Meta {
@@ -42,71 +378,117 @@
             <!-- breadcrumb end -->
 
             <!-- scheme of studies start -->
-            <section class="about pb-120 ml-40">
+            <section class="about pb-120 ml-40" style="padding-top: 60px;">
                 <div class="container">
                     <div class="faculty-page-layout">
                         <div class="faculty-page-content">
-                            <div class="about-content mt-60">
-                                <div class="section-title mb-40">
-                                    <span class="sub-title">Curriculum</span>
-                                    <h2 class="title">@((department!=null)? $"{department.Title} Scheme of Studies" : "Scheme of Studies")</h2>
+                            <!-- Hero Section -->
+                            <div class="faculty-hero">
+                                <span class="subtitle">CURRICULUM STRUCTURE</span>
+                                <h1>@((department != null) ? $"{department.Title} Programs" : "Academic Programs")</h1>
+                                <div class="accent-line"></div>
+                                <p>
+                                    @if (department != null)
+                                    {
+                                        @:Comprehensive curriculum designed to provide students with in-depth knowledge and practical skills in @department.Title.
+                                        @:Each program follows a structured semester-wise course plan aligned with HEC requirements.
+                                    }
+                                    else
+                                    {
+                                        @:Explore our comprehensive academic programs designed to provide students with in-depth knowledge and practical skills.
+                                        @:Each program follows a structured semester-wise course plan aligned with HEC requirements.
+                                    }
+                                </p>
+                            </div>
+
+                            @if (Model != null && Model.Any())
+                            {
+                                // Intro box
+                                <div class="sos-intro">
+                                    <p>
+                                        <strong>About This Curriculum:</strong> The following scheme of studies outlines the complete course structure for 
+                                        @((department != null) ? department.Title : "our") programs. Each course is assigned credit hours (CH) following 
+                                        the HEC framework. Click on any semester heading to expand/collapse and view detailed course information.
+                                    </p>
                                 </div>
 
-                                @if (Model != null && Model.Any())
-                                {
-                                    // Group by Program then Semester for clean rendering
-                                    var byProgram = Model
-                                        .GroupBy(s => s.Program ?? "Program")
-                                        .OrderBy(g => g.Key);
+                                // Group by Program then Semester for clean rendering
+                                var byProgram = Model
+                                    .GroupBy(s => s.Program ?? "Program")
+                                    .OrderBy(g => g.Key);
 
-                                    <div class="sos-container">
-                                        @foreach (var prog in byProgram)
-                                        {
-                                            var bySem = prog.GroupBy(s => s.Semester ?? "Semester").OrderBy(g => g.Key);
-                                            <div class="sos-group" id="prog-@prog.Key.Replace(" ","-").ToLower()">
-                                                <h3 class="sos-program">@prog.Key <span class="sos-badge">@prog.Count() courses</span></h3>
-                                                @foreach (var sem in bySem)
+                                <div class="sos-container">
+                                    @foreach (var prog in byProgram)
+                                    {
+                                        var bySemList = prog.GroupBy(s => s.Semester ?? "Semester").OrderBy(g => g.Key).ToList();
+                                        var programIndex = byProgram.ToList().IndexOf(prog) + 1;
+                                        var programId = "prog-" + prog.Key.Replace(" ", "-").Replace(".", "").Replace("(", "").Replace(")", "").ToLower();
+                                        
+                                        <div class="sos-group" id="@programId">
+                                            <div class="sos-program-header">
+                                                <div class="sos-program-title">
+                                                    <div class="sos-program-badge">
+                                                        <i class="fas fa-graduation-cap"></i>
+                                                    </div>
+                                                    <h3 class="sos-program">@prog.Key</h3>
+                                                </div>
+                                                <span class="sos-badge">@prog.Count() Courses</span>
+                                            </div>
+                                            <div class="sos-content">
+                                                @foreach (var sem in bySemList)
                                                 {
-                                                    <h4 class="sos-sem">@sem.Key</h4>
-                                                    <table class="sos-table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th style="width:120px">Code</th>
-                                                                <th>Title</th>
-                                                                <th style="width:90px">CH</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @foreach (var c in sem)
-                                                            {
+                                                    var semKeySanitized = (sem.Key ?? "semester").ToString().Replace(" ", "-").Replace(".", "").Replace("(", "").Replace(")", "").ToLower();
+                                                    var semId = programId + "-" + semKeySanitized;
+                                                    var courseCount = sem.Count();
+                                                    
+                                                    <div class="sos-sem collapsed" data-sem-id="@semId">
+                                                        <span class="sos-sem-title">@sem.Key</span>
+                                                        <span class="sos-sem-toggle">
+                                                            <span class="sos-sem-count">@courseCount @(courseCount == 1 ? "Course" : "Courses")</span>
+                                                            <i class="fas fa-chevron-up"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="sos-table-wrapper collapsed" id="@semId">
+                                                        <table class="sos-table">
+                                                            <thead>
                                                                 <tr>
-                                                                    <td>@c.Code</td>
-                                                                    <td>@c.Title</td>
-                                                                    <td>@c.CH</td>
+                                                                    <th style="width:140px">Course Code</th>
+                                                                    <th>Course Title</th>
+                                                                    <th style="width:100px">Credit Hours</th>
                                                                 </tr>
-                                                            }
-                                                        </tbody>
-                                                    </table>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach (var c in sem)
+                                                                {
+                                                                    <tr>
+                                                                        <td>@c.Code</td>
+                                                                        <td>@c.Title</td>
+                                                                        <td>@c.CH</td>
+                                                                    </tr>
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 }
                                             </div>
-                                        }
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="faculty-no-results">
-                                        <h3>No Scheme of Studies Available</h3>
-                                        @if (department != null)
-                                        {
-                                            <p>The scheme of studies for the @department.Title department is being updated. Please check back later.</p>
-                                        }
-                                        else
-                                        {
-                                            <p>Scheme of studies is being updated. Please check back later.</p>
-                                        }
-                                    </div>
-                                }
-                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="faculty-no-results">
+                                    <h3>No Scheme of Studies Available</h3>
+                                    @if (department != null)
+                                    {
+                                        <p>The scheme of studies for the @department.Title department is being updated. Please check back later or contact the department office for more information.</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Scheme of studies is being updated. Please check back later or contact the relevant department for more information.</p>
+                                    }
+                                </div>
+                            }
                         </div>
                         <div class="faculty-page-sidebar">
                             @Html.Partial("_FacultySidebar")
@@ -120,5 +502,96 @@
         <!-- main area end  -->
 
     </div>
-
 </body>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Force hide preloader
+            setTimeout(function () {
+                $('#preloader').fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            }, 500);
+
+            // Smooth animations for cards
+            $('.sos-group').each(function (i) {
+                $(this).delay(150 * i).fadeIn(600);
+            });
+
+            // Add subtle hover effect to table rows
+            $('.sos-table tbody tr').hover(
+                function () { $(this).css('transform', 'translateX(5px)'); },
+                function () { $(this).css('transform', 'translateX(0)'); }
+            );
+
+            function setExpandedHeight($el) {
+                // Temporarily remove collapsed to measure accurate height
+                var wasCollapsed = $el.hasClass('collapsed');
+                if (wasCollapsed) $el.removeClass('collapsed');
+                var h = $el.get(0).scrollHeight;
+                if (!h) {
+                    var tbl = $el.find('.sos-table').get(0);
+                    h = tbl ? tbl.scrollHeight + 40 : 400;
+                }
+                if (wasCollapsed) $el.addClass('collapsed');
+                return h;
+            }
+
+            function collapseSiblings($header) {
+                var $content = $header.closest('.sos-content');
+                var semId = $header.data('sem-id');
+                // Collapse other semesters in same program
+                $content.find('.sos-sem').not($header).addClass('collapsed');
+                $content.find('.sos-table-wrapper').each(function () {
+                    if (this.id !== semId) {
+                        $(this).addClass('collapsed').css('max-height', '0');
+                    }
+                });
+            }
+
+            // Initialize semester toggle functionality (accordion per program)
+            $('.sos-sem').on('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                var $semHeader = $(this);
+                var semId = $semHeader.data('sem-id');
+                var $wrapper = $('#' + semId);
+
+                if ($wrapper.hasClass('collapsed')) {
+                    // Expand selected and collapse siblings
+                    collapseSiblings($semHeader);
+                    $wrapper.removeClass('collapsed');
+                    var h = setExpandedHeight($wrapper);
+                    $wrapper.css('max-height', h + 'px');
+                    $semHeader.removeClass('collapsed');
+                } else {
+                    // Smooth collapse
+                    var currentHeight = setExpandedHeight($wrapper);
+                    $wrapper.css('max-height', currentHeight + 'px');
+                    // Force reflow for transition
+                    $wrapper.get(0).offsetHeight;
+                    $wrapper.addClass('collapsed').css('max-height', '0');
+                    $semHeader.addClass('collapsed');
+                }
+            });
+
+            // Ensure all semesters start collapsed (safety)
+            $('.sos-sem').addClass('collapsed');
+            $('.sos-table-wrapper').addClass('collapsed').css('max-height', '0');
+
+            // Recalculate heights on resize for expanded items
+            function debounce(fn, wait) {
+                var t; return function () { clearTimeout(t); var ctx = this, args = arguments; t = setTimeout(function(){ fn.apply(ctx, args); }, wait); };
+            }
+            $(window).on('resize', debounce(function(){
+                $('.sos-table-wrapper').each(function(){
+                    if (!$(this).hasClass('collapsed')) {
+                        $(this).css('max-height', this.scrollHeight + 'px');
+                    }
+                });
+            }, 200));
+        });
+    </script>
+}
