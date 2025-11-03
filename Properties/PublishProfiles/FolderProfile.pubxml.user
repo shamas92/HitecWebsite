@@ -1,0 +1,1952 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- https://go.microsoft.com/fwlink/?LinkID=208121. -->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\shama\OneDrive\Desktop\Hitec Website</_PublishTargetUrl>
+    <History>True|2025-11-03T05:33:14.5520606Z||;True|2025-11-03T09:35:55.1071490+05:00||;False|2025-11-03T09:35:09.9561460+05:00||;False|2025-11-03T09:32:59.9624081+05:00||;False|2025-11-03T09:30:28.7732868+05:00||;False|2025-11-03T09:30:09.7028549+05:00||;False|2025-11-03T09:29:33.1691122+05:00||;False|2025-11-03T09:29:28.8057746+05:00||;False|2025-11-03T09:29:05.9113163+05:00||;False|2025-11-03T09:28:51.6824941+05:00||;False|2025-11-03T09:28:36.0247710+05:00||;False|2025-11-03T09:28:08.7340523+05:00||;False|2025-11-03T09:27:26.7804334+05:00||;False|2025-11-03T09:25:03.2703759+05:00||;False|2025-11-03T09:24:27.5705960+05:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>09/10/2013 16:29:20</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>09/10/2013 16:29:20</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>10/23/2017 18:15:18</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>10/23/2017 18:15:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>09/05/2018 16:10:50</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>04/11/2022 19:09:46</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>03/08/2023 07:09:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe.config">
+      <publishTime>08/08/2018 12:18:12</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.rsp">
+      <publishTime>08/08/2018 12:09:42</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.exe">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.exe.config">
+      <publishTime>08/08/2018 12:18:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.rsp">
+      <publishTime>08/08/2018 12:09:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>08/08/2018 12:09:42</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll">
+      <publishTime>12/05/2017 09:36:44</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll">
+      <publishTime>12/05/2017 09:36:44</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Managed.Core.targets">
+      <publishTime>08/08/2018 12:09:42</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>08/08/2018 12:09:42</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Win32.Primitives.dll">
+      <publishTime>11/05/2016 18:55:32</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.AppContext.dll">
+      <publishTime>11/05/2016 18:55:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>05/16/2018 03:29:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Console.dll">
+      <publishTime>11/05/2016 18:55:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Diagnostics.DiagnosticSource.dll">
+      <publishTime>11/05/2016 18:55:52</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Diagnostics.FileVersionInfo.dll">
+      <publishTime>11/05/2016 18:55:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Diagnostics.StackTrace.dll">
+      <publishTime>11/05/2016 18:55:52</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Globalization.Calendars.dll">
+      <publishTime>11/05/2016 18:56:02</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.Compression.dll">
+      <publishTime>11/05/2016 18:56:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.Compression.ZipFile.dll">
+      <publishTime>11/05/2016 18:56:04</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.FileSystem.dll">
+      <publishTime>11/05/2016 18:56:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.FileSystem.Primitives.dll">
+      <publishTime>11/05/2016 18:56:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Net.Http.dll">
+      <publishTime>11/05/2016 18:56:30</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Net.Sockets.dll">
+      <publishTime>11/05/2016 18:56:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>05/16/2018 03:29:44</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Runtime.InteropServices.RuntimeInformation.dll">
+      <publishTime>11/05/2016 18:57:00</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Security.Cryptography.Algorithms.dll">
+      <publishTime>11/05/2016 18:57:14</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Security.Cryptography.Encoding.dll">
+      <publishTime>11/05/2016 18:57:08</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Security.Cryptography.Primitives.dll">
+      <publishTime>11/05/2016 18:57:18</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Security.Cryptography.X509Certificates.dll">
+      <publishTime>11/05/2016 18:57:18</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Text.Encoding.CodePages.dll">
+      <publishTime>11/05/2016 18:57:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Threading.Tasks.Extensions.dll">
+      <publishTime>11/05/2016 18:57:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.ValueTuple.dll">
+      <publishTime>11/05/2016 18:57:30</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Xml.ReaderWriter.dll">
+      <publishTime>11/05/2016 18:57:36</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Xml.XmlDocument.dll">
+      <publishTime>11/05/2016 18:57:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Xml.XPath.dll">
+      <publishTime>11/05/2016 18:57:40</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Xml.XPath.XDocument.dll">
+      <publishTime>11/05/2016 18:57:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe.config">
+      <publishTime>08/08/2018 12:18:18</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.rsp">
+      <publishTime>08/08/2018 12:09:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>08/08/2018 05:38:48</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>08/08/2018 12:18:16</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>05/27/2022 23:41:34</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>05/27/2022 23:41:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>05/27/2022 23:41:46</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>05/27/2022 23:41:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>05/27/2022 23:42:20</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>02/11/2014 15:26:04</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>05/27/2022 23:42:06</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>05/27/2022 23:42:46</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>05/27/2022 23:42:16</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>05/27/2022 23:42:50</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>01/23/2014 13:57:34</publishTime>
+    </File>
+    <File Include="bin/Website.dll">
+      <publishTime>11/03/2025 10:01:57</publishTime>
+    </File>
+    <File Include="bin/Website.pdb">
+      <publishTime>11/03/2025 10:01:57</publishTime>
+    </File>
+    <File Include="Content/css/admission-modal.css">
+      <publishTime>08/19/2025 12:14:00</publishTime>
+    </File>
+    <File Include="Content/css/admissions.css">
+      <publishTime>10/27/2025 13:00:59</publishTime>
+    </File>
+    <File Include="Content/css/animate.css">
+      <publishTime>12/05/2024 15:58:25</publishTime>
+    </File>
+    <File Include="Content/css/bootstrap.min.css">
+      <publishTime>12/05/2024 15:58:24</publishTime>
+    </File>
+    <File Include="Content/css/error-pages.css">
+      <publishTime>09/22/2025 11:00:53</publishTime>
+    </File>
+    <File Include="Content/css/faculty.css">
+      <publishTime>10/31/2025 11:51:07</publishTime>
+    </File>
+    <File Include="Content/css/fontawesome.css">
+      <publishTime>12/05/2024 15:58:25</publishTime>
+    </File>
+    <File Include="Content/css/hr.css">
+      <publishTime>10/09/2025 08:45:22</publishTime>
+    </File>
+    <File Include="Content/css/image-crop.css">
+      <publishTime>08/05/2025 14:49:37</publishTime>
+    </File>
+    <File Include="Content/css/magnific-popup.css">
+      <publishTime>12/05/2024 15:58:25</publishTime>
+    </File>
+    <File Include="Content/css/main.css">
+      <publishTime>09/24/2025 09:27:16</publishTime>
+    </File>
+    <File Include="Content/css/main.css.map">
+      <publishTime>12/05/2024 15:58:25</publishTime>
+    </File>
+    <File Include="Content/css/news-marquee.css">
+      <publishTime>08/20/2025 09:34:53</publishTime>
+    </File>
+    <File Include="Content/css/nice-select.css">
+      <publishTime>12/05/2024 15:58:25</publishTime>
+    </File>
+    <File Include="Content/css/odometer.css">
+      <publishTime>12/05/2024 15:58:25</publishTime>
+    </File>
+    <File Include="Content/css/recoleta-font.css">
+      <publishTime>12/05/2024 15:58:25</publishTime>
+    </File>
+    <File Include="Content/css/sidebar-menu.css">
+      <publishTime>08/25/2025 12:44:04</publishTime>
+    </File>
+    <File Include="Content/css/swiper.min.css">
+      <publishTime>07/01/2025 22:04:40</publishTime>
+    </File>
+    <File Include="Content/fonts/fa-brands-400.ttf">
+      <publishTime>12/05/2024 15:58:49</publishTime>
+    </File>
+    <File Include="Content/fonts/fa-light-300.ttf">
+      <publishTime>12/05/2024 15:58:49</publishTime>
+    </File>
+    <File Include="Content/fonts/fa-regular-400.ttf">
+      <publishTime>12/05/2024 15:58:49</publishTime>
+    </File>
+    <File Include="Content/fonts/fa-solid-900.ttf">
+      <publishTime>12/05/2024 15:58:48</publishTime>
+    </File>
+    <File Include="Content/fonts/Recoleta-Bold.woff">
+      <publishTime>12/05/2024 15:58:50</publishTime>
+    </File>
+    <File Include="Content/fonts/Recoleta-Bold.woff2">
+      <publishTime>12/05/2024 15:58:49</publishTime>
+    </File>
+    <File Include="Content/fonts/Recoleta-Medium.woff">
+      <publishTime>12/05/2024 15:58:49</publishTime>
+    </File>
+    <File Include="Content/fonts/Recoleta-Medium.woff2">
+      <publishTime>12/05/2024 15:58:48</publishTime>
+    </File>
+    <File Include="Content/fonts/Recoleta-Regular.woff">
+      <publishTime>12/05/2024 15:58:48</publishTime>
+    </File>
+    <File Include="Content/fonts/Recoleta-Regular.woff2">
+      <publishTime>12/05/2024 15:58:49</publishTime>
+    </File>
+    <File Include="Content/fonts/Recoleta-SemiBold.woff">
+      <publishTime>12/05/2024 15:58:49</publishTime>
+    </File>
+    <File Include="Content/fonts/Recoleta-SemiBold.woff2">
+      <publishTime>12/05/2024 15:58:48</publishTime>
+    </File>
+    <File Include="Content/img/.DS_Store">
+      <publishTime>12/05/2024 15:58:28</publishTime>
+    </File>
+    <File Include="Content/img/about/.DS_Store">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/about/about-img01.jpg">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/about/about-img02.png">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/about/about-img03.jpg">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/about/AdmissionAd.jpg">
+      <publishTime>07/24/2025 13:28:29</publishTime>
+    </File>
+    <File Include="Content/img/about/ChairmanHIT.jpg">
+      <publishTime>07/24/2025 13:28:29</publishTime>
+    </File>
+    <File Include="Content/img/about/logoReport.png">
+      <publishTime>07/24/2025 13:28:29</publishTime>
+    </File>
+    <File Include="Content/img/about/pelican_noao_big.jpg">
+      <publishTime>07/24/2025 13:28:29</publishTime>
+    </File>
+    <File Include="Content/img/about/VC.jpg">
+      <publishTime>07/24/2025 13:36:39</publishTime>
+    </File>
+    <File Include="Content/img/admissions/AdmissionAd.jpg">
+      <publishTime>09/25/2025 12:12:05</publishTime>
+    </File>
+    <File Include="Content/img/bg/.DS_Store">
+      <publishTime>12/05/2024 15:58:34</publishTime>
+    </File>
+    <File Include="Content/img/bg/about_bg.jpg">
+      <publishTime>12/05/2024 15:58:34</publishTime>
+    </File>
+    <File Include="Content/img/bg/campus-bg.jpg">
+      <publishTime>12/05/2024 15:58:35</publishTime>
+    </File>
+    <File Include="Content/img/bg/cta-bg02.png">
+      <publishTime>12/05/2024 15:58:34</publishTime>
+    </File>
+    <File Include="Content/img/bg/fanfact_bg.jpg">
+      <publishTime>12/05/2024 15:58:34</publishTime>
+    </File>
+    <File Include="Content/img/bg/faq_image.png">
+      <publishTime>12/05/2024 15:58:34</publishTime>
+    </File>
+    <File Include="Content/img/bg/footer-bg.jpg">
+      <publishTime>12/05/2024 15:58:34</publishTime>
+    </File>
+    <File Include="Content/img/bg/footer-bg02.jpg">
+      <publishTime>12/05/2024 15:58:34</publishTime>
+    </File>
+    <File Include="Content/img/bg/footer-bg03.jpg">
+      <publishTime>12/05/2024 15:58:34</publishTime>
+    </File>
+    <File Include="Content/img/bg/footer-bg03.png">
+      <publishTime>12/05/2024 15:58:34</publishTime>
+    </File>
+    <File Include="Content/img/bg/hero_bg.jpg">
+      <publishTime>12/05/2024 15:58:34</publishTime>
+    </File>
+    <File Include="Content/img/bg/hero_bg.png">
+      <publishTime>12/05/2024 15:58:34</publishTime>
+    </File>
+    <File Include="Content/img/bg/hero_bg02.jpg">
+      <publishTime>12/05/2024 15:58:35</publishTime>
+    </File>
+    <File Include="Content/img/bg/hero_bg02.png">
+      <publishTime>12/05/2024 15:58:35</publishTime>
+    </File>
+    <File Include="Content/img/bg/news-bg.jpg">
+      <publishTime>12/05/2024 15:58:34</publishTime>
+    </File>
+    <File Include="Content/img/bg/news_bg01.jpg">
+      <publishTime>12/05/2024 15:58:34</publishTime>
+    </File>
+    <File Include="Content/img/bg/overly.jpg">
+      <publishTime>12/05/2024 15:58:35</publishTime>
+    </File>
+    <File Include="Content/img/bg/pro-Banner.png">
+      <publishTime>12/05/2024 15:58:34</publishTime>
+    </File>
+    <File Include="Content/img/bg/program-bg.jpg">
+      <publishTime>12/05/2024 15:58:34</publishTime>
+    </File>
+    <File Include="Content/img/bg/video_img.jpg">
+      <publishTime>12/05/2024 15:58:34</publishTime>
+    </File>
+    <File Include="Content/img/bg/vm_bg.jpg">
+      <publishTime>12/05/2024 15:58:34</publishTime>
+    </File>
+    <File Include="Content/img/blog/.DS_Store">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/blog/avatar1.png">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/blog/avatar2.png">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/blog/avatar3.png">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/blog/avatar4.png">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/blog/avatar5.png">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/blog/blog-img01.png">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/blog/blog-img02.png">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/blog/blog-img03.png">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/blog/blog-img04.png">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/blog/blog-img05.png">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/blog/blog_06.jpg">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/blog/blog_07.jpg">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/blog/blog_08.jpg">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/blog/blog_09.jpg">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/blog/blog_10.jpg">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/blog/blog_11.jpg">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/blog/blog_12.jpg">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/blog/blog_single.jpg">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/blog/blog_single2.jpg">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/blog/blog_single3.jpg">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/blog/blog_single4.jpg">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/campus/.DS_Store">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/campus/campus-img01.png">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/campus/campus-img02.png">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/campus/campus-img03.png">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/course/.DS_Store">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/course/avatar.png">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/course/avatar2.jpg">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/course/avatar3.jpg">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/course/course_single.jpg">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/course/course_single2.jpg">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/cta/.DS_Store">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/cta/cta-bg.jpg">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/cta/cta-bg01.png">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/cta/cta_img1.jpg">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/cta/cta_img2.jpg">
+      <publishTime>12/05/2024 15:58:31</publishTime>
+    </File>
+    <File Include="Content/img/event/.DS_Store">
+      <publishTime>12/05/2024 15:58:46</publishTime>
+    </File>
+    <File Include="Content/img/event/1255_eventBanner.JPG">
+      <publishTime>05/22/2025 13:49:57</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-02-27 3 Layers Technology Recruitment/2025-02-27 3 Layers Technology Recruitment Drive/IMG_0795.JPG">
+      <publishTime>02/27/2025 10:57:46</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-02-27 3 Layers Technology Recruitment/2025-02-27 3 Layers Technology Recruitment Drive/IMG_0797.JPG">
+      <publishTime>02/27/2025 10:58:08</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-02-27 3 Layers Technology Recruitment/2025-02-27 3 Layers Technology Recruitment Drive/IMG_0803.JPG">
+      <publishTime>02/27/2025 10:59:16</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-02-27 3 Layers Technology Recruitment/2025-02-27 3 Layers Technology Recruitment Drive/IMG_0808.JPG">
+      <publishTime>02/27/2025 11:00:36</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-02-27 3 Layers Technology Recruitment/2025-02-27 3 Layers Technology Recruitment Drive/IMG_0813.JPG">
+      <publishTime>02/27/2025 11:03:02</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-02-27 3 Layers Technology Recruitment/2025-02-27 3 Layers Technology Recruitment Drive/IMG_0814.JPG">
+      <publishTime>02/27/2025 11:03:18</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-04 NICAT Visit-20250822T041617Z-1-001/2025-03-04 NICAT Visit/20250304_112754 %283%29.jpg">
+      <publishTime>03/11/2025 09:33:26</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-04 NICAT Visit-20250822T041617Z-1-001/2025-03-04 NICAT Visit/20250304_112912 %282%29.jpg">
+      <publishTime>03/11/2025 09:33:00</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-04 NICAT Visit-20250822T041617Z-1-001/2025-03-04 NICAT Visit/20250304_112940.jpg">
+      <publishTime>03/11/2025 09:32:42</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-04 NICAT Visit-20250822T041617Z-1-001/2025-03-04 NICAT Visit/20250304_113244 %282%29.jpg">
+      <publishTime>03/11/2025 09:32:37</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-04 NICAT Visit-20250822T041617Z-1-001/2025-03-04 NICAT Visit/20250304_113302 %281%29.jpg">
+      <publishTime>03/11/2025 09:34:17</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-04 NICAT Visit-20250822T041617Z-1-001/2025-03-04 NICAT Visit/IMG_6328%281%29.JPG">
+      <publishTime>03/11/2025 09:34:28</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-04 NICAT Visit-20250822T041617Z-1-001/2025-03-04 NICAT Visit/IMG_6343 %282%29.JPG">
+      <publishTime>03/11/2025 09:35:44</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-04 NICAT Visit-20250822T041617Z-1-001/2025-03-04 NICAT Visit/IMG_7268 %283%29.jpeg">
+      <publishTime>03/11/2025 09:56:06</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/Copy of IMG_0604.HEIC">
+      <publishTime>03/27/2025 09:00:31</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/Copy of IMG_0605.HEIC">
+      <publishTime>03/27/2025 09:00:31</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/Copy of IMG_0608.HEIC">
+      <publishTime>03/27/2025 09:00:31</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1389.JPG">
+      <publishTime>03/25/2025 10:54:34</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1393.JPG">
+      <publishTime>03/25/2025 11:15:34</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1405.JPG">
+      <publishTime>03/25/2025 11:17:34</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1410.JPG">
+      <publishTime>03/25/2025 11:18:10</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1412.JPG">
+      <publishTime>03/25/2025 11:18:24</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1415.JPG">
+      <publishTime>03/25/2025 11:18:38</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1417.JPG">
+      <publishTime>03/25/2025 11:18:50</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1420.JPG">
+      <publishTime>03/25/2025 11:19:06</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1422.JPG">
+      <publishTime>03/25/2025 11:19:20</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1426.JPG">
+      <publishTime>03/25/2025 11:19:52</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1432.JPG">
+      <publishTime>03/25/2025 11:20:34</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1434.JPG">
+      <publishTime>03/25/2025 11:20:44</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1436.JPG">
+      <publishTime>03/25/2025 11:20:58</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1438.JPG">
+      <publishTime>03/25/2025 11:21:08</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1440.JPG">
+      <publishTime>03/25/2025 11:21:18</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1441.JPG">
+      <publishTime>03/25/2025 11:21:48</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1446.JPG">
+      <publishTime>03/25/2025 11:22:06</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1448.JPG">
+      <publishTime>03/25/2025 11:22:20</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1450.JPG">
+      <publishTime>03/25/2025 11:22:34</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1452.JPG">
+      <publishTime>03/25/2025 11:22:48</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1456.JPG">
+      <publishTime>03/25/2025 11:23:04</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1457.JPG">
+      <publishTime>03/25/2025 11:23:28</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1459.JPG">
+      <publishTime>03/25/2025 11:23:40</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1462.JPG">
+      <publishTime>03/25/2025 11:23:58</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1472.JPG">
+      <publishTime>03/25/2025 11:37:56</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1483.JPG">
+      <publishTime>03/27/2025 09:09:06</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1484.JPG">
+      <publishTime>03/27/2025 09:08:58</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1486.JPG">
+      <publishTime>03/25/2025 11:42:34</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/IMG_1487.JPG">
+      <publishTime>03/27/2025 09:06:14</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/2025-03-25 Oath Taking Ceremony of IEEE Hierarchy/WhatsApp Image 2025-03-27 at 02.48.16_58a7f1ac.jpg">
+      <publishTime>03/27/2025 08:42:16</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-05-21  Lunch regarding Youm E Tashakur/1255_eventBanner.JPG">
+      <publishTime>05/22/2025 13:49:57</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-05-21  Lunch regarding Youm E Tashakur/IMG_2859.JPG">
+      <publishTime>05/22/2025 13:49:20</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-05-21  Lunch regarding Youm E Tashakur/IMG_2862.JPG">
+      <publishTime>05/22/2025 13:49:26</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-05-21  Lunch regarding Youm E Tashakur/IMG_2875.JPG">
+      <publishTime>05/22/2025 13:49:57</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-05-21  Lunch regarding Youm E Tashakur/IMG_2882.JPG">
+      <publishTime>05/22/2025 13:50:12</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-05-21  Lunch regarding Youm E Tashakur/IMG_2885.JPG">
+      <publishTime>05/22/2025 13:50:28</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-05-21  Lunch regarding Youm E Tashakur/IMG_2901.JPG">
+      <publishTime>05/22/2025 13:56:25</publishTime>
+    </File>
+    <File Include="Content/img/event/2025-05-21  Lunch regarding Youm E Tashakur/IMG_2906.JPG">
+      <publishTime>05/22/2025 13:50:54</publishTime>
+    </File>
+    <File Include="Content/img/event/20250304_113244.jpg">
+      <publishTime>03/11/2025 09:32:37</publishTime>
+    </File>
+    <File Include="Content/img/event/event-img01.png">
+      <publishTime>12/05/2024 15:58:46</publishTime>
+    </File>
+    <File Include="Content/img/event/event-img02.png">
+      <publishTime>12/05/2024 15:58:46</publishTime>
+    </File>
+    <File Include="Content/img/event/event-img03.png">
+      <publishTime>12/05/2024 15:58:46</publishTime>
+    </File>
+    <File Include="Content/img/event/event-img04.png">
+      <publishTime>12/05/2024 15:58:46</publishTime>
+    </File>
+    <File Include="Content/img/event/event-img05.png">
+      <publishTime>12/05/2024 15:58:46</publishTime>
+    </File>
+    <File Include="Content/img/event/event-img06.jpg">
+      <publishTime>12/05/2024 15:58:47</publishTime>
+    </File>
+    <File Include="Content/img/event/event-img07.jpg">
+      <publishTime>12/05/2024 15:58:46</publishTime>
+    </File>
+    <File Include="Content/img/event/event-img08.jpg">
+      <publishTime>12/05/2024 15:58:47</publishTime>
+    </File>
+    <File Include="Content/img/event/event-img09.jpg">
+      <publishTime>12/05/2024 15:58:47</publishTime>
+    </File>
+    <File Include="Content/img/event/event-img10.jpg">
+      <publishTime>12/05/2024 15:58:46</publishTime>
+    </File>
+    <File Include="Content/img/event/event_single.jpg">
+      <publishTime>12/05/2024 15:58:47</publishTime>
+    </File>
+    <File Include="Content/img/event/event_single2.jpg">
+      <publishTime>12/05/2024 15:58:47</publishTime>
+    </File>
+    <File Include="Content/img/event/event_single3.jpg">
+      <publishTime>12/05/2024 15:58:47</publishTime>
+    </File>
+    <File Include="Content/img/event/fwd5thinternationalconferencepnqahe/5th-International-Conference-PNQAHE-2025.pdf">
+      <publishTime>08/22/2025 09:29:40</publishTime>
+    </File>
+    <File Include="Content/img/event/fwd5thinternationalconferencepnqahe/Writeup.docx">
+      <publishTime>08/22/2025 09:29:40</publishTime>
+    </File>
+    <File Include="Content/img/event/fwdindustrialvisittorawallakewatertreatmentplantci/Rawal lake treatment plant website.docx">
+      <publishTime>08/22/2025 09:28:26</publishTime>
+    </File>
+    <File Include="Content/img/event/fwdindustrialvisittorawallakewatertreatmentplantci/WhatsApp Image 2025-04-29 at 11.07.21 AM %281%29.jpeg">
+      <publishTime>08/22/2025 09:28:26</publishTime>
+    </File>
+    <File Include="Content/img/event/fwdindustrialvisittorawallakewatertreatmentplantci/WhatsApp Image 2025-04-29 at 11.07.21 AM %282%29.jpeg">
+      <publishTime>08/22/2025 09:28:26</publishTime>
+    </File>
+    <File Include="Content/img/event/fwdindustrialvisittorawallakewatertreatmentplantci/WhatsApp Image 2025-04-29 at 11.07.21 AM.jpeg">
+      <publishTime>08/22/2025 09:28:26</publishTime>
+    </File>
+    <File Include="Content/img/event/fwdindustrialvisittorawallakewatertreatmentplantci/WhatsApp Image 2025-04-29 at 11.07.22 AM %281%29.jpeg">
+      <publishTime>08/22/2025 09:28:26</publishTime>
+    </File>
+    <File Include="Content/img/event/fwdindustrialvisittorawallakewatertreatmentplantci/WhatsApp Image 2025-04-29 at 11.07.22 AM %282%29.jpeg">
+      <publishTime>08/22/2025 09:28:28</publishTime>
+    </File>
+    <File Include="Content/img/event/fwdindustrialvisittorawallakewatertreatmentplantci/WhatsApp Image 2025-04-29 at 11.07.22 AM.jpeg">
+      <publishTime>08/22/2025 09:28:26</publishTime>
+    </File>
+    <File Include="Content/img/event/fwdindustrialvisittorawallakewatertreatmentplantci/WhatsApp Image 2025-04-29 at 11.07.23 AM.jpeg">
+      <publishTime>08/22/2025 09:28:28</publishTime>
+    </File>
+    <File Include="Content/img/event/fwdrequestforshareworkshopdetailsatofficialwebsite/Revit Workshop Broucher A.pdf">
+      <publishTime>08/22/2025 09:29:26</publishTime>
+    </File>
+    <File Include="Content/img/event/fwdrequestforshareworkshopdetailsatofficialwebsite/Revit Workshop Broucher B.tif">
+      <publishTime>08/22/2025 09:29:26</publishTime>
+    </File>
+    <File Include="Content/img/event/IMG_1393.JPG">
+      <publishTime>03/25/2025 11:15:34</publishTime>
+    </File>
+    <File Include="Content/img/event/Open house 2025.png">
+      <publishTime>08/22/2025 09:28:47</publishTime>
+    </File>
+    <File Include="Content/img/event/Whatsapp.jpeg">
+      <publishTime>08/22/2025 09:28:28</publishTime>
+    </File>
+    <File Include="Content/img/fanfact/.DS_Store">
+      <publishTime>12/05/2024 15:58:45</publishTime>
+    </File>
+    <File Include="Content/img/fanfact/fanfact-img01.png">
+      <publishTime>12/05/2024 15:58:45</publishTime>
+    </File>
+    <File Include="Content/img/fanfact/fanfact-img02.png">
+      <publishTime>12/05/2024 15:58:45</publishTime>
+    </File>
+    <File Include="Content/img/fanfact/fanfact-img03.png">
+      <publishTime>12/05/2024 15:58:45</publishTime>
+    </File>
+    <File Include="Content/img/fanfact/principle-img.png">
+      <publishTime>12/05/2024 15:58:45</publishTime>
+    </File>
+    <File Include="Content/img/fanfact/principle-img01.png">
+      <publishTime>12/05/2024 15:58:45</publishTime>
+    </File>
+    <File Include="Content/img/fanfact/principle-img02.png">
+      <publishTime>12/05/2024 15:58:45</publishTime>
+    </File>
+    <File Include="Content/img/favicon.png">
+      <publishTime>12/05/2024 15:58:28</publishTime>
+    </File>
+    <File Include="Content/img/feature/feature-img01.png">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/img/feature/feature-img02.png">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/img/feature/feature-img03.png">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/img/footer/footer-avatar.png">
+      <publishTime>12/05/2024 15:58:28</publishTime>
+    </File>
+    <File Include="Content/img/hero/hero_img01.png">
+      <publishTime>12/05/2024 15:58:45</publishTime>
+    </File>
+    <File Include="Content/img/hero/hero_img02.jpg">
+      <publishTime>12/05/2024 15:58:45</publishTime>
+    </File>
+    <File Include="Content/img/hero/hero_img03.png">
+      <publishTime>12/05/2024 15:58:45</publishTime>
+    </File>
+    <File Include="Content/img/home/2.jpeg">
+      <publishTime>08/11/2025 10:09:31</publishTime>
+    </File>
+    <File Include="Content/img/home/3.jpeg">
+      <publishTime>08/11/2025 10:09:38</publishTime>
+    </File>
+    <File Include="Content/img/home/4 %281%29.jpeg">
+      <publishTime>08/11/2025 10:09:49</publishTime>
+    </File>
+    <File Include="Content/img/home/4.jpeg">
+      <publishTime>08/11/2025 10:09:29</publishTime>
+    </File>
+    <File Include="Content/img/home/AdmissionAd.jpeg">
+      <publishTime>08/11/2025 10:09:43</publishTime>
+    </File>
+    <File Include="Content/img/home/AdmissionsSpring2024.jpeg">
+      <publishTime>08/11/2025 10:09:34</publishTime>
+    </File>
+    <File Include="Content/img/home/back.jpeg">
+      <publishTime>08/11/2025 10:09:21</publishTime>
+    </File>
+    <File Include="Content/img/home/online.jpg">
+      <publishTime>08/21/2025 22:40:42</publishTime>
+    </File>
+    <File Include="Content/img/home/skills.jpg">
+      <publishTime>08/21/2025 22:32:26</publishTime>
+    </File>
+    <File Include="Content/img/home/success1.jpg">
+      <publishTime>08/21/2025 23:24:41</publishTime>
+    </File>
+    <File Include="Content/img/home/success2.jpg">
+      <publishTime>08/21/2025 23:20:54</publishTime>
+    </File>
+    <File Include="Content/img/icon/about-icon.svg">
+      <publishTime>12/05/2024 15:58:43</publishTime>
+    </File>
+    <File Include="Content/img/icon/about-icon01.png">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/about-icon02.png">
+      <publishTime>12/05/2024 15:58:39</publishTime>
+    </File>
+    <File Include="Content/img/icon/about-icon03.png">
+      <publishTime>12/05/2024 15:58:39</publishTime>
+    </File>
+    <File Include="Content/img/icon/ab_01.png">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/img/icon/ab_01.svg">
+      <publishTime>12/05/2024 15:58:41</publishTime>
+    </File>
+    <File Include="Content/img/icon/ab_02.png">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/img/icon/ab_02.svg">
+      <publishTime>12/05/2024 15:58:40</publishTime>
+    </File>
+    <File Include="Content/img/icon/ab_03.png">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/ab_03.svg">
+      <publishTime>12/05/2024 15:58:39</publishTime>
+    </File>
+    <File Include="Content/img/icon/ab_04.png">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/ab_04.svg">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/ab_05.png">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/ab_05.svg">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/ab_06.png">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/ab_06.svg">
+      <publishTime>12/05/2024 15:58:39</publishTime>
+    </File>
+    <File Include="Content/img/icon/am_01.svg">
+      <publishTime>12/05/2024 15:58:43</publishTime>
+    </File>
+    <File Include="Content/img/icon/am_02.svg">
+      <publishTime>12/05/2024 15:58:42</publishTime>
+    </File>
+    <File Include="Content/img/icon/am_03.svg">
+      <publishTime>12/05/2024 15:58:43</publishTime>
+    </File>
+    <File Include="Content/img/icon/angle-down.svg">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/Arrow 02.png">
+      <publishTime>12/05/2024 15:58:39</publishTime>
+    </File>
+    <File Include="Content/img/icon/arrow01.png">
+      <publishTime>12/05/2024 15:58:43</publishTime>
+    </File>
+    <File Include="Content/img/icon/book-white.png">
+      <publishTime>12/05/2024 15:58:42</publishTime>
+    </File>
+    <File Include="Content/img/icon/book.svg">
+      <publishTime>12/05/2024 15:58:39</publishTime>
+    </File>
+    <File Include="Content/img/icon/call-calling.svg">
+      <publishTime>12/05/2024 15:58:42</publishTime>
+    </File>
+    <File Include="Content/img/icon/call.svg">
+      <publishTime>12/05/2024 15:58:42</publishTime>
+    </File>
+    <File Include="Content/img/icon/calling-icon.png">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/img/icon/calling-icon01.png">
+      <publishTime>12/05/2024 15:58:43</publishTime>
+    </File>
+    <File Include="Content/img/icon/calling-icon02.png">
+      <publishTime>12/05/2024 15:58:42</publishTime>
+    </File>
+    <File Include="Content/img/icon/check-2.svg">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/Check-icon.svg">
+      <publishTime>12/05/2024 15:58:42</publishTime>
+    </File>
+    <File Include="Content/img/icon/check.svg">
+      <publishTime>12/05/2024 15:58:41</publishTime>
+    </File>
+    <File Include="Content/img/icon/ci_01.svg">
+      <publishTime>12/05/2024 15:58:43</publishTime>
+    </File>
+    <File Include="Content/img/icon/ci_02.svg">
+      <publishTime>12/05/2024 15:58:43</publishTime>
+    </File>
+    <File Include="Content/img/icon/ci_03.svg">
+      <publishTime>12/05/2024 15:58:42</publishTime>
+    </File>
+    <File Include="Content/img/icon/ci_04.svg">
+      <publishTime>12/05/2024 15:58:44</publishTime>
+    </File>
+    <File Include="Content/img/icon/ci_05.svg">
+      <publishTime>12/05/2024 15:58:44</publishTime>
+    </File>
+    <File Include="Content/img/icon/ci_06.svg">
+      <publishTime>12/05/2024 15:58:44</publishTime>
+    </File>
+    <File Include="Content/img/icon/ci_07.svg">
+      <publishTime>12/05/2024 15:58:44</publishTime>
+    </File>
+    <File Include="Content/img/icon/ci_08.svg">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/clipboard-01.svg">
+      <publishTime>12/05/2024 15:58:44</publishTime>
+    </File>
+    <File Include="Content/img/icon/clipboard-text.svg">
+      <publishTime>12/05/2024 15:58:44</publishTime>
+    </File>
+    <File Include="Content/img/icon/clock.png">
+      <publishTime>12/05/2024 15:58:42</publishTime>
+    </File>
+    <File Include="Content/img/icon/clock01.png">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/counter-icon.png">
+      <publishTime>12/05/2024 15:58:41</publishTime>
+    </File>
+    <File Include="Content/img/icon/cta_icon_01.svg">
+      <publishTime>12/05/2024 15:58:42</publishTime>
+    </File>
+    <File Include="Content/img/icon/cta_icon_02.svg">
+      <publishTime>12/05/2024 15:58:41</publishTime>
+    </File>
+    <File Include="Content/img/icon/customer-support.png">
+      <publishTime>12/05/2024 15:58:43</publishTime>
+    </File>
+    <File Include="Content/img/icon/email.svg">
+      <publishTime>12/05/2024 15:58:41</publishTime>
+    </File>
+    <File Include="Content/img/icon/email01.svg">
+      <publishTime>12/05/2024 15:58:42</publishTime>
+    </File>
+    <File Include="Content/img/icon/faq_01.svg">
+      <publishTime>12/05/2024 15:58:39</publishTime>
+    </File>
+    <File Include="Content/img/icon/faq_02.svg">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/faq_03.svg">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/faq_04.svg">
+      <publishTime>12/05/2024 15:58:41</publishTime>
+    </File>
+    <File Include="Content/img/icon/faq_05.svg">
+      <publishTime>12/05/2024 15:58:39</publishTime>
+    </File>
+    <File Include="Content/img/icon/faq_06.svg">
+      <publishTime>12/05/2024 15:58:41</publishTime>
+    </File>
+    <File Include="Content/img/icon/flag.png">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/flag_bangladesh.webp">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/flag_portugal.webp">
+      <publishTime>12/05/2024 15:58:39</publishTime>
+    </File>
+    <File Include="Content/img/icon/flag_saudi_arabia.webp">
+      <publishTime>12/05/2024 15:58:44</publishTime>
+    </File>
+    <File Include="Content/img/icon/flag_usa.webp">
+      <publishTime>12/05/2024 15:58:42</publishTime>
+    </File>
+    <File Include="Content/img/icon/hero_top-icon.png">
+      <publishTime>12/05/2024 15:58:43</publishTime>
+    </File>
+    <File Include="Content/img/icon/icon_bookmark.svg">
+      <publishTime>12/05/2024 15:58:44</publishTime>
+    </File>
+    <File Include="Content/img/icon/icon_search.svg">
+      <publishTime>12/05/2024 15:58:39</publishTime>
+    </File>
+    <File Include="Content/img/icon/learning.png">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/img/icon/learning.svg">
+      <publishTime>12/05/2024 15:58:41</publishTime>
+    </File>
+    <File Include="Content/img/icon/learning01.png">
+      <publishTime>12/05/2024 15:58:42</publishTime>
+    </File>
+    <File Include="Content/img/icon/left-arrrow.png">
+      <publishTime>12/05/2024 15:58:39</publishTime>
+    </File>
+    <File Include="Content/img/icon/location-add.svg">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/img/icon/location.svg">
+      <publishTime>12/05/2024 15:58:42</publishTime>
+    </File>
+    <File Include="Content/img/icon/menu-search.svg">
+      <publishTime>12/05/2024 15:58:44</publishTime>
+    </File>
+    <File Include="Content/img/icon/meta-icon01.png">
+      <publishTime>12/05/2024 15:58:42</publishTime>
+    </File>
+    <File Include="Content/img/icon/note-book.svg">
+      <publishTime>12/05/2024 15:58:42</publishTime>
+    </File>
+    <File Include="Content/img/icon/note.svg">
+      <publishTime>12/05/2024 15:58:39</publishTime>
+    </File>
+    <File Include="Content/img/icon/polygon.png">
+      <publishTime>12/05/2024 15:58:41</publishTime>
+    </File>
+    <File Include="Content/img/icon/pro-book.png">
+      <publishTime>12/05/2024 15:58:39</publishTime>
+    </File>
+    <File Include="Content/img/icon/pro-man.png">
+      <publishTime>12/05/2024 15:58:44</publishTime>
+    </File>
+    <File Include="Content/img/icon/profile-circle.svg">
+      <publishTime>12/05/2024 15:58:43</publishTime>
+    </File>
+    <File Include="Content/img/icon/qua-02.png">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/qua.png">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/rating.png">
+      <publishTime>12/05/2024 15:58:44</publishTime>
+    </File>
+    <File Include="Content/img/icon/rating01.png">
+      <publishTime>12/05/2024 15:58:39</publishTime>
+    </File>
+    <File Include="Content/img/icon/right-arrow.png">
+      <publishTime>12/05/2024 15:58:39</publishTime>
+    </File>
+    <File Include="Content/img/icon/right-arrow01.png">
+      <publishTime>12/05/2024 15:58:43</publishTime>
+    </File>
+    <File Include="Content/img/icon/sms-chat.svg">
+      <publishTime>12/05/2024 15:58:43</publishTime>
+    </File>
+    <File Include="Content/img/icon/sms-edit.svg">
+      <publishTime>12/05/2024 15:58:44</publishTime>
+    </File>
+    <File Include="Content/img/icon/stamp.png">
+      <publishTime>12/05/2024 15:58:41</publishTime>
+    </File>
+    <File Include="Content/img/icon/start01.png">
+      <publishTime>12/05/2024 15:58:43</publishTime>
+    </File>
+    <File Include="Content/img/icon/teacher-icon.png">
+      <publishTime>12/05/2024 15:58:38</publishTime>
+    </File>
+    <File Include="Content/img/icon/teacher-icon01.png">
+      <publishTime>12/05/2024 15:58:39</publishTime>
+    </File>
+    <File Include="Content/img/icon/twitter-icon.png">
+      <publishTime>12/05/2024 15:58:41</publishTime>
+    </File>
+    <File Include="Content/img/icon/warning.png">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/img/logo/.DS_Store">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/logo/download.png">
+      <publishTime>07/02/2025 16:18:45</publishTime>
+    </File>
+    <File Include="Content/img/logo/HitecLogo.svg">
+      <publishTime>07/02/2025 15:50:53</publishTime>
+    </File>
+    <File Include="Content/img/logo/logo-2.svg">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/logo/logo.svg">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/logo/logo_white.svg">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/logo/preloader-2.png">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/logo/preloader.png">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/menuicon/book-open-svgrepo-com.svg">
+      <publishTime>08/19/2025 09:31:36</publishTime>
+    </File>
+    <File Include="Content/img/menuicon/books-study-learning-education-reading-library-svgrepo-com.svg">
+      <publishTime>08/19/2025 09:31:22</publishTime>
+    </File>
+    <File Include="Content/img/menuicon/building-svgrepo-com.svg">
+      <publishTime>08/19/2025 09:31:29</publishTime>
+    </File>
+    <File Include="Content/img/menuicon/calendar-days-svgrepo-com.svg">
+      <publishTime>08/19/2025 09:31:32</publishTime>
+    </File>
+    <File Include="Content/img/menuicon/chalkboard-teacher-solid-svgrepo-com.svg">
+      <publishTime>08/19/2025 09:31:27</publishTime>
+    </File>
+    <File Include="Content/img/menuicon/info-svgrepo-com.svg">
+      <publishTime>08/19/2025 09:31:41</publishTime>
+    </File>
+    <File Include="Content/img/menuicon/jobs-open-svgrepo-com.svg">
+      <publishTime>08/25/2025 10:46:38</publishTime>
+    </File>
+    <File Include="Content/img/menuicon/mortarboard-graduate-svgrepo-com.svg">
+      <publishTime>08/19/2025 09:31:39</publishTime>
+    </File>
+    <File Include="Content/img/menuicon/users-svgrepo-com.svg">
+      <publishTime>08/19/2025 09:31:34</publishTime>
+    </File>
+    <File Include="Content/img/news/hs-news_img01.jpg">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/news/hs-news_img02.jpg">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/news/hs-news_img03.jpg">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/news/news-img01.jpg">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/news/news-img02.png">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/news/news-img03.png">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/news/news-img04.png">
+      <publishTime>12/05/2024 15:58:32</publishTime>
+    </File>
+    <File Include="Content/img/program/.DS_Store">
+      <publishTime>12/05/2024 15:58:35</publishTime>
+    </File>
+    <File Include="Content/img/program/boy-with-glasses-doing-lesson-class-doing-assignment.png5565.png">
+      <publishTime>12/05/2024 15:58:35</publishTime>
+    </File>
+    <File Include="Content/img/program/BS EE.jpg">
+      <publishTime>08/21/2025 10:29:58</publishTime>
+    </File>
+    <File Include="Content/img/program/BS ME.jpg">
+      <publishTime>08/21/2025 10:18:27</publishTime>
+    </File>
+    <File Include="Content/img/program/Civil.jpg">
+      <publishTime>08/21/2025 10:28:56</publishTime>
+    </File>
+    <File Include="Content/img/program/CS.jpg">
+      <publishTime>08/21/2025 10:22:17</publishTime>
+    </File>
+    <File Include="Content/img/program/hs-program01.png">
+      <publishTime>12/05/2024 15:58:36</publishTime>
+    </File>
+    <File Include="Content/img/program/hs-program02.png">
+      <publishTime>12/05/2024 15:58:35</publishTime>
+    </File>
+    <File Include="Content/img/program/hs-program03.png">
+      <publishTime>12/05/2024 15:58:36</publishTime>
+    </File>
+    <File Include="Content/img/program/hs-program04.png">
+      <publishTime>12/05/2024 15:58:36</publishTime>
+    </File>
+    <File Include="Content/img/program/hs-program05.png">
+      <publishTime>12/05/2024 15:58:36</publishTime>
+    </File>
+    <File Include="Content/img/program/hs-program06.png">
+      <publishTime>12/05/2024 15:58:36</publishTime>
+    </File>
+    <File Include="Content/img/program/hs-program07.png">
+      <publishTime>12/05/2024 15:58:36</publishTime>
+    </File>
+    <File Include="Content/img/program/MS EE.jpg">
+      <publishTime>08/21/2025 10:29:25</publishTime>
+    </File>
+    <File Include="Content/img/program/MS ME.jpg">
+      <publishTime>08/21/2025 10:22:51</publishTime>
+    </File>
+    <File Include="Content/img/program/pro-img01.png">
+      <publishTime>12/05/2024 15:58:36</publishTime>
+    </File>
+    <File Include="Content/img/program/pro-img02.png">
+      <publishTime>12/05/2024 15:58:36</publishTime>
+    </File>
+    <File Include="Content/img/program/pro-img03.png">
+      <publishTime>12/05/2024 15:58:36</publishTime>
+    </File>
+    <File Include="Content/img/program/pro-img04.png">
+      <publishTime>12/05/2024 15:58:36</publishTime>
+    </File>
+    <File Include="Content/img/program/pro-img05.png">
+      <publishTime>12/05/2024 15:58:36</publishTime>
+    </File>
+    <File Include="Content/img/program/pro-img06.png">
+      <publishTime>12/05/2024 15:58:36</publishTime>
+    </File>
+    <File Include="Content/img/program/pro-img07.png">
+      <publishTime>12/05/2024 15:58:36</publishTime>
+    </File>
+    <File Include="Content/img/program/pro-img08.png">
+      <publishTime>12/05/2024 15:58:35</publishTime>
+    </File>
+    <File Include="Content/img/program/pro-img09.png">
+      <publishTime>12/05/2024 15:58:35</publishTime>
+    </File>
+    <File Include="Content/img/program/program-img01.png">
+      <publishTime>12/05/2024 15:58:35</publishTime>
+    </File>
+    <File Include="Content/img/program/program-img02.png">
+      <publishTime>12/05/2024 15:58:35</publishTime>
+    </File>
+    <File Include="Content/img/program/program-img03.png">
+      <publishTime>12/05/2024 15:58:35</publishTime>
+    </File>
+    <File Include="Content/img/qac/Organogram.png">
+      <publishTime>09/17/2025 11:33:46</publishTime>
+    </File>
+    <File Include="Content/img/shape/about-shape.png">
+      <publishTime>12/05/2024 15:58:29</publishTime>
+    </File>
+    <File Include="Content/img/shape/angle-shape01.png">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/shape/angle-shape02.png">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/shape/angle-white.png">
+      <publishTime>12/05/2024 15:58:28</publishTime>
+    </File>
+    <File Include="Content/img/shape/book.png">
+      <publishTime>12/05/2024 15:58:28</publishTime>
+    </File>
+    <File Include="Content/img/shape/camical.png">
+      <publishTime>12/05/2024 15:58:29</publishTime>
+    </File>
+    <File Include="Content/img/shape/campus-shape.png">
+      <publishTime>12/05/2024 15:58:29</publishTime>
+    </File>
+    <File Include="Content/img/shape/cap.png">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/shape/hs-tes-sp.png">
+      <publishTime>12/05/2024 15:58:29</publishTime>
+    </File>
+    <File Include="Content/img/shape/man-01.png">
+      <publishTime>12/05/2024 15:58:29</publishTime>
+    </File>
+    <File Include="Content/img/shape/man-02.png">
+      <publishTime>12/05/2024 15:58:29</publishTime>
+    </File>
+    <File Include="Content/img/shape/pen.png">
+      <publishTime>12/05/2024 15:58:29</publishTime>
+    </File>
+    <File Include="Content/img/shape/shape_arrow_left.svg">
+      <publishTime>12/05/2024 15:58:29</publishTime>
+    </File>
+    <File Include="Content/img/shape/shape_arrow_right.svg">
+      <publishTime>12/05/2024 15:58:29</publishTime>
+    </File>
+    <File Include="Content/img/shape/stamp.png">
+      <publishTime>12/05/2024 15:58:29</publishTime>
+    </File>
+    <File Include="Content/img/shape/stamp01.png">
+      <publishTime>12/05/2024 15:58:29</publishTime>
+    </File>
+    <File Include="Content/img/shape/tes-shape.png">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/shape/tes-shape02.png">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/shape/Union.png">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/shape/Vector01.png">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/shape/Vector02.png">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/shape/Vector03.png">
+      <publishTime>12/05/2024 15:58:30</publishTime>
+    </File>
+    <File Include="Content/img/shape/Vector04.png">
+      <publishTime>12/05/2024 15:58:29</publishTime>
+    </File>
+    <File Include="Content/img/shape/Vector05.png">
+      <publishTime>12/05/2024 15:58:29</publishTime>
+    </File>
+    <File Include="Content/img/shape/Vector06.png">
+      <publishTime>12/05/2024 15:58:29</publishTime>
+    </File>
+    <File Include="Content/img/shape/Vector07.png">
+      <publishTime>12/05/2024 15:58:29</publishTime>
+    </File>
+    <File Include="Content/img/shape/vm_shape1.png">
+      <publishTime>12/05/2024 15:58:29</publishTime>
+    </File>
+    <File Include="Content/img/shape/vm_shape2.png">
+      <publishTime>12/05/2024 15:58:29</publishTime>
+    </File>
+    <File Include="Content/img/team/.DS_Store">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/team/team_01.jpg">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/team/team_02.jpg">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/team/team_03.jpg">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/team/team_04.jpg">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/team/team_05.jpg">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/team/team_06.jpg">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/team/team_image.png">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/team/team_single.jpg">
+      <publishTime>12/05/2024 15:58:33</publishTime>
+    </File>
+    <File Include="Content/img/testimonial/clg-tes-img01.png">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/img/testimonial/clg-tes-img02.png">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/img/testimonial/clg-tes-img03.png">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/img/testimonial/clg-tes-img04.png">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/img/testimonial/clg-tes-img05.png">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/img/testimonial/hs-tes-img01.png">
+      <publishTime>12/05/2024 15:58:36</publishTime>
+    </File>
+    <File Include="Content/img/testimonial/hs-tes-img02.png">
+      <publishTime>12/05/2024 15:58:36</publishTime>
+    </File>
+    <File Include="Content/img/testimonial/hs-tes-img03.png">
+      <publishTime>12/05/2024 15:58:36</publishTime>
+    </File>
+    <File Include="Content/img/testimonial/hs-tes-img04.png">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/img/testimonial/tes-img.png">
+      <publishTime>12/05/2024 15:58:36</publishTime>
+    </File>
+    <File Include="Content/img/testimonial/tes-img02.png">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/img/testimonial/tes-img03.png">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/img/testimonial/tes-img04.png">
+      <publishTime>12/05/2024 15:58:37</publishTime>
+    </File>
+    <File Include="Content/pdf/qac/NDMA Advisory.pdf">
+      <publishTime>09/17/2025 11:30:21</publishTime>
+    </File>
+    <File Include="Content/scss/.DS_Store">
+      <publishTime>12/05/2024 15:58:26</publishTime>
+    </File>
+    <File Include="Content/scss/abstracts/_mixins.scss">
+      <publishTime>12/05/2024 15:58:28</publishTime>
+    </File>
+    <File Include="Content/scss/abstracts/_variables.scss">
+      <publishTime>07/28/2025 10:15:40</publishTime>
+    </File>
+    <File Include="Content/scss/base/_animation.scss">
+      <publishTime>12/05/2024 15:58:28</publishTime>
+    </File>
+    <File Include="Content/scss/base/_base.scss">
+      <publishTime>12/05/2024 15:58:28</publishTime>
+    </File>
+    <File Include="Content/scss/base/_fonts.scss">
+      <publishTime>12/05/2024 15:58:28</publishTime>
+    </File>
+    <File Include="Content/scss/base/_overlay.scss">
+      <publishTime>12/05/2024 15:58:28</publishTime>
+    </File>
+    <File Include="Content/scss/base/_reset.scss">
+      <publishTime>12/05/2024 15:58:28</publishTime>
+    </File>
+    <File Include="Content/scss/base/_spacing.scss">
+      <publishTime>12/05/2024 15:58:28</publishTime>
+    </File>
+    <File Include="Content/scss/base/_typography.scss">
+      <publishTime>12/05/2024 15:58:28</publishTime>
+    </File>
+    <File Include="Content/scss/components/_about.scss">
+      <publishTime>12/05/2024 15:58:26</publishTime>
+    </File>
+    <File Include="Content/scss/components/_admission.scss">
+      <publishTime>12/05/2024 15:58:26</publishTime>
+    </File>
+    <File Include="Content/scss/components/_backtotop.scss">
+      <publishTime>12/05/2024 15:58:26</publishTime>
+    </File>
+    <File Include="Content/scss/components/_blog.scss">
+      <publishTime>12/05/2024 15:58:28</publishTime>
+    </File>
+    <File Include="Content/scss/components/_breadcrumb.scss">
+      <publishTime>12/05/2024 15:58:26</publishTime>
+    </File>
+    <File Include="Content/scss/components/_buttons.scss">
+      <publishTime>12/05/2024 15:58:27</publishTime>
+    </File>
+    <File Include="Content/scss/components/_campus.scss">
+      <publishTime>12/05/2024 15:58:27</publishTime>
+    </File>
+    <File Include="Content/scss/components/_contact.scss">
+      <publishTime>12/05/2024 15:58:26</publishTime>
+    </File>
+    <File Include="Content/scss/components/_course.scss">
+      <publishTime>12/05/2024 15:58:27</publishTime>
+    </File>
+    <File Include="Content/scss/components/_cta.scss">
+      <publishTime>12/05/2024 15:58:26</publishTime>
+    </File>
+    <File Include="Content/scss/components/_department.scss">
+      <publishTime>12/05/2024 15:58:27</publishTime>
+    </File>
+    <File Include="Content/scss/components/_event.scss">
+      <publishTime>08/13/2025 10:59:19</publishTime>
+    </File>
+    <File Include="Content/scss/components/_fanfact.scss">
+      <publishTime>12/05/2024 15:58:26</publishTime>
+    </File>
+    <File Include="Content/scss/components/_faq.scss">
+      <publishTime>12/05/2024 15:58:27</publishTime>
+    </File>
+    <File Include="Content/scss/components/_feature.scss">
+      <publishTime>12/05/2024 15:58:27</publishTime>
+    </File>
+    <File Include="Content/scss/components/_funfact.scss">
+      <publishTime>12/05/2024 15:58:27</publishTime>
+    </File>
+    <File Include="Content/scss/components/_global.scss">
+      <publishTime>12/05/2024 15:58:26</publishTime>
+    </File>
+    <File Include="Content/scss/components/_hero.scss">
+      <publishTime>12/05/2024 15:58:27</publishTime>
+    </File>
+    <File Include="Content/scss/components/_mission-vission.scss">
+      <publishTime>12/05/2024 15:58:27</publishTime>
+    </File>
+    <File Include="Content/scss/components/_mobile-menu.scss">
+      <publishTime>12/05/2024 15:58:27</publishTime>
+    </File>
+    <File Include="Content/scss/components/_news.scss">
+      <publishTime>12/05/2024 15:58:27</publishTime>
+    </File>
+    <File Include="Content/scss/components/_preloader.scss">
+      <publishTime>12/05/2024 15:58:27</publishTime>
+    </File>
+    <File Include="Content/scss/components/_program.scss">
+      <publishTime>07/01/2025 23:54:17</publishTime>
+    </File>
+    <File Include="Content/scss/components/_search.scss">
+      <publishTime>12/05/2024 15:58:27</publishTime>
+    </File>
+    <File Include="Content/scss/components/_sec-title.scss">
+      <publishTime>12/05/2024 15:58:26</publishTime>
+    </File>
+    <File Include="Content/scss/components/_team.scss">
+      <publishTime>12/05/2024 15:58:27</publishTime>
+    </File>
+    <File Include="Content/scss/components/_testimonial.scss">
+      <publishTime>07/01/2025 22:02:50</publishTime>
+    </File>
+    <File Include="Content/scss/layout/_footer.scss">
+      <publishTime>07/23/2025 09:35:09</publishTime>
+    </File>
+    <File Include="Content/scss/layout/_header.scss">
+      <publishTime>09/18/2025 11:04:01</publishTime>
+    </File>
+    <File Include="Content/scss/layout/_navigation.scss">
+      <publishTime>06/19/2025 22:18:15</publishTime>
+    </File>
+    <File Include="Content/scss/main.scss">
+      <publishTime>07/02/2025 00:41:49</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>06/24/2025 23:43:31</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>06/24/2025 23:43:31</publishTime>
+    </File>
+    <File Include="Scripts/admission-modal.js">
+      <publishTime>08/17/2025 20:47:22</publishTime>
+    </File>
+    <File Include="Scripts/appear.js">
+      <publishTime>06/25/2025 02:46:12</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.bundle.js">
+      <publishTime>06/29/2025 01:23:48</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.bundle.js.map">
+      <publishTime>06/29/2025 01:23:48</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.bundle.min.js">
+      <publishTime>06/29/2025 01:23:54</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.bundle.min.js.map">
+      <publishTime>06/29/2025 01:23:54</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.esm.js">
+      <publishTime>06/29/2025 01:23:54</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.esm.js.map">
+      <publishTime>06/29/2025 01:23:54</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.esm.min.js">
+      <publishTime>06/29/2025 01:23:54</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.esm.min.js.map">
+      <publishTime>06/29/2025 01:23:54</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>06/29/2025 01:23:54</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js.map">
+      <publishTime>06/29/2025 01:23:54</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>06/29/2025 01:23:54</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js.map">
+      <publishTime>06/29/2025 01:23:54</publishTime>
+    </File>
+    <File Include="Scripts/countdown.js">
+      <publishTime>06/25/2025 02:46:12</publishTime>
+    </File>
+    <File Include="Scripts/image-crop.js">
+      <publishTime>08/05/2025 14:50:34</publishTime>
+    </File>
+    <File Include="Scripts/imagesloaded.pkgd.min.js">
+      <publishTime>06/25/2025 02:46:12</publishTime>
+    </File>
+    <File Include="Scripts/isotope.pkgd.min.js">
+      <publishTime>06/25/2025 02:46:12</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.js">
+      <publishTime>06/29/2025 01:23:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.min.js">
+      <publishTime>06/29/2025 01:23:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.min.map">
+      <publishTime>06/29/2025 01:23:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.slim.js">
+      <publishTime>06/29/2025 01:23:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.slim.min.js">
+      <publishTime>06/29/2025 01:23:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.0.slim.min.map">
+      <publishTime>06/29/2025 01:23:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.7.1.min.js">
+      <publishTime>06/25/2025 02:46:12</publishTime>
+    </File>
+    <File Include="Scripts/jquery.magnific-popup.min.js">
+      <publishTime>06/25/2025 02:46:12</publishTime>
+    </File>
+    <File Include="Scripts/jquery.nice-select.min.js">
+      <publishTime>06/25/2025 02:46:12</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>06/29/2025 01:23:54</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>06/29/2025 01:23:54</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>06/29/2025 01:23:54</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>06/29/2025 01:23:54</publishTime>
+    </File>
+    <File Include="Scripts/main.js">
+      <publishTime>09/18/2025 11:51:16</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.8.3.js">
+      <publishTime>06/29/2025 01:23:48</publishTime>
+    </File>
+    <File Include="Scripts/modernizr.js">
+      <publishTime>06/25/2025 02:56:33</publishTime>
+    </File>
+    <File Include="Scripts/odometer.min.js">
+      <publishTime>06/25/2025 02:46:12</publishTime>
+    </File>
+    <File Include="Scripts/parallax-scroll.js">
+      <publishTime>06/25/2025 02:46:12</publishTime>
+    </File>
+    <File Include="Scripts/sidebar-menu.js">
+      <publishTime>08/25/2025 12:44:28</publishTime>
+    </File>
+    <File Include="Scripts/swiper.min.js">
+      <publishTime>06/25/2025 02:46:12</publishTime>
+    </File>
+    <File Include="Scripts/wow.min.js">
+      <publishTime>06/25/2025 02:46:12</publishTime>
+    </File>
+    <File Include="Views/About/ChairmanMessage.cshtml">
+      <publishTime>07/28/2025 12:36:45</publishTime>
+    </File>
+    <File Include="Views/About/Emblem.cshtml">
+      <publishTime>07/28/2025 12:36:43</publishTime>
+    </File>
+    <File Include="Views/About/Index.cshtml">
+      <publishTime>07/28/2025 12:32:39</publishTime>
+    </File>
+    <File Include="Views/About/Motto.cshtml">
+      <publishTime>07/28/2025 12:36:44</publishTime>
+    </File>
+    <File Include="Views/About/VcMessage.cshtml">
+      <publishTime>07/28/2025 12:36:44</publishTime>
+    </File>
+    <File Include="Views/About/VisionMission.cshtml">
+      <publishTime>07/28/2025 12:36:42</publishTime>
+    </File>
+    <File Include="Views/Admission/AcademicCalendar.cshtml">
+      <publishTime>10/17/2025 10:57:16</publishTime>
+    </File>
+    <File Include="Views/Admission/AcademicDeficiencies.cshtml">
+      <publishTime>10/17/2025 10:41:05</publishTime>
+    </File>
+    <File Include="Views/Admission/AcademicRegulations.cshtml">
+      <publishTime>10/17/2025 10:30:22</publishTime>
+    </File>
+    <File Include="Views/Admission/Accommodation.cshtml">
+      <publishTime>10/20/2025 14:51:02</publishTime>
+    </File>
+    <File Include="Views/Admission/Accommodations.cshtml">
+      <publishTime>10/20/2025 15:06:42</publishTime>
+    </File>
+    <File Include="Views/Admission/FeeStructure.cshtml">
+      <publishTime>10/17/2025 10:23:48</publishTime>
+    </File>
+    <File Include="Views/Admission/FinancialAssistance.cshtml">
+      <publishTime>10/20/2025 13:49:33</publishTime>
+    </File>
+    <File Include="Views/Admission/Fines.cshtml">
+      <publishTime>10/20/2025 14:17:33</publishTime>
+    </File>
+    <File Include="Views/Admission/MiscellaneousCharges.cshtml">
+      <publishTime>10/21/2025 14:08:35</publishTime>
+    </File>
+    <File Include="Views/Admission/RefundPolicy.cshtml">
+      <publishTime>10/20/2025 13:57:35</publishTime>
+    </File>
+    <File Include="Views/Admission/RulesAndRegulationsMS.cshtml">
+      <publishTime>10/17/2025 10:51:27</publishTime>
+    </File>
+    <File Include="Views/Admission/RulesAndRegulationsPhD.cshtml">
+      <publishTime>10/17/2025 10:51:27</publishTime>
+    </File>
+    <File Include="Views/Admission/Transport.cshtml">
+      <publishTime>10/20/2025 14:57:19</publishTime>
+    </File>
+    <File Include="Views/Admission/_AdmissionSidebar.cshtml">
+      <publishTime>10/27/2025 12:14:30</publishTime>
+    </File>
+    <File Include="Views/Admission/_MSRulesStaticContent.cshtml">
+      <publishTime>10/17/2025 13:01:00</publishTime>
+    </File>
+    <File Include="Views/Admission/_PhDRulesStaticContent.cshtml">
+      <publishTime>10/17/2025 13:01:01</publishTime>
+    </File>
+    <File Include="Views/Downloads/Index.cshtml">
+      <publishTime>09/24/2025 11:00:03</publishTime>
+    </File>
+    <File Include="Views/Downloads/_Sidebar.cshtml">
+      <publishTime>09/25/2025 10:04:49</publishTime>
+    </File>
+    <File Include="Views/Error/AccessDenied.cshtml">
+      <publishTime>09/22/2025 10:53:51</publishTime>
+    </File>
+    <File Include="Views/Error/AdminPanel.cshtml">
+      <publishTime>09/22/2025 14:56:35</publishTime>
+    </File>
+    <File Include="Views/Error/Index.cshtml">
+      <publishTime>09/22/2025 10:53:51</publishTime>
+    </File>
+    <File Include="Views/Error/Maintenance.cshtml">
+      <publishTime>09/22/2025 10:53:51</publishTime>
+    </File>
+    <File Include="Views/Error/NotFound.cshtml">
+      <publishTime>09/22/2025 10:53:51</publishTime>
+    </File>
+    <File Include="Views/Error/Test.cshtml">
+      <publishTime>09/26/2025 09:30:07</publishTime>
+    </File>
+    <File Include="Views/Error/UnderConstruction.cshtml">
+      <publishTime>09/22/2025 10:53:51</publishTime>
+    </File>
+    <File Include="Views/Events/Details.cshtml">
+      <publishTime>08/23/2025 14:14:02</publishTime>
+    </File>
+    <File Include="Views/Events/Index.cshtml">
+      <publishTime>08/23/2025 14:25:20</publishTime>
+    </File>
+    <File Include="Views/Events/_LatestEventsMenu.cshtml">
+      <publishTime>08/23/2025 13:46:48</publishTime>
+    </File>
+    <File Include="Views/Facilities/Cafeteria.cshtml">
+      <publishTime>10/03/2025 12:10:35</publishTime>
+    </File>
+    <File Include="Views/Facilities/Hostel.cshtml">
+      <publishTime>10/03/2025 12:01:45</publishTime>
+    </File>
+    <File Include="Views/Facilities/Sports.cshtml">
+      <publishTime>10/03/2025 11:55:13</publishTime>
+    </File>
+    <File Include="Views/Facilities/Transport.cshtml">
+      <publishTime>10/03/2025 11:22:17</publishTime>
+    </File>
+    <File Include="Views/Faculties/ChairpersonMessage.cshtml">
+      <publishTime>10/31/2025 14:57:05</publishTime>
+    </File>
+    <File Include="Views/Faculties/Contacts.cshtml">
+      <publishTime>10/27/2025 12:42:00</publishTime>
+    </File>
+    <File Include="Views/Faculties/DepartmentsAbout.cshtml">
+      <publishTime>11/03/2025 10:33:06</publishTime>
+    </File>
+    <File Include="Views/Faculties/Events.cshtml">
+      <publishTime>10/29/2025 13:56:37</publishTime>
+    </File>
+    <File Include="Views/Faculties/Facilities.cshtml">
+      <publishTime>10/30/2025 13:32:38</publishTime>
+    </File>
+    <File Include="Views/Faculties/FacilityDetails.cshtml">
+      <publishTime>10/30/2025 13:29:23</publishTime>
+    </File>
+    <File Include="Views/Faculties/FAQs.cshtml">
+      <publishTime>10/27/2025 13:05:10</publishTime>
+    </File>
+    <File Include="Views/Faculties/Programs.cshtml">
+      <publishTime>10/30/2025 13:42:40</publishTime>
+    </File>
+    <File Include="Views/Faculties/SchemeOfStudies.cshtml">
+      <publishTime>10/30/2025 10:56:58</publishTime>
+    </File>
+    <File Include="Views/Faculties/SuccessStories.cshtml">
+      <publishTime>10/29/2025 10:17:35</publishTime>
+    </File>
+    <File Include="Views/Faculties/TeachingFaculty.cshtml">
+      <publishTime>10/30/2025 14:38:01</publishTime>
+    </File>
+    <File Include="Views/Faculties/UpcomingEvents.cshtml">
+      <publishTime>10/09/2025 10:44:45</publishTime>
+    </File>
+    <File Include="Views/Faculties/VisionMission.cshtml">
+      <publishTime>08/05/2025 11:10:04</publishTime>
+    </File>
+    <File Include="Views/Faculties/_SidebarFacilities.cshtml">
+      <publishTime>10/09/2025 09:52:44</publishTime>
+    </File>
+    <File Include="Views/Home/Contact.cshtml">
+      <publishTime>06/24/2025 23:43:31</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>08/24/2025 20:40:48</publishTime>
+    </File>
+    <File Include="Views/HR/ConductDiscipline.cshtml">
+      <publishTime>10/08/2025 14:49:30</publishTime>
+    </File>
+    <File Include="Views/HR/ContributoryFund.cshtml">
+      <publishTime>10/08/2025 14:46:59</publishTime>
+    </File>
+    <File Include="Views/HR/EligibilityRecruitment.cshtml">
+      <publishTime>10/08/2025 14:31:46</publishTime>
+    </File>
+    <File Include="Views/HR/Leave.cshtml">
+      <publishTime>10/08/2025 14:45:00</publishTime>
+    </File>
+    <File Include="Views/HR/PerksPrivileges.cshtml">
+      <publishTime>10/08/2025 14:41:14</publishTime>
+    </File>
+    <File Include="Views/HR/TypesAndClassification.cshtml">
+      <publishTime>10/08/2025 14:13:12</publishTime>
+    </File>
+    <File Include="Views/Menu/_MainMenu.cshtml">
+      <publishTime>09/25/2025 14:31:40</publishTime>
+    </File>
+    <File Include="Views/Menu/_MainMenuMobile.cshtml">
+      <publishTime>09/25/2025 10:49:33</publishTime>
+    </File>
+    <File Include="Views/Menu/_MiddleMenu.cshtml">
+      <publishTime>07/29/2025 14:31:14</publishTime>
+    </File>
+    <File Include="Views/Menu/_MobileTopMenu.cshtml">
+      <publishTime>07/31/2025 10:48:14</publishTime>
+    </File>
+    <File Include="Views/Menu/_NewsMenu.cshtml">
+      <publishTime>08/20/2025 09:33:55</publishTime>
+    </File>
+    <File Include="Views/Menu/_SidebarMenu.cshtml">
+      <publishTime>08/25/2025 11:01:14</publishTime>
+    </File>
+    <File Include="Views/Menu/_TopMenu.cshtml">
+      <publishTime>07/29/2025 12:29:47</publishTime>
+    </File>
+    <File Include="Views/Policy/Index.cshtml">
+      <publishTime>09/25/2025 09:59:03</publishTime>
+    </File>
+    <File Include="Views/Policy/_Sidebar.cshtml">
+      <publishTime>09/25/2025 10:04:45</publishTime>
+    </File>
+    <File Include="Views/QAC/Accreditation.cshtml">
+      <publishTime>09/17/2025 11:14:41</publishTime>
+    </File>
+    <File Include="Views/QAC/AnnualActivityCalendar.cshtml">
+      <publishTime>09/17/2025 11:15:34</publishTime>
+    </File>
+    <File Include="Views/QAC/Contact.cshtml">
+      <publishTime>09/17/2025 11:15:17</publishTime>
+    </File>
+    <File Include="Views/QAC/Index.cshtml">
+      <publishTime>09/17/2025 11:15:45</publishTime>
+    </File>
+    <File Include="Views/QAC/IPE.cshtml">
+      <publishTime>09/17/2025 11:15:18</publishTime>
+    </File>
+    <File Include="Views/QAC/Organogram.cshtml">
+      <publishTime>09/17/2025 12:21:14</publishTime>
+    </File>
+    <File Include="Views/QAC/PGPR.cshtml">
+      <publishTime>09/17/2025 11:14:19</publishTime>
+    </File>
+    <File Include="Views/QAC/Policy.cshtml">
+      <publishTime>09/17/2025 11:15:41</publishTime>
+    </File>
+    <File Include="Views/QAC/RIPE.cshtml">
+      <publishTime>09/17/2025 12:59:09</publishTime>
+    </File>
+    <File Include="Views/QAC/SAR.cshtml">
+      <publishTime>09/17/2025 11:14:27</publishTime>
+    </File>
+    <File Include="Views/QAC/Survey.cshtml">
+      <publishTime>09/17/2025 11:14:35</publishTime>
+    </File>
+    <File Include="Views/QAC/_Sidebar.cshtml">
+      <publishTime>09/18/2025 11:52:12</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>09/18/2025 14:19:33</publishTime>
+    </File>
+    <File Include="Views/Shared/_ErrorLayout.cshtml">
+      <publishTime>09/18/2025 14:25:02</publishTime>
+    </File>
+    <File Include="Views/Shared/_FacultySidebar.cshtml">
+      <publishTime>10/30/2025 10:45:45</publishTime>
+    </File>
+    <File Include="Views/Shared/_Footer.cshtml">
+      <publishTime>08/04/2025 14:48:33</publishTime>
+    </File>
+    <File Include="Views/Shared/_Header.cshtml">
+      <publishTime>09/09/2025 10:35:21</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>09/18/2025 14:34:22</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>06/24/2025 23:43:31</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>06/24/2025 23:43:31</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>11/03/2025 09:25:02</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

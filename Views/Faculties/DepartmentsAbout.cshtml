@@ -1,70 +1,135 @@
-@* Change the model to expect a single department object *@
 @model Website.Models.tblDepartment
-
+@using System.Text.RegularExpressions;
 @{
-    ViewBag.Title = Model != null ? Model.Title + " Details" : "Department Details";
+    var department = Model;
+    ViewBag.Title = department != null ? $"{department.Title} - About Department" : "Department Details";
+
+    var aboutText = string.IsNullOrEmpty(department?.About) ? string.Empty : Regex.Replace(department.About, "<.*?>", string.Empty);
+    ViewBag.MetaDescription = string.IsNullOrEmpty(aboutText) ? (department != null ? $"Learn about the {department.Title} department at HITEC University, including vision, mission, and academic focus." : "Learn about departments at HITEC University.") : (aboutText.Length > 160 ? aboutText.Substring(0, 160) : aboutText);
+    ViewBag.MetaKeywords = department != null ? $"{department.Title}, department, about, HITEC University, {department.Code}" : "department, about, HITEC University";
+
+    // Build a safe banner/background URL
+    string bannerUrl = null;
+    if (!string.IsNullOrEmpty(department?.Banner))
+    {
+        var b = department.Banner;
+        bool abs = b.StartsWith("http://", System.StringComparison.OrdinalIgnoreCase) || b.StartsWith("https://", System.StringComparison.OrdinalIgnoreCase);
+        bool root = b.StartsWith("/") || b.StartsWith("~/");
+        bannerUrl = abs ? b : Url.Content(root ? b : ("~/Content/uploads/departments/" + b));
+    }
+    var defaultBg = Url.Content("~/Content/img/bg/about_bg.jpg");
+    var heroBg = !string.IsNullOrEmpty(bannerUrl) ? bannerUrl : defaultBg;
 }
 
 @section Styles {
     <link href="~/Content/css/faculty.css" rel="stylesheet" />
+    <style>
+        .department-banner-wrap {
+            margin: 25px 0 10px
+        }
+
+        .department-banner {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,33,85,.12)
+        }
+    </style>
 }
 
-<body>
-    <div class="body_wrap">
-        <main aria-labelledby="title">
-            @if (Model != null)
-            {
-                <section class="breadcrumb bg_img ul_li" style="padding: 0; min-height: 0;" data-background="@(string.IsNullOrEmpty(Model.Banner) ? "/Content/img/bg/about_bg.jpg" : Model.Banner)">
-                    <div class="container">
-                        <div class="breadcrumb__content text-center">
-                            <h2 class="breadcrumb__title mt-25" style="color: #000">Department of @Model.Title</h2>
-                            <p class="breadcrumb__desc mb-50" style="color: #000">@Model.Code Department</p>
-                        </div>
+@section Meta {
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta property="og:title" content="@ViewBag.Title - HITEC University" />
+    <meta property="og:description" content="@ViewBag.MetaDescription" />
+    <meta property="og:type" content="website" />
+}
+
+<div class="body_wrap">
+    <main aria-labelledby="title">
+        @if (department != null)
+        {
+            <section class="breadcrumb bg_img ul_li" style="padding:0;min-height:0;" data-background="/Content/img/bg/about_bg.jpg">
+                <div class="container">
+                    <div class="breadcrumb__content text-center">
+                        <h1 class="breadcrumb__title mt-25" style="color:#000">Department of @department.Title</h1>
+                        <p class="breadcrumb__desc mb-50" style="color:#000">@department.Code Department</p>
                     </div>
-                </section>
-                <section class="department-banner-image" style="text-align:center; margin-bottom:40px;">
-                    <img src="~/Content/img/bg/video_img.jpg" alt="Department Banner" style="max-width:100%; height:auto; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-                </section>
-                <section class="breadcrumb bg_img ul_li ml-40" style="padding: 0; min-height: 0;" data-background="@(string.IsNullOrEmpty(Model.Banner) ? "/Content/img/bg/about_bg.jpg" : Model.Banner)">
-                    <div class="container">
-                        <div>
-                            <h1 style="color: #000">About Department</h1>
-                        </div>
-                    </div>
-                </section>
-                <section class="about pb-60 ml-40">
-                    <div class="container">
-                        <div class="faculty-page-layout">
-                            <div class="faculty-page-content">
-                                <div class="about-content">
-                                    @if (!string.IsNullOrEmpty(Model.About))
+                </div>
+            </section>
+
+            <section class="about pb-120">
+                <div class="container">
+                    <div class="faculty-page-layout">
+                        <!-- Content -->
+                        <div class="faculty-page-content">
+                            <!-- Big Banner Image -->
+                            <div class="department-banner-wrap">
+                                @{
+                                    var placeholder = Url.Content("~/Content/img/bg/video_img.jpg");
+                                    var mainUrl = !string.IsNullOrEmpty(heroBg) ? heroBg : placeholder;
+                                }
+                                <img class="department-banner" src="@mainUrl" alt="@($"{department.Title} Department Banner")" onerror="this.onerror=null; this.src='@placeholder'" />
+                            </div>
+
+                            <!-- Hero -->
+                            <div class="faculty-hero">
+                                <span class="subtitle">About Department</span>
+                                <h2>@department.Title</h2>
+                                <div class="accent-line"></div>
+                                <p>Discover the purpose, focus, and academic strengths of the @department.Title department at HITEC University.</p>
+                            </div>
+
+                            <!-- About Card -->
+                            <div class="faculty-enhanced-card">
+                                <div class="faculty-card-header">
+                                    <div class="faculty-badge"><i class="fas fa-university"></i></div>
+                                    <h3 class="faculty-card-title">About @department.Title</h3>
+                                </div>
+                                <div class="faculty-card-content">
+                                    @if (!string.IsNullOrWhiteSpace(department.About))
                                     {
-                                        @* Use Html.Raw to render the HTML from the database correctly *@
-                                        @Html.Raw(Model.About)
+                                        @Html.Raw(department.About)
                                     }
                                     else
                                     {
-                                        <p>Department description is currently being updated. Please check back later for more information about @Model.Title.</p>
+                                        <p>Department description is currently being updated. Please check back later for more information about @department.Title.</p>
                                     }
                                 </div>
                             </div>
-                            <div class="faculty-page-sidebar">
-                                @Html.Partial("_FacultySidebar")
-                            </div>
+                        </div>
+
+                        <!-- Sidebar -->
+                        <div class="faculty-page-sidebar">
+                            @Html.Partial("_FacultySidebar")
                         </div>
                     </div>
-                </section>
-            }
-            else
-            {
-                @* This 'else' block for when the model is null is handled by the controller now, but can be kept as a fallback. *@
-                <section class="about pt-120 pb-120">
-                    <div class="container text-center">
-                        <h2>Department Not Found</h2>
-                        <p>The requested department information is not available.</p>
+                </div>
+            </section>
+        }
+        else
+        {
+            <section class="about pt-120 pb-120">
+                <div class="container">
+                    <div class="faculty-enhanced-card">
+                        <div class="faculty-card-header">
+                            <div class="faculty-badge"><i class="fas fa-exclamation-circle"></i></div>
+                            <h3 class="faculty-card-title">Department Not Found</h3>
+                        </div>
+                        <div class="faculty-card-content">
+                            <p>The requested department information is not available. Please check the URL or return to the homepage.</p>
+                        </div>
                     </div>
-                </section>
-            }
-        </main>
-    </div>
-</body>
+                </div>
+            </section>
+        }
+    </main>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            setTimeout(function () { var $pre = $('#preloader'); if ($pre.length) { $pre.fadeOut('slow', function () { $(this).remove(); }); } }, 500);
+        });
+    </script>
+}

@@ -246,6 +246,7 @@ namespace Website.Controllers
                         if (departmentInfo != null)
                         {
                             facilities = db.tblFacilites
+                                .Include(f => f.tblFacilityPhotos)
                                 .Where(f => f.DepartmentID == departmentInfo.DepartmentID && (f.Active == true || f.Active == null))
                                 .OrderBy(f => f.C_Order)
                                 .ThenBy(f => f.Title)
@@ -256,6 +257,7 @@ namespace Website.Controllers
                     {
                         // If no department specified, show all active facilities grouped later by department
                         facilities = db.tblFacilites
+                            .Include(f => f.tblFacilityPhotos)
                             .Where(f => f.Active == true || f.Active == null)
                             .OrderBy(f => f.DepartmentID)
                             .ThenBy(f => f.C_Order)
@@ -272,6 +274,37 @@ namespace Website.Controllers
             {
                 System.Diagnostics.Debug.WriteLine($"Error in Facilities: {ex.Message}");
                 return View("Error");
+            }
+        }
+
+        // NEW: Facility details page similar to event details
+        public ActionResult FacilityDetails(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return RedirectToAction("Facilities");
+            }
+
+            using (var db = new Model1())
+            {
+                var facility = db.tblFacilites
+                    .Include(f => f.tblFacilityPhotos)
+                    .FirstOrDefault(f => f.FacilityID == id.Value);
+
+                if (facility == null)
+                {
+                    return HttpNotFound();
+                }
+
+                tblDepartment dept = null;
+                if (facility.DepartmentID.HasValue)
+                {
+                    dept = db.tblDepartments.FirstOrDefault(d => d.DepartmentID == facility.DepartmentID.Value);
+                }
+
+                ViewBag.Department = dept;
+                ViewBag.DepartmentCode = dept?.Code;
+                return View(facility);
             }
         }
 

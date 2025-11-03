@@ -1,0 +1,149 @@
+@model Website.Models.tblFacilite
+@using System.Text.RegularExpressions;
+@{
+    var department = ViewBag.Department as Website.Models.tblDepartment;
+    ViewBag.Title = Model?.Title ?? "Facility Details";
+    var meta = string.IsNullOrEmpty(Model?.Details) ? string.Empty : Regex.Replace(Model.Details, "<.*?>", string.Empty);
+    ViewBag.MetaDescription = string.IsNullOrEmpty(meta) ? "View details about this facility at HITEC University" : (meta.Length > 160 ? meta.Substring(0,160) : meta);
+    ViewBag.MetaKeywords = $"HITEC University, facility, {Model?.Title}, {department?.Title}, labs, infrastructure";
+}
+
+@section Styles {
+    <link href="~/Content/css/faculty.css" rel="stylesheet" />
+    <style>
+        .facility-banner{width:100%;border-radius:12px}
+        .gallery-image{margin-bottom:20px;position:relative;overflow:hidden;border-radius:10px;height:220px}
+        .gallery-image img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+        .gallery-image:hover img{transform:scale(1.05)}
+        .back-link{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:30px;text-decoration:none;font-weight:800;font-size:13px;color:#fff;background:linear-gradient(135deg,#002155 0%,#001a44 100%);box-shadow:0 6px 18px rgba(0,33,85,.28)}
+        .back-link:hover{transform:translateY(-2px);color:#fff}
+    </style>
+}
+
+@section Meta {
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta property="og:title" content="@ViewBag.Title - HITEC University" />
+    <meta property="og:description" content="@ViewBag.MetaDescription" />
+    <meta property="og:type" content="website" />
+}
+
+<div class="body_wrap">
+    <main>
+        <!-- breadcrumb start -->
+        <section class="breadcrumb bg_img ul_li" style="padding:0;min-height:0;" data-background="/Content/img/bg/about_bg.jpg">
+            <div class="container">
+                <div class="breadcrumb__content text-center">
+                    <h1 class="breadcrumb__title mt-25" style="color:#000">@ViewBag.Title</h1>
+                    <p class="breadcrumb__desc mb-50" style="color:#000">@((department!=null)? $"{department.Title} Facility" : "Facility")</p>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+
+        <section class="about pb-120">
+            <div class="container">
+                <div class="faculty-page-layout">
+                    <!-- Content -->
+                    <div class="faculty-page-content">
+                        <!-- Hero -->
+                        <div class="faculty-hero">
+                            <span class="subtitle">Facility</span>
+                            <h2>@(Model?.Title ?? "Facility Details")</h2>
+                            <div class="accent-line"></div>
+                            <p>
+                                @(department != null ? $"Explore detailed information and gallery for the {Model?.Title} facility in the {department.Title} department." :
+                                  "Explore detailed information and gallery for this facility.")
+                            </p>
+                        </div>
+
+                        <!-- Details Card -->
+                        <div class="faculty-enhanced-card">
+                            <div class="faculty-card-header">
+                                <div class="faculty-badge"><i class="fas fa-building"></i></div>
+                                <h3 class="faculty-card-title">About This Facility</h3>
+                            </div>
+                            <div class="faculty-card-content">
+                                @{
+                                    string bannerUrl = null;
+                                    if (!string.IsNullOrEmpty(Model.Banner))
+                                    {
+                                        var b = Model.Banner;
+                                        bool abs = b.StartsWith("http://", System.StringComparison.OrdinalIgnoreCase) || b.StartsWith("https://", System.StringComparison.OrdinalIgnoreCase);
+                                        bool root = b.StartsWith("/") || b.StartsWith("~/");
+                                        bannerUrl = abs ? b : Url.Content(root ? b : ("~/Content/uploads/facilities/" + b));
+                                    }
+                                    var placeholder = Url.Content("~/Content/img/news/news-img01.jpg");
+                                    var mainUrl = !string.IsNullOrEmpty(bannerUrl) ? bannerUrl : placeholder;
+                                }
+                                <div class="mb-20">
+                                    <img class="facility-banner" src="@mainUrl" alt="@Model.Title" onerror="this.onerror=null; this.src='@placeholder'" />
+                                </div>
+                                <div class="facility-description">
+                                    @if (!string.IsNullOrWhiteSpace(Model?.Details))
+                                    {
+                                        @Html.Raw(Model.Details)
+                                    }
+                                    else
+                                    {
+                                        <p>Details will be updated soon.</p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Card -->
+                        @if (Model.tblFacilityPhotos != null && Model.tblFacilityPhotos.Any())
+                        {
+                            <div class="faculty-enhanced-card">
+                                <div class="faculty-card-header">
+                                    <div class="faculty-badge"><i class="fas fa-images"></i></div>
+                                    <h3 class="faculty-card-title">Facility Gallery</h3>
+                                </div>
+                                <div class="faculty-card-content">
+                                    <div class="row">
+                                        @foreach (var photo in Model.tblFacilityPhotos)
+                                        {
+                                            string url = null;
+                                            if (!string.IsNullOrEmpty(photo.Photo))
+                                            {
+                                                var p = photo.Photo;
+                                                bool abs = p.StartsWith("http://", System.StringComparison.OrdinalIgnoreCase) || p.StartsWith("https://", System.StringComparison.OrdinalIgnoreCase);
+                                                bool root = p.StartsWith("/") || p.StartsWith("~/");
+                                                url = abs ? p : Url.Content(root ? p : ("~/Content/uploads/facilities/" + p));
+                                            }
+                                            var thumbPlaceholder = Url.Content("~/Content/img/news/news-img02.png");
+                                            var finalUrl = !string.IsNullOrEmpty(url) ? url : thumbPlaceholder;
+                                            <div class="col-md-4 mt-20">
+                                                <div class="gallery-image img-viewer" data-src="@finalUrl">
+                                                    <img src="@finalUrl" alt="@Model.Title" onerror="this.onerror=null; this.src='@thumbPlaceholder'" />
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Sidebar -->
+                    <div class="faculty-page-sidebar">
+                        @Html.Partial("_FacultySidebar")
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+@section Scripts {
+    <script>
+        $(function(){
+            setTimeout(function(){ $('#preloader').fadeOut('slow', function(){ $(this).remove(); }); }, 500);
+            $('.img-viewer').on('click', function(){
+                var src = $(this).data('src');
+                $('<div>').css({background:'RGBA(0,0,0,.6) url('+src+') no-repeat center',backgroundSize:'contain',width:'100%',height:'100%',position:'fixed',zIndex:'10000',top:'0',left:'0',cursor:'zoom-out'}).click(function(){ $(this).remove(); }).appendTo('body');
+            });
+        });
+    </script>
+}
