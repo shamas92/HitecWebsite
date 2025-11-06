@@ -4,6 +4,7 @@
 .news-marquee-wrapper {
     background: #002155;
     padding: 0;
+    margin-bottom: -1px;
 }
 
 .news-marquee {

@@ -3,7 +3,7 @@
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\shama\OneDrive\Desktop\Hitec Website</_PublishTargetUrl>
-    <History>True|2025-11-03T08:40:26.1383869Z||;True|2025-11-03T10:33:14.5520606+05:00||;True|2025-11-03T09:35:55.1071490+05:00||;False|2025-11-03T09:35:09.9561460+05:00||;False|2025-11-03T09:32:59.9624081+05:00||;False|2025-11-03T09:30:28.7732868+05:00||;False|2025-11-03T09:30:09.7028549+05:00||;False|2025-11-03T09:29:33.1691122+05:00||;False|2025-11-03T09:29:28.8057746+05:00||;False|2025-11-03T09:29:05.9113163+05:00||;False|2025-11-03T09:28:51.6824941+05:00||;False|2025-11-03T09:28:36.0247710+05:00||;False|2025-11-03T09:28:08.7340523+05:00||;False|2025-11-03T09:27:26.7804334+05:00||;False|2025-11-03T09:25:03.2703759+05:00||;False|2025-11-03T09:24:27.5705960+05:00||;</History>
+    <History>True|2025-11-04T06:22:33.2799807Z||;True|2025-11-03T13:40:26.1383869+05:00||;True|2025-11-03T10:33:14.5520606+05:00||;True|2025-11-03T09:35:55.1071490+05:00||;False|2025-11-03T09:35:09.9561460+05:00||;False|2025-11-03T09:32:59.9624081+05:00||;False|2025-11-03T09:30:28.7732868+05:00||;False|2025-11-03T09:30:09.7028549+05:00||;False|2025-11-03T09:29:33.1691122+05:00||;False|2025-11-03T09:29:28.8057746+05:00||;False|2025-11-03T09:29:05.9113163+05:00||;False|2025-11-03T09:28:51.6824941+05:00||;False|2025-11-03T09:28:36.0247710+05:00||;False|2025-11-03T09:28:08.7340523+05:00||;False|2025-11-03T09:27:26.7804334+05:00||;False|2025-11-03T09:25:03.2703759+05:00||;False|2025-11-03T09:24:27.5705960+05:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -230,7 +230,7 @@
       <publishTime>09/22/2025 11:00:53</publishTime>
     </File>
     <File Include="Content/css/faculty.css">
-      <publishTime>11/03/2025 13:35:20</publishTime>
+      <publishTime>11/04/2025 10:54:31</publishTime>
     </File>
     <File Include="Content/css/fontawesome.css">
       <publishTime>12/05/2024 15:58:25</publishTime>
@@ -1793,22 +1793,22 @@
       <publishTime>10/03/2025 11:22:17</publishTime>
     </File>
     <File Include="Views/Faculties/ChairpersonMessage.cshtml">
-      <publishTime>11/03/2025 13:37:40</publishTime>
+      <publishTime>11/04/2025 10:10:23</publishTime>
     </File>
     <File Include="Views/Faculties/Contacts.cshtml">
-      <publishTime>10/27/2025 12:42:00</publishTime>
+      <publishTime>11/04/2025 10:09:16</publishTime>
     </File>
     <File Include="Views/Faculties/DepartmentsAbout.cshtml">
-      <publishTime>11/03/2025 13:35:48</publishTime>
+      <publishTime>11/04/2025 10:10:40</publishTime>
     </File>
     <File Include="Views/Faculties/Events.cshtml">
-      <publishTime>10/29/2025 13:56:37</publishTime>
+      <publishTime>11/04/2025 10:09:29</publishTime>
     </File>
     <File Include="Views/Faculties/Facilities.cshtml">
       <publishTime>10/30/2025 13:32:38</publishTime>
     </File>
     <File Include="Views/Faculties/FacilityDetails.cshtml">
-      <publishTime>11/03/2025 13:37:07</publishTime>
+      <publishTime>11/04/2025 10:01:57</publishTime>
     </File>
     <File Include="Views/Faculties/FAQs.cshtml">
       <publishTime>10/27/2025 13:05:10</publishTime>
@@ -1817,13 +1817,13 @@
       <publishTime>10/30/2025 13:42:40</publishTime>
     </File>
     <File Include="Views/Faculties/SchemeOfStudies.cshtml">
-      <publishTime>10/30/2025 10:56:58</publishTime>
+      <publishTime>11/04/2025 10:09:46</publishTime>
     </File>
     <File Include="Views/Faculties/SuccessStories.cshtml">
       <publishTime>10/29/2025 10:17:35</publishTime>
     </File>
     <File Include="Views/Faculties/TeachingFaculty.cshtml">
-      <publishTime>11/03/2025 13:36:32</publishTime>
+      <publishTime>11/04/2025 10:10:18</publishTime>
     </File>
     <File Include="Views/Faculties/UpcomingEvents.cshtml">
       <publishTime>10/09/2025 10:44:45</publishTime>
