@@ -14,7 +14,7 @@
 /* Base list item: fixed footprint so siblings never shift */
 .sidebar-menu-item { 
   width: 60px;
-  height: 60px;
+  height: 55px;
   position: relative;
   margin: 0; 
   padding: 0; 
@@ -24,28 +24,28 @@
 
 /* Anchor acts as expanding panel (grow LEFT because right is fixed) */
 .sidebar-menu-link {
-  position: absolute; 
-  top: 0; 
-  right: 0;
-  display: flex; 
-  align-items: center; 
-  gap: 14px;
-  padding: 0 18px; 
-  box-sizing: border-box;
-  width: 60px; 
-  height: 60px;
-  text-decoration: none !important; 
-  color: #fff !important; 
-  font-weight: 500; 
-  font-size: 15px;
-  background: linear-gradient(90deg,#2A5298 0%,#1e3c72 100%);
-  border-top-left-radius: 12px; 
-  border-bottom-left-radius: 12px; 
-  border-right: none;
-  transition: width .28s ease, box-shadow .28s ease;
-  overflow: hidden; 
-  white-space: nowrap;
-  touch-action: manipulation;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    width: 50px;
+    height: 60px;
+    text-decoration: none !important;
+    color: #fff !important;
+    font-weight: 500;
+    font-size: 15px;
+    background: linear-gradient(90deg, #2A5298 0%, #1e3c72 100%);
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-right: none;
+    transition: width .28s ease, box-shadow .28s ease;
+    overflow: hidden;
+    white-space: nowrap;
+    touch-action: manipulation;
 }
 .sidebar-menu-item:nth-child(2) > .sidebar-menu-link { background: linear-gradient(90deg,#3161A8 0%,#1e3c72 100%); }
 .sidebar-menu-item.active > .sidebar-menu-link { background: linear-gradient(90deg,#007bff 0%,#0056b3 100%) !important; }

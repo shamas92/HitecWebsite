@@ -31,12 +31,12 @@
   overflow: hidden;
 }
 /* Unique decorative blobs for each hero */
-.classification-hero::before { content:''; position:absolute; top:-50%; right:-10%; width:500px; height:500px; background:rgba(253,183,20,.1); border-radius:50%; }
-.conduct-hero::after { content:''; position:absolute; top:50%; left:-10%; width:450px; height:450px; background:rgba(253,183,20,.1); border-radius:50%; transform:translateY(-50%); }
-.leave-hero::after { content:''; position:absolute; bottom:-20%; right:-5%; width:400px; height:400px; background:rgba(253,183,20,.1); border-radius:50%; }
-.perks-hero::before { content:''; position:absolute; top:50%; right:-10%; width:450px; height:450px; background:rgba(253,183,20,.1); border-radius:50%; transform:translateY(-50%); }
-.eligibility-hero::after { content:''; position:absolute; bottom:-30%; left:-5%; width:400px; height:400px; background:rgba(253,183,20,.08); border-radius:50%; }
-.fund-hero::before { content:''; position:absolute; top:-30%; left:-5%; width:400px; height:400px; background:rgba(253,183,20,.1); border-radius:50%; }
+.classification-hero::before { content:''; position:absolute; top:-50%; right:-10%; width:500px; height:500px; background:rgb(255 178 0); border-radius:50%; }
+.conduct-hero::after { content:''; position:absolute; top:50%; left:80%; width:450px; height:450px; background:rgb(255 178 0);; border-radius:50%; transform:translateY(-50%); }
+.leave-hero::after { content:''; position:absolute; bottom:-11%; right:-11%; width:400px; height:400px; background:rgb(255 178 0); border-radius:50%; }
+.perks-hero::before { content:''; position:absolute; top:50%; right:-10%; width:450px; height:450px; background:rgb(255 178 0); border-radius:50%; transform:translateY(-50%); }
+.eligibility-hero::after { content:''; position:absolute; top:-31%; right:-17%; width:500px; height:500px; background:rgb(255 178 0); border-radius:50%; }
+.fund-hero::before { content:''; position:absolute; top:-7%; left:80%; width:400px; height:400px; background:rgb(255 178 0); border-radius:50%; }
 
 /* Hero content */
 .classification-hero h1,

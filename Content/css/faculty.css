@@ -48,7 +48,7 @@
 
 /* Faculty Hero Section */
 .faculty-hero{background:linear-gradient(135deg,#002155 0%,#001a44 100%);color:#fff;border-radius:16px;padding:50px 40px;margin-bottom:50px;margin-top:60px;position:relative;overflow:hidden}
-.faculty-hero::before{content:'';position:absolute;width:450px;height:450px;background:rgba(253,183,20,.08);border-radius:50%;top:-45%;left:65%}
+.faculty-hero::before{content:'';position:absolute;width:350px;height:350px;background:rgb(255 178 0);border-radius:50%;top:-50%;left:80%;}
 .faculty-hero .subtitle{color:#fdb714;font-size:14px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin:0;display:block;position:relative;z-index:1}
 .faculty-hero h1,.faculty-hero h2{color:#fff!important;font-family:'Playfair Display',serif;font-weight:700;font-size:42px;margin:10px 0 8px;position:relative;z-index:1}
 .faculty-hero .accent-line{width:80px;height:4px;background:#fdb714;border-radius:2px;margin:14px 0 18px}

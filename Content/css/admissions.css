@@ -9,7 +9,7 @@
 
 /* Hero Sections - Common Styles */
 .fund-hero,.cal-hero,.financial-hero,.refund-hero,.fines-hero,.accommodation-hero,.transport-hero,.misc-hero{background:linear-gradient(135deg,#002155 0%,#001a44 100%);color:#fff;border-radius:16px;padding:50px 40px;margin-bottom:50px;position:relative;overflow:hidden}
-.fund-hero::before,.cal-hero::before,.financial-hero::before,.refund-hero::before,.fines-hero::before,.accommodation-hero::before,.transport-hero::before,.misc-hero::before{content:'';position:absolute;width:450px;height:450px;background:rgba(253,183,20,.08);border-radius:50%}
+.fund-hero::before,.cal-hero::before,.financial-hero::before,.refund-hero::before,.fines-hero::before,.accommodation-hero::before,.transport-hero::before,.misc-hero::before{content:'';position:absolute;width:450px;height:450px;background: rgb(255 178 0);border-radius:50%}
 .fund-hero::before,.financial-hero::before,.misc-hero::before{top:-45%;left:65%;width:400px;height:400px}
 .refund-hero::before,.fines-hero::before{top:-40%;right:60%;width:420px;height:420px}
 .accommodation-hero::before,.transport-hero::before{top:-35%;left:70%;width:380px;height:380px}
