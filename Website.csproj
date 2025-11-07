@@ -753,7 +753,6 @@
     <Content Include="Views\Admission\MiscellaneousCharges.cshtml" />
     <Content Include="Views\Admission\RefundPolicy.cshtml" />
     <Content Include="Views\Admission\Transport.cshtml" />
-    <Content Include="Views\Admission\Accommodations.cshtml" />
     <Content Include="Views\Faculties\FacilityDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>

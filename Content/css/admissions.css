@@ -143,3 +143,31 @@
 .fee-table td,.misc-table td{display:block;width:100%!important}
 .charge-display .amount-large{font-size:28px}
 }
+.breadcrumb.bg_img {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+    .breadcrumb.bg_img::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.45); /* Adjust opacity for lighter/darker shadow */
+        z-index: 1;
+    }
+
+.breadcrumb__content {
+    position: relative;
+    z-index: 2; /* Keeps text above shadow */
+}
+
+.breadcrumb__title,
+.breadcrumb__desc {
+    color: #fff !important; /* Makes text visible over dark background */
+}

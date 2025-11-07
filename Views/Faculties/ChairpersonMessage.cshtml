@@ -27,7 +27,7 @@
     <main aria-labelledby="title">
         @if (Model != null)
         {
-            <section class="breadcrumb bg_img ul_li" style="padding:0;min-height:0;" data-background="/Content/img/bg/about_bg.jpg">
+            <section class="breadcrumb bg_img ul_li" data-background="/Content/img/bg/about_bg.jpg">
                 <div class="container">
                     <div class="breadcrumb__content text-center">
                         <h1 class="breadcrumb__title mt-25" style="color:#000">@Model.Title</h1>
@@ -53,12 +53,16 @@
                                     <h3 class="faculty-card-title">Message from the Chairperson</h3>
                                 </div>
                                 <div class="faculty-card-content">
-
                                     <div class="chairperson-layout">
                                         @if (!string.IsNullOrEmpty(Model.HODPhoto))
                                         {
+                                            string HODUrl = null;
+                                            var b = Model.HODPhoto;
+                                            bool abs = b.StartsWith("http://", System.StringComparison.OrdinalIgnoreCase) || b.StartsWith("https://", System.StringComparison.OrdinalIgnoreCase);
+                                            bool root = b.StartsWith("/") || b.StartsWith("~/");
+                                            HODUrl = abs ? b : Url.Content(root ? b : ("~/Content/img/departments/HOD_Photo/" + b));
                                             <img class="chairperson-photo"
-                                                 src="@Model.HODPhoto"
+                                                 src="@HODUrl"
                                                  alt="@("Chairperson")"
                                                  onerror="this.src='@Url.Content("~/Content/img/team/team_01.jpg")'" />
                                         }
