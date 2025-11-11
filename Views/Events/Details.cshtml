@@ -1,254 +1,174 @@
 @model Website.Models.tblEvent
+@using System.Text.RegularExpressions;
 @{
     ViewBag.Title = Model?.Title ?? "Event Details";
-    
+    var department = ViewBag.Department as Website.Models.tblDepartment;
+ 
     // SEO Meta Tags
-    ViewBag.MetaDescription = !string.IsNullOrEmpty(Model?.Details) 
-        ? System.Text.RegularExpressions.Regex.Replace(Model.Details, "<.*?>", string.Empty).Substring(0, Math.Min(System.Text.RegularExpressions.Regex.Replace(Model.Details, "<.*?>", string.Empty).Length, 160))
-        : "View details about this event at HITEC University";
+    var meta = string.IsNullOrEmpty(Model?.Details) ? string.Empty : Regex.Replace(Model.Details, "<.*?>", string.Empty);
+    ViewBag.MetaDescription = string.IsNullOrEmpty(meta) ? "View details about this event at HITEC University" : (meta.Length > 160 ? meta.Substring(0, 160) : meta);
     ViewBag.MetaKeywords = $"HITEC University, event, {Model?.Title}, {Model?.Venue}, university events";
 }
 
+@functions {
+    private string GetEventPhotoPath(string photoFileName)
+    {
+        // Default placeholder image
+        var defaultImage = "~/Content/img/team/placeholder-1200x627.jpg";
+      
+      if (string.IsNullOrEmpty(photoFileName))
+        {
+     return Url.Content(defaultImage);
+        }
+ 
+        // Check if it's an absolute URL
+        if (photoFileName.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || 
+            photoFileName.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+        {
+   return photoFileName;
+        }
+        
+        // Check if it's already a rooted path
+        if (photoFileName.StartsWith("/") || photoFileName.StartsWith("~/"))
+        {
+    var serverPath = Server.MapPath(photoFileName);
+            if (System.IO.File.Exists(serverPath))
+  {
+              return Url.Content(photoFileName);
+         }
+     return Url.Content(defaultImage);
+        }
+        
+ // Construct the full server path to check if file exists in Events directory
+        var relativePath = $"~/Content/img/departments/Events/{photoFileName}";
+    var fullServerPath = Server.MapPath(relativePath);
+        
+ // Check if the file exists on the server
+        if (System.IO.File.Exists(fullServerPath))
+      {
+        return Url.Content(relativePath);
+   }
+   
+        // Fallback: check in old uploads/events directory for backward compatibility
+        var oldPath = $"~/Content/uploads/events/{photoFileName}";
+        var oldServerPath = Server.MapPath(oldPath);
+        if (System.IO.File.Exists(oldServerPath))
+        {
+   return Url.Content(oldPath);
+        }
+ 
+        // Return default image if file doesn't exist
+  return Url.Content(defaultImage);
+    }
+}
+
 @section Styles {
+    <link href="~/Content/css/faculty.css" rel="stylesheet" />
     <style>
-        .event-single {
-            padding: 50px 0;
+    .event-banner{width:100%;border-radius:12px}
+  .gallery-image{margin-bottom:20px;position:relative;overflow:hidden;border-radius:10px;height:220px}
+        .gallery-image img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+  .gallery-image:hover img{transform:scale(1.05)}
+   .event-meta-sidebar{background:#f8f9fa;padding:25px;border-radius:12px;margin-bottom:25px;max-width:350px;}
+    .event-meta-item{padding:15px 0;display:flex;align-items:center;border-bottom:1px solid #e9e9e9}
+  .event-meta-item:last-child{border-bottom:none}
+        .event-meta-icon{width:40px;height:40px;background:rgba(26,69,120,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:15px;color:#1a4578;font-size:18px}
+   .event-meta-content{flex:1}
+        .event-meta-label{font-size:14px;color:#777;margin-bottom:3px}
+.event-meta-value{font-weight:600;color:var(--color-heading)}
+.event-share-buttons{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}
+ .share-button{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;transition:all .3s ease;text-decoration:none}
+        .share-button:hover{transform:translateY(-3px);color:#fff}
+   .facebook{background-color:#3b5998}
+        .twitter{background-color:#1da1f2}
+        .linkedin{background-color:#0077b5}
+        .whatsapp{background-color:#25d366}
+        .video-container{margin-top:30px}
+    .img-viewer{cursor:pointer}
+    .event-actions{margin-top:30px;display:flex;gap:15px;flex-wrap:wrap}
+    .event-action-btn{display:inline-flex;align-items:center;padding:12px 24px;background:#1a4578;color:#fff;border-radius:30px;font-weight:600;transition:all .3s ease;text-decoration:none}
+        .event-action-btn:hover{background:#0d2b4d;transform:translateY(-3px);color:#fff}
+ .event-action-btn i{margin-right:8px}
+    .secondary-btn{background:#f8f9fa;color:#1a4578;border:1px solid #1a4578}
+.secondary-btn:hover{background:#e9ecef;color:#0d2b4d}
+
+        /* Responsive Sidebar Styles */
+    @@media (max-width:992px){
+            .faculty-page-layout{
+        display:flex;
+    flex-direction:column-reverse;
+  gap:30px;
+            }
+    .faculty-page-content{
+             order:2;
+       width:100%;
+ }
+            .faculty-page-sidebar{
+       order:1;
+        width:100%;
+    margin-bottom:20px;
+            }
+  .event-meta-sidebar{
+  box-shadow:0 6px 20px rgba(0,0,0,.08);
+   }
+       .event-share-buttons{
+  justify-content:center;
         }
-        
-        .event-single__content h2 {
-            font-size: 28px;
-            margin-bottom: 25px;
-            color: var(--color-heading);
-        }
-        
-        .event-description {
-            margin-bottom: 30px;
-            color: var(--color-text);
-            line-height: 1.7;
-            font-size: 16px;
-        }
-        
-        .event-meta-sidebar {
-            background-color: #f8f9fa;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-        }
-        
-        .event-meta-item {
-            padding: 15px 0;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid #e9e9e9;
-        }
-        
-        .event-meta-item:last-child {
-            border-bottom: none;
-        }
-        
-        .event-meta-icon {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(26, 69, 120, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: #1a4578;
-            font-size: 18px;
-        }
-        
-        .event-meta-content {
-            flex: 1;
-        }
-        
-        .event-meta-label {
-            font-size: 14px;
-            color: #777;
-            margin-bottom: 3px;
-        }
-        
-        .event-meta-value {
-            font-weight: 600;
-            color: var(--color-heading);
-        }
-        
-        .event-share-buttons {
-            margin-top: 20px;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .share-button {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-        
-        .share-button:hover {
-            transform: translateY(-3px);
-        }
-        
-        .facebook {
-            background-color: #3b5998;
-        }
-        
-        .twitter {
-            background-color: #1da1f2;
-        }
-        
-        .linkedin {
-            background-color: #0077b5;
-        }
-        
-        .whatsapp {
-            background-color: #25d366;
         }
 
-        .gallery-container {
-            margin-top: 30px;
-            position: relative;
-        }
-        
-        .gallery-image {
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            height: 220px;
-        }
-        
-        .gallery-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-image:hover img {
-            transform: scale(1.05);
-        }
-        
-        .event-actions {
-            margin-top: 30px;
-            display: flex;
-            gap: 15px;
-        }
-        
-        .event-action-btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 12px 24px;
-            background-color: #1a4578;
-            color: white;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .event-action-btn:hover {
-            background-color: #0d2b4d;
-            transform: translateY(-3px);
-            color: white;
-        }
-        
-        .event-action-btn i {
-            margin-right: 8px;
-        }
-        
-        .secondary-btn {
-            background-color: #f8f9fa;
-            color: #1a4578;
-            border: 1px solid #1a4578;
-        }
-        
-        .secondary-btn:hover {
-            background-color: #e9ecef;
-            color: #0d2b4d;
-        }
-        
-        .event-navigation {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid #e9e9e9;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .nav-link {
-            max-width: 48%;
-        }
-        
-        .nav-link a {
-            display: flex;
-            flex-direction: column;
-            color: var(--color-heading);
-            padding: 15px;
-            border-radius: 8px;
-            background-color: #f8f9fa;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-link a:hover {
-            background-color: #e9ecef;
-        }
-        
-        .nav-label {
-            font-size: 12px;
-            color: #777;
-            margin-bottom: 5px;
-        }
-        
-        .nav-title {
-            font-weight: 600;
-            font-size: 14px;
-        }
-        
-        .video-container {
-            margin-top: 30px;
+        @@media (max-width:768px){
+  .event-actions{
+    flex-direction:column;
+    }
+  .event-action-btn{
+    width:100%;
+       justify-content:center;
+   }
+       .event-meta-icon{
+       width:35px;
+  height:35px;
+             font-size:16px;
+         }
+  .event-meta-label{
+       font-size:13px;
+            }
+          .event-meta-value{
+    font-size:14px;
+            }
+ .share-button{
+          width:45px;
+             height:45px;
+            }
         }
 
-        .img-viewer {
-            cursor: pointer;
-        }
-
-        /* Responsive styles */
-        media (max-width: 768px) {
-            .event-single__image {
-                margin-bottom: 20px;
+        @@media (max-width:576px){
+          .event-meta-sidebar{
+                padding:20px;
+          }
+   .event-meta-item{
+          padding:12px 0;
             }
-            
-            .event-actions {
-                flex-direction: column;
-            }
-            
-            .event-action-btn {
-                width: 100%;
-                justify-content: center;
-            }
+       .event-share-buttons{
+       gap:8px;
+          }
+         .faculty-hero{
+            padding:30px 20px;
+  margin-top:30px;
+       }
         }
     </style>
 }
 
 @section Meta {
-    <meta name="description" content="@ViewBag.MetaDescription" />
-    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+  <meta name="description" content="@ViewBag.MetaDescription" />
+  <meta name="keywords" content="@ViewBag.MetaKeywords" />
     <meta property="og:title" content="@ViewBag.Title - HITEC University" />
     <meta property="og:description" content="@ViewBag.MetaDescription" />
     <meta property="og:type" content="website" />
     @if (!string.IsNullOrEmpty(Model?.Banner))
-    {
-        var bannerUrl = Model.Banner.StartsWith("~") || Model.Banner.StartsWith("/") 
-            ? Url.Content(Model.Banner) 
-            : Url.Content("~/Content/uploads/events/" + Model.Banner);
-        <meta property="og:image" content="@bannerUrl" />
+ {
+  var bannerUrl = GetEventPhotoPath(Model.Banner);
+   <meta property="og:image" content="@bannerUrl" />
     }
 }
 
@@ -256,255 +176,202 @@
     <main>
         <!-- breadcrumb start -->
         <section class="breadcrumb bg_img ul_li" data-background="/Content/img/bg/about_bg.jpg">
-            <div class="container">
-                <div class="breadcrumb__content text-center">
-                    <h1 class="breadcrumb__title">@Model.Title</h1>
-                </div>
-            </div>
+         <div class="container">
+     <div class="breadcrumb__content text-center">
+   <h1 class="breadcrumb__title mt-25" style="color:#000">@ViewBag.Title</h1>
+      <p class="breadcrumb__desc mb-50" style="color:#000">Event Details</p>
+       </div>
+        </div>
         </section>
-        <!-- breadcrumb end -->
+ <!-- breadcrumb end -->
 
-        <section class="event-single pt-80 pb-120">
-            <div class="container">
-                <div class="row mt-none-30">
-                    <div class="col-lg-8 mt-30">
-                        <div class="event-single__content">
-                            <div class="event-single__image mb-40">
-                                @if (!string.IsNullOrEmpty(Model.Banner))
-                                {
-                                    <img src="@(string.IsNullOrEmpty(Model.Banner) ? Url.Content("~/Content/img/bg/about_bg.jpg") : (Model.Banner.StartsWith("~") || Model.Banner.StartsWith("/") ? Url.Content(Model.Banner) : Url.Content("~/Content/uploads/events/" + Model.Banner)))"
-                                         alt="@Model.Title"
-                                         style="width:100%; border-radius:12px;"
-                                         onerror="this.src='@Url.Content("~/Content/img/news/news-img01.jpg")';" />
-                                }
-                                else
-                                {
-                                    <img src="@Url.Content("~/Content/img/news/news-img01.jpg")"
-                                         alt="@Model.Title"
-                                         style="width:100%; border-radius:12px;" />
-                                }
-                            </div>
+        <section class="about pb-120">
+      <div class="container">
+                <div class="faculty-page-layout">
+       <!-- Content -->
+   <div class="faculty-page-content">
+            <!-- Hero -->
+    <div class="faculty-hero">
+      <span class="subtitle">Event</span>
+           <h2>@(Model?.Title ?? "Event Details")</h2>
+  <div class="accent-line"></div>
+              <p>
+          @if (Model?.EventDate.HasValue == true)
+             {
+         @($"Join us on {Model.EventDate.Value:MMMM dd, yyyy} for this exciting event.")
+    }
+            else
+       {
+@("Explore detailed information about this event.")
+   }
+       </p>
+             </div>
 
-                            @* Mobile sidebar - shown only on small screens, right after the image *@
-                            <div class="d-lg-none mb-40">
-                                <aside class="event-single__sidebar">
-                                    <div class="event-meta-sidebar">
-                                        @if (Model.EventDate.HasValue)
-                                        {
-                                            <div class="event-meta-item">
-                                                <div class="event-meta-icon">
-                                                    <i class="far fa-calendar-alt"></i>
-                                                </div>
-                                                <div class="event-meta-content">
-                                                    <div class="event-meta-label">Date & Time</div>
-                                                    <div class="event-meta-value">@Model.EventDate.Value.ToString("dddd, MMMM dd, yyyy")</div>
-                                                </div>
-                                            </div>
-                                        }
-                                        
-                                        @if (!string.IsNullOrEmpty(Model.Venue))
-                                        {
-                                            <div class="event-meta-item">
-                                                <div class="event-meta-icon">
-                                                    <i class="far fa-map-marker-alt"></i>
-                                                </div>
-                                                <div class="event-meta-content">
-                                                    <div class="event-meta-label">Venue</div>
-                                                    <div class="event-meta-value">@Model.Venue</div>
-                                                </div>
-                                            </div>
-                                        }
-                                        
-                                        @if (Model.tblEventHead != null && !string.IsNullOrEmpty(Model.tblEventHead.Title))
-                                        {
-                                            <div class="event-meta-item">
-                                                <div class="event-meta-icon">
-                                                    <i class="far fa-tag"></i>
-                                                </div>
-                                                <div class="event-meta-content">
-                                                    <div class="event-meta-label">Category</div>
-                                                    <div class="event-meta-value">@Model.tblEventHead.Title</div>
-                                                </div>
-                                            </div>
-                                        }
-                                        
-                                        <div class="event-meta-item">
-                                            <div class="event-meta-icon">
-                                                <i class="far fa-eye"></i>
-                                            </div>
-                                            <div class="event-meta-content">
-                                                <div class="event-meta-label">Views</div>
-                                                <div class="event-meta-value">@(Model.Views ?? 0)</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="event-share-buttons">
-                                        <a href="https://www.facebook.com/sharer/sharer.php?u=@Url.Action("Details", "Events", new { id = Model.EventID }, Request.Url.Scheme)" target="_blank" class="share-button facebook">
-                                            <i class="fab fa-facebook-f"></i>
-                                        </a>
-                                        <a href="https://twitter.com/intent/tweet?text=@Model.Title&url=@Url.Action("Details", "Events", new { id = Model.EventID }, Request.Url.Scheme)" target="_blank" class="share-button twitter">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=@Url.Action("Details", "Events", new { id = Model.EventID }, Request.Url.Scheme)&title=@Model.Title" target="_blank" class="share-button linkedin">
-                                            <i class="fab fa-linkedin-in"></i>
-                                        </a>
-                                        <a href="https://api.whatsapp.com/send?text=@Model.Title - @Url.Action("Details", "Events", new { id = Model.EventID }, Request.Url.Scheme)" target="_blank" class="share-button whatsapp">
-                                            <i class="fab fa-whatsapp"></i>
-                                        </a>
-                                    </div>
-                                </aside>
-                            </div>
+   <!-- Details Card -->
+ <div class="faculty-enhanced-card">
+         <div class="faculty-card-header">
+   <div class="faculty-badge"><i class="fas fa-calendar-alt"></i></div>
+   <h3 class="faculty-card-title">About This Event</h3>
+        </div>
+   <div class="faculty-card-content">
+    @{
+           var eventBannerUrl = GetEventPhotoPath(Model?.Banner);
+     }
+    <div class="mb-20">
+     <img class="event-banner" src="@eventBannerUrl" alt="@Model.Title" 
+     onerror="this.onerror=null; this.src='@Url.Content("~/Content/img/bg/placeholder.jpg")'" />
+        </div>
+               <div class="event-description">
+  @if (!string.IsNullOrWhiteSpace(Model?.Details))
+             {
+    @Html.Raw(Model.Details)
+ }
+    else
+          {
+   <p>Event details will be updated soon.</p>
+          }
+     </div>
+             
+     @if (Model?.EventDate.HasValue == true && Model.EventDate.Value > DateTime.Now)
+       {
+    <div class="event-actions">
+       <a href="mailto:events@hitecuni.edu.pk?subject=Registration for: @Model.Title" class="event-action-btn">
+ <i class="far fa-user-plus"></i> Register for Event
+   </a>
+               <a href="javascript:void(0);" onclick="addToCalendar()" class="event-action-btn secondary-btn">
+     <i class="far fa-calendar-plus"></i> Add to Calendar
+    </a>
+               </div>
+        }
+       </div>
+ </div>
 
-                            <h2>About This Event</h2>
-                            <div class="event-description">
-                                @Html.Raw(Model.Details)
-                            </div>
-                            
-                            @if (Model.EventDate.HasValue && Model.EventDate.Value > DateTime.Now)
-                            {
-                                <div class="event-actions">
-                                    <a href="mailto:events@hitecuni.edu.pk?subject=Registration for: @Model.Title" class="event-action-btn">
-                                        <i class="far fa-user-plus"></i> Register for Event
-                                    </a>
-                                    <a href="javascript:void(0);" onclick="addToCalendar()" class="event-action-btn secondary-btn">
-                                        <i class="far fa-calendar-plus"></i> Add to Calendar
-                                    </a>
-                                </div>
-                            }
+          <!-- Gallery Card -->
+     @if (Model?.tblEventPhotos != null && Model.tblEventPhotos.Any())
+           {
+              <div class="faculty-enhanced-card">
+   <div class="faculty-card-header">
+    <div class="faculty-badge"><i class="fas fa-images"></i></div>
+       <h3 class="faculty-card-title">Event Gallery</h3>
+   </div>
+         <div class="faculty-card-content">
+          <div class="row">
+         @foreach (var photo in Model.tblEventPhotos)
+    {
+        var photoUrl = GetEventPhotoPath(photo.Photo);
+      <div class="col-md-4 mt-20">
+    <div class="gallery-image img-viewer" data-src="@photoUrl">
+      <img src="@photoUrl" alt="@(photo.Title ?? Model.Title)" 
+       onerror="this.onerror=null; this.src='@Url.Content("~/Content/img/bg/placeholder.jpg")'" />
+         </div>
+         </div>
+     }
+       </div>
+ </div>
+            </div>
+         }
 
-                            @if (Model.tblEventPhotos != null && Model.tblEventPhotos.Any())
-                            {
-                                <h3 class="mt-40">Event Gallery</h3>
-                                <div class="gallery-container">
-                                    <div class="row">
-                                        @foreach (var photo in Model.tblEventPhotos)
-                                        {
-                                            <div class="col-md-4 mt-20">
-                                                <div class="gallery-image img-viewer" data-src="@Url.Content("~/Content/uploads/events/" + photo.Photo)">
-                                                    @if (!string.IsNullOrEmpty(photo.Photo))
-                                                    {
-                                                        <img src="@Url.Content("~/Content/uploads/events/" + photo.Photo)"
-                                                             alt="@photo.Title"
-                                                             onerror="this.src='@Url.Content("~/Content/img/news/news-img02.png")';" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <img src="@Url.Content("~/Content/img/news/news-img02.png")"
-                                                             alt="@photo.Title" />
-                                                    }
-                                                </div>
-                                            </div>
-                                        }
-                                    </div>
-                                </div>
-                            }
+         <!-- Videos Card -->
+    @if (Model?.tblEventVideos != null && Model.tblEventVideos.Any())
+  {
+       <div class="faculty-enhanced-card">
+        <div class="faculty-card-header">
+         <div class="faculty-badge"><i class="fas fa-video"></i></div>
+        <h3 class="faculty-card-title">Event Videos</h3>
+           </div>
+             <div class="faculty-card-content">
+   <div class="video-container">
+             <div class="row">
+       @foreach (var vid in Model.tblEventVideos)
+ {
+  if (!string.IsNullOrEmpty(vid.GoogleDriveFileID))
+     {
+     <div class="col-md-6 mt-20">
+ <div class="ratio ratio-16x9">
+            <iframe src="https://drive.google.com/file/d/@vid.GoogleDriveFileID/preview" 
+        allow="autoplay" 
+  allowfullscreen 
+         style="width:100%; height:320px; border:0; border-radius:8px;"></iframe>
+            </div>
+ </div>
+        }
+        }
+  </div>
+        </div>
+      </div>
+        </div>
+   }
+          </div>
 
-                            @if (Model.tblEventVideos != null && Model.tblEventVideos.Any())
-                            {
-                                <h3 class="mt-40">Event Videos</h3>
-                                <div class="video-container">
-                                    <div class="row">
-                                        @foreach (var vid in Model.tblEventVideos)
-                                        {
-                                            if (!string.IsNullOrEmpty(vid.GoogleDriveFileID))
-                                            {
-                                                <div class="col-md-6 mt-20">
-                                                    <div class="ratio ratio-16x9">
-                                                        <iframe src="https://drive.google.com/file/d/@vid.GoogleDriveFileID/preview" 
-                                                                allow="autoplay" 
-                                                                allowfullscreen 
-                                                                style="width:100%; height:320px; border:0; border-radius:8px;"></iframe>
-                                                    </div>
-                                                </div>
-                                            }
-                                        }
-                                    </div>
-                                </div>
-                            }
-                            
-                            <div class="event-navigation">
-                                <div class="nav-link prev-event">
-                                    <a href="@Url.Action("Index", "Events")">
-                                        <span class="nav-label"><i class="far fa-arrow-left"></i> Back to</span>
-                                        <span class="nav-title">All Events</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+    <!-- Sidebar -->
+         <div class="faculty-page-sidebar mt-60">
+       <div class="event-meta-sidebar">
+           @if (Model?.EventDate.HasValue == true)
+         {
+         <div class="event-meta-item">
+          <div class="event-meta-icon">
+          <i class="far fa-calendar-alt"></i>
+              </div>
+     <div class="event-meta-content">
+            <div class="event-meta-label">Date & Time</div>
+             <div class="event-meta-value">@Model.EventDate.Value.ToString("dddd, MMMM dd, yyyy")</div>
+     </div>
+          </div>
+  }
+            
+     @if (!string.IsNullOrEmpty(Model?.Venue))
+               {
+                <div class="event-meta-item">
+         <div class="event-meta-icon">
+      <i class="far fa-map-marker-alt"></i>
+        </div>
+          <div class="event-meta-content">
+    <div class="event-meta-label">Venue</div>
+           <div class="event-meta-value">@Model.Venue</div>
+          </div>
+        </div>
+         }
+       
+            @if (Model?.tblEventHead != null && !string.IsNullOrEmpty(Model.tblEventHead.Title))
+              {
+             <div class="event-meta-item">
+               <div class="event-meta-icon">
+             <i class="far fa-tag"></i>
+          </div>
+       <div class="event-meta-content">
+     <div class="event-meta-label">Category</div>
+           <div class="event-meta-value">@Model.tblEventHead.Title</div>
+    </div>
+  </div>
+                  }
+        
+       <div class="event-meta-item">
+      <div class="event-meta-icon">
+    <i class="far fa-eye"></i>
+      </div>
+   <div class="event-meta-content">
+     <div class="event-meta-label">Views</div>
+    <div class="event-meta-value">@(Model?.Views ?? 0)</div>
+            </div>
+        </div>
+   </div>
+ 
+                <div class="event-share-buttons">
+   <a href="https://www.facebook.com/sharer/sharer.php?u=@Url.Action("Details", "Events", new { id = Model.EventID }, Request.Url.Scheme)" target="_blank" class="share-button facebook" title="Share on Facebook">
+           <i class="fab fa-facebook-f"></i>
+                </a>
+   <a href="https://twitter.com/intent/tweet?text=@Model.Title&url=@Url.Action("Details", "Events", new { id = Model.EventID }, Request.Url.Scheme)" target="_blank" class="share-button twitter" title="Share on Twitter">
+         <i class="fab fa-twitter"></i>
+            </a>
+   <a href="https://www.linkedin.com/shareArticle?mini=true&url=@Url.Action("Details", "Events", new { id = Model.EventID }, Request.Url.Scheme)&title=@Model.Title" target="_blank" class="share-button linkedin" title="Share on LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+            </a>
+                <a href="https://api.whatsapp.com/send?text=@Model.Title - @Url.Action("Details", "Events", new { id = Model.EventID }, Request.Url.Scheme)" target="_blank" class="share-button whatsapp" title="Share on WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+          </div>
                     </div>
-                    
-                    @* Desktop sidebar - shown only on large screens in the right column *@
-                    <div class="col-lg-4 mt-30 d-none d-lg-block">
-                        <aside class="event-single__sidebar">
-                            <div class="event-meta-sidebar">
-                                @if (Model.EventDate.HasValue)
-                                {
-                                    <div class="event-meta-item">
-                                        <div class="event-meta-icon">
-                                            <i class="far fa-calendar-alt"></i>
-                                        </div>
-                                        <div class="event-meta-content">
-                                            <div class="event-meta-label">Date & Time</div>
-                                            <div class="event-meta-value">@Model.EventDate.Value.ToString("dddd, MMMM dd, yyyy")</div>
-                                        </div>
-                                    </div>
-                                }
-                                
-                                @if (!string.IsNullOrEmpty(Model.Venue))
-                                {
-                                    <div class="event-meta-item">
-                                        <div class="event-meta-icon">
-                                            <i class="far fa-map-marker-alt"></i>
-                                        </div>
-                                        <div class="event-meta-content">
-                                            <div class="event-meta-label">Venue</div>
-                                            <div class="event-meta-value">@Model.Venue</div>
-                                        </div>
-                                    </div>
-                                }
-                                
-                                @if (Model.tblEventHead != null && !string.IsNullOrEmpty(Model.tblEventHead.Title))
-                                {
-                                    <div class="event-meta-item">
-                                        <div class="event-meta-icon">
-                                            <i class="far fa-tag"></i>
-                                        </div>
-                                        <div class="event-meta-content">
-                                            <div class="event-meta-label">Category</div>
-                                            <div class="event-meta-value">@Model.tblEventHead.Title</div>
-                                        </div>
-                                    </div>
-                                }
-                                
-                                <div class="event-meta-item">
-                                    <div class="event-meta-icon">
-                                        <i class="far fa-eye"></i>
-                                    </div>
-                                    <div class="event-meta-content">
-                                        <div class="event-meta-label">Views</div>
-                                        <div class="event-meta-value">@(Model.Views ?? 0)</div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="event-share-buttons">
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=@Url.Action("Details", "Events", new { id = Model.EventID }, Request.Url.Scheme)" target="_blank" class="share-button facebook">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="https://twitter.com/intent/tweet?text=@Model.Title&url=@Url.Action("Details", "Events", new { id = Model.EventID }, Request.Url.Scheme)" target="_blank" class="share-button twitter">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="https://www.linkedin.com/shareArticle?mini=true&url=@Url.Action("Details", "Events", new { id = Model.EventID }, Request.Url.Scheme)&title=@Model.Title" target="_blank" class="share-button linkedin">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="https://api.whatsapp.com/send?text=@Model.Title - @Url.Action("Details", "Events", new { id = Model.EventID }, Request.Url.Scheme)" target="_blank" class="share-button whatsapp">
-                                    <i class="fab fa-whatsapp"></i>
-                                </a>
-                            </div>
-                        </aside>
-                    </div>
-                </div>
+   </div>
             </div>
         </section>
     </main>
@@ -512,62 +379,55 @@
 
 @section Scripts {
     <script>
-        $(document).ready(function() {
-            // Force hide preloader
-            setTimeout(function() {
-                $('#preloader').fadeOut('slow', function() {
-                    $(this).remove();
-                });
-            }, 500);
-            
-            // Image viewer functionality
-            $('.img-viewer').on('click', function() {
-                var src = $(this).data('src');
-                $('<div>').css({
-                    background: 'RGBA(0,0,0,.5) url('+src+') no-repeat center',
-                    backgroundSize: 'contain',
-                    width: '100%', height: '100%',
-                    position: 'fixed',
-                    zIndex: '10000',
-                    top: '0', left: '0',
-                    cursor: 'zoom-out'
-                }).click(function(){
-                    $(this).remove();
-                }).appendTo('body');
-            });
+        $(function(){
+       setTimeout(function(){ $('#preloader').fadeOut('slow', function(){ $(this).remove(); }); }, 500);
+         
+   // Image viewer functionality
+     $('.img-viewer').on('click', function(){
+  var src = $(this).data('src');
+    $('<div>').css({background:'RGBA(0,0,0,.6) url('+src+') no-repeat center',backgroundSize:'contain',width:'100%',height:'100%',position:'fixed',zIndex:'10000',top:'0',left:'0',cursor:'zoom-out'}).click(function(){ $(this).remove(); }).appendTo('body');
         });
+  });
         
-        // Add to calendar functionality
-        function addToCalendar() {
-            @if (Model.EventDate.HasValue)
-            {
-                var startDate = Model.EventDate.Value.ToString("yyyy-MM-ddTHH:mm:ss");
-                var endDate = Model.EventDate.Value.AddHours(2).ToString("yyyy-MM-ddTHH:mm:ss");
-                <text>
-                var startDate = new Date('@startDate');
-                var endDate = new Date('@endDate');
-                var title = '@Model.Title';
-                var description = 'Event at @Model.Venue. Check details at: ' + window.location.href;
-                var location = '@Model.Venue';
-                
-                var googleCalUrl = 'https://www.google.com/calendar/render?action=TEMPLATE' +
-                    '&text=' + encodeURIComponent(title) +
-                    '&dates=' + startDate.toISOString().replace(/-|:|\.\d+/g, '') +
-                    '/' + endDate.toISOString().replace(/-|:|\.\d+/g, '') +
-                    '&details=' + encodeURIComponent(description) +
-                    '&location=' + encodeURIComponent(location) +
-                    '&sprop=&sprop=name:';
-                
-                window.open(googleCalUrl, '_blank');
-                </text>
+     // Add to calendar functionality
+ function addToCalendar() {
+      @if (Model?.EventDate.HasValue == true)
+     {
+     var startDate = Model.EventDate.Value.ToString("yyyy-MM-ddTHH:mm:ss");
+  var endDate = Model.EventDate.Value.AddHours(2).ToString("yyyy-MM-ddTHH:mm:ss");
+       <text>
+           var startDate = new Date('@startDate');
+  var endDate = new Date('@endDate');
+      var title = '@Html.Raw(System.Web.HttpUtility.JavaScriptStringEncode(Model.Title))';
+     var description = 'Event at @Html.Raw(System.Web.HttpUtility.JavaScriptStringEncode(Model.Venue ?? ""))';
+    var location = '@Html.Raw(System.Web.HttpUtility.JavaScriptStringEncode(Model.Venue ?? ""))';
+
+      // Create iCal format
+        var icsContent = 'BEGIN:VCALENDAR\n' +
+            'VERSION:2.0\n' +
+      'BEGIN:VEVENT\n' +
+'DTSTART:' + startDate.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z\n' +
+     'DTEND:' + endDate.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z\n' +
+            'SUMMARY:' + title + '\n' +
+      'DESCRIPTION:' + description + '\n' +
+     'LOCATION:' + location + '\n' +
+             'END:VEVENT\n' +
+           'END:VCALENDAR';
+
+    var blob = new Blob([icsContent], { type: 'text/calendar' });
+       var link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+  link.download = 'event.ics';
+     link.click();
+        </text>
+   }
+   else
+   {
+   <text>
+    alert('Event date is not available.');
+       </text>
             }
-            else
-            {
-                <text>
-                alert('Event date information is not available.');
-                </text>
-            }
-        }
+ }
     </script>
 }
 

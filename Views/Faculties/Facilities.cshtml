@@ -12,6 +12,7 @@
     ViewBag.MetaKeywords = ViewBag.MetaKeywords ?? (department != null
         ? $"{department.Title}, facilities, laboratories, infrastructure, equipment, HITEC University, {department.Code}"
         : "facilities, laboratories, infrastructure, equipment, HITEC University");
+
 }
 
 @functions {
@@ -25,6 +26,48 @@
         if (string.IsNullOrWhiteSpace(input)) return string.Empty;
         input = input.Trim();
         return input.Length <= length ? input : input.Substring(0, length).TrimEnd() + "...";
+    }
+
+    private string GetFacilityPhotoPath(string photoFileName)
+    {
+        // Default placeholder image
+        var defaultImage = "~/Content/img/team/placeholder-1200x627.jpg";
+
+        if (string.IsNullOrEmpty(photoFileName))
+        {
+            return Url.Content(defaultImage);
+        }
+
+        // Check if it's an absolute URL
+        if (photoFileName.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ||
+photoFileName.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+        {
+            return photoFileName;
+        }
+
+        // Check if it's already a rooted path
+        if (photoFileName.StartsWith("/") || photoFileName.StartsWith("~/"))
+        {
+            var serverPath = Server.MapPath(photoFileName);
+            if (System.IO.File.Exists(serverPath))
+            {
+                return Url.Content(photoFileName);
+            }
+            return Url.Content(defaultImage);
+        }
+
+        // Construct the full server path to check if file exists
+        var relativePath = $"~/Content/img/departments/Facility_Photo/{photoFileName}";
+        var fullServerPath = Server.MapPath(relativePath);
+
+        // Check if the file exists on the server
+        if (System.IO.File.Exists(fullServerPath))
+        {
+            return Url.Content(relativePath);
+        }
+
+        // Return default image if file doesn't exist
+        return Url.Content(defaultImage);
     }
 }
 
@@ -88,24 +131,29 @@
                             </div>
 
                             <div class="facility-grid">
+
+
                                 @foreach (var facility in Model)
                                 {
                                     var photos = (facility.tblFacilityPhotos ?? new List<Website.Models.tblFacilityPhoto>()).ToList();
-                                    string cardBanner = null;
-                                    if (!string.IsNullOrWhiteSpace(facility.Banner))
+
+                                    // Determine the image to display
+                                    string imageToDisplay = null;
+
+                                    // First priority: facility Banner
+                                    if (!string.IsNullOrEmpty(facility.Banner))
                                     {
-                                        var img = facility.Banner;
-                                        bool absolute = img.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || img.StartsWith("https://", StringComparison.OrdinalIgnoreCase);
-                                        bool rooted = img.StartsWith("/") || img.StartsWith("~/");
-                                        cardBanner = absolute ? img : Url.Content(rooted ? img : ("~/Content/uploads/facilities/" + img));
+                                        imageToDisplay = facility.Banner;
                                     }
+                                    // Second priority: first photo from tblFacilityPhotos
                                     else if (photos.Count > 0 && !string.IsNullOrWhiteSpace(photos.First().Photo))
                                     {
-                                        var p = photos.First().Photo;
-                                        bool absolute = p.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || p.StartsWith("https://", StringComparison.OrdinalIgnoreCase);
-                                        bool rooted = p.StartsWith("/") || p.StartsWith("~/");
-                                        cardBanner = absolute ? p : Url.Content(rooted ? p : ("~/Content/uploads/facilities/" + p));
+                                        imageToDisplay = photos.First().Photo;
                                     }
+
+                                    // Get the validated image path
+                                    var imagePath = GetFacilityPhotoPath(imageToDisplay);
+
 
                                     var plain = StripTags(facility.Details);
                                     var excerpt = Truncate(plain, 180);
@@ -113,14 +161,9 @@
 
                                     <div class="success-story-card facility-card-item" id="facility-@facility.FacilityID">
                                         <div class="story-image facility-image">
-                                            @if (!string.IsNullOrEmpty(cardBanner))
-                                            {
-                                                <img src="@cardBanner" alt="@facility.Title" onerror="this.onerror=null; this.src='@Url.Content("~/Content/img/team/team_01.jpg")';" />
-                                            }
-                                            else
-                                            {
-                                                <img src="@Url.Content("~/Content/img/team/team_01.jpg")" alt="@facility.Title" />
-                                            }
+                                            <img src="@imagePath"
+                                                 alt="@facility.Title"
+                                                 onerror="this.onerror=null; this.src='@Url.Content("~/Content/img/team/placeholder-1200x627.jpg")';" />
                                         </div>
                                         <div class="story-content">
                                             <h3 class="story-name">
@@ -171,7 +214,7 @@
     <script>
         $(document).ready(function () {
             setTimeout(function () { var $pre = $('#preloader'); if ($pre.length) { $pre.fadeOut('slow', function () { $(this).remove(); }); } }, 500);
-            $('.facility-card-item').each(function (i) { $(this).css('opacity','0').delay(100 * i).animate({ opacity: 1 }, 500); });
+            $('.facility-card-item').each(function (i) { $(this).css('opacity', '0').delay(100 * i).animate({ opacity: 1 }, 500); });
         });
     </script>
 }

@@ -9,8 +9,101 @@
         : "Discover upcoming and past events across HITEC University departments.";
 }
 
+@functions {
+    private string GetEventPhotoPath(string photoFileName)
+    {
+        // Default placeholder image
+        var defaultImage ="~/Content/img/team/placeholder-1200x627.jpg";
+
+        if (string.IsNullOrEmpty(photoFileName))
+        {
+            return Url.Content(defaultImage);
+        }
+
+        // Check if it's an absolute URL
+        if (photoFileName.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ||
+            photoFileName.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+        {
+            return photoFileName;
+        }
+
+        // Check if it's already a rooted path
+        if (photoFileName.StartsWith("/") || photoFileName.StartsWith("~/"))
+        {
+            var serverPath = Server.MapPath(photoFileName);
+            if (System.IO.File.Exists(serverPath))
+            {
+                return Url.Content(photoFileName);
+            }
+            return Url.Content(defaultImage);
+        }
+
+        // Construct the full server path to check if file exists in Events directory
+        var relativePath = $"~/Content/img/departments/Events/{photoFileName}";
+        var fullServerPath = Server.MapPath(relativePath);
+
+        // Check if the file exists on the server
+        if (System.IO.File.Exists(fullServerPath))
+        {
+            return Url.Content(relativePath);
+        }
+
+        // Fallback: check in old uploads/events directory for backward compatibility
+        var oldPath = $"~/Content/uploads/events/{photoFileName}";
+        var oldServerPath = Server.MapPath(oldPath);
+        if (System.IO.File.Exists(oldServerPath))
+        {
+            return Url.Content(oldPath);
+        }
+
+        // Return default image if file doesn't exist
+        return Url.Content(defaultImage);
+    }
+}
+
 @section Styles {
     <link href="~/Content/css/faculty-sidebar.css" rel="stylesheet" />
+    <style>
+        .event-link {
+        display: inline-flex;
+  align-items: center;
+      justify-content: center;
+    padding: 10px 20px;
+  font-weight: 600;
+  color: #fff !important;
+  background: linear-gradient(135deg, #002155 0%, #001a44 100%);
+      border-radius: 25px;
+  transition: all 0.3s ease;
+      text-decoration: none;
+        box-shadow: 0 4px 15px rgba(0, 33, 85, 0.2);
+        }
+
+    .event-link:hover {
+ background: linear-gradient(135deg, #001a44 0%, #002155 100%);
+    transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(0, 33, 85, 0.3);
+        color: #fff !important;
+        }
+
+        .event-link i {
+   margin-right: 8px;
+    transition: transform 0.3s ease;
+        }
+
+        .event-link:hover i {
+      transform: translateX(5px);
+        }
+
+        .event-title a {
+ color: var(--color-heading, #1a4578);
+   text-decoration: none;
+      transition: color 0.3s ease;
+  }
+
+        .event-title a:hover {
+ color: #002155;
+ }
+    </style>
 }
 
 <body>
@@ -48,16 +141,10 @@
                                             summary = detailsText.Substring(0, 150) + "...";
                                         }
                                         var detailsUrl = Url.Action("Details", "Events", new { id = e.EventID });
+                                        var eventImagePath = GetEventPhotoPath(e.Banner);
                                         <div class="event-card">
                                             <div class="event-image">
-                                                @if (!string.IsNullOrEmpty(e.Banner))
-                                                {
-                                                    <img src="@Url.Content("~/Content/uploads/events/" + e.Banner)" alt="@e.Title" />
-                                                }
-                                                else
-                                                {
-                                                    <img src="@Url.Content("~/Content/img/bg/placeholder.jpg")" alt="@e.Title" />
-                                                }
+                                                <img src="@eventImagePath" alt="@e.Title" onerror="this.onerror=null; this.src='@Url.Content("~/Content/img/bg/placeholder.jpg")';" />
                                                 @if (e.EventDate.HasValue) { <span class="event-badge">@e.EventDate.Value.ToString("MMM dd, yyyy")</span> }
                                             </div>
                                             <div class="event-body">
@@ -72,8 +159,8 @@
                                             </div>
                                             <div class="event-footer">
                                                 <a class="event-link" href="@detailsUrl"><i class="fas fa-arrow-right"></i> View Details</a>
-                                            </div>
-                                        </div>
+       </div>
+      </div>
                                     }
                                 </div>
                             }
@@ -91,16 +178,10 @@
                                             summary = detailsText.Substring(0, 150) + "...";
                                         }
                                         var detailsUrl = Url.Action("Details", "Events", new { id = e.EventID });
+                                        var eventImagePath = GetEventPhotoPath(e.Banner);
                                         <div class="event-card">
                                             <div class="event-image">
-                                                @if (!string.IsNullOrEmpty(e.Banner))
-                                                {
-                                                    <img src="@Url.Content("~/Content/uploads/events/" + e.Banner)" alt="@e.Title" />
-                                                }
-                                                else
-                                                {
-                                                    <img src="@Url.Content("~/Content/img/bg/placeholder.jpg")" alt="@e.Title" />
-                                                }
+                                                <img src="@eventImagePath" alt="@e.Title" onerror="this.onerror=null; this.src='@Url.Content("~/Content/img/bg/placeholder.jpg")';" />
                                                 @if (e.EventDate.HasValue) { <span class="event-badge">@e.EventDate.Value.ToString("MMM dd, yyyy")</span> }
                                             </div>
                                             <div class="event-body">

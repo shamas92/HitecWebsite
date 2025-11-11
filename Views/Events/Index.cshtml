@@ -1,10 +1,62 @@
 @model IEnumerable<Website.Models.tblEvent>
 @{
     ViewBag.Title = "Events";
-    
+
     // SEO Meta Tags
     ViewBag.MetaDescription = "Browse all events hosted by HITEC University. Stay updated with upcoming seminars, workshops, conferences, and campus activities.";
     ViewBag.MetaKeywords = "HITEC University, events, campus events, university events, seminars, workshops, conferences";
+}
+
+@functions {
+    private string GetEventPhotoPath(string photoFileName)
+    {
+        // Default placeholder image
+        var defaultImage = "~/Content/img/team/placeholder-1200x627.jpg";
+
+        if (string.IsNullOrEmpty(photoFileName))
+        {
+            return Url.Content(defaultImage);
+        }
+
+        // Check if it's an absolute URL
+        if (photoFileName.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ||
+  photoFileName.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+        {
+            return photoFileName;
+        }
+
+        // Check if it's already a rooted path
+        if (photoFileName.StartsWith("/") || photoFileName.StartsWith("~/"))
+        {
+            var serverPath = Server.MapPath(photoFileName);
+            if (System.IO.File.Exists(serverPath))
+            {
+                return Url.Content(photoFileName);
+            }
+            return Url.Content(defaultImage);
+        }
+
+        // Construct the full server path to check if file exists in Events directory
+        var relativePath = $"~/Content/img/departments/Events/{photoFileName}";
+        var fullServerPath = Server.MapPath(relativePath);
+
+        // Check if the file exists on the server
+        if (System.IO.File.Exists(fullServerPath))
+        {
+            return Url.Content(relativePath);
+        }
+
+        // Fallback: check in old uploads/events directory for backward compatibility
+        var oldPath = $"~/Content/uploads/events/{photoFileName}";
+        var oldServerPath = Server.MapPath(oldPath);
+        if (System.IO.File.Exists(oldServerPath))
+        {
+            return Url.Content(oldPath);
+        }
+
+        // Return default image if file doesn't exist
+        return Url.Content(defaultImage);
+    }
 }
 
 @section Styles {
@@ -27,23 +79,23 @@
             flex-direction: column;
         }
 
-        .event-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-        }
+            .event-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            }
 
         .event-image {
-            height: 200px;
+            height: 280px;
             overflow: hidden;
             position: relative;
         }
 
-        .event-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
+            .event-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
 
         .event-card:hover .event-image img {
             transform: scale(1.05);
@@ -72,9 +124,18 @@
             font-size: 20px;
             font-weight: 600;
             margin-bottom: 15px;
-            color: var(--color-heading);
             line-height: 1.4;
         }
+
+            .event-title a {
+                color: var(--color-heading);
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+                .event-title a:hover {
+                    color: var(--color-primary);
+                }
 
         .event-meta {
             margin-bottom: 15px;
@@ -105,43 +166,52 @@
         .event-read-more {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
             font-weight: 600;
-            color: var(--color-primary);
-            transition: color 0.3s ease;
+            color: #fff;
+            background: linear-gradient(135deg, #002155 0%, #001a44 100%);
+            border-radius: 25px;
+            transition: all 0.3s ease;
             margin-top: auto;
             text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 33, 85, 0.2);
         }
 
-        .event-read-more:hover {
-            color: var(--color-secondary);
-        }
+            .event-read-more:hover {
+                background: linear-gradient(135deg, #001a44 0%, #002155 100%);
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(0, 33, 85, 0.3);
+                color: #fff;
+            }
 
-        .event-read-more i {
-            margin-left: 5px;
-            transition: transform 0.3s ease;
-        }
+            .event-read-more i {
+                margin-left: 8px;
+                margin-right: 12px;
+                transition: transform 0.3s ease;
+            }
 
-        .event-read-more:hover i {
-            transform: translateX(3px);
-        }
+            .event-read-more:hover i {
+                transform: translateX(5px);
+            }
 
         .no-events {
             text-align: center;
             padding: 60px 0;
         }
 
-        .no-events h3 {
-            font-size: 24px;
-            color: var(--color-heading);
-            margin-bottom: 15px;
-        }
+            .no-events h3 {
+                font-size: 24px;
+                color: var(--color-heading);
+                margin-bottom: 15px;
+            }
 
-        .no-events p {
-            font-size: 16px;
-            color: var(--color-text);
-            max-width: 600px;
-            margin: 0 auto;
-        }
+            .no-events p {
+                font-size: 16px;
+                color: var(--color-text);
+                max-width: 600px;
+                margin: 0 auto;
+            }
 
         .section-filter {
             display: flex;
@@ -163,10 +233,47 @@
             transition: all 0.3s ease;
         }
 
-        .filter-btn:hover, .filter-btn.active {
-            background-color: var(--color-primary);
-            color: white;
+            .filter-btn:hover, .filter-btn.active {
+                background-color: var(--color-primary);
+                color: white;
+            }
+
+        .event-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 14px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: .5px;
+            color: #fff;
+            background: linear-gradient(135deg,#002155 0%,#001a44 100%);
+            box-shadow: 0 10px 28px rgba(0,33,85,.32);
+            transition: all .3s cubic-bezier(.25,.46,.45,.94);
+            text-transform: uppercase;
+            position: relative;
+            z-index: 3
         }
+
+            .event-link:hover {
+                transform: translateY(-4px);
+                background: linear-gradient(135deg,#001a44 0%,#001233 100%);
+                color: #fff;
+                box-shadow: 0 16px 40px rgba(0,33,85,.42)
+            }
+
+            .event-link i {
+                font-size: 16px
+            }
+
+        .event-link {
+            padding: 12px 20px;
+            font-size: 13px
+        }
+
     </style>
 }
 
@@ -194,7 +301,6 @@
             </div>
         </section>
         <!-- breadcrumb end -->
-
         <!-- events list start -->
         <section class="event-list-section pt-80 pb-120">
             <div class="container">
@@ -207,38 +313,27 @@
                 {
                     <div class="section-filter">
                         <button class="filter-btn active" data-filter="*">All Events</button>
-                        @*<button class="filter-btn" data-filter="upcoming">Upcoming</button>*@
-                        <button class="filter-btn" data-filter="past">Past Events</button>
                         <button class="filter-btn" data-filter="alumni">Alumni Events</button>
                     </div>
 
                     <div class="events-grid">
                         @foreach (var eventItem in Model)
                         {
-                            var isPast = eventItem.EventDate.HasValue && eventItem.EventDate.Value < DateTime.Now;
                             var isUpcoming = eventItem.EventDate.HasValue && eventItem.EventDate.Value >= DateTime.Now;
                             var isAlumni = eventItem.AlumniEvent.HasValue && eventItem.AlumniEvent.Value;
-                            
+
                             var filterClasses = "";
-                            if (isPast) { filterClasses += " past"; }
                             if (isUpcoming) { filterClasses += " upcoming"; }
                             if (isAlumni) { filterClasses += " alumni"; }
+
+                            var eventImagePath = GetEventPhotoPath(eventItem.Banner);
 
                             <div class="event-item @filterClasses">
                                 <div class="event-card">
                                     <div class="event-image">
-                                        @if (!string.IsNullOrEmpty(eventItem.Banner))
-                                        {
-                                            <img src="@(eventItem.Banner.StartsWith("~") || eventItem.Banner.StartsWith("/") 
-                                                ? Url.Content(eventItem.Banner) 
-                                                : Url.Content("~/Content/uploads/events/" + eventItem.Banner))"
-                                                 alt="@eventItem.Title"
-                                                 onerror="this.src='@Url.Content("~/Content/img/news/news-img01.jpg")';" />
-                                        }
-                                        else
-                                        {
-                                            <img src="@Url.Content("~/Content/img/news/news-img01.jpg")" alt="@eventItem.Title" />
-                                        }
+                                        <img src="@eventImagePath"
+                                             alt="@eventItem.Title"
+                                             onerror="this.onerror=null; this.src='@Url.Content("~/Content/img/team/placeholder-1200x627.jpg")';" />
 
                                         @if (eventItem.EventDate.HasValue)
                                         {
@@ -248,7 +343,11 @@
                                         }
                                     </div>
                                     <div class="event-content">
-                                        <h3 class="event-title">@eventItem.Title</h3>
+                                        <h3 class="event-title">
+                                            <a href="@Url.Action("Details", "Events", new { id = eventItem.EventID })">
+                                                @eventItem.Title
+                                            </a>
+                                        </h3>
                                         <div class="event-meta">
                                             @if (eventItem.EventDate.HasValue)
                                             {
@@ -280,7 +379,7 @@
                                             }
                                         </div>
                                         <a href="@Url.Action("Details", "Events", new { id = eventItem.EventID })" class="event-read-more">
-                                            Read More <i class="far fa-arrow-right"></i>
+                                            <i class="fas fa-arrow-right"></i> View Details
                                         </a>
                                     </div>
                                 </div>
@@ -304,14 +403,14 @@
 
 @section Scripts {
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // Filter functionality
-            $('.filter-btn').on('click', function() {
+            $('.filter-btn').on('click', function () {
                 $('.filter-btn').removeClass('active');
                 $(this).addClass('active');
-                
+
                 var filterValue = $(this).data('filter');
-                
+
                 if (filterValue === '*') {
                     $('.event-item').show();
                 } else {
@@ -319,6 +418,13 @@
                     $('.event-item.' + filterValue).show();
                 }
             });
+
+            // Hide preloader
+            setTimeout(function () {
+                $('#preloader').fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            }, 500);
         });
     </script>
 }

@@ -29,6 +29,30 @@
         if (lower.Contains("instructor")) return 60;
         return 50;
     }
+
+    private string GetFacultyPhotoPath(string photoFileName)
+    {
+        // Default placeholder image
+        var defaultImage = "~/Content/img/team/team_01.png";
+
+        if (string.IsNullOrEmpty(photoFileName))
+        {
+            return Url.Content(defaultImage);
+        }
+
+        // Construct the full server path to check if file exists
+        var relativePath = $"~/Content/img/departments/Faculty_Photo/{photoFileName}";
+        var serverPath = Server.MapPath(relativePath);
+
+        // Check if the file exists on the server
+        if (System.IO.File.Exists(serverPath))
+        {
+            return Url.Content(relativePath);
+        }
+
+        // Return default image if file doesn't exist
+        return Url.Content(defaultImage);
+    }
 }
 
 @section Styles {
@@ -86,7 +110,7 @@
                                 </div>
                             </div>
 
-                            
+
 
                             foreach (var rankGroup in facultyByRank)
                             {
@@ -105,14 +129,9 @@
                                                  data-designation="@(faculty.tblDesignation?.Designation ?? faculty.AdDesignation ?? "").ToLower()">
                                                 <div class="faculty-card-modern">
                                                     <div class="faculty-photo-modern">
-                                                        @if (!string.IsNullOrEmpty(faculty.Photo))
-                                                        {
-                                                            <img src="@Url.Content("~/Content/img/departments/Faculty_Photo/" + faculty.Photo)" alt="@faculty.FullName" onerror="this.src='@Url.Content("~/Content/img/team/team_01.jpg")'" />
-                                                        }
-                                                        else
-                                                        {
-                                                            <img src="@Url.Content("~/Content/img/team/team_01.png")" alt="@faculty.FullName" />
-                                                        }
+                                                        <img src="@GetFacultyPhotoPath(faculty.Photo)"
+                                                             alt="@faculty.FullName"
+                                                             onerror="this.src='@Url.Content("~/Content/img/team/team_01.jpg")'" />
                                                     </div>
                                                     <div class="faculty-info-modern">
                                                         <h4 class="faculty-name-modern">@(faculty.FullName ?? "Faculty Member")</h4>
@@ -177,11 +196,11 @@
 
 @section Scripts {
     <script>
-        $(document).ready(function() {
-            setTimeout(function(){ var $pre = $('#preloader'); if ($pre.length) { $pre.fadeOut('slow', function(){ $(this).remove(); }); } }, 500);
+        $(document).ready(function () {
+            setTimeout(function () { var $pre = $('#preloader'); if ($pre.length) { $pre.fadeOut('slow', function () { $(this).remove(); }); } }, 500);
 
-            $('#facultySearch').on('keyup', function() { filterFaculty(); });
-            $('.faculty-filter-btn').on('click', function() {
+            $('#facultySearch').on('keyup', function () { filterFaculty(); });
+            $('.faculty-filter-btn').on('click', function () {
                 $('.faculty-filter-btn').removeClass('active');
                 $(this).addClass('active');
                 filterFaculty();
@@ -192,7 +211,7 @@
                 var activeFilter = $('.faculty-filter-btn.active').data('filter');
                 var visibleCount = 0;
 
-                $('.faculty-card-wrapper').each(function() {
+                $('.faculty-card-wrapper').each(function () {
                     var $card = $(this);
                     var name = ($card.data('name') || '').toString();
                     var qualification = ($card.data('qualification') || '').toString();
@@ -200,10 +219,10 @@
                     var designation = ($card.data('designation') || '').toString();
 
                     // Search filter - check if search term is in any field
-                    var matchesSearch = searchTerm === '' || 
-                        name.indexOf(searchTerm) !== -1 || 
-                        qualification.indexOf(searchTerm) !== -1 || 
-                        research.indexOf(searchTerm) !== -1 || 
+                    var matchesSearch = searchTerm === '' ||
+                        name.indexOf(searchTerm) !== -1 ||
+                        qualification.indexOf(searchTerm) !== -1 ||
+                        research.indexOf(searchTerm) !== -1 ||
                         designation.indexOf(searchTerm) !== -1;
 
                     // Designation filter with more robust matching
@@ -211,9 +230,9 @@
                     if (!matchesFilter) {
                         if (activeFilter === 'professor') {
                             // Match "Professor" but exclude "Assistant Professor" and "Associate Professor"
-                            matchesFilter = designation.indexOf('professor') !== -1 && 
-                                          designation.indexOf('assistant') === -1 && 
-                                          designation.indexOf('associate') === -1;
+                            matchesFilter = designation.indexOf('professor') !== -1 &&
+                                designation.indexOf('assistant') === -1 &&
+                                designation.indexOf('associate') === -1;
                         } else if (activeFilter === 'associate') {
                             matchesFilter = designation.indexOf('associate') !== -1;
                         } else if (activeFilter === 'assistant') {
@@ -230,7 +249,7 @@
                 });
 
                 // Show/hide rank sections based on visible cards
-                $('.rank-section').each(function() {
+                $('.rank-section').each(function () {
                     var $section = $(this);
                     var visibleInSection = $section.find('.faculty-card-wrapper:visible').length;
                     if (visibleInSection === 0) {
@@ -241,7 +260,7 @@
                 });
 
                 // Update rank badges to show filtered count
-                $('.rank-section:visible').each(function() {
+                $('.rank-section:visible').each(function () {
                     var $section = $(this);
                     var visibleInSection = $section.find('.faculty-card-wrapper:visible').length;
                     $section.find('.rank-badge').text(visibleInSection);
@@ -249,8 +268,8 @@
             }
 
             // Smooth animation for cards
-            $('.faculty-card-wrapper').each(function(i) {
-                $(this).css('opacity','0').delay(50 * i).animate({ opacity: 1 }, 400);
+            $('.faculty-card-wrapper').each(function (i) {
+                $(this).css('opacity', '0').delay(50 * i).animate({ opacity: 1 }, 400);
             });
         });
     </script>

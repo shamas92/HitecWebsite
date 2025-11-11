@@ -71,9 +71,9 @@
                                         var b = Model.Banner;
                                         bool abs = b.StartsWith("http://", System.StringComparison.OrdinalIgnoreCase) || b.StartsWith("https://", System.StringComparison.OrdinalIgnoreCase);
                                         bool root = b.StartsWith("/") || b.StartsWith("~/");
-                                        bannerUrl = abs ? b : Url.Content(root ? b : ("~/Content/uploads/facilities/" + b));
+                                        bannerUrl = abs ? b : Url.Content(root ? b : ("~/Content/img/departments/Facility_Photo/" + b));
                                     }
-                                    var placeholder = Url.Content("~/Content/img/news/news-img01.jpg");
+                                    var placeholder = Url.Content("~/Content/img/team/placeholder-1200x627.jpg");
                                     var mainUrl = !string.IsNullOrEmpty(bannerUrl) ? bannerUrl : placeholder;
                                 }
                                 <div class="mb-20">
@@ -110,9 +110,9 @@
                                                 var p = photo.Photo;
                                                 bool abs = p.StartsWith("http://", System.StringComparison.OrdinalIgnoreCase) || p.StartsWith("https://", System.StringComparison.OrdinalIgnoreCase);
                                                 bool root = p.StartsWith("/") || p.StartsWith("~/");
-                                                url = abs ? p : Url.Content(root ? p : ("~/Content/uploads/facilities/" + p));
+                                                url = abs ? p : Url.Content(root ? p : ("~/Content/img/departments/Facility_Photo/" + p));
                                             }
-                                            var thumbPlaceholder = Url.Content("~/Content/img/news/news-img02.png");
+                                            var thumbPlaceholder = Url.Content("~/Content/img/team/placeholder-1200x627.jpg");
                                             var finalUrl = !string.IsNullOrEmpty(url) ? url : thumbPlaceholder;
                                             <div class="col-md-4 mt-20">
                                                 <div class="gallery-image img-viewer" data-src="@finalUrl">
