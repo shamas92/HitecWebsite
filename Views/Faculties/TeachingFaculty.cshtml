@@ -107,11 +107,11 @@
                                                     <div class="faculty-photo-modern">
                                                         @if (!string.IsNullOrEmpty(faculty.Photo))
                                                         {
-                                                            <img src="@Url.Content("~/Content/uploads/faculty/" + faculty.Photo)" alt="@faculty.FullName" onerror="this.src='@Url.Content("~/Content/img/team/team_01.jpg")'" />
+                                                            <img src="@Url.Content("~/Content/img/departments/Faculty_Photo/" + faculty.Photo)" alt="@faculty.FullName" onerror="this.src='@Url.Content("~/Content/img/team/team_01.jpg")'" />
                                                         }
                                                         else
                                                         {
-                                                            <img src="@Url.Content("~/Content/img/team/team_01.jpg")" alt="@faculty.FullName" />
+                                                            <img src="@Url.Content("~/Content/img/team/team_01.png")" alt="@faculty.FullName" />
                                                         }
                                                     </div>
                                                     <div class="faculty-info-modern">
