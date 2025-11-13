@@ -1,4 +1,4 @@
-﻿ <!-- footer strt -->
+﻿<!-- footer strt -->
 <footer class="footer bg_img pos-rel">
     <div class="xb-footer-wrap">
         <div class="xb-footer-main pt-70 pb-60">
@@ -6,65 +6,80 @@
                 <div class="row mt-none-30">
                     <div class="col-xl-3 col-lg-4 col-md-6 mt-30">
                         <div class="footer-widget mt-10">
-                            <div class="xb-item--logo mb-30"><a href="#!"><img src="~/Content/img/logo/download.png" alt=""></a></div>
+                            <div class="xb-item--logo mb-30"><a href="@Url.Action("Index", "Home")"><img src="~/Content/img/logo/download.png" alt="HITEC University"></a></div>
                             <span class="xb-item--details">HITEC University, Taxila Cantt,<br> Rawalpindi, Punjab 47080, <br>Pakistan</span>
+
+                            <!-- Contact information under address -->
+                            <div class="xb-item--contact mt-15">
+                                <ul class="list-unstyled">
+                                    <li><i style="color: #fdb714;" class="far fa-phone"></i> <a style="color:white;" href="tel:+92519047851">+92-51-9047851-60</a></li>
+                                    <li><i style="color: #fdb714;" class="far fa-envelope"></i> <a style="color:white;" href="mailto:info@hitecuni.edu.pk">info@hitecuni.edu.pk</a></li>
+                                </ul>
+                            </div>
+
                             <div class="xb-item--meta mt-20">
                                 <span class="xb-item--title">Social media</span>
                                 <ul class="xb-item--social_link ul_li">
-                                    <li><a href="https://www.facebook.com/hitecuni/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="https://www.linkedin.com/school/hitec-university" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                                    <li><a href="https://www.instagram.com/hitecuni/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="https://www.youtube.com/HITECUniversityOfficial" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                                    <li><a href="https://www.facebook.com/hitecuni/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/school/hitec-university" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.instagram.com/hitecuni/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://www.youtube.com/HITECUniversityOfficial" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-2 col-lg-4 col-md-6 mt-30">
                         <div class="footer-widget">
-                            <h3 class="xb-item--title">Admissions</h3>
+                            <h3 class="xb-item--title">About</h3>
                             <ul class="xb-item--links list-unstyled">
-                                <li><a href="/admissions/how-to-apply">How to apply</a></li>
-                                <li><a href="/admissions/academic-calendar">Schedule</a></li>
-                                <li><a href="/admissions/procedure">Procedure</a></li>
-                                <li><a href="/admissions/eligibility">Eligibility</a></li>
-                                <li><a href="/admissions/fee-structure">Fee structure</a></li>
-                                <li><a href="/admissions/financial-assistance">Scholarships</a></li>
+                                <li><a href="@Url.Action("Index", "About")">Leadership</a></li>
+                                <li><a href="@Url.Action("ChairmanMessage", "About")">Chairman's Message</a></li>
+                                <li><a href="@Url.Action("VcMessage", "About")">Vice Chancellor's Message</a></li>
+                                <li><a href="@Url.Action("VisionMission", "About")">Vision & Mission</a></li>
+                                <li><a href="@Url.Action("Motto", "About")">Motto</a></li>
+                                <li><a href="@Url.Action("Emblem", "About")">Emblem</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-xl-2 col-lg-4 col-md-6 mt-30">
                         <div class="footer-widget chng-mr">
-                            <h3 class="xb-item--title">Quick Links</h3>
+                            <h3 class="xb-item--title">Admissions</h3>
                             <ul class="xb-item--links list-unstyled">
-                                <li><a href="/media">Press & Media</a></li>
-                                <li><a href="/alumni">Alumni Portal</a></li>
-                                <li><a href="/newsletters">Newsletters</a></li>
-                                <li><a href="/departments">Departments</a></li>
-                                <li><a href="/directory">People Directory</a></li>
-                                <li><a href="/careers">Careers</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6 mt-30">
-                        <div class="footer-widget change-mr">
-                            <h3 class="xb-item--title">Additional Links</h3>
-                            <ul class="xb-item--links list-unstyled">
-                                <li><a href="/events/open-house-invitation">Open House</a></li>
-                                <li><a href="/summer-school">Summer School</a></li>
-                                <li><a href="/iccrip-2024">ICCRIP 2024</a></li>
-                                <li><a href="/wic-forum">WIC Forum</a></li>
-                                <li><a href="/placements">Placements</a></li>
-                                <li><a href="/terms-conditions">Terms & Condition</a></li>
+                                <li><a href="@Url.Action("AcademicCalendar", "Admission")">Academic Calendar</a></li>
+                                <li><a href="@Url.Action("AcademicRegulations", "Admission")">Academic Regulations</a></li>
+                                <li><a href="@Url.Action("FeeStructure", "Admission")">Fee Structure</a></li>
+                                <li><a href="@Url.Action("FinancialAssistance", "Admission")">Financial Assistance</a></li>
+                                <li><a href="@Url.Action("RefundPolicy", "Admission")">Refund Policy</a></li>
+                                <li><a href="@Url.Action("Transport", "Admission")">Transport</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-xl-2 col-lg-4 col-md-6 mt-30">
+                        <div class="footer-widget change-mr">
+                            <h3 class="xb-item--title">Academics</h3>
+                            <ul class="xb-item--links list-unstyled">
+                                <li><a href="@Url.Action("Index", "Departments")">Departments</a></li>
+                                <li><a href="@Url.Action("Index", "Events")">Events</a></li>
+                                <li><a href="@Url.Action("Index", "QAC")">Quality Assurance</a></li>
+                                <li><a href="@Url.Action("Index", "Policy")">Policies</a></li>
+                                <li><a href="@Url.Action("Index", "Downloads")">Downloads</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 mt-30">
                         <div class="footer-widget">
-                            <ul class="xb-item--links-btn list-unstyled">
-                                <li><a class="thm-btn" href="/admissions/how-to-apply">applying</a></li>
-                                <li><a class="thm-btn" href="/visiting">visiting</a></li>
-                                <li><a class="thm-btn" href="/careers">careers</a></li>
-                                <li><a class="thm-btn" href="/About/ContactUs">contact</a></li>
+                            <!-- Facilities section removed -->
+                            <h3 class="xb-item--title">Location</h3>
+                            <div class="footer-map mt-15">
+                                <iframe title="HITEC University Location"
+                                        src="https://www.google.com/maps?q=HITEC+University+Taxila&output=embed"
+                                        width="100%"
+                                        height="220"
+                                        style="border:0;"
+                                        allowfullscreen=""
+                                        loading="lazy"
+                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
                             </ul>
                         </div>
                     </div>
@@ -73,7 +88,7 @@
         </div>
         <div class="footer-bottom pb-25 pt-25">
             <div class="copyright text-center">
-                <p>Copyright © 2025 <a href="index.html">Hitec University Taxila</a>. All rights reserved.</p>
+                <p>Copyright © @DateTime.Now.Year <a href="@Url.Action("Index", "Home")">HITEC University Taxila</a>. All rights reserved.</p>
             </div>
         </div>
     </div>
