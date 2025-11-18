@@ -1,0 +1,172 @@
+@model Website.ViewModels.EventsIndexViewModel
+@using System
+
+@functions {
+    private string GetEventPhotoPath(string photoFileName)
+    {
+        var defaultImage = "~/Content/img/team/placeholder-1200x627.jpg";
+        if (string.IsNullOrEmpty(photoFileName)) return Url.Content(defaultImage);
+        if (photoFileName.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || photoFileName.StartsWith("https://", StringComparison.OrdinalIgnoreCase)) return photoFileName;
+        if (photoFileName.StartsWith("/") || photoFileName.StartsWith("~/"))
+        {
+            var serverPath = Server.MapPath(photoFileName);
+            return System.IO.File.Exists(serverPath) ? Url.Content(photoFileName) : Url.Content(defaultImage);
+        }
+        var relativePath = $"~/Content/img/departments/Events/{photoFileName}";
+        var fullServerPath = Server.MapPath(relativePath);
+        if (System.IO.File.Exists(fullServerPath)) return Url.Content(relativePath);
+        var oldPath = $"~/Content/uploads/events/{photoFileName}";
+        var oldServerPath = Server.MapPath(oldPath);
+        if (System.IO.File.Exists(oldServerPath)) return Url.Content(oldPath);
+        return Url.Content(defaultImage);
+    }
+
+    private System.Web.Routing.RouteValueDictionary BuildFilterRoute(int? page = null, int? pageSize = null)
+    {
+        return new System.Web.Routing.RouteValueDictionary(new
+        {
+            q = Model.Q,
+            alumni = Model.Alumni,
+            headId = Model.HeadId,
+            from = Model.From?.ToString("yyyy-MM-dd"),
+            to = Model.To?.ToString("yyyy-MM-dd"),
+            when = Model.When,
+            sort = Model.Sort,
+            page = page ?? Model.Page,
+            pageSize = pageSize ?? Model.PageSize
+        });
+    }
+}
+
+@if (Model.Items != null && Model.Items.Any())
+{
+    <div class="events-grid">
+        @foreach (var eventItem in Model.Items)
+        {
+            var eventImagePath = GetEventPhotoPath(eventItem.Banner);
+            <div class="event-item">
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="@eventImagePath" alt="@eventItem.Title" onerror="this.onerror=null; this.src='@Url.Content("~/Content/img/team/placeholder-1200x627.jpg")';" />
+                        @if (eventItem.EventDate.HasValue)
+                        {
+                            <div class="event-date-badge">@eventItem.EventDate.Value.ToString("dd MMM yyyy")</div>
+                        }
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title">
+                            <a href="@Url.Action("Details", "Events", new { id = eventItem.EventID })">@eventItem.Title</a>
+                        </h3>
+                        <div class="event-meta">
+                            @if (eventItem.EventDate.HasValue)
+                            {
+                                <div class="event-meta-item">
+                                    <i class="event-meta-icon far fa-calendar-alt"></i>
+                                    <span>@eventItem.EventDate.Value.ToString("dddd, MMMM dd, yyyy")</span>
+                                </div>
+                            }
+                            @if (!string.IsNullOrEmpty(eventItem.Venue))
+                            {
+                                <div class="event-meta-item">
+                                    <i class="event-meta-icon far fa-map-marker-alt"></i>
+                                    <span>@eventItem.Venue</span>
+                                </div>
+                            }
+                            @if (eventItem.tblEventHead != null && !string.IsNullOrEmpty(eventItem.tblEventHead.Title))
+                            {
+                                <div class="event-meta-item">
+                                    <i class="event-meta-icon far fa-tag"></i>
+                                    <span>@eventItem.tblEventHead.Title</span>
+                                </div>
+                            }
+                        </div>
+                        <div class="event-excerpt">
+                            @if (!string.IsNullOrEmpty(eventItem.Details))
+                            {
+                                var plainText = System.Text.RegularExpressions.Regex.Replace(eventItem.Details, "<.*?>", string.Empty);
+                                @(plainText.Length > 150 ? plainText.Substring(0, 150) + "..." : plainText)
+                            }
+                        </div>
+                        <a href="@Url.Action("Details", "Events", new { id = eventItem.EventID })" class="event-read-more">
+                            <i class="fas fa-arrow-right"></i> View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    if (Model.TotalPages > 1)
+    {
+        <div class="paging-wrap">
+            <nav aria-label="Events pagination">
+                <ul class="pagination" role="list">
+                    @{
+                        var prevPage = Model.Page - 1;
+                        var prevDisabled = Model.Page <= 1;
+                        var prevRoute = BuildFilterRoute(page: prevPage < 1 ? 1 : prevPage);
+                    }
+                    <li class="page-item @(prevDisabled ? "disabled" : "")">
+                        <a class="page-link" href="@Url.Action("Index", prevRoute)" aria-label="Previous page" aria-disabled="@(prevDisabled.ToString().ToLower())">‹</a>
+                    </li>
+
+                    @{
+                        var total = Model.TotalPages;
+                        var current = Model.Page;
+                        var window = 2;
+                        int start = System.Math.Max(1, current - window);
+                        int end = System.Math.Min(total, current + window);
+                    }
+                    @if (start > 1)
+                    {
+                        var r = BuildFilterRoute(page: 1);
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", r)">1</a>
+                        </li>
+                        if (start > 2)
+                        {
+                            <li class="page-ellipsis" aria-hidden="true">…</li>
+                        }
+                    }
+                    @for (int i = start; i <= end; i++)
+                    {
+                        var r = BuildFilterRoute(page: i);
+                        var isCurrent = i == current;
+                        <li class="page-item @(isCurrent ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("Index", r)" @(isCurrent ? "aria-current=\"page\"" : "")>
+                                <span class="sr-only">Page </span>@i
+                            </a>
+                        </li>
+                    }
+                    @if (end < total)
+                    {
+                        if (end < total - 1)
+                        {
+                            <li class="page-ellipsis" aria-hidden="true">…</li>
+                        }
+                        var r = BuildFilterRoute(page: total);
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", r)">@total</a>
+                        </li>
+                    }
+
+                    @{
+                        var nextPage = Model.Page + 1;
+                        var nextDisabled = Model.Page >= Model.TotalPages;
+                        var nextRoute = BuildFilterRoute(page: nextPage > Model.TotalPages ? Model.TotalPages : nextPage);
+                    }
+                    <li class="page-item @(nextDisabled ? "disabled" : "")">
+                        <a class="page-link" href="@Url.Action("Index", nextRoute)" aria-label="Next page" aria-disabled="@(nextDisabled.ToString().ToLower())">›</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    }
+}
+else
+{
+    <div class="no-events">
+        <h3>No Events Found</h3>
+        <p>Try broadening your search, removing filters, or check back later for new events.</p>
+    </div>
+}

@@ -1,4 +1,4 @@
-@model IEnumerable<Website.Models.tblEvent>
+@model Website.ViewModels.EventsIndexViewModel
 @{
     ViewBag.Title = "Events";
 
@@ -57,6 +57,22 @@
         // Return default image if file doesn't exist
         return Url.Content(defaultImage);
     }
+
+    private System.Web.Routing.RouteValueDictionary BuildFilterRoute(int? page = null, int? pageSize = null)
+    {
+        return new System.Web.Routing.RouteValueDictionary(new
+        {
+            q = Model.Q,
+            alumni = Model.Alumni,
+            headId = Model.HeadId,
+            from = Model.From?.ToString("yyyy-MM-dd"),
+            to = Model.To?.ToString("yyyy-MM-dd"),
+            when = Model.When,
+            sort = Model.Sort,
+            page = page ?? Model.Page,
+            pageSize = pageSize ?? Model.PageSize
+        });
+    }
 }
 
 @section Styles {
@@ -65,7 +81,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             grid-gap: 30px;
-            margin-top: 40px;
+            margin-top: 30px;
         }
 
         .event-card {
@@ -213,67 +229,53 @@
                 margin: 0 auto;
             }
 
-        .section-filter {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-
-        .filter-btn {
-            background-color: #f5f5f5;
-            border: none;
-            border-radius: 30px;
-            padding: 8px 20px;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--color-text);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-            .filter-btn:hover, .filter-btn.active {
-                background-color: var(--color-primary);
-                color: white;
-            }
-
-        .event-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+        /* Filter bar */
+        .filters-bar {
+            display: grid;
+            grid-template-columns: 1fr 160px 160px 160px 160px 120px;
             gap: 12px;
-            padding: 14px 28px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 900;
-            letter-spacing: .5px;
-            color: #fff;
-            background: linear-gradient(135deg,#002155 0%,#001a44 100%);
-            box-shadow: 0 10px 28px rgba(0,33,85,.32);
-            transition: all .3s cubic-bezier(.25,.46,.45,.94);
-            text-transform: uppercase;
-            position: relative;
-            z-index: 3
+            align-items: end;
         }
-
-            .event-link:hover {
-                transform: translateY(-4px);
-                background: linear-gradient(135deg,#001a44 0%,#001233 100%);
-                color: #fff;
-                box-shadow: 0 16px 40px rgba(0,33,85,.42)
-            }
-
-            .event-link i {
-                font-size: 16px
-            }
-
-        .event-link {
-            padding: 12px 20px;
-            font-size: 13px
+        @@media (max-width: 992px) {
+            .filters-bar { grid-template-columns: 1fr 1fr; }
         }
+        @@media (max-width: 576px) {
+            .filters-bar { grid-template-columns: 1fr; }
+        }
+        .filter-field label { display: block; font-size: 13px; color: var(--color-text); margin-bottom: 6px; }
+        .filter-field input[type="text"],
+        .filter-field input[type="date"],
+        .filter-field select {
+            width: 100%;
+            height: 40px;
+            border: 1px solid #e3e6ef;
+            border-radius: 10px;
+            padding: 0 12px;
+            font-size: 14px;
+            background: #fff;
+        }
+        .filters-actions { display:flex; gap:10px; align-items:center; }
+        .btn-primary-rounded {
+            background: linear-gradient(135deg, #002155 0%, #001a44 100%);
+            color:#fff; border:none; border-radius:22px; padding:10px 18px; font-weight:600; cursor:pointer;
+        }
+        .btn-ghost { background:#fff; color:#001a44; border:1px solid #cdd6e1; border-radius:22px; padding:10px 16px; }
 
+        /* Results loading state */
+        #eventsResults[aria-busy="true"] { opacity:.6; pointer-events:none; }
+
+        /* Pagination */
+        .paging-wrap { margin-top: 36px; display:flex; justify-content:center; }
+        .pagination { list-style:none; display:flex; gap:8px; padding:0; margin:0; }
+        .pagination .page-item { }
+        .pagination .page-link {
+            display:inline-flex; align-items:center; justify-content:center; min-width:40px; height:40px; padding:0 12px;
+            text-decoration:none; color:#0c1b3a; border:1px solid #e3e6ef; border-radius:10px; background:#fff; font-weight:600;
+        }
+        .pagination .page-item.active .page-link { background:#0c1b3a; color:#fff; border-color:#0c1b3a; }
+        .pagination .page-item.disabled .page-link { opacity:.5; pointer-events:none; }
+        .pagination .page-ellipsis { display:inline-flex; align-items:center; justify-content:center; min-width:40px; color:#8792a5; }
+        .pagination .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
     </style>
 }
 
@@ -286,9 +288,7 @@
 }
 
 <div class="body_wrap">
-    <!-- main area start  -->
     <main>
-        <!-- breadcrumb start -->
         <section class="breadcrumb bg_img ul_li" data-background="/Content/img/bg/about_bg.jpg">
             <div class="container">
                 <div class="breadcrumb__content text-center">
@@ -300,131 +300,186 @@
                 </div>
             </div>
         </section>
-        <!-- breadcrumb end -->
-        <!-- events list start -->
+
         <section class="event-list-section pt-80 pb-120">
             <div class="container">
-                <div class="section-title text-center mb-40">
+                <div class="section-title mb-30">
                     <span class="sub-title">Campus Activities</span>
                     <h2 class="title">University Events</h2>
                 </div>
 
-                @if (Model != null && Model.Any())
-                {
-                    <div class="section-filter">
-                        <button class="filter-btn active" data-filter="*">All Events</button>
-                        <button class="filter-btn" data-filter="alumni">Alumni Events</button>
+                <form id="eventsFilters" method="get" class="mb-20" role="search" aria-label="Filter events">
+                    <div class="filters-bar">
+                        <div class="filter-field">
+                            <label for="q">Search</label>
+                            <input type="text" id="q" name="q" value="@Model.Q" placeholder="Search by title, venue, category" />
+                        </div>
+                        <div class="filter-field">
+                            <label for="headId">Category</label>
+                            <select id="headId" name="headId">
+                                <option value="">All categories</option>
+                                @foreach (var h in Model.Heads)
+                                {
+                                    <option value="@h.EventHeadID" @(Model.HeadId == h.EventHeadID ? "selected" : "")>@h.Title</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="filter-field">
+                            <label for="when">When</label>
+                            <select id="when" name="when">
+                                <option value="all" @(string.Equals(Model.When, "all", System.StringComparison.OrdinalIgnoreCase) ? "selected" : "")>All</option>
+                                <option value="upcoming" @(string.Equals(Model.When, "upcoming", System.StringComparison.OrdinalIgnoreCase) ? "selected" : "")>Upcoming</option>
+                                <option value="past" @(string.Equals(Model.When, "past", System.StringComparison.OrdinalIgnoreCase) ? "selected" : "")>Past</option>
+                            </select>
+                        </div>
+                        <div class="filter-field">
+                            <label for="alumni">Alumni</label>
+                            <select id="alumni" name="alumni">
+                                <option value="">Any</option>
+                                <option value="true" @(Model.Alumni.HasValue && Model.Alumni.Value ? "selected" : "")>Alumni only</option>
+                                <option value="false" @(Model.Alumni.HasValue && !Model.Alumni.Value ? "selected" : "")>Non-alumni</option>
+                            </select>
+                        </div>
+                        <div class="filter-field">
+                            <label>From</label>
+                            <input type="date" name="from" value="@(Model.From.HasValue ? Model.From.Value.ToString("yyyy-MM-dd") : "")" />
+                        </div>
+                        <div class="filter-field">
+                            <label>To</label>
+                            <input type="date" name="to" value="@(Model.To.HasValue ? Model.To.Value.ToString("yyyy-MM-dd") : "")" />
+                        </div>
                     </div>
 
-                    <div class="events-grid">
-                        @foreach (var eventItem in Model)
-                        {
-                            var isUpcoming = eventItem.EventDate.HasValue && eventItem.EventDate.Value >= DateTime.Now;
-                            var isAlumni = eventItem.AlumniEvent.HasValue && eventItem.AlumniEvent.Value;
-
-                            var filterClasses = "";
-                            if (isUpcoming) { filterClasses += " upcoming"; }
-                            if (isAlumni) { filterClasses += " alumni"; }
-
-                            var eventImagePath = GetEventPhotoPath(eventItem.Banner);
-
-                            <div class="event-item @filterClasses">
-                                <div class="event-card">
-                                    <div class="event-image">
-                                        <img src="@eventImagePath"
-                                             alt="@eventItem.Title"
-                                             onerror="this.onerror=null; this.src='@Url.Content("~/Content/img/team/placeholder-1200x627.jpg")';" />
-
-                                        @if (eventItem.EventDate.HasValue)
-                                        {
-                                            <div class="event-date-badge">
-                                                @eventItem.EventDate.Value.ToString("dd MMM yyyy")
-                                            </div>
-                                        }
-                                    </div>
-                                    <div class="event-content">
-                                        <h3 class="event-title">
-                                            <a href="@Url.Action("Details", "Events", new { id = eventItem.EventID })">
-                                                @eventItem.Title
-                                            </a>
-                                        </h3>
-                                        <div class="event-meta">
-                                            @if (eventItem.EventDate.HasValue)
-                                            {
-                                                <div class="event-meta-item">
-                                                    <i class="event-meta-icon far fa-calendar-alt"></i>
-                                                    <span>@eventItem.EventDate.Value.ToString("dddd, MMMM dd, yyyy")</span>
-                                                </div>
-                                            }
-                                            @if (!string.IsNullOrEmpty(eventItem.Venue))
-                                            {
-                                                <div class="event-meta-item">
-                                                    <i class="event-meta-icon far fa-map-marker-alt"></i>
-                                                    <span>@eventItem.Venue</span>
-                                                </div>
-                                            }
-                                            @if (eventItem.tblEventHead != null && !string.IsNullOrEmpty(eventItem.tblEventHead.Title))
-                                            {
-                                                <div class="event-meta-item">
-                                                    <i class="event-meta-icon far fa-tag"></i>
-                                                    <span>@eventItem.tblEventHead.Title</span>
-                                                </div>
-                                            }
-                                        </div>
-                                        <div class="event-excerpt">
-                                            @if (!string.IsNullOrEmpty(eventItem.Details))
-                                            {
-                                                var plainText = System.Text.RegularExpressions.Regex.Replace(eventItem.Details, "<.*?>", string.Empty);
-                                                @(plainText.Length > 150 ? plainText.Substring(0, 150) + "..." : plainText)
-                                            }
-                                        </div>
-                                        <a href="@Url.Action("Details", "Events", new { id = eventItem.EventID })" class="event-read-more">
-                                            <i class="fas fa-arrow-right"></i> View Details
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        }
+                    <div class="filters-actions" style="margin-top:12px; justify-content: space-between;">
+                        <div style="display:flex; gap:10px; align-items:center;">
+                            <label for="sort" class="sr-only">Sort</label>
+                            @*<select id="sort" name="sort">
+                                <option value="date_desc" @(string.Equals(Model.Sort, "date_desc", System.StringComparison.OrdinalIgnoreCase) ? "selected" : "")>Newest first</option>
+                                <option value="date_asc" @(string.Equals(Model.Sort, "date_asc", System.StringComparison.OrdinalIgnoreCase) ? "selected" : "")>Oldest first</option>
+                                <option value="views_desc" @(string.Equals(Model.Sort, "views_desc", System.StringComparison.OrdinalIgnoreCase) ? "selected" : "")>Most viewed</option>
+                                <option value="title_asc" @(string.Equals(Model.Sort, "title_asc", System.StringComparison.OrdinalIgnoreCase) ? "selected" : "")>Title A–Z</option>
+                            </select>*@
+                            <label for="pageSize" class="sr-only">Page size</label>
+                            <select id="pageSize" name="pageSize">
+                                @foreach (var s in new[]{6,12,24,48})
+                                {
+                                    <option value="@s" @(Model.PageSize == s ? "selected" : "")>@s / page</option>
+                                }
+                            </select>
+                        </div>
+                        <div style="display:flex; gap:10px;">
+                            <button type="submit" class="btn-primary-rounded">Apply</button>
+                            <a class="btn-ghost" href="@Url.Action("Index", "Events")" id="resetFilters">Reset</a>
+                        </div>
                     </div>
-                }
-                else
-                {
-                    <div class="no-events">
-                        <h3>No Events Found</h3>
-                        <p>There are currently no events to display. Please check back later for upcoming university events and activities.</p>
-                    </div>
-                }
+                </form>
+
+                <div id="eventsResults" aria-live="polite" aria-busy="false">
+                    @Html.Partial("_EventsList", Model)
+                </div>
             </div>
         </section>
-        <!-- events list end -->
     </main>
-    <!-- main area end  -->
 </div>
 
 @section Scripts {
     <script>
-        $(document).ready(function () {
-            // Filter functionality
-            $('.filter-btn').on('click', function () {
-                $('.filter-btn').removeClass('active');
-                $(this).addClass('active');
+        (function () {
+            var form = document.getElementById('eventsFilters');
+            var results = document.getElementById('eventsResults');
+            if (!form || !results) return;
 
-                var filterValue = $(this).data('filter');
+            function buildUrlFromForm() {
+                var base = form.getAttribute('action') || '@Url.Action("Index", "Events")';
+                var query = $(form).serialize();
+                return base + (query ? ('?' + query) : '');
+            }
 
-                if (filterValue === '*') {
-                    $('.event-item').show();
-                } else {
-                    $('.event-item').hide();
-                    $('.event-item.' + filterValue).show();
+            function setBusy(isBusy) {
+                results.setAttribute('aria-busy', isBusy ? 'true' : 'false');
+            }
+
+            function ajaxFetch(url) {
+                setBusy(true);
+                $.ajax({
+                    url: url,
+                    method: 'GET'
+                })
+                    .done(function (html) {
+                    $('#eventsResults').html(html);
+                    //window.scrollTo({ top: $('#eventsResults').offset().top - 100, behavior: 'smooth' });
+                    })
+                    .fail(function () {
+                    $('#eventsResults').html('<div class="no-events"><h3>Error</h3><p>Unable to load events. Please try again.</p></div>');
+                }).always(function () {
+                    setBusy(false);
+                });
+            }
+
+            function resetToFirstPage() {
+                var pageInput = form.querySelector('input[name="page"]');
+                if (!pageInput) {
+                    pageInput = document.createElement('input');
+                    pageInput.type = 'hidden';
+                    pageInput.name = 'page';
+                    form.appendChild(pageInput);
                 }
+                pageInput.value = '1';
+            }
+
+            function onFiltersChanged() {
+                resetToFirstPage();
+                var url = buildUrlFromForm();
+                history.replaceState(null, '', url);
+                ajaxFetch(url);
+            }
+
+            var debounceTimer;
+            function debounce(fn, wait) {
+                return function () {
+                    clearTimeout(debounceTimer);
+                    var ctx = this, args = arguments;
+                    debounceTimer = setTimeout(function () { fn.apply(ctx, args); }, wait || 350);
+                };
+            }
+
+            // Intercept form submit
+            $(form).on('submit', function (e) {
+                e.preventDefault();
+                onFiltersChanged();
             });
 
-            // Hide preloader
-            setTimeout(function () {
-                $('#preloader').fadeOut('slow', function () {
-                    $(this).remove();
-                });
-            }, 500);
-        });
+            // Inputs change handlers
+            $('#q').on('input', debounce(onFiltersChanged, 400));
+            $('#headId,#when,#alumni,#sort,#pageSize').on('change', onFiltersChanged);
+            $(form).find('input[type="date"]').on('change', onFiltersChanged);
+
+            // Intercept pagination clicks (delegate to container)
+            $(document).on('click', '#eventsResults .pagination a', function (e) {
+                e.preventDefault();
+                var href = this.href;
+                history.replaceState(null, '', href);
+                ajaxFetch(href);
+            });
+
+            // Reset link without reload
+            $('#resetFilters').on('click', function (e) {
+                e.preventDefault();
+                form.reset();
+                // Clear selects back to default
+                $('#headId').val('');
+                $('#when').val('all');
+                $('#alumni').val('');
+                $('#sort').val('date_desc');
+                $('#pageSize').val('12');
+                // Clear date and search
+                $('#q').val('');
+                $(form).find('input[type="date"]').val('');
+                resetToFirstPage();
+                var url = (this.href || '@Url.Action("Index", "Events")');
+                history.replaceState(null, '', url);
+                ajaxFetch(url);
+            });
+        })();
     </script>
 }

@@ -3,17 +3,10 @@
 
 <nav class="xb-header-nav">
     <ul class="xb-menu-primary clearfix">
-        @{
-            bool eventsMenuFound = false; HitecCM.Models.tblMenus eventsMenu = null;
-            foreach (var menu in Model)
-            {
-                if (string.Equals(menu.MenuName, "Events", StringComparison.OrdinalIgnoreCase)) { eventsMenuFound = true; eventsMenu = menu; break; }
-            }
-            var sortedMenus = Model.OrderBy(m => m.SortingOrder).ToList();
-        }
+        @{ bool eventsMenuFound = false; HitecCM.Models.tblMenus eventsMenu = null; var tempList = new List<tblMenus>(); if (Model != null) { var en = Model.GetEnumerator(); while (en.MoveNext()) { var m = en.Current; if (m != null) { if (string.Equals(m.MenuName, "Events", StringComparison.OrdinalIgnoreCase)) { eventsMenuFound = true; eventsMenu = m; } tempList.Add(m); } } } tempList.Sort((a,b)=>{ var ao = a?.SortingOrder ?? int.MaxValue; var bo = b?.SortingOrder ?? int.MaxValue; return ao.CompareTo(bo); }); var sortedMenus = tempList; }
         @foreach (var menu in sortedMenus)
         {
-            if (eventsMenuFound && menu.MenuID == eventsMenu.MenuID)
+            if (eventsMenuFound && eventsMenu != null && menu.MenuID == eventsMenu.MenuID)
             {
                 <li class="menu-item menu-item-has-children @(IsMenuActive(eventsMenu) || Request.Url.AbsolutePath.StartsWith("/Events") ? "active" : "")">
                     @{ var effectiveLink = GetEffectiveMenuLink(eventsMenu); }
@@ -22,18 +15,20 @@
                 </li>
                 continue;
             }
-            <li class="menu-item menu-item-has-children @(IsMenuActive(menu) ? "active" : "")">
+            var hasChildren = menu.ChildMenus != null && menu.ChildMenus.Count > 0;
+            <li class="menu-item @(hasChildren ? "menu-item-has-children" : "") @(IsMenuActive(menu) ? "active" : "")">
                 @{ var effectiveMenuLink = GetEffectiveMenuLink(menu); }
                 @if (!string.IsNullOrEmpty(effectiveMenuLink)) { <a href="@effectiveMenuLink">@menu.MenuName</a> } else { <a href="#">@menu.MenuName</a> }
-                @if (menu.ChildMenus != null && menu.ChildMenus.Any())
+                @if (hasChildren)
                 {
                     <ul class="sub-menu">
                         @foreach (var childMenu in menu.ChildMenus)
                         {
+                            var childHasChildren = childMenu.ChildMenus != null && childMenu.ChildMenus.Count > 0;
                             var effectiveChildLink = GetEffectiveMenuLink(childMenu);
-                            <li class="menu-item @(childMenu.ChildMenus != null && childMenu.ChildMenus.Any() ? "menu-item-has-children " : "")@(IsChildMenuActive(childMenu) ? "active" : "")">
+                            <li class="menu-item @(childHasChildren ? "menu-item-has-children " : "")@(IsChildMenuActive(childMenu) ? "active" : "")">
                                 @if (!string.IsNullOrEmpty(effectiveChildLink)) { <a href="@effectiveChildLink">@childMenu.MenuName</a> } else { <a href="#">@childMenu.MenuName</a> }
-                                @if (childMenu.ChildMenus != null && childMenu.ChildMenus.Any())
+                                @if (childHasChildren)
                                 {
                                     <ul class="sub-menu">
                                         @foreach (var grandChildMenu in childMenu.ChildMenus)
@@ -76,28 +71,38 @@
         return null;
     }
 
+    private string MakeAbsolute(string link)
+    {
+        if (string.IsNullOrWhiteSpace(link)) return link;
+        if (link.StartsWith("http", StringComparison.OrdinalIgnoreCase)) return link;
+        if (link.StartsWith("~")) return Url.Content(link);
+        if (link.StartsWith("/")) return link;
+        var root = Request?.Url != null ? Request.Url.GetLeftPart(UriPartial.Authority) : string.Empty;
+        return root + "/" + link.TrimStart('/');
+    }
+
     private string GetEffectiveMenuLink(tblMenus menu) => GetEffectiveMenuLink(menu, null);
 
     private string GetEffectiveMenuLink(tblMenus menu, tblMenus parent)
     {
         if (menu == null || string.IsNullOrWhiteSpace(menu.MenuLink)) return menu?.MenuLink;
-        if (menu.MenuLink.IndexOf("/Faculties/Programs", StringComparison.OrdinalIgnoreCase) < 0) return menu.MenuLink;
+        if (menu.MenuLink.IndexOf("/Faculties/Programs", StringComparison.OrdinalIgnoreCase) < 0) return MakeAbsolute(menu.MenuLink);
         var level = InferLevelFromName(menu.MenuName) ?? InferLevelFromName(parent?.MenuName);
-        if (string.IsNullOrEmpty(level)) return menu.MenuLink;
+        if (string.IsNullOrEmpty(level)) return MakeAbsolute(menu.MenuLink);
         if (string.Equals(level, "undergraduate", StringComparison.OrdinalIgnoreCase))
         {
-            if (menu.MenuLink.IndexOf("level=", StringComparison.OrdinalIgnoreCase) >= 0) return menu.MenuLink; // already explicit
-            return menu.MenuLink; // keep base for UG
+            if (menu.MenuLink.IndexOf("level=", StringComparison.OrdinalIgnoreCase) >= 0) return MakeAbsolute(menu.MenuLink);
+            return MakeAbsolute(menu.MenuLink);
         }
-        if (menu.MenuLink.IndexOf("level=", StringComparison.OrdinalIgnoreCase) >= 0) return menu.MenuLink;
+        if (menu.MenuLink.IndexOf("level=", StringComparison.OrdinalIgnoreCase) >= 0) return MakeAbsolute(menu.MenuLink);
         var separator = menu.MenuLink.Contains("?") ? "&" : "?";
-        return menu.MenuLink + separator + "level=" + level;
+        return MakeAbsolute(menu.MenuLink + separator + "level=" + level);
     }
 
     private bool IsMenuActive(tblMenus menu)
     {
         if (IsMenuLinkActive(menu)) return true;
-        if (menu.ChildMenus != null && menu.ChildMenus.Any())
+        if (menu.ChildMenus != null && menu.ChildMenus.Count > 0)
             foreach (var childMenu in menu.ChildMenus)
                 if (IsChildMenuActive(childMenu)) return true;
         return false;
@@ -106,7 +111,7 @@
     private bool IsChildMenuActive(tblMenus childMenu)
     {
         if (IsMenuLinkActive(childMenu)) return true;
-        if (childMenu.ChildMenus != null && childMenu.ChildMenus.Any())
+        if (childMenu.ChildMenus != null && childMenu.ChildMenus.Count > 0)
             foreach (var grandChild in childMenu.ChildMenus)
                 if (IsGrandChildMenuActive(grandChild, childMenu)) return true;
         return false;
@@ -121,8 +126,7 @@
         var currentUri = Request.Url; if (currentUri == null) return false; var currentPathAndQuery = currentUri.PathAndQuery;
         var effective = GetEffectiveMenuLink(menu, parent); if (string.IsNullOrWhiteSpace(effective)) return false;
         string comparable = effective;
-        if (effective.StartsWith("http", StringComparison.OrdinalIgnoreCase)) { try { comparable = new Uri(effective).PathAndQuery; } catch { return false; } }
-        // Prevent unrelated items showing active on home page
+        if (effective.StartsWith("http", StringComparison.OrdinalIgnoreCase)) { try { var u = new Uri(effective); if (!string.Equals(u.Host, currentUri.Host, StringComparison.OrdinalIgnoreCase)) return false; comparable = u.PathAndQuery; } catch { return false; } }
         if (IsHomePage() && !(comparable == "/" || comparable.Equals("/Home", StringComparison.OrdinalIgnoreCase) || comparable.StartsWith("/Home/Index", StringComparison.OrdinalIgnoreCase)))
         {
             return false;

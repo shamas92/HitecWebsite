@@ -287,7 +287,7 @@
    ============================================ */
 
 /* Success Stories Grid */
-.success-stories-section{background-color:#F7F9FC;padding:80px 0}
+.success-stories-section{background-color:#F7F9FC;padding:40px 0}
 .success-stories-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:35px;margin-top:50px}
 
 /* Success Story Card - Enhanced Design */

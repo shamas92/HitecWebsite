@@ -3,8 +3,20 @@
 <div class="news-menu-wrapper">
     @foreach (var menu in Model)
     {
-        <a href="@(string.IsNullOrEmpty(menu.MenuLink) ? "#" : menu.MenuLink)" class="news-item">
+        <a href="@(string.IsNullOrEmpty(menu.MenuLink) ? "#" : MakeAbsolute(menu.MenuLink))" class="news-item">
             @menu.MenuName
         </a>
     }
 </div>
+
+@functions {
+    private string MakeAbsolute(string link)
+    {
+        if (string.IsNullOrWhiteSpace(link)) return link;
+        if (link.StartsWith("http", StringComparison.OrdinalIgnoreCase)) return link;
+        if (link.StartsWith("~")) return Url.Content(link);
+        if (link.StartsWith("/")) return link;
+        var root = Request?.Url != null ? Request.Url.GetLeftPart(UriPartial.Authority) : string.Empty;
+        return root + "/" + link.TrimStart('/');
+    }
+}

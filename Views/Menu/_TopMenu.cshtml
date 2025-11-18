@@ -5,7 +5,7 @@
     <li>
         @if (!string.IsNullOrEmpty(menu.MenuLink))
         {
-            <a href="@menu.MenuLink" target="_blank" class="top-menu__btn">@menu.MenuName</a>
+            <a href="@MakeAbsolute(menu.MenuLink)" target="_blank" class="top-menu__btn">@menu.MenuName</a>
         }
         else
         {
@@ -14,3 +14,15 @@
     </li>
 
 } 
+
+@functions {
+    private string MakeAbsolute(string link)
+    {
+        if (string.IsNullOrWhiteSpace(link)) return link;
+        if (link.StartsWith("http", StringComparison.OrdinalIgnoreCase)) return link;
+        if (link.StartsWith("~")) return Url.Content(link);
+        if (link.StartsWith("/")) return link;
+        var root = Request?.Url != null ? Request.Url.GetLeftPart(UriPartial.Authority) : string.Empty;
+        return root + "/" + link.TrimStart('/');
+    }
+}
