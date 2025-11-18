@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using Website.ViewModels; // add viewmodels namespace
 
 namespace Website.Controllers
 {
@@ -15,44 +16,47 @@ namespace Website.Controllers
             {
                 try
                 {
-                    // First, try to get any events at all (without filters) and include EventHead
-                    var allEvents = db.tblEvents.Include(e => e.tblEventHead).ToList();
+                    // Query base events including head
+                    var query = db.tblEvents.Include(e => e.tblEventHead);
 
-                    if (allEvents.Count == 0)
-                    {
-                        // No events in database, return empty list
-                        return View(new List<Website.Models.tblEvent>());
-                    }
+                    // Filter active (true or null) events
+                    var active = query.Where(e => e.Active == true || e.Active == null);
 
-                    // Get events that are active (true or null)
-                    var activeEvents = allEvents
-                        .Where(e => e.Active == true || e.Active == null)
-                        .ToList();
+                    // Materialize lists
+                    var now = DateTime.Now.Date;
 
-                    if (activeEvents.Count == 0)
-                    {
-                        // No active events, return first 5 events regardless of active status
-                        return View(allEvents.Take(5).ToList());
-                    }
-
-                    // Sort by EventDate or Date, then by EventID
-                    var sortedEvents = activeEvents
-                        .OrderByDescending(e => e.EventDate ?? e.Date ?? DateTime.MinValue)
+                    // Upcoming events (EventDate in future)
+                    var upcoming = active
+                        .Where(e => (e.EventDate ?? e.Date) >= now)
+                        .OrderBy(e => e.EventDate ?? e.Date) // ascending for display
                         .ThenByDescending(e => e.EventID)
-                        .Take(10)
+                        .Take(6)
                         .ToList();
 
-                    // Randomly select 5 from the top 10
-                    var rnd = new Random();
-                    var randomFive = sortedEvents.OrderBy(e => rnd.Next()).Take(5).ToList();
+                    // Latest (recent past + today) events for news section
+                    var latest = active
+                        .Where(e => (e.EventDate ?? e.Date) <= now)
+                        .OrderByDescending(e => e.EventDate ?? e.Date)
+                        .ThenByDescending(e => e.EventID)
+                        .Take(15) // take a little extra so we can skip first 5 for bottom section
+                        .ToList();
 
-                    return View(randomFive);
+                    // Prepare events for bottom Recent Events section ensuring they are different from Campus News
+                    var recentAfterTopFive = latest.Skip(5).Take(4).ToList();
+
+                    var vm = new HomeIndexViewModel
+                    {
+                        LatestEvents = latest.Take(10).ToList(), // keep existing logic for Campus News
+                        UpcomingEvents = upcoming,
+                        RecentEventsForBottom = recentAfterTopFive
+                    };
+
+                    return View(vm);
                 }
                 catch (Exception ex)
                 {
-                    // Log the error and return empty list
                     System.Diagnostics.Debug.WriteLine($"Error in Index: {ex.Message}");
-                    return View(new List<Website.Models.tblEvent>());
+                    return View(new HomeIndexViewModel());
                 }
             }
         }
@@ -67,7 +71,7 @@ namespace Website.Controllers
         //             // Test database connection
         //             var canConnect = db.Database.Exists();
         //             ViewBag.CanConnect = canConnect;
-
+        //
         //             if (canConnect)
         //             {
         //                 var events = db.tblEvents.Include(e => e.tblEventHead).Take(10).ToList();
@@ -80,7 +84,7 @@ namespace Website.Controllers
         //                 ViewBag.Events = new List<Website.Models.tblEvent>();
         //                 ViewBag.Error = "Cannot connect to database";
         //             }
-
+        //
         //             return View("DebugEvents");
         //         }
         //     }
@@ -104,10 +108,10 @@ namespace Website.Controllers
         //             var eventHeads = db.tblEventHeads.ToList();
         //             ViewBag.EventHeadsCount = eventHeads.Count;
         //             ViewBag.EventHeads = eventHeads;
-
+        //
         //             var eventsWithHeads = db.tblEvents.Include(e => e.tblEventHead).Take(10).ToList();
         //             ViewBag.EventsWithHeads = eventsWithHeads;
-
+        //
         //             return View("DebugEventHeads");
         //         }
         //     }
@@ -131,7 +135,7 @@ namespace Website.Controllers
         //                 ViewBag.Message = "EventHeads already exist in the database.";
         //                 return View("SeedResult");
         //             }
-
+        //
         //             // Create sample EventHeads
         //             var sampleEventHeads = new List<Website.Models.tblEventHead>
         //             {
@@ -142,10 +146,10 @@ namespace Website.Controllers
         //                 new Website.Models.tblEventHead { Title = "Seminar", Active = true, C_Order = 5 },
         //                 new Website.Models.tblEventHead { Title = "Conference", Active = true, C_Order = 6 }
         //             };
-
+        //
         //             db.tblEventHeads.AddRange(sampleEventHeads);
         //             db.SaveChanges();
-
+        //
         //             ViewBag.Message = $"Successfully created {sampleEventHeads.Count} sample EventHeads.";
         //             return View("SeedResult");
         //         }
@@ -170,7 +174,7 @@ namespace Website.Controllers
         //                 ViewBag.Message = "Events already exist in the database.";
         //                 return View("SeedResult");
         //             }
-
+        //
         //             // Ensure EventHeads exist first
         //             if (!db.tblEventHeads.Any())
         //             {
@@ -186,14 +190,14 @@ namespace Website.Controllers
         //                 db.tblEventHeads.AddRange(sampleEventHeads);
         //                 db.SaveChanges();
         //             }
-
+        //
         //             // Get EventHead IDs for assignment
         //             var academicHead = db.tblEventHeads.FirstOrDefault(h => h.Title == "Academic");
         //             var sportsHead = db.tblEventHeads.FirstOrDefault(h => h.Title == "Sports");
         //             var culturalHead = db.tblEventHeads.FirstOrDefault(h => h.Title == "Cultural");
         //             var workshopHead = db.tblEventHeads.FirstOrDefault(h => h.Title == "Workshop");
         //             var seminarHead = db.tblEventHeads.FirstOrDefault(h => h.Title == "Seminar");
-
+        //
         //             // Create sample events
         //             var sampleEvents = new List<Website.Models.tblEvent>
         //             {
@@ -253,10 +257,10 @@ namespace Website.Controllers
         //                     EventHeadID = culturalHead?.EventHeadID
         //                 }
         //             };
-
+        //
         //             db.tblEvents.AddRange(sampleEvents);
         //             db.SaveChanges();
-
+        //
         //             ViewBag.Message = $"Successfully created {sampleEvents.Count} sample events.";
         //             return View("SeedResult");
         //         }

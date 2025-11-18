@@ -1,14 +1,10 @@
-﻿@model IEnumerable<Website.Models.tblEvent>
-@using System.Linq
-
+﻿@model Website.ViewModels.HomeIndexViewModel
 @{
     ViewBag.Title = "Home Page";
 }
-
 <!-- main area start  -->
 <main>
     <div class="body_wrap">
-
         <!-- hero section start  -->
         <section class="hero o-hidden pos-rel">
             <div class="bg_img" data-background="/Content/img/hero/hero_img03.png">
@@ -29,155 +25,111 @@
         <!-- hero btn start -->
         <div class="hero-btns">
             <div class="btns ul_li_center">
-                <a class="thm-btn thm-btn--stroke-white sec-btn" href="#!">
-                    explore programs
-                    <span>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M22 4.84999V16.74C22 17.71 21.21 18.6 20.24 18.72L19.93 18.76C18.29 18.98 15.98 19.66 14.12 20.44C13.47 20.71 12.75 20.22 12.75 19.51V5.59999C12.75 5.22999 12.96 4.88999 13.29 4.70999C15.12 3.71999 17.89 2.83999 19.77 2.67999H19.83C21.03 2.67993 22 3.64999 22 4.84999Z" fill="white" />
-                            <path d="M10.71 4.70999C8.87999 3.71993 6.10999 2.83993 4.22999 2.67993H4.15999C2.95999 2.67993 1.98999 3.64993 1.98999 4.84993V16.7399C1.98999 17.7099 2.77999 18.5999 3.74999 18.7199L4.05999 18.7599C5.69999 18.9799 8.00999 19.6599 9.86999 20.4399C10.52 20.7099 11.24 20.2199 11.24 19.5099V5.59993C11.24 5.21993 11.04 4.88993 10.71 4.70993ZM4.99999 7.73993H7.24999C7.65999 7.73993 7.99999 8.07993 7.99999 8.48993C7.99999 8.90993 7.65999 9.23993 7.24999 9.23993H4.99999C4.58999 9.23993 4.24999 8.90993 4.24999 8.48993C4.24999 8.07993 4.58999 7.73993 4.99999 7.73993ZM7.99999 12.2399H4.99999C4.58999 12.2399 4.24999 11.9099 4.24999 11.4899C4.24999 11.0799 4.58999 10.7399 4.99999 10.7399H7.99999C8.40999 10.7399 8.74999 11.0799 8.74999 11.4899C8.74999 11.9099 8.40999 12.2399 7.99999 12.2399Z" fill="#170006" />
-                        </svg>
-                    </span>
-                </a>
-                <a class="thm-btn thm-btn--stroke-white sec-btn" href="https://admissions.hitecuni.edu.pk/">
-                    apply now
-                    <span>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.25 19.492V20.75C16.25 21.164 15.914 21.5 15.5 21.5C15.086 21.5 14.75 21.164 14.75 20.75V19.5H16C16.084 19.5 16.167 19.497 16.25 19.492Z" fill="white" />
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.75 19.5H8C5.929 19.5 4.25 17.821 4.25 15.75V12.668L9.964 15.825C11.202 16.509 12.798 16.509 14.036 15.825L14.75 15.431V19.5ZM16.25 14.602L19.75 12.668V15.75C19.75 17.737 18.205 19.363 16.25 19.492V14.602Z" fill="white" />
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14.75 14.288L13.552 14.95C12.608 15.472 11.392 15.472 10.448 14.95L2.134 10.356C1.568 10.043 1.25 9.49499 1.25 8.92199C1.25 8.34799 1.568 7.79999 2.134 7.48799L10.448 2.89299C11.392 2.37199 12.608 2.37199 13.552 2.89299L21.866 7.48799C22.432 7.79999 22.75 8.34799 22.75 8.92199C22.75 9.49499 22.432 10.043 21.866 10.356L16.25 13.459V12.75C16.25 12.551 16.171 12.36 16.03 12.22L12.53 8.71999C12.238 8.42699 11.762 8.42699 11.47 8.71999C11.177 9.01199 11.177 9.48799 11.47 9.77999L14.75 13.061V14.288Z" fill="white" />
-                        </svg>
-                    </span>
-                </a>
-                <a class="thm-btn thm-btn--stroke-white sec-btn" href="#!">
-                    talk with a teacher
-                    <span>
-                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13.0364 2.63798C11.6702 1.79536 10.0512 1.33203 8.37891 1.33203C3.82654 1.33203 0 4.72368 0 9.06641C0 10.589 0.473 12.0486 1.37148 13.3092L0.116359 17.2497C-0.0162422 17.6659 0.295539 18.0898 0.730598 18.0898C0.83007 18.0898 0.930188 18.0669 1.02257 18.0198L4.83957 16.0791C4.99413 16.1456 5.15062 16.2076 5.3087 16.265C4.42496 14.8857 3.95312 13.3023 3.95312 11.6445C3.95312 6.70755 8.10726 2.91208 13.0364 2.63798Z" fill="white" />
-                            <path d="M20.6285 15.8873C21.527 14.6267 22 13.1671 22 11.6445C22 7.30022 18.1718 3.91016 13.6211 3.91016C9.06873 3.91016 5.24219 7.30181 5.24219 11.6445C5.24219 15.9888 9.07036 19.3789 13.6211 19.3789C14.8421 19.3789 16.0588 19.1301 17.1602 18.6571L20.9774 20.598C21.2091 20.7158 21.4889 20.6829 21.6869 20.5146C21.885 20.3463 21.9626 20.0755 21.8837 19.8278L20.6285 15.8873ZM11 12.2891C10.644 12.2891 10.3555 12.0005 10.3555 11.6445C10.3555 11.2886 10.644 11 11 11C11.356 11 11.6445 11.2886 11.6445 11.6445C11.6445 12.0005 11.356 12.2891 11 12.2891ZM13.5781 12.2891C13.2222 12.2891 12.9336 12.0005 12.9336 11.6445C12.9336 11.2886 13.2222 11 13.5781 11C13.9341 11 14.2227 11.2886 14.2227 11.6445C14.2227 12.0005 13.9341 12.2891 13.5781 12.2891ZM16.1562 12.2891C15.8003 12.2891 15.5117 12.0005 15.5117 11.6445C15.5117 11.2886 15.8003 11 16.1562 11C16.5122 11 16.8008 11.2886 16.8008 11.6445C16.8008 12.0005 16.5122 12.2891 16.1562 12.2891Z" fill="white" />
-                        </svg>
-                    </span>
-                </a>
+                <a class="thm-btn thm-btn--stroke-white sec-btn" href="/About/Index">About Us<span></span></a>
+                <a class="thm-btn thm-btn--stroke-white sec-btn" href="https://admissions.hitecuni.edu.pk/">apply now<span></span></a>
+                <a class="thm-btn thm-btn--stroke-white sec-btn" href="/Faculties/TeachingFaculty">talk with a teacher<span></span></a>
             </div>
         </div>
         <!-- hero btn end -->
-        <!-- blog section start  -->
+        <!-- blog/news section start  -->
         <section class="blog pt-115 pb-120 bg_img" data-background="~/Content/img/bg/news_bg01.jpg">
-            <div class="container">
+            <style>
+                .news-grid {
+                    --radius: 16px
+                }
+
+                    .news-grid .news-card {
+                        position: relative;
+                        border-radius: var(--radius);
+                        overflow: hidden;
+                        background: #121212;
+                        box-shadow: 0 10px 30px rgba(0,0,0,.15)
+                    }
+
+                        .news-grid .news-card .xb-item--img {
+                            height: 220px
+                        }
+
+                    .news-grid .news-card--lg .xb-item--img {
+                        height: 420px
+                    }
+
+                    .news-grid .xb-item--img img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block
+                    }
+
+                    .news-grid .xb-item--holder {
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        padding: 18px 22px;
+                        color: #fff;
+                        background: linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.45) 60%,rgba(0,0,0,.8) 100%)
+                    }
+
+                    .news-grid .xb-item--cta {
+                        display: inline-block;
+                        padding: 2px 6px;
+                        font-size: 12px;
+                        border-radius: 999px;
+                        background: rgba(255,255,255,.12);
+                        color: #fff;
+                        margin-bottom: 10px;
+                        backdrop-filter: blur(2px)
+                    }
+
+                    .news-grid .xb-item--title {
+                        color: #fff;
+                        margin: 0;
+                        line-height: 1.3;
+                        font-weight: 700;
+                        font-size: 20px
+                    }
+
+                    .news-grid .news-card--lg .xb-item--title {
+                        font-size: 28px
+                    }
+
+                    .news-grid .col-gap > div {
+                        margin-top: 22px
+                    }
+
+                @@media(max-width:991.98px) {
+                    .news-grid .news-card--lg .xb-item--img {
+                        height: 320px
+                    }
+                }
+            </style>
+            <div class="container news-grid">
                 <div class="blog-sec-top ul_li_between">
-                    <div class="section-title mb-40">
-                        <span class="sub-title">Latest News</span>
-                        <h1 class="title">Campus News</h1>
-                    </div>
-                    @*<div class="xb-topic">
-                        <select name="Topic" id="seelct">
-                            <option value="1">Topic</option>
-                            <option value="2">Arts, Humanities, & Social Sciences</option>
-                            <option value="3">Campus & Community</option>
-                            <option value="4">Education, Business, & Law</option>
-                            <option value="5">Health Sciences</option>
-                            <option value="5">Science & Technology</option>
-                        </select>
-                    </div>*@
+                    <div class="section-title mb-40"><span class="sub-title">Latest News</span><h1 class="title">Campus News</h1></div>
                 </div>
-                <div class="row justify-content-center">
-                    @if (Model != null && Model.Any())
+                <div class="row justify-content-center col-gap align-items-center">
+                    @if (Model.LatestEvents != null && Model.LatestEvents.Count > 0)
                     {
-                        var eventsList = Model.ToList();
-
-                        <!-- Left Column - 2 smaller cards -->
-                        <div class="col-lg-3 col-md-8">
-                            <div class="xb-blog__left">
-                                @for (int i = 0; i < Math.Min(2, eventsList.Count); i++)
-                                {
-                                    var ev = eventsList[i];
-                                    <div class="xb-blog pos-rel mt-20">
-                                        <div class="xb-item--img">
-                                            <a href="@Url.Action("Details", "Events", new { id = ev.EventID })">
-                                                <img src="@Url.Content("~/Content/img/event/1255_eventBanner.JPG")" alt="@ev.Title" />
-                                            </a>
-                                        </div>
-                                        <div class="xb-item--holder">
-                                            <a class="xb-item--cta" href="@Url.Action("Details", "Events", new { id = ev.EventID })">#@(ev.tblEventHead?.Title ?? "Event")</a>
-                                            <h2 class="xb-item--title border-effect-2">
-                                                <a href="@Url.Action("Details", "Events", new { id = ev.EventID })">@(ev.Title?.Length > 50 ? ev.Title.Substring(0, 50) + ".." : ev.Title)</a>
-                                            </h2>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-
-                        <!-- Center Column - 1 large card -->
-                        <div class="col-lg-6 col-md-8">
-                            @if (eventsList.Count > 2)
-                            {
-                                var mainEvent = eventsList[2];
-                                <div class="xb-blog chn-margin pos-rel mt-20">
-                                    <div class="xb-item--img">
-                                        <a href="@Url.Action("Details", "Events", new { id = mainEvent.EventID })">
-                                            <img src="@Url.Content("~/Content/img/event/20250304_113244.jpg")" alt="@mainEvent.Title" />
-                                        </a>
-                                    </div>
-                                    <div class="xb-item--holder">
-                                        <a class="xb-item--cta" href="@Url.Action("Details", "Events", new { id = mainEvent.EventID })">#@(mainEvent.tblEventHead?.Title ?? "Event")</a>
-                                        <h2 class="xb-item--title border-effect">
-                                            <a href="@Url.Action("Details", "Events", new { id = mainEvent.EventID })">@mainEvent.Title</a>
-                                        </h2>
-                                        <div class="xb-item--meta ul_li">
-                                            <span><i class="far fa-calendar"></i>@mainEvent.EventDate</span>
-                                            @if (!string.IsNullOrEmpty(mainEvent.Venue))
-                                            {
-                                                <span><i class="far fa-map-marker-alt"></i>@mainEvent.Venue</span>
-                                            }
-                                            <span><i class="far fa-eye"></i>@(mainEvent.Views ?? 0)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-
-                        <!-- Right Column - 2 smaller cards -->
-                        <div class="col-lg-3 col-md-8">
-                            <div class="xb-blog__right">
-                                @for (int i = 3; i < Math.Min(5, eventsList.Count); i++)
-                                {
-                                    var ev = eventsList[i];
-                                    <div class="xb-blog mr-left pos-rel mt-20">
-                                        <div class="xb-item--img">
-                                            <a href="@Url.Action("Details", "Events", new { id = ev.EventID })">
-                                                <img src="@Url.Content("~/Content/img/event/IMG_1393.JPG")" alt="@ev.Title" />
-                                            </a>
-                                        </div>
-                                        <div class="xb-item--holder">
-                                            <a class="xb-item--cta" href="@Url.Action("Details", "Events", new { id = ev.EventID })">#@(ev.tblEventHead?.Title ?? "Event")</a>
-                                            <h2 class="xb-item--title border-effect-2">
-                                                <a href="@Url.Action("Details", "Events", new { id = ev.EventID })">@(ev.Title?.Length > 50 ? ev.Title.Substring(0, 50) + ".." : ev.Title)</a>
-                                            </h2>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                        </div>
+                        var eventsList = Model.LatestEvents;
+                        <div class="col-lg-3 col-md-8"><div class="xb-blog__left">@for (int i = 0; i < (eventsList.Count > 2 ? 2 : eventsList.Count); i++)
+                        {
+                            var ev = eventsList[i]; var bannerSrc = string.IsNullOrEmpty(ev.Banner) ? Url.Content("~/Content/img/departments/Events/placeholder.jpg") : Url.Content("~/Content/img/departments/Events/" + ev.Banner);<div class="xb-blog pos-rel mt-20 news-card news-card--sm"><div class="xb-item--img"><a href="@Url.Action("Details","Events",new { id = ev.EventID })"><img src="@bannerSrc" alt="@ev.Title" /></a></div><div class="xb-item--holder"><a class="xb-item--cta" href="@Url.Action("Details","Events",new { id = ev.EventID })">#@(ev.tblEventHead?.Title ?? "Event")</a><h2 class="xb-item--title border-effect-2"><a href="@Url.Action("Details","Events",new { id = ev.EventID })" style="color:#fff;">@(ev.Title != null && ev.Title.Length > 50 ? ev.Title.Substring(0,50)+".." : ev.Title)</a></h2></div></div>}</div></div>
+                        <div class="col-lg-6 col-md-8">@if (eventsList.Count > 2)
+                        {
+                            var mainEvent = eventsList[2]; var bannerSrcMain = string.IsNullOrEmpty(mainEvent.Banner) ? Url.Content("~/Content/img/departments/Events/placeholder-large.jpg") : Url.Content("~/Content/img/departments/Events/" + mainEvent.Banner);<div class="xb-blog chn-margin pos-rel mt-20 news-card news-card--lg"><div class="xb-item--img"><a href="@Url.Action("Details","Events",new { id = mainEvent.EventID })"><img src="@bannerSrcMain" alt="@mainEvent.Title" /></a></div><div class="xb-item--holder"><a class="xb-item--cta" href="@Url.Action("Details","Events",new { id = mainEvent.EventID })">#@(mainEvent.tblEventHead?.Title ?? "Event")</a><h2 class="xb-item--title border-effect"><a href="@Url.Action("Details","Events",new { id = mainEvent.EventID })" style="color:#fff;">@mainEvent.Title</a></h2><div class="xb-item--meta ul_li" style="gap:12px;margin-top:10px;color:#fff;"><span><i class="far fa-calendar"></i> @((mainEvent.EventDate ?? mainEvent.Date)?.ToString("dd MMM yyyy"))</span>@if (!string.IsNullOrEmpty(mainEvent.Venue))
+                            {<span><i class="far fa-map-marker-alt"></i> @mainEvent.Venue</span>}<span><i class="far fa-eye"></i> @(mainEvent.Views ?? 0)</span></div></div></div>}</div>
+                        <div class="col-lg-3 col-md-8"><div class="xb-blog__right">@for (int i = 3; i < (eventsList.Count > 5 ? 5 : eventsList.Count); i++)
+                        {
+                            var ev = eventsList[i]; var bannerSrcRight = string.IsNullOrEmpty(ev.Banner) ? Url.Content("~/Content/img/departments/Events/placeholder-small.jpg") : Url.Content("~/Content/img/departments/Events/" + ev.Banner);<div class="xb-blog mr-left pos-rel mt-20 news-card news-card--sm"><div class="xb-item--img"><a href="@Url.Action("Details","Events",new { id = ev.EventID })"><img src="@bannerSrcRight" alt="@ev.Title" /></a></div><div class="xb-item--holder"><a class="xb-item--cta" href="@Url.Action("Details","Events",new { id = ev.EventID })">#@(ev.tblEventHead?.Title ?? "Event")</a><h2 class="xb-item--title border-effect-2"><a href="@Url.Action("Details","Events",new { id = ev.EventID })" style="color:#fff;">@(ev.Title != null && ev.Title.Length > 50 ? ev.Title.Substring(0,50)+".." : ev.Title)</a></h2></div></div>}</div></div>
                     }
                     else
-                    {
-                        <div class="col-12"><p>No events to display at this time.</p></div>
-                    }
+                    { <div class="col-12"><p>No events to display at this time.</p></div>}
                 </div>
-                <div class="xb-btn text-center pt-60">
-                    @*<a class="thm-btn" href="@Url.Action("Index", "Events")">*@
-                    <a class="thm-btn" href="#!">
-                        More Campus News
-                        <span class="icon">
-                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10.4795 21C9.10959 21 7.81507 20.7539 6.59589 20.2617C5.37671 19.7695 4.30137 19.0962 3.36986 18.2417C2.43836 17.3872 1.67808 16.3857 1.08904 15.2373C0.486301 14.0752 0.123288 12.8311 0 11.5049V11.4639H8.56849V14.3145C8.56849 14.5742 8.66096 14.7998 8.84589 14.9912C9.03082 15.1826 9.25342 15.2783 9.5137 15.2783C9.65068 15.2783 9.7774 15.251 9.89384 15.1963C10.0103 15.1416 10.1096 15.0732 10.1918 14.9912L14.0137 11.1768C14.0959 11.0947 14.1644 10.9956 14.2192 10.8794C14.274 10.7632 14.3014 10.6367 14.3014 10.5C14.3014 10.3633 14.274 10.2368 14.2192 10.1206C14.1644 10.0044 14.0959 9.90527 14.0137 9.82324L10.1918 6.00879C10.1096 5.92676 10.0103 5.8584 9.89384 5.80371C9.7774 5.74902 9.65068 5.72168 9.5137 5.72168C9.25342 5.72168 9.0274 5.81738 8.83562 6.00879C8.64384 6.2002 8.54794 6.42578 8.54794 6.68555V9.53613H0C0.123288 8.19629 0.486301 6.94531 1.08904 5.7832C1.67808 4.62109 2.44178 3.61279 3.38014 2.7583C4.31849 1.90381 5.39041 1.23047 6.59589 0.738281C7.81507 0.246094 9.10959 0 10.4795 0C11.9315 0 13.2945 0.273439 14.5685 0.820312C15.8425 1.38086 16.9555 2.13623 17.9075 3.08643C18.8596 4.03662 19.6096 5.14746 20.1575 6.41895C20.7192 7.69043 21 9.05078 21 10.5C21 11.9492 20.7192 13.3096 20.1575 14.5811C19.6096 15.8662 18.8596 16.9839 17.9075 17.9341C16.9555 18.8843 15.8425 19.6328 14.5685 20.1797C13.2945 20.7266 11.9315 21 10.4795 21Z" fill="#170006" />
-                            </svg>
-                        </span>
-                    </a>
-                </div>
+                <div class="xb-btn text-center pt-60"><a class="thm-btn" href="@Url.Action("Index","Events")">More Campus News<span class="icon"></span></a></div>
             </div>
         </section>
-        <!-- blog section end  -->
+        <!-- blog/news section end  -->
         <!-- department section start  -->
         <style>
             /* Department icons default and hover */
@@ -186,6 +138,7 @@
                 font-size: 28px;
                 transition: color .25s ease-in-out;
             }
+
             .department .xb-department:hover .xb-item--icon i {
                 color: #000;
             }
@@ -204,12 +157,12 @@
                                 <div class="xb-department text-center pos-rel">
                                     <div class="xb-item--icon"><i class="fas fa-cogs"></i></div>
                                     <h3 class="xb-item--title">Mechanical</h3>
-                                    <a class="div-link" href="#!"></a>
+                                    <a class="div-link" href="/Faculties/DepartmentsAbout?department=ME"></a>
                                 </div>
                                 <div class="xb-department text-center pos-rel">
                                     <div class="xb-item--icon"><i class="fas fa-building"></i></div>
                                     <h3 class="xb-item--title">Civil</h3>
-                                    <a class="div-link" href="#!"></a>
+                                    <a class="div-link" href="/Faculties/DepartmentsAbout?department=civil"></a>
                                 </div>
                             </div>
                         </div>
@@ -219,12 +172,12 @@
                                 <div class="xb-department text-center pos-rel">
                                     <div class="xb-item--icon"><i class="fas fa-bolt"></i></div>
                                     <h3 class="xb-item--title">Electrical</h3>
-                                    <a class="div-link" href="#!"></a>
+                                    <a class="div-link" href="/Faculties/DepartmentsAbout?department=EE"></a>
                                 </div>
                                 <div class="xb-department text-center pos-rel">
                                     <div class="xb-item--icon"><i class="fas fa-heartbeat"></i></div>
                                     <h3 class="xb-item--title">Biomedical</h3>
-                                    <a class="div-link" href="#!"></a>
+                                    <a class="div-link" href="/Faculties/DepartmentsAbout?department=BIO"></a>
                                 </div>
                             </div>
                         </div>
@@ -234,12 +187,12 @@
                                 <div class="xb-department text-center pos-rel">
                                     <div class="xb-item--icon"><i class="fas fa-laptop-code"></i></div>
                                     <h3 class="xb-item--title">Computer</h3>
-                                    <a class="div-link" href="#!"></a>
+                                    <a class="div-link" href="/Faculties/DepartmentsAbout?department=CS"></a>
                                 </div>
                                 <div class="xb-department text-center pos-rel">
                                     <div class="xb-item--icon"><i class="fas fa-chart-line"></i></div>
                                     <h3 class="xb-item--title">Management</h3>
-                                    <a class="div-link" href="#!"></a>
+                                    <a class="div-link" href="/Faculties/DepartmentsAbout?department=Mgt"></a>
                                 </div>
                             </div>
                         </div>
@@ -249,12 +202,12 @@
                                 <div class="xb-department text-center pos-rel">
                                     <div class="xb-item--icon"><i class="fas fa-mosque"></i></div>
                                     <h3 class="xb-item--title">Islamics</h3>
-                                    <a class="div-link" href="#!"></a>
+                                    <a class="div-link" href="/Faculties/DepartmentsAbout?department=ISL"></a>
                                 </div>
                                 <div class="xb-department text-center pos-rel">
                                     <div class="xb-item--icon"><i class="fas fa-calculator"></i></div>
                                     <h3 class="xb-item--title">Mathematics</h3>
-                                    <a class="div-link" href="#!"></a>
+                                    <a class="div-link" href="/Faculties/DepartmentsAbout?department=Mathematics"></a>
                                 </div>
                             </div>
                         </div>
@@ -276,7 +229,7 @@
                             <div class="swiper-slide">
                                 <div class="xb-fanfact__wrapper pos-rel">
                                     <div class="xb-item--img">
-                                        <img src="~/Content/img/feature/feature-img01.png" alt="">
+                                        <img src="~/Content/img/home/img1.jpg" alt="">
                                     </div>
                                     <h2 class="xb-item--title">our teaching quality is best <br> from other university </h2>
                                     <div class="xb-item--holder">
@@ -289,12 +242,12 @@
                             <div class="swiper-slide">
                                 <div class="xb-fanfact__wrapper pos-rel">
                                     <div class="xb-item--img">
-                                        <img src="~/Content/img/feature/feature-img03.png" alt="">
+                                        <img src="~/Content/img/home/fac1.JPG" alt="">
                                     </div>
                                     <h2 class="xb-item--title">our teaching quality is best <br> from other university </h2>
                                     <div class="xb-item--holder">
-                                        <h3 class="xb-item--number">10+</h3>
-                                        <h2 class="xb-item--text">library  in University</h2>
+                                        <h3 class="xb-item--number">15+</h3>
+                                        <h2 class="xb-item--text">Institutes in University</h2>
                                         <p class="xb-item--content">HITEC University hosts a variety of specialized institutes focused on advancing knowledge.</p>
                                     </div>
                                 </div>
@@ -302,7 +255,7 @@
                             <div class="swiper-slide">
                                 <div class="xb-fanfact__wrapper pos-rel">
                                     <div class="xb-item--img">
-                                        <img src="~/Content/img/feature/feature-img01.png" alt="">
+                                        <img src="~/Content/img/home/img3.jpg" alt="">
                                     </div>
                                     <h2 class="xb-item--title">our teaching quality is best <br> from other university </h2>
                                     <div class="xb-item--holder">
@@ -319,123 +272,123 @@
             </div>
         </section>
         <!-- fanfact section end  -->
-<!-- statistics section start  -->
-    <section class="stats-section">
-        <div class="container">
-            <!-- First Row -->
-            <div class="row text-center justify-content-center align-items-center">
-                <div class="col-lg-3 col-md-6 col-6 mb-4">
-                    <div class="stat-box">
-                        <div class="stat-content">
-                            <div class="stat-number-container">
-                                <div class="stat-number">123</div>
-                                <div class="stat-underline"></div>
+        <!-- statistics section start  -->
+        <section class="stats-section">
+            <div class="container">
+                <!-- First Row -->
+                <div class="row text-center justify-content-center align-items-center">
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <div class="stat-box">
+                            <div class="stat-content">
+                                <div class="stat-number-container">
+                                    <div class="stat-number">123</div>
+                                    <div class="stat-underline"></div>
+                                </div>
+                                <div class="stat-text">
+                                    <div class="stat-label">TEACHERS</div>
+                                </div>
                             </div>
-                            <div class="stat-text">
-                                <div class="stat-label">TEACHERS</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <div class="stat-box">
+                            <div class="stat-content">
+                                <div class="stat-number-container">
+                                    <div class="stat-number">5713</div>
+                                    <div class="stat-underline"></div>
+                                </div>
+                                <div class="stat-text">
+                                    <div class="stat-label">PASS OUT<br />STUDENTS</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <div class="stat-box">
+                            <div class="stat-content">
+                                <div class="stat-number-container">
+                                    <div class="stat-number">28</div>
+                                    <div class="stat-underline"></div>
+                                </div>
+                                <div class="stat-text">
+                                    <div class="stat-label">OFFERED<br />PROGRAMS</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <div class="stat-box">
+                            <div class="stat-content">
+                                <div class="stat-number-container">
+                                    <div class="stat-number">2329</div>
+                                    <div class="stat-underline"></div>
+                                </div>
+                                <div class="stat-text">
+                                    <div class="stat-label">REGISTERED<br />STUDENTS</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-6 mb-4">
-                    <div class="stat-box">
-                        <div class="stat-content">
-                            <div class="stat-number-container">
-                                <div class="stat-number">5713</div>
-                                <div class="stat-underline"></div>
-                            </div>
-                            <div class="stat-text">
-                                <div class="stat-label">PASS OUT<br />STUDENTS</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-6 mb-4">
-                    <div class="stat-box">
-                        <div class="stat-content">
-                            <div class="stat-number-container">
-                                <div class="stat-number">28</div>
-                                <div class="stat-underline"></div>
-                            </div>
-                            <div class="stat-text">
-                                <div class="stat-label">OFFERED<br />PROGRAMS</div>
+                <!-- blog/news section end  -->
+                <!-- Second Row -->
+                <div class="row text-center justify-content-center align-items-center">
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <div class="stat-box">
+                            <div class="stat-content">
+                                <div class="stat-number-container">
+                                    <div class="stat-number">31.5</div>
+                                    <div class="stat-underline"></div>
+                                </div>
+                                <div class="stat-text">
+                                    <div class="stat-label">SCHOLARSHIP<br />2020-2021<br />(MILLION)</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-6 mb-4">
-                    <div class="stat-box">
-                        <div class="stat-content">
-                            <div class="stat-number-container">
-                                <div class="stat-number">2329</div>
-                                <div class="stat-underline"></div>
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <div class="stat-box">
+                            <div class="stat-content">
+                                <div class="stat-number-container">
+                                    <div class="stat-number">14.9</div>
+                                    <div class="stat-underline"></div>
+                                </div>
+                                <div class="stat-text">
+                                    <div class="stat-label">SCHOLARSHIP<br />2021-2022<br />(MILLION)</div>
+                                </div>
                             </div>
-                            <div class="stat-text">
-                                <div class="stat-label">REGISTERED<br />STUDENTS</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <div class="stat-box">
+                            <div class="stat-content">
+                                <div class="stat-number-container">
+                                    <div class="stat-number">14.4</div>
+                                    <div class="stat-underline"></div>
+                                </div>
+                                <div class="stat-text">
+                                    <div class="stat-label">SCHOLARSHIP<br />2022-2023<br />(MILLION)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-6 mb-4">
+                        <div class="stat-box">
+                            <div class="stat-content">
+                                <div class="stat-number-container">
+                                    <div class="stat-number">197.2</div>
+                                    <div class="stat-underline"></div>
+                                </div>
+                                <div class="stat-text">
+                                    <div class="stat-label">SCHOLARSHIP<br />(2007-TILL)<br />(MILLION)</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Second Row -->
-            <div class="row text-center justify-content-center align-items-center">
-                <div class="col-lg-3 col-md-6 col-6 mb-4">
-                    <div class="stat-box">
-                        <div class="stat-content">
-                            <div class="stat-number-container">
-                                <div class="stat-number">31.5</div>
-                                <div class="stat-underline"></div>
-                            </div>
-                            <div class="stat-text">
-                                <div class="stat-label">SCHOLARSHIP<br />2020-2021<br />(MILLION)</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-6 mb-4">
-                    <div class="stat-box">
-                        <div class="stat-content">
-                            <div class="stat-number-container">
-                                <div class="stat-number">14.9</div>
-                                <div class="stat-underline"></div>
-                            </div>
-                            <div class="stat-text">
-                                <div class="stat-label">SCHOLARSHIP<br />2021-2022<br />(MILLION)</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-6 mb-4">
-                    <div class="stat-box">
-                        <div class="stat-content">
-                            <div class="stat-number-container">
-                                <div class="stat-number">14.4</div>
-                                <div class="stat-underline"></div>
-                            </div>
-                            <div class="stat-text">
-                                <div class="stat-label">SCHOLARSHIP<br />2022-2023<br />(MILLION)</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-6 mb-4">
-                    <div class="stat-box">
-                        <div class="stat-content">
-                            <div class="stat-number-container">
-                                <div class="stat-number">197.2</div>
-                                <div class="stat-underline"></div>
-                            </div>
-                            <div class="stat-text">
-                                <div class="stat-label">SCHOLARSHIP<br />(2007-TILL)<br />(MILLION)</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- statistics section end  -->
+        </section>
+        <!-- statistics section end  -->
         <!-- program section start  -->
         <section class="program pos-rel pt-115">
             <div class="container">
@@ -445,31 +398,31 @@
                         <h1 class="title">Top Programs</h1>
                     </div>
                     @*<div class="pro-btn mb-20">
-                        <a class="thm-btn thm-btn--stroke-black" href="courses#">
-                            view all programs
-                            <span>
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M22 4.84993V16.7399C22 17.7099 21.21 18.5999 20.24 18.7199L19.93 18.7599C18.29 18.9799 15.98 19.6599 14.12 20.4399C13.47 20.7099 12.75 20.2199 12.75 19.5099V5.59993C12.75 5.22993 12.96 4.88993 13.29 4.70993C15.12 3.71993 17.89 2.83993 19.77 2.67993H19.83C21.03 2.67993 22 3.64993 22 4.84993Z" fill="#170006" />
-                                    <path d="M10.71 4.70993C8.87999 3.71993 6.10999 2.83993 4.22999 2.67993H4.15999C2.95999 2.67993 1.98999 3.64993 1.98999 4.84993V16.7399C1.98999 17.7099 2.77999 18.5999 3.74999 18.7199L4.05999 18.7599C5.69999 18.9799 8.00999 19.6599 9.86999 20.4399C10.52 20.7099 11.24 20.2199 11.24 19.5099V5.59993C11.24 5.21993 11.04 4.88993 10.71 4.70993ZM4.99999 7.73993H7.24999C7.65999 7.73993 7.99999 8.07993 7.99999 8.48993C7.99999 8.90993 7.65999 9.23993 7.24999 9.23993H4.99999C4.58999 9.23993 4.24999 8.90993 4.24999 8.48993C4.24999 8.07993 4.58999 7.73993 4.99999 7.73993ZM7.99999 12.2399H4.99999C4.58999 12.2399 4.24999 11.9099 4.24999 11.4899C4.24999 11.0799 4.58999 10.7399 4.99999 10.7399H7.99999C8.40999 10.7399 8.74999 11.0799 8.74999 11.4899C8.74999 11.9099 8.40999 12.2399 7.99999 12.2399Z" fill="#170006" />
-                                </svg>
-                            </span>
-                        </a>
-                    </div>*@
+                            <a class="thm-btn thm-btn--stroke-black" href="courses#">
+                                view all programs
+                                <span>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M22 4.84993V16.7399C22 17.7099 21.21 18.5999 20.24 18.7199L19.93 18.7599C18.29 18.9799 15.98 19.6599 14.12 20.4399C13.47 20.7099 12.75 20.2199 12.75 19.5099V5.59993C12.75 5.22993 12.96 4.88993 13.29 4.70993C15.12 3.71993 17.89 2.83993 19.77 2.67993H19.83C21.03 2.67993 22 3.64993 22 4.84993Z" fill="#170006" />
+                                        <path d="M10.71 4.70993C8.87999 3.71993 6.10999 2.83993 4.22999 2.67993H4.15999C2.95999 2.67993 1.98999 3.64993 1.98999 4.84993V16.7399C1.98999 17.7099 2.77999 18.5999 3.74999 18.7199L4.05999 18.7599C5.69999 18.9799 8.00999 19.6599 9.86999 20.4399C10.52 20.7099 11.24 20.2199 11.24 19.5099V5.59993C11.24 5.21993 11.04 4.88993 10.71 4.70993ZM4.99999 7.73993H7.24999C7.65999 7.73993 7.99999 8.07993 7.99999 8.48993C7.99999 8.90993 7.65999 9.23993 7.24999 9.23993H4.99999C4.58999 9.23993 4.24999 8.90993 4.24999 8.48993C4.24999 8.07993 4.58999 7.73993 4.99999 7.73993ZM7.99999 12.2399H4.99999C4.58999 12.2399 4.24999 11.9099 4.24999 11.4899C4.24999 11.0799 4.58999 10.7399 4.99999 10.7399H7.99999C8.40999 10.7399 8.74999 11.0799 8.74999 11.4899C8.74999 11.9099 8.40999 12.2399 7.99999 12.2399Z" fill="#170006" />
+                                    </svg>
+                                </span>
+                            </a>
+                        </div>*@
                 </div>
                 <div class="row mt-none-60">
                     <div class="col-lg-4 col-md-6 mt-60">
                         <div class="xb-program__wrapper">
                             <div class="xb-item--img text-center">
-                                <a href="https://admissions.hitecuni.edu.pk/"><img src="~/Content/img/program/BS ME.jpg" alt="BS Mechanical Engineering"></a>
+                                <a href="/Faculties/Programs?department=ME"><img src="~/Content/img/program/BS ME.jpg" alt="BS Mechanical Engineering"></a>
                             </div>
                             <div class="xb-item--holder">
                                 <div class="xb-item--deprt ul_li_between">
                                     <span class="xb-item--group"># Mechanical</span>
                                     <div class="xb-item--rating"><span>5.0</span> <img src="~/Content/img/icon/rating.png" alt=""></div>
                                 </div>
-                                <h2 class="xb-item--title border-effect-2"><a href="https://admissions.hitecuni.edu.pk/">BS Mechanical Engineering</a></h2>
+                                <h2 class="xb-item--title border-effect-2"><a href="/Faculties/Programs?department=ME">BS Mechanical Engineering</a></h2>
                                 <div class="xb-item--dep-btn">
-                                    <a href="https://admissions.hitecuni.edu.pk/">enroll now</a>
+                                    <a href="/Faculties/Programs?department=ME">Explore now</a>
                                 </div>
                             </div>
                         </div>
@@ -477,16 +430,16 @@
                     <div class="col-lg-4 col-md-6 mt-60">
                         <div class="xb-program__wrapper">
                             <div class="xb-item--img text-center">
-                                <a href="https://admissions.hitecuni.edu.pk/"><img src="~/Content/img/program/CS.jpg" alt="BS Computer Science"></a>
+                                <a href="/Faculties/Programs?department=CS"><img src="~/Content/img/program/CS.jpg" alt="BS Computer Science"></a>
                             </div>
                             <div class="xb-item--holder">
                                 <div class="xb-item--deprt ul_li_between">
                                     <span class="xb-item--group"># Computer</span>
                                     <div class="xb-item--rating"><span>4.9</span> <img src="~/Content/img/icon/rating.png" alt=""></div>
                                 </div>
-                                <h2 class="xb-item--title border-effect-2"><a href="https://admissions.hitecuni.edu.pk/">BS Computer Science</a></h2>
+                                <h2 class="xb-item--title border-effect-2"><a href="/Faculties/Programs?department=CS">BS Computer Science</a></h2>
                                 <div class="xb-item--dep-btn">
-                                    <a href="https://admissions.hitecuni.edu.pk/">enroll now</a>
+                                    <a href="/Faculties/Programs?department=CS">Explore now</a>
                                 </div>
                             </div>
                         </div>
@@ -494,16 +447,16 @@
                     <div class="col-lg-4 col-md-6 mt-60">
                         <div class="xb-program__wrapper">
                             <div class="xb-item--img text-center">
-                                <a href="https://admissions.hitecuni.edu.pk/"><img src="~/Content/img/program/MS ME.jpg" alt="MS Mechanical Engineering"></a>
+                                <a href="/Faculties/Programs?department=ME"><img src="~/Content/img/program/MS ME.jpg" alt="MS Mechanical Engineering"></a>
                             </div>
                             <div class="xb-item--holder">
                                 <div class="xb-item--deprt ul_li_between">
                                     <span class="xb-item--group"># Mechanical</span>
                                     <div class="xb-item--rating"><span>5.0</span> <img src="~/Content/img/icon/rating.png" alt=""></div>
                                 </div>
-                                <h2 class="xb-item--title border-effect-2"><a href="https://admissions.hitecuni.edu.pk/">MS Mechanical Engineering</a></h2>
+                                <h2 class="xb-item--title border-effect-2"><a href="/Faculties/Programs?department=ME">MS Mechanical Engineering</a></h2>
                                 <div class="xb-item--dep-btn">
-                                    <a href="https://admissions.hitecuni.edu.pk/">enroll now</a>
+                                    <a href="/Faculties/Programs?department=ME">Explore now</a>
                                 </div>
                             </div>
                         </div>
@@ -511,16 +464,16 @@
                     <div class="col-lg-4 col-md-6 mt-60">
                         <div class="xb-program__wrapper">
                             <div class="xb-item--img text-center">
-                                <a href="https://admissions.hitecuni.edu.pk/"><img src="~/Content/img/program/Civil.jpg" alt="BS Civil Engineering"></a>
+                                <a href="/Faculties/Programs?department=civil"><img src="~/Content/img/program/Civil.jpg" alt="BS Civil Engineering"></a>
                             </div>
                             <div class="xb-item--holder">
                                 <div class="xb-item--deprt ul_li_between">
                                     <span class="xb-item--group"># Civil</span>
                                     <div class="xb-item--rating"><span>5.0</span> <img src="~/Content/img/icon/rating.png" alt=""></div>
                                 </div>
-                                <h2 class="xb-item--title border-effect-2"><a href="https://admissions.hitecuni.edu.pk/">BS Civil Engineering</a></h2>
+                                <h2 class="xb-item--title border-effect-2"><a href="/Faculties/Programs?department=civil">BS Civil Engineering</a></h2>
                                 <div class="xb-item--dep-btn">
-                                    <a href="https://admissions.hitecuni.edu.pk/">enroll now</a>
+                                    <a href="/Faculties/Programs?department=civil">Explore now</a>
                                 </div>
                             </div>
                         </div>
@@ -528,16 +481,16 @@
                     <div class="col-lg-4 col-md-6 mt-60">
                         <div class="xb-program__wrapper">
                             <div class="xb-item--img text-center">
-                                <a href="https://admissions.hitecuni.edu.pk/"><img src="~/Content/img/program/BS EE.jpg" alt="BS Electrical Engineering"></a>
+                                <a href="/Faculties/Programs?department=EE"><img src="~/Content/img/program/BS EE.jpg" alt="BS Electrical Engineering"></a>
                             </div>
                             <div class="xb-item--holder">
                                 <div class="xb-item--deprt ul_li_between">
                                     <span class="xb-item--group"># Electrical</span>
                                     <div class="xb-item--rating"><span>5.0</span> <img src="~/Content/img/icon/rating.png" alt=""></div>
                                 </div>
-                                <h2 class="xb-item--title border-effect-2"><a href="https://admissions.hitecuni.edu.pk/">BS Electrical Engineering</a></h2>
+                                <h2 class="xb-item--title border-effect-2"><a href="/Faculties/Programs?department=EE">BS Electrical Engineering</a></h2>
                                 <div class="xb-item--dep-btn">
-                                    <a href="https://admissions.hitecuni.edu.pk/">enroll now</a>
+                                    <a href="/Faculties/Programs?department=EE">Explore now</a>
                                 </div>
                             </div>
                         </div>
@@ -545,16 +498,16 @@
                     <div class="col-lg-4 col-md-6 mt-60">
                         <div class="xb-program__wrapper">
                             <div class="xb-item--img text-center">
-                                <a href="https://admissions.hitecuni.edu.pk/"><img src="~/Content/img/program/MS EE.jpg" alt="MS Electrical Engineering"></a>
+                                <a href="/Faculties/Programs?department=EE"><img src="~/Content/img/program/MS EE.jpg" alt="MS Electrical Engineering"></a>
                             </div>
                             <div class="xb-item--holder">
                                 <div class="xb-item--deprt ul_li_between">
                                     <span class="xb-item--group"># Electrical</span>
                                     <div class="xb-item--rating"><span>4.9</span> <img src="~/Content/img/icon/rating.png" alt=""></div>
                                 </div>
-                                <h2 class="xb-item--title border-effect-2"><a href="https://admissions.hitecuni.edu.pk/">MS Electrical Engineering</a></h2>
+                                <h2 class="xb-item--title border-effect-2"><a href="/Faculties/Programs?department=EE">MS Electrical Engineering</a></h2>
                                 <div class="xb-item--dep-btn">
-                                    <a href="https://admissions.hitecuni.edu.pk/">enroll now</a>
+                                    <a href="/Faculties/Programs?department=EE">Explore now</a>
                                 </div>
                             </div>
                         </div>
@@ -602,8 +555,8 @@
                             </div>
                             <div class="xb-item--holder">
                                 @*<h3 class="xb-item--title">Cultural Experiences</h3>
-                                <div class="xb-btn_thm ul_li">*@
-                                    <!--<a class="thm-btn btn-yellow" href="#!">
+                                    <div class="xb-btn_thm ul_li">*@
+                                <!--<a class="thm-btn btn-yellow" href="#!">
                                         read more
                                         <span>
                                             <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -621,17 +574,17 @@
                                 <img src="~/Content/img/home/3.jpeg" alt="">
                             </div>
                             <div class="xb-item--holder">
-                               @* <h3 class="xb-item--title">Cultural Experiences</h3>
-                                <div class="xb-btn_thm ul_li">
-                                    <a class="thm-btn btn-yellow" href="#!">
-                                        read more
-                                        <span>
-                                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M13 0.999999C13 0.447714 12.5523 -1.14869e-06 12 -1.40157e-06L3 -6.00782e-07C2.44772 -9.37957e-07 2 0.447715 2 0.999999C2 1.55228 2.44772 2 3 2L11 2L11 10C11 10.5523 11.4477 11 12 11C12.5523 11 13 10.5523 13 10L13 0.999999ZM1.70711 12.7071L12.7071 1.70711L11.2929 0.292892L0.292893 11.2929L1.70711 12.7071Z" fill="black" />
-                                            </svg>
-                                        </span>
-                                    </a>
-                                </div>*@
+                                @* <h3 class="xb-item--title">Cultural Experiences</h3>
+                                    <div class="xb-btn_thm ul_li">
+                                        <a class="thm-btn btn-yellow" href="#!">
+                                            read more
+                                            <span>
+                                                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M13 0.999999C13 0.447714 12.5523 -1.14869e-06 12 -1.40157e-06L3 -6.00782e-07C2.44772 -9.37957e-07 2 0.447715 2 0.999999C2 1.55228 2.44772 2 3 2L11 2L11 10C11 10.5523 11.4477 11 12 11C12.5523 11 13 10.5523 13 10L13 0.999999ZM1.70711 12.7071L12.7071 1.70711L11.2929 0.292892L0.292893 11.2929L1.70711 12.7071Z" fill="black" />
+                                                </svg>
+                                            </span>
+                                        </a>
+                                    </div>*@
                             </div>
                         </div>
                     </div>
@@ -641,17 +594,17 @@
                                 <img src="~/Content/img/home/4.jpeg" alt="">
                             </div>
                             <div class="xb-item--holder">
-                              @*  <h3 class="xb-item--title">Cultural Experiences</h3>
-                                <div class="xb-btn_thm ul_li">
-                                    <a class="thm-btn btn-yellow" href="#!">
-                                        read more
-                                        <span>
-                                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M13 0.999999C13 0.447714 12.5523 -1.14869e-06 12 -1.40157e-06L3 -6.00782e-07C2.44772 -9.37957e-07 2 0.447715 2 0.999999C2 1.55228 2.44772 2 3 2L11 2L11 10C11 10.5523 11.4477 11 12 11C12.5523 11 13 10.5523 13 10L13 0.999999ZM1.70711 12.7071L12.7071 1.70711L11.2929 0.292892L0.292893 11.2929L1.70711 12.7071Z" fill="black" />
-                                            </svg>
-                                        </span>
-                                    </a>
-                                </div>*@
+                                @*  <h3 class="xb-item--title">Cultural Experiences</h3>
+                                    <div class="xb-btn_thm ul_li">
+                                        <a class="thm-btn btn-yellow" href="#!">
+                                            read more
+                                            <span>
+                                                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M13 0.999999C13 0.447714 12.5523 -1.14869e-06 12 -1.40157e-06L3 -6.00782e-07C2.44772 -9.37957e-07 2 0.447715 2 0.999999C2 1.55228 2.44772 2 3 2L11 2L11 10C11 10.5523 11.4477 11 12 11C12.5523 11 13 10.5523 13 10L13 0.999999ZM1.70711 12.7071L12.7071 1.70711L11.2929 0.292892L0.292893 11.2929L1.70711 12.7071Z" fill="black" />
+                                                </svg>
+                                            </span>
+                                        </a>
+                                    </div>*@
                             </div>
                         </div>
                     </div>
@@ -755,7 +708,7 @@
                                             <span class="xb-item--desig">Student Council President</span>
                                         </div>
                                     </div>
-                                  
+
                                 </div>
                             </div>
                         </div>
@@ -768,105 +721,89 @@
             </div>
         </section>
         <!-- testimonial section end  -->
-        <!-- event section start  -->
+        <!-- recent events section start  -->
         <section class="event event-bg-clr pos-rel pt-115">
             <div class="container">
                 <div class="section-title text-center mb-40">
-                    <span class="sub-title">Our Events</span>
-                    <h1 class="title">Our upcoming events</h1>
+                    <h1 class="title">Our Recent Events</h1>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-xl-6 col-lg-8">
-                        <div class="xb-event-wrapper mt-20">
-                            <div class="xb-event-left ul_li align-items-center">
-                                <div class="xb-item--img pos-rel">
-                                    <img src="~/Content/img/event/1255_eventBanner.JPG" alt="">
-                                    <span class="xb-item--date">24, Nov 2024</span>
-                                </div>
-                                <div class="xb-item--author">
-                                    <span class="xb-item--location">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M10 11.1917C11.436 11.1917 12.6 10.0276 12.6 8.5917C12.6 7.15576 11.436 5.9917 10 5.9917C8.56408 5.9917 7.40002 7.15576 7.40002 8.5917C7.40002 10.0276 8.56408 11.1917 10 11.1917Z" stroke="#292D32" stroke-width="1.5" />
-                                            <path d="M3.01663 7.07484C4.65829 -0.141827 15.35 -0.133494 16.9833 7.08317C17.9416 11.3165 15.3083 14.8998 13 17.1165C11.325 18.7332 8.67496 18.7332 6.99163 17.1165C4.69163 14.8998 2.05829 11.3082 3.01663 7.07484Z" stroke="#292D32" stroke-width="1.5" />
-                                        </svg> HITEC University, Taxila Cantt
-                                    </span>
-                                    <h2 class="xb-item--title border-effect"><a href="#!">Celebrating Diversity through Art and Performance..</a></h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="xb-event-wrapper mt-20">
-                            <div class="xb-event-left ul_li align-items-center">
-                                <div class="xb-item--img pos-rel">
-                                    <img src="~/Content/img/event/Whatsapp.jpeg" alt="">
-                                    <span class="xb-item--date">24, Nov 2024</span>
-                                </div>
-                                <div class="xb-item--author">
-                                    <span class="xb-item--location">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M10 11.1917C11.436 11.1917 12.6 10.0276 12.6 8.5917C12.6 7.15576 11.436 5.9917 10 5.9917C8.56408 5.9917 7.40002 7.15576 7.40002 8.5917C7.40002 10.0276 8.56408 11.1917 10 11.1917Z" stroke="#292D32" stroke-width="1.5" />
-                                            <path d="M3.01663 7.07484C4.65829 -0.141827 15.35 -0.133494 16.9833 7.08317C17.9416 11.3165 15.3083 14.8998 13 17.1165C11.325 18.7332 8.67496 18.7332 6.99163 17.1165C4.69163 14.8998 2.05829 11.3082 3.01663 7.07484Z" stroke="#292D32" stroke-width="1.5" />
-                                        </svg> HITEC University, Taxila Cantt
-                                    </span>
-                                    <h2 class="xb-item--title border-effect"><a href="#!">Global Perspectives Bridging Cultures, Shaping Futures..</a></h2>
+                        @{
+                            var recent = Model.RecentEventsForBottom ?? new List<Website.Models.tblEvent>();
+                        }
+                        @for (int i = 0; i < Math.Min(3, recent.Count); i++)
+                        {
+                            var ev = recent[i];
+                            var thumb = string.IsNullOrEmpty(ev.Banner) ? Url.Content("~/Content/img/departments/Events/placeholder.jpg") : Url.Content("~/Content/img/departments/Events/" + ev.Banner);
+                            var dateText = (ev.EventDate ?? ev.Date)?.ToString("dd, MMM yyyy");
+                            <div class="xb-event-wrapper mt-20" style="z-index: 999; position: relative;">
+                                <div class="xb-event-left ul_li align-items-center">
+                                    <div class="xb-item--img pos-rel">
+                                        <a href="@Url.Action("Details","Events", new { id = ev.EventID })"><img src="@thumb" alt="@ev.Title"></a>
+                                        <span class="xb-item--date">@dateText</span>
+                                    </div>
+                                    <div class="xb-item--author">
+                                        <span class="xb-item--location">
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 11.1917C11.436 11.1917 12.6 10.0276 12.6 8.5917C12.6 7.15576 11.436 5.9917 10 5.9917C8.56408 5.9917 7.40002 7.15576 7.40002 8.5917C7.40002 10.0276 8.56408 11.1917 10 11.1917Z" stroke="#292D32" stroke-width="1.5" />
+                                                <path d="M3.01663 7.07484C4.65829 -0.141827 15.35 -0.133494 16.9833 7.08317C17.9416 11.3165 15.3083 14.8998 13 17.1165C11.325 18.7332 8.67496 18.7332 6.99163 17.1165C4.69163 14.8998 2.05829 11.3082 3.01663 7.07484Z" stroke="#292D32" stroke-width="1.5" />
+                                            </svg> HITEC University, Taxila Cantt
+                                        </span>
+                                        <h2 class="xb-item--title border-effect"><a href="@Url.Action("Details","Events", new { id = ev.EventID })">@(ev.Title != null && ev.Title.Length > 80 ? ev.Title.Substring(0,80)+".." : ev.Title)</a></h2>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="xb-event-wrapper pos-rel mt-20">
-                            <div class="xb-event-left ul_li align-items-center">
-                                <div class="xb-item--img pos-rel">
-                                    <img src="~/Content/img/event/Open house 2025.png" alt="">
-                                    <span class="xb-item--date">24, Nov 2024</span>
-                                </div>
-                                <div class="xb-item--author">
-                                    <span class="xb-item--location">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M10 11.1917C11.436 11.1917 12.6 10.0276 12.6 8.5917C12.6 7.15576 11.436 5.9917 10 5.9917C8.56408 5.9917 7.40002 7.15576 7.40002 8.5917C7.40002 10.0276 8.56408 11.1917 10 11.1917Z" stroke="#292D32" stroke-width="1.5" />
-                                            <path d="M3.01663 7.07484C4.65829 -0.141827 15.35 -0.133494 16.9833 7.08317C17.9416 11.3165 15.3083 14.8998 13 17.1165C11.325 18.7332 8.67496 18.7332 6.99163 17.1165C4.69163 14.8998 2.05829 11.3082 3.01663 7.07484Z" stroke="#292D32" stroke-width="1.5" />
-                                        </svg> HITEC University, Taxila Cantt
-                                    </span>
-                                    <h2 class="xb-item--title border-effect"><a href="#!">Throw an event to kick off a mentorship program..</a></h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="xb-event-wrapper mt-20" style="display:none;"></div>
-                        <div class="xb-event-wrapper pos-rel mt-20" style="display:none;"></div>
+                        }
+                        @if (recent.Count < 3)
+                        {
+                            <div class="xb-event-wrapper mt-20" style="display:none;"></div>
+                            <div class="xb-event-wrapper pos-rel mt-20" style="display:none;"></div>
+                        }
                     </div>
+
                     <div class="col-xl-6 col-lg-8">
-                        <div class="xb-event-item mt-20">
-                            <div class="xb-item--img">
-                                <img src="~/Content/img/event/20250304_113244.jpg" alt="">
-                            </div>
-                            <div class="ul_li xb-item--wrap">
-                                <div class="xb-item--content">
-                                    <span class="xb-item--location">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M10 11.1917C11.436 11.1917 12.6 10.0276 12.6 8.5917C12.6 7.15576 11.436 5.9917 10 5.9917C8.56408 5.9917 7.40002 7.15576 7.40002 8.5917C7.40002 10.0276 8.56408 11.1917 10 11.1917Z" stroke="#292D32" stroke-width="1.5" />
-                                            <path d="M3.01663 7.07484C4.65829 -0.141827 15.35 -0.133494 16.9833 7.08317C17.9416 11.3165 15.3083 14.8998 13 17.1165C11.325 18.7332 8.67496 18.7332 6.99163 17.1165C4.69163 14.8998 2.05829 11.3082 3.01663 7.07484Z" stroke="#292D32" stroke-width="1.5" />
-                                        </svg>HITEC University, Taxila Cantt
-                                    </span>
-                                    <h2 class="xb-item--title border-effect"><a href="#!">Hongbo Chi, Ph.D., Integrating systems immunology with..</a></h2>
-                                    <div class="xb-event-btn pt-15">
-                                        <a class="thm-btn" href="#!">
-                                            get a tickets
-                                            <span class="icon">
-                                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M10.4795 21C9.10959 21 7.81507 20.7539 6.59589 20.2617C5.37671 19.7695 4.30137 19.0962 3.36986 18.2417C2.43836 17.3872 1.67808 16.3857 1.08904 15.2373C0.486301 14.0752 0.123288 12.8311 0 11.5049V11.4639H8.56849V14.3145C8.56849 14.5742 8.66096 14.7998 8.84589 14.9912C9.03082 15.1826 9.25342 15.2783 9.5137 15.2783C9.65068 15.2783 9.7774 15.251 9.89384 15.1963C10.0103 15.1416 10.1096 15.0732 10.1918 14.9912L14.0137 11.1768C14.0959 11.0947 14.1644 10.9956 14.2192 10.8794C14.274 10.7632 14.3014 10.6367 14.3014 10.5C14.3014 10.3633 14.274 10.2368 14.2192 10.1206C14.1644 10.0044 14.0959 9.90527 14.0137 9.82324L10.1918 6.00879C10.1096 5.92676 10.0103 5.8584 9.89384 5.80371C9.7774 5.74902 9.65068 5.72168 9.5137 5.72168C9.25342 5.72168 9.0274 5.81738 8.83562 6.00879C8.64384 6.2002 8.54794 6.42578 8.54794 6.68555V9.53613H0C0.123288 8.19629 0.486301 6.94531 1.08904 5.7832C1.67808 4.62109 2.44178 3.61279 3.38014 2.7583C4.31849 1.90381 5.39041 1.23047 6.59589 0.738281C7.81507 0.246094 9.10959 0 10.4795 0C11.9315 0 13.2945 0.273439 14.5685 0.820312C15.8425 1.38086 16.9555 2.13623 17.9075 3.08643C18.8596 4.03662 19.6096 5.14746 20.1575 6.41895C20.7192 7.69043 21 9.05078 21 10.5C21 11.9492 20.7192 13.3096 20.1575 14.5811C19.6096 15.8662 18.8596 16.9839 17.9075 17.9341C16.9555 18.8843 15.8425 19.6328 14.5685 20.1797C13.2945 20.7266 11.9315 21 10.4795 21Z" fill="#170006" />
-                                                </svg>
-                                            </span>
-                                        </a>
+                        @if (recent.Count > 3)
+                        {
+                            var mainEvent = recent[3];
+                            var mainThumb = string.IsNullOrEmpty(mainEvent.Banner) ? Url.Content("~/Content/img/departments/Events/placeholder-large.jpg") : Url.Content("~/Content/img/departments/Events/" + mainEvent.Banner);
+                            var mainDate = (mainEvent.EventDate ?? mainEvent.Date);
+                            <div class="xb-event-item mt-20">
+                                <div class="xb-item--img">
+                                    <a href="@Url.Action("Details","Events", new { id = mainEvent.EventID })"><img src="@mainThumb" alt="@mainEvent.Title"></a>
+                                </div>
+                                <div class="ul_li xb-item--wrap">
+                                    <div class="xb-item--content">
+                                        <span class="xb-item--location">
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 11.1917C11.436 11.1917 12.6 10.0276 12.6 8.5917C12.6 7.15576 11.436 5.9917 10 5.9917C8.56408 5.9917 7.40002 7.15576 7.40002 8.5917C7.40002 10.0276 8.56408 11.1917 10 11.1917Z" stroke="#292D32" stroke-width="1.5" />
+                                                <path d="M3.01663 7.07484C4.65829 -0.141827 15.35 -0.133494 16.9833 7.08317C17.9416 11.3165 15.3083 14.8998 13 17.1165C11.325 18.7332 8.67496 18.7332 6.99163 17.1165C4.69163 14.8998 2.05829 11.3082 3.01663 7.07484Z" stroke="#292D32" stroke-width="1.5" />
+                                            </svg>HITEC University, Taxila Cantt
+                                        </span>
+                                        <h2 class="xb-item--title border-effect"><a href="@Url.Action("Details","Events", new { id = mainEvent.EventID })">@mainEvent.Title</a></h2>
+                                        <div class="xb-event-btn pt-15">
+                                            <a class="thm-btn" href="@Url.Action("Details","Events", new { id = mainEvent.EventID })">
+                                                View Details
+                                                <span class="icon">
+                                                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M10.4795 21C9.10959 21 7.81507 20.7539 6.59589 20.2617C5.37671 19.7695 4.30137 19.0962 3.36986 18.2417C2.43836 17.3872 1.67808 16.3857 1.08904 15.2373C0.486301 14.0752 0.123288 12.8311 0 11.5049V11.4639H8.56849V14.3145C8.56849 14.5742 8.66096 14.7998 8.84589 14.9912C9.03082 15.1826 9.25342 15.2783 9.5137 15.2783C9.65068 15.2783 9.7774 15.251 9.89384 15.1963C10.0103 15.1416 10.1096 15.0732 10.1918 14.9912L14.0137 11.1768C14.0959 11.0947 14.1644 10.9956 14.2192 10.8794C14.274 10.7632 14.3014 10.6367 14.3014 10.5C14.3014 10.3633 14.274 10.2368 14.2192 10.1206C14.1644 10.0044 14.0959 9.90527 14.0137 9.82324L10.1918 6.00879C10.1096 5.92676 10.0103 5.8584 9.89384 5.80371C9.7774 5.74902 9.65068 5.72168 9.5137 5.72168C9.25342 5.72168 9.0274 5.81738 8.83562 6.00879C8.64384 6.2002 8.54794 6.42578 8.54794 6.68555V9.53613H0C0.123288 8.19629 0.486301 6.94531 1.08904 5.7832C1.67808 4.62109 2.44178 3.61279 3.38014 2.7583C4.31849 1.90381 5.39041 1.23047 6.59589 0.738281C7.81507 0.246094 9.10959 0 10.4795 0C11.9315 0 13.2945 0.273439 14.5685 0.820312C15.8425 1.38086 16.9555 2.13623 17.9075 3.08643C18.8596 4.03662 19.6096 5.14746 20.1575 6.41895C20.7192 7.69043 21 9.05078 21 10.5C21 11.9492 20.7192 13.3096 20.1575 14.5811C19.6096 15.8662 18.8596 16.9839 17.9075 17.9341C16.9555 18.8843 15.8425 19.6328 14.5685 20.1797C13.2945 20.7266 11.9315 21 10.4795 21Z" fill="#170006" />
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="xb-item--date-inner text-center">
+                                        <div class="xb-item--icon">
+                                            <img src="~/Content/img/icon/note-book.svg" alt="">
+                                        </div>
+                                        <span class="xb-item--date">@((mainDate?.ToString("dd, MMM") ?? "") ) <br> @(mainDate?.ToString("yyyy") ?? "")</span>
                                     </div>
                                 </div>
-                                <div class="xb-item--date-inner text-center">
-                                    <div class="xb-item--icon">
-                                        <img src="~/Content/img/icon/note-book.svg" alt="">
-                                    </div>
-                                    <span class="xb-item--date">24, Dec <br> 2024</span>
-                                </div>
                             </div>
-                        </div>
+                        }
                     </div>
                     <div class="event-btns pos-rel z-1 text-center mt-40">
-                        <a class="more-btn" style="color: white;" href="#!">
+                        <a class="more-btn" style="color: white;" href="@Url.Action("Index","Events")">
                             view more events
                             <span>
                                 <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -890,23 +827,23 @@
             </div>
         </section>
         <!-- event section end  -->
-
+        <!-- recent events section end  -->
     </div>
-        </main>
+</main>
 <!-- main area end  -->
 
 @section Scripts {
-<script>
-    $(document).ready(function() {
-        // Force hide preloader after 3 seconds as fallback
-        setTimeout(function() {
-            $('#preloader').fadeOut('slow', function() {
-                $(this).remove();
-            });
-        }, 3000);
+    <script>
+        $(document).ready(function () {
+            // Force hide preloader after 3 seconds as fallback
+            setTimeout(function () {
+                $('#preloader').fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            }, 3000);
 
-        // Debug: Log if events are loaded
-        console.log('Events section loaded');
-    });
-</script>
+            // Debug: Log if events are loaded
+            console.log('Events section loaded');
+        });
+    </script>
 }
