@@ -352,20 +352,26 @@
 
                     <div class="filters-actions" style="margin-top:12px; justify-content: space-between;">
                         <div style="display:flex; gap:10px; align-items:center;">
-                            <label for="sort" class="sr-only">Sort</label>
-                            @*<select id="sort" name="sort">
-                                <option value="date_desc" @(string.Equals(Model.Sort, "date_desc", System.StringComparison.OrdinalIgnoreCase) ? "selected" : "")>Newest first</option>
-                                <option value="date_asc" @(string.Equals(Model.Sort, "date_asc", System.StringComparison.OrdinalIgnoreCase) ? "selected" : "")>Oldest first</option>
-                                <option value="views_desc" @(string.Equals(Model.Sort, "views_desc", System.StringComparison.OrdinalIgnoreCase) ? "selected" : "")>Most viewed</option>
-                                <option value="title_asc" @(string.Equals(Model.Sort, "title_asc", System.StringComparison.OrdinalIgnoreCase) ? "selected" : "")>Title A–Z</option>
-                            </select>*@
-                            <label for="pageSize" class="sr-only">Page size</label>
-                            <select id="pageSize" name="pageSize">
-                                @foreach (var s in new[]{6,12,24,48})
-                                {
-                                    <option value="@s" @(Model.PageSize == s ? "selected" : "")>@s / page</option>
-                                }
-                            </select>
+                            @* BEGIN: Updated Filter Fields for Sort and PageSize *@
+                            <div class="filter-field" style="margin-bottom:0;">
+                                <label for="sort">Sort By</label>
+                                <select id="sort" name="sort">
+                                    <option value="date_desc" @(string.Equals(Model.Sort, "date_desc", System.StringComparison.OrdinalIgnoreCase) ? "selected" : "")>Newest first</option>
+                                    <option value="date_asc" @(string.Equals(Model.Sort, "date_asc", System.StringComparison.OrdinalIgnoreCase) ? "selected" : "")>Oldest first</option>
+                                    <option value="views_desc" @(string.Equals(Model.Sort, "views_desc", System.StringComparison.OrdinalIgnoreCase) ? "selected" : "")>Most viewed</option>
+                                    <option value="title_asc" @(string.Equals(Model.Sort, "title_asc", System.StringComparison.OrdinalIgnoreCase) ? "selected" : "")>Title A–Z</option>
+                                </select>
+                            </div>
+                            <div class="filter-field" style="margin-bottom:0;">
+                                <label for="pageSize">Show</label>
+                                <select id="pageSize" name="pageSize">
+                                    @foreach (var s in new[] { 6, 12, 24, 48 })
+                                    {
+                                        <option value="@s" @(Model.PageSize == s ? "selected" : "")>@s per page</option>
+                                    }
+                                </select>
+                            </div>
+                            @* END: Updated Filter Fields for Sort and PageSize *@
                         </div>
                         <div style="display:flex; gap:10px;">
                             <button type="submit" class="btn-primary-rounded">Apply</button>

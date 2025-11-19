@@ -30,7 +30,6 @@
                 <div class="container">
                     <div class="breadcrumb__content text-center">
                         <h2 class="breadcrumb__title">About us</h2>
-                        <p class="breadcrumb__desc">A Public edubost for the Public Good</p>
                     </div>
                 </div>
             </section>
@@ -41,23 +40,23 @@
                     <div class="about-info-inner ul_li_between mt-none-30">
                         <div class="about-info mt-30">
                             <h3>LOCATION</h3>
-                            <p>25/1, N.I.A. Post Office, Balewadi, Bristol – <br> BS1 5TA, England, United Kingdom</p>
+                            <p>Taxila Cantonment, Punjab, Pakistan</p>
                         </div>
                         <div class="about-info mt-30">
                             <h3>FOUNDED</h3>
-                            <p>EduFord University <br> Founded in 1970</p>
+                            <p>Established: 2007 <br />(Charter Granted: November 17, 2009)</p>
                         </div>
                         <div class="about-info mt-30">
                             <h3>CAMPUS</h3>
-                            <p>Edubost covers 1,132 acres with 107 buildings, offering 200+ <br> undergraduate majors, plus graduate and online programs.</p>
+                            <p>Urban, spread over approximately 20 acres, <br /> located at the foothills of Margalla Hills near the ancient city of Taxila.</p>
                         </div>
                     </div>
                     <div class="about-content mt-60">
-                        As a public institution, EduFord University is dedicated to fostering positive change through education. We are committed to redefining student success and enhancing our focus on research, creativity, partnerships, and community engagement. To achieve these goals, we must be both efficient and effective. Above all, it is our people—students, faculty, staff, alumni, friends, parents, families, and community members—who drive our university forward and enable us to achieve excellence.
+                        As a private sector university, HITEC University is committed to providing quality education, particularly in the fields of Engineering, Computer Science, and Management Sciences. The university offers undergraduate, postgraduate, and doctorate programs. It is recognized by the Higher Education Commission (HEC) of Pakistan and its engineering programs are accredited by the Pakistan Engineering Council (PEC). It operates with the motto, "In Truth I Triumph."
                     </div>
                     <div class="xb-video pos-rel mt-115">
-                        <img src="~/Content/img/bg/video_img.jpg" alt="">
-                        <a class="btn-video btn-video-center popup-video" href="https://www.youtube.com/watch?v=cRXm1p-CNyk"><i class="fas fa-play"></i></a>
+                        <img src="~/Content/img/about/thumbnail.jpg" alt="">
+                        <a class="btn-video btn-video-center popup-video" href="https://www.youtube.com/watch?v=pNOj9a3hOSg"><i class="fas fa-play"></i></a>
                     </div>
                 </div>
             </section>
@@ -79,7 +78,7 @@
                             <div class="mission-vission-item">
                                 <h3 class="xb-item--title">Our Mission</h3>
                                 <p class="xb-item--content">EduFord University empowers students through transformative education, promoting excellence, innovation, and societal impact.</p>
-                                <h4 class="xb-item--subtitle">With edubost, you can:</h4>
+                                <h4 class="xb-item--subtitle">With HITEC, you can:</h4>
                                 <ul class="xb-item--list list-unstyled">
                                     <li><span><img src="~/Content/img/icon/check.svg" alt=""></span>Connect with communities through service.</li>
                                     <li><span><img src="~/Content/img/icon/check.svg" alt=""></span>Advance through cutting-edge research.</li>
@@ -102,7 +101,7 @@
                             <div class="mission-vission-item">
                                 <h3 class="xb-item--title">Our Vision</h3>
                                 <p class="xb-item--content">EduFord University's vision is to lead globally in education, driving innovation and preparing students for success in a dynamic.</p>
-                                <h4 class="xb-item--subtitle">With edubost, you can:</h4>
+                                <h4 class="xb-item--subtitle">With HITEC, you can:</h4>
                                 <ul class="xb-item--list list-unstyled">
                                     <li><span><img src="~/Content/img/icon/check.svg" alt=""></span>Lead in global education and research.</li>
                                     <li><span><img src="~/Content/img/icon/check.svg" alt=""></span>Embrace new teaching methods.</li>
@@ -189,7 +188,7 @@
             </section>*@
             <!-- fanfact section end  -->
             <!-- team start -->
-            <section class="team pt-120 pb-120" data-bg-color="#F1F1E9">
+            <!--<section class="team pt-120 pb-120" data-bg-color="#F1F1E9">
                 <div class="container">
                     <div class="program-top pos-rel">
                         <div class="section-title mb-60">
@@ -203,26 +202,26 @@
                     </div>
                 </div>
                 <div class="team-slider">
-                    <div class="swiper-wrapper">
-                        @foreach (var faculty in Model)
-                        {
-                            <div class="swiper-slide">
+                    <div class="swiper-wrapper">-->
+                        @*@@foreach (var faculty in Model)
+                        {*@
+                            <!--<div class="swiper-slide">
                                 <div class="team-item">
-                                    <div class="xb-item--img pos-rel">
+                                    <div class="xb-item--img pos-rel">-->
                                         @*<img src="@(string.IsNullOrEmpty(faculty.Photo) ? Url.Content("~/Content/img/team/team_01.jpg") : Url.Content("~/Content/img/team/" + faculty.Photo))" alt="">*@
-                                        <img src="/Content/img/team/team_01.jpg" alt="">
+                                        <!--<img src="/Content/img/team/team_01.jpg" alt="">
 
                                         <div class="team-social">
                                             <ul class="xb-item--social list-unstyled">
-                                                <li><a href="mailto:@faculty.Email"><i class="far fa-envelope"></i></a></li>
+                                                <li><a href="mailto:@@faculty.Email"><i class="far fa-envelope"></i></a></li>
                                                 <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                             </ul>
                                             <span class="plus"><i class="far fa-plus"></i></span>
                                         </div>
                                     </div>
                                     <div class="xb-item--info pt-25">
-                                        <h3 class="xb-item--name">@faculty.FullName</h3>
-                                        <span class="xb-item--desig">@faculty.AdDesignation</span>
+                                        <h3 class="xb-item--name">@@faculty.FullName</h3>
+                                        <span class="xb-item--desig">@@faculty.AdDesignation</span>
                                     </div>
                                     <ul class="xb-item--meta ul_li">
                                         <li>
@@ -234,7 +233,7 @@
                                                     <path d="M13.3574 7L9.85071 10.0233V18.3406" stroke="#170006" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                     <path d="M9.85121 18.3406C10.3212 18.3406 10.7021 18.8594 10.7021 19.4994V21.7361H9.00027V19.4994C9.00027 18.8594 9.38124 18.3406 9.85121 18.3406Z" stroke="#170006" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 </svg>
-                                            </span>@faculty.Qualification
+                                            </span>@@faculty.Qualification
                                         </li>
                                         <li>
                                             <span>
@@ -246,7 +245,7 @@
                                                     <path d="M16.0625 12.0996V9.31054L9.5 11.7715V20.3848L16.0625 17.9238V14.9707" stroke="#170006" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                     <path d="M2.9375 14.9707V17.9238L9.5 20.3848V11.7715L2.9375 9.31054V12.0996" stroke="#170006" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 </svg>
-                                            </span>@faculty.Email
+                                            </span>@@faculty.Email
                                         </li>
                                     </ul>
                                 </div>
@@ -254,7 +253,7 @@
                         }
                     </div>
                 </div>
-            </section>
+            </section>-->
             <!-- team end -->
             <!-- about start -->
             <section class="about pt-120 pb-120">
@@ -262,7 +261,7 @@
                     <div class="row align-items-center mt-none-30">
                         <div class="col-xl-6 col-lg-5 mt-30">
                             <div class="about-image">
-                                <img src="~/Content/img/about/about-img03.jpg" alt="">
+                                <img src="~/Content/img/about/SPG_1934.JPG" alt="">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-7 mt-30">
