@@ -201,7 +201,7 @@
 .important-note p { color:#170006; line-height:1.8; font-size:16px; margin:0; }
 /* Contact sections (supports both hr-contact and hr-contact-box) */
 .hr-contact, .hr-contact-box { background: linear-gradient(135deg, #002155 0%, #001a44 100%); color:#fff; border-radius:16px; padding:50px; margin-top:60px; position:relative; overflow:hidden; }
-.hr-contact::before, .hr-contact-box::before { content:''; position:absolute; top:-100px; right:-100px; width:300px; height:300px; background: rgba(253,183,20,.1); border-radius:50%; }
+.hr-contact::before, .hr-contact-box::before { content:''; position:absolute; top:-100px; right:-100px; width:300px; height:300px; background: rgb(255, 178, 0); border-radius:50%; }
 .hr-contact h4, .hr-contact-box h4 { font-family:'Playfair Display',serif; color:#fdb714; margin-bottom:25px; font-size:32px; position:relative; z-index:1; }
 .hr-contact p, .hr-contact-box p { color: rgba(255,255,255,.9); font-size:16px; line-height:1.7; margin-bottom:30px; position:relative; z-index:1; }
 .contact-details, .contact-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:25px; position:relative; z-index:1; }
@@ -235,8 +235,8 @@
 .termination-box,
 .emergency-benefits { background: linear-gradient(135deg, #002155 0%, #001a44 100%); color:#fff; border-radius:16px; padding:40px; margin:50px 0; position:relative; overflow:hidden; }
 .authority-box::after { content:''; position:absolute; top:-60px; left:-60px; width:250px; height:250px; background: rgba(253,183,20,.08); border-radius:50%; }
-.penalties-box::after { content:''; position:absolute; top:-60px; right:-60px; width:250px; height:250px; background: rgba(253,183,20,.08); border-radius:50%; }
-.emergency-benefits::after { content:''; position:absolute; bottom:-60px; right:-60px; width:250px; height:250px; background: rgba(253,183,20,.08); border-radius:50%; }
+.penalties-box::after { content:''; position:absolute; top:-60px; right:-60px; width:250px; height:250px; background: rgb(255, 178, 0); border-radius:50%; }
+.emergency-benefits::after { content:''; position:absolute; bottom:-100px; right:-100px; width: 300px; height:300px; background: rgb(255, 178, 0); border-radius:50%; }
 .termination-box::after { content:''; position:absolute; bottom:-60px; left:-60px; width:250px; height:250px; background: rgba(253,183,20,.08); border-radius:50%; }
 .penalties-box h3, .authority-box h3, .termination-box h3, .emergency-benefits h3 { font-family:'Playfair Display',serif; color:#fdb714; margin-bottom:25px; font-size:32px; position:relative; z-index:1; }
 .penalties-box h4 { color:#fdb714; font-size:22px; margin:25px 0 15px 0; position:relative; z-index:1; }

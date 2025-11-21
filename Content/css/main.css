@@ -7117,6 +7117,10 @@ p, li, span {
     .xb-cta-btn .thm-btn {
         padding: 17px 38px;
     }
+    .news-grid .xb-btn .thm-btn:hover {
+        background-color: #002147;
+        color: #ffffff;
+    }
 
     .mr-set {
         margin-left: -42px;
