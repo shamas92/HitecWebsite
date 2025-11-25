@@ -947,7 +947,6 @@
     <Content Include="Content\img\departments\HOD_Photo\departmentHOD_5.jpg" />
     <Content Include="Content\img\departments\HOD_Photo\departmentHOD_6.jpg" />
     <Content Include="Content\img\departments\Success_Stories\successStoryPhoto1.JPG" />
-    <Content Include="Content\img\departments\Success_Stories\successStoryPhoto52.jpg" />
     <Content Include="Content\img\departments\Success_Stories\successStoryPhoto53.jpg" />
     <Content Include="Content\img\event\1255_eventBanner.JPG" />
     <Content Include="Content\img\event\2025-02-27 3 Layers Technology Recruitment\2025-02-27 3 Layers Technology Recruitment Drive\IMG_0795.JPG" />
@@ -1143,11 +1142,6 @@
     <Content Include="Content\img\icon\warning.png" />
     <Content Include="Content\img\logo\download.png" />
     <Content Include="Content\img\logo\HitecLogo.svg" />
-    <Content Include="Content\img\logo\logo-2.svg" />
-    <Content Include="Content\img\logo\logo.svg" />
-    <Content Include="Content\img\logo\logo_white.svg" />
-    <Content Include="Content\img\logo\preloader-2.png" />
-    <Content Include="Content\img\logo\preloader.png" />
     <Content Include="Content\img\menuicon\book-open-svgrepo-com.svg" />
     <Content Include="Content\img\menuicon\books-study-learning-education-reading-library-svgrepo-com.svg" />
     <Content Include="Content\img\menuicon\building-svgrepo-com.svg" />
