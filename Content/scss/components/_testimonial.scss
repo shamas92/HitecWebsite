@@ -115,7 +115,7 @@
     position: absolute;
     top: 50%;
     right: -8%;
-    max-height: 155px;
+    max-height: 170px;
     padding: 10px;
     @include transform(translateY(-50%));
     @include respond(xs) {
@@ -142,10 +142,7 @@
         border: 1px solid var(--color-primary);
     }
 }
-.testimonial-slider-nav .swiper-slide-active .testimonial-nav-item::before {
-	@include transform (scale(1));
-    opacity: 1;
-}
+
 .xb-testimonial-left{
 	max-width: 498px;
     margin-left: 48px;
