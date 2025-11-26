@@ -8,8 +8,9 @@
     if (Model != null) { 
         var en = Model.GetEnumerator(); 
         while (en.MoveNext()) { 
-            modelHasItems = true; 
-            break; 
+            // only consider items with Status == true as present
+            var itm = en.Current; 
+            if (itm != null && itm.Status == true) { modelHasItems = true; break; }
         } 
     } 
     var svgKeywordToFa = new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase) 
@@ -138,7 +139,7 @@
         <ul>
             @if (modelHasItems) 
             {
-                foreach (var menu in Model) 
+                foreach (var menu in Model.Where(m => m != null && m.Status == true)) 
                 {
                     bool isActive = !string.IsNullOrEmpty(currentUrl) &&
                                    (MakeAbsolute(menu.MenuLink) == currentUrl ||

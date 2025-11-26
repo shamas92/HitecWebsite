@@ -3,9 +3,11 @@
 
 <nav class="xb-header-nav">
     <ul class="xb-menu-primary clearfix">
-        @{ bool eventsMenuFound = false; HitecCM.Models.tblMenus eventsMenu = null; var tempList = new List<tblMenus>(); if (Model != null) { var en = Model.GetEnumerator(); while (en.MoveNext()) { var m = en.Current; if (m != null) { if (string.Equals(m.MenuName, "Events", StringComparison.OrdinalIgnoreCase)) { eventsMenuFound = true; eventsMenu = m; } tempList.Add(m); } } } tempList.Sort((a,b)=>{ var ao = a?.SortingOrder ?? int.MaxValue; var bo = b?.SortingOrder ?? int.MaxValue; return ao.CompareTo(bo); }); var sortedMenus = tempList; }
+        @{ bool eventsMenuFound = false; HitecCM.Models.tblMenus eventsMenu = null; var tempList = new List<tblMenus>(); if (Model != null) { var en = Model.GetEnumerator(); while (en.MoveNext()) { var m = en.Current; if (m != null) { if (m.Status == true) { if (string.Equals(m.MenuName, "Events", StringComparison.OrdinalIgnoreCase)) { eventsMenuFound = true; eventsMenu = m; } tempList.Add(m); } } } } tempList.Sort((a,b)=>{ var ao = a?.SortingOrder ?? int.MaxValue; var bo = b?.SortingOrder ?? int.MaxValue; return ao.CompareTo(bo); }); var sortedMenus = tempList; }
         @foreach (var menu in sortedMenus)
         {
+            if (menu == null || menu.Status != true) { continue; }
+
             if (eventsMenuFound && eventsMenu != null && menu.MenuID == eventsMenu.MenuID)
             {
                 <li class="menu-item menu-item-has-children @(IsMenuActive(eventsMenu) || Request.Url.AbsolutePath.StartsWith("/Events") ? "active" : "")">
@@ -15,14 +17,14 @@
                 </li>
                 continue;
             }
-            var hasChildren = menu.ChildMenus != null && menu.ChildMenus.Count > 0;
+            var hasChildren = menu.ChildMenus != null && menu.ChildMenus.Count > 0 && menu.ChildMenus.Any(c=>c != null && c.Status == true);
             <li class="menu-item @(hasChildren ? "menu-item-has-children" : "") @(IsMenuActive(menu) ? "active" : "")">
                 @{ var effectiveMenuLink = GetEffectiveMenuLink(menu); }
                 @if (!string.IsNullOrEmpty(effectiveMenuLink)) { <a href="@effectiveMenuLink">@menu.MenuName</a> } else { <a href="#">@menu.MenuName</a> }
                 @if (hasChildren)
                 {
                     <ul class="sub-menu">
-                        @foreach (var childMenu in menu.ChildMenus)
+                        @foreach (var childMenu in menu.ChildMenus.Where(cm => cm != null && cm.Status == true))
                         {
                             var childHasChildren = childMenu.ChildMenus != null && childMenu.ChildMenus.Count > 0;
                             var effectiveChildLink = GetEffectiveMenuLink(childMenu);
@@ -31,7 +33,7 @@
                                 @if (childHasChildren)
                                 {
                                     <ul class="sub-menu">
-                                        @foreach (var grandChildMenu in childMenu.ChildMenus)
+                                        @foreach (var grandChildMenu in childMenu.ChildMenus.Where(gcm => gcm != null && gcm.Status == true))
                                         {
                                             var effectiveGrandChildLink = GetEffectiveMenuLink(grandChildMenu, childMenu);
                                             <li class="menu-item @(IsGrandChildMenuActive(grandChildMenu, childMenu) ? "active" : "")">

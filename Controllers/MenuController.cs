@@ -266,9 +266,9 @@ namespace Website.Controllers
         private void LoadChildMenusRecursively(tblMenus menu, string menuType)
         {
             try {
-                // Get all child menus of the current menu with the same MenuType
+                // Get all child menus of the current menu with the same MenuType and active status
                 var children = db.tblMenus
-                    .Where(m => m.ParentMenuID == menu.MenuID && m.MenuType.MenuTypeName == menuType)
+                    .Where(m => m.ParentMenuID == menu.MenuID && m.MenuType.MenuTypeName == menuType && m.Status == true)
                     .OrderBy(m => m.SortingOrder)
                     .ToList();
 

@@ -33,6 +33,9 @@ namespace HitecCM.Models
         [Required(ErrorMessage = "Menu Type is required")]
         public int MenuTypeID { get; set; }
 
+        // Status column (bit) -> nullable bool to match DB flexibility
+        public bool? Status { get; set; }
+
         // Navigation properties
         [ForeignKey("MenuTypeID")]
         public virtual tblMenuType MenuType { get; set; }
@@ -43,4 +46,4 @@ namespace HitecCM.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblMenus> ChildMenus { get; set; }
     }
-} 
+}

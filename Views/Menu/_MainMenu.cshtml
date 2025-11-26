@@ -12,7 +12,7 @@
             while (enumerator.MoveNext())
             {
                 var m = enumerator.Current;
-                if (m != null)
+                if (m != null && m.Status == true)
                 {
                     if (string.Equals(m.MenuName, "Events", StringComparison.OrdinalIgnoreCase)) { eventsMenuFound = true; eventsMenu = m; }
                     tempList.Add(m);
@@ -52,7 +52,7 @@
             continue;
         }
 
-        var hasChildren = menu.ChildMenus != null && menu.ChildMenus.Count > 0;
+        var hasChildren = menu.ChildMenus != null && menu.ChildMenus.Count > 0 && menu.ChildMenus.Any(c => c != null && c.Status == true);
         <li class="@(hasChildren ? "menu-item-has-children" : "menu-item") @(IsMenuActive(menu) ? "active" : "")">
             @{ var effectiveMenuLink = GetEffectiveMenuLink(menu); }
             @if (!string.IsNullOrEmpty(effectiveMenuLink))
@@ -74,7 +74,7 @@
             @if (hasChildren)
             {
                 <ul class="submenu">
-                    @foreach (var childMenu in menu.ChildMenus)
+                    @foreach (var childMenu in menu.ChildMenus.Where(cm => cm != null && cm.Status == true))
                     {
                         var childHasChildren = childMenu.ChildMenus != null && childMenu.ChildMenus.Count > 0;
                         var effectiveChildLink = GetEffectiveMenuLink(childMenu);
@@ -91,7 +91,7 @@
                             @if (childHasChildren)
                             {
                                 <ul class="submenu">
-                                    @foreach (var grandChildMenu in childMenu.ChildMenus)
+                                    @foreach (var grandChildMenu in childMenu.ChildMenus.Where(gcm => gcm != null && gcm.Status == true))
                                     {
                                         var effectiveGrandChildLink = GetEffectiveMenuLink(grandChildMenu, childMenu);
                                         <li class="@(IsGrandChildMenuActive(grandChildMenu, childMenu) ? "active" : "")">

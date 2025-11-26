@@ -1,6 +1,6 @@
 @model IEnumerable<HitecCM.Models.tblMenus>
 
-@foreach (var menu in Model)
+@foreach (var menu in Model.Where(m => m != null && m.Status == true))
 {
     <li>
         @if (!string.IsNullOrEmpty(menu.MenuLink))

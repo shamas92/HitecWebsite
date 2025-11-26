@@ -1,6 +1,6 @@
 @model IEnumerable<HitecCM.Models.tblMenus>
 
-@foreach (var menu in Model)
+@foreach (var menu in Model?.Where(m => m != null && m.Status == true) ?? Enumerable.Empty<HitecCM.Models.tblMenus>())
 {
     <li class="menu-item menu-item-has-children @(ViewContext.RouteData.Values["controller"].ToString() == menu.MenuName ? "active" : "")">
         @if (!string.IsNullOrEmpty(menu.MenuLink))
@@ -12,10 +12,10 @@
             <a href="#">@menu.MenuName</a>
         }
         
-        @if (menu.ChildMenus != null && menu.ChildMenus.Any())
+        @if (menu.ChildMenus != null && menu.ChildMenus.Any(c => c != null && c.Status == true))
         {
             <ul class="sub-menu">
-                @foreach (var childMenu in menu.ChildMenus)
+                @foreach (var childMenu in menu.ChildMenus.Where(cm => cm != null && cm.Status == true))
                 {
                     <li class="menu-item @(ViewContext.RouteData.Values["action"].ToString() == childMenu.MenuName && ViewContext.RouteData.Values["controller"].ToString() == menu.MenuName ? "active" : "")">
                         @if (!string.IsNullOrEmpty(childMenu.MenuLink))
