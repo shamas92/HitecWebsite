@@ -3700,7 +3700,7 @@ p, li, span {
 
         @media (max-width: 991px) {
             .header-area .xb-header {
-                padding: 15px 0;
+                padding: 0 0;
             }
         }
 
@@ -11733,7 +11733,7 @@ p, li, span {
         }
 
             .xb-logo-mobile img {
-                height: 40px;
+                height: 60px;
             }
 
         .xb-header-mobile-search {
