@@ -41,12 +41,26 @@ namespace Website.Controllers
                         .Take(15) // take a little extra so we can skip first 5 for bottom section
                         .ToList();
 
+                    // Campus News: latest 5 events strictly before today
+                    var campusNews = latest
+                        .Where(e => (e.EventDate ?? e.Date) < now)
+                        .OrderByDescending(e => e.EventDate ?? e.Date)
+                        .ThenByDescending(e => e.EventID)
+                        .Take(5)
+                        .ToList();
+
                     // Prepare events for bottom Recent Events section ensuring they are different from Campus News
-                    var recentAfterTopFive = latest.Skip(5).Take(4).ToList();
+                    var recentAfterTopFive = latest
+                        .Where(e => (e.EventDate ?? e.Date) < now)
+                        .OrderByDescending(e => e.EventDate ?? e.Date)
+                        .ThenByDescending(e => e.EventID)
+                        .Skip(5)
+                        .Take(4)
+                        .ToList();
 
                     var vm = new HomeIndexViewModel
                     {
-                        LatestEvents = latest.Take(10).ToList(), // keep existing logic for Campus News
+                        LatestEvents = campusNews,
                         UpcomingEvents = upcoming,
                         RecentEventsForBottom = recentAfterTopFive
                     };

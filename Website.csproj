@@ -266,6 +266,7 @@
     <Content Include="Content\css\recoleta-font.css" />
     <Content Include="Content\css\sidebar-menu.css" />
     <Content Include="Content\css\swiper.min.css" />
+    <Content Include="Content\css\upcoming-events.css" />
     <Content Include="Content\img\about\about-img01.jpg" />
     <Content Include="Content\img\about\about-img02.png" />
     <Content Include="Content\img\about\about-img03.jpg" />

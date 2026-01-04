@@ -42,7 +42,7 @@
                         position: relative;
                         border-radius: var(--radius);
                         overflow: hidden;
-                        background: #121212;
+                        background: radial-gradient(1200px 600px at 10% 10%, rgb(55 155 255 / 22%) 0%, rgb(76 159 255 / 0%) 45%), linear-gradient(180deg, #05090c 0%, #227bc7 55%, #002f6f 100%);
                         box-shadow: 0 10px 30px rgba(0,0,0,.15)
                     }
 
@@ -146,6 +146,96 @@
             </div>
         </section>
         <!-- blog/news section end  -->
+
+        <!-- upcoming events section start -->
+        <section class="upcoming-events pt-115">
+            <div class="container upcoming-events__grid">
+                <div class="blog-sec-top ul_li_between">
+                    <div class="section-title mb-40">
+                        <span class="sub-title">Don’t miss out</span>
+                        <h1 class="title">Upcoming Events</h1>
+                    </div>
+                </div>
+
+                @{
+                    var upcoming = Model.UpcomingEvents ?? new List<Website.Models.tblEvent>();
+                }
+
+                <div class="row justify-content-center">
+                    @if (upcoming.Any())
+                    {
+                        foreach (var ev in upcoming)
+                        {
+                            var hasBanner = !string.IsNullOrWhiteSpace(ev.Banner);
+                            var imgSrc = !hasBanner
+                                ? Url.Content("~/Content/img/departments/Events/placeholder.jpg")
+                                : Url.Content("~/Content/img/departments/Events/" + ev.Banner);
+
+                            var dateVal = (ev.EventDate ?? ev.Date);
+                            var dateText = dateVal != null ? dateVal.Value.ToString("dd MMM yyyy") : "";
+                            var locationText = !string.IsNullOrWhiteSpace(ev.Venue) ? ev.Venue : "HITEC University, Taxila Cantt";
+                            var daysLeft = dateVal != null ? (int)Math.Ceiling((dateVal.Value.Date - DateTime.Today).TotalDays) : (int?)null;
+                            var countdownText = daysLeft != null && daysLeft.Value >= 0 ? (daysLeft.Value == 0 ? "Today" : (daysLeft.Value == 1 ? "1 day left" : daysLeft.Value + " days left")) : "";
+
+                            <div class="col-lg-4 col-md-6 mt-30">
+                                <div class="upcoming-events__card @(hasBanner ? "" : "upcoming-events__card--noBanner")">
+                                    <div class="upcoming-events__cardInner">
+                                        <div class="upcoming-events__cardFace upcoming-events__cardFace--front">
+                                            <a href="@Url.Action("Details","Events", new { id = ev.EventID })" class="d-block" style="height:100%;">
+                                                <img class="upcoming-events__img" src="@imgSrc" alt="@ev.Title" />
+                                                <div class="upcoming-events__frontOverlay">
+                                                    <div class="upcoming-events__frontTop">
+                                                        <span class="upcoming-events__badge">#@(ev.tblEventHead?.Title ?? "Event")</span>
+                                                        @if (!string.IsNullOrEmpty(countdownText))
+                                                        {
+                                                            <span class="upcoming-events__countdown">@countdownText</span>
+                                                        }
+                                                    </div>
+                                                    <h3 class="upcoming-events__title border-effect-2">
+                                                        <span>@(ev.Title != null && ev.Title.Length > 55 ? ev.Title.Substring(0, 55) + ".." : ev.Title)</span>
+                                                    </h3>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="upcoming-events__cardFace upcoming-events__cardFace--back">
+                                            <div class="upcoming-events__backContent">
+                                                <div class="upcoming-events__backHeader">
+                                                    <span class="upcoming-events__badge upcoming-events__badge--solid">#@(ev.tblEventHead?.Title ?? "Event")</span>
+                                                    <h3 class="upcoming-events__backTitle">@ev.Title</h3>
+                                                </div>
+                                                <div class="upcoming-events__meta">
+                                                    <div class="upcoming-events__metaItem">
+                                                        <i class="far fa-calendar"></i>
+                                                        <span>@dateText</span>
+                                                    </div>
+                                                    <div class="upcoming-events__metaItem">
+                                                        <i class="far fa-map-marker-alt"></i>
+                                                        <span>@locationText</span>
+                                                    </div>
+                                                </div>
+                                                <div class="upcoming-events__link">
+                                                    <a class="thm-btn" href="@Url.Action("Details","Events", new { id = ev.EventID })">View Details<span class="icon"></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-12">
+                            <p>No upcoming events to display at this time.</p>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </section>
+        <!-- upcoming events section end -->
+
         <!-- department section start  -->
         <style>
             /* Department icons default and hover */
