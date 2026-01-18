@@ -54,7 +54,7 @@
 .financial-intro p,.refund-intro p,.fines-intro p,.accommodation-intro p,.transport-intro p{color:#5c5c54;line-height:1.75;margin:0;font-size:15px}
 
 /* Charge Display Boxes */
-.charge-display{background:#fff;border-radius:12px;box-shadow:0 5px 20px rgba(0,33,85,.08);padding:24px;text-align:center;margin-bottom:24px;border-top:4px solid #fdb714}
+.charge-display{background:#fff;border-radius:12px;box-shadow: 0 5px 20px #d4d4d4;;padding:24px;text-align:center;margin-bottom:24px;}
 .charge-display h4{color:#002155;font-size:18px;font-weight:600;margin-bottom:12px}
 .charge-display .amount-large{font-size:36px;font-weight:700;color:#002155;display:block}
 .charge-display .amount-sub{font-size:14px;color:#5c5c54;margin-top:8px}

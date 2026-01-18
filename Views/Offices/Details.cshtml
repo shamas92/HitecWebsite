@@ -1,0 +1,294 @@
+@model HitecCM.Controllers.OfficeInfo
+@{
+    ViewBag.Title = Model.Name + " Office";
+    ViewBag.MetaDescription = Model.FullDesc;
+    ViewBag.MetaKeywords = "HITEC University, " + Model.Name + " office, administration, " + Model.Name.ToLower();
+    var allOffices = ViewBag.AllOffices as List<HitecCM.Controllers.OfficeInfo> ?? new List<HitecCM.Controllers.OfficeInfo>();
+}
+
+@section Styles {
+    <link href="~/Content/css/admissions.css" rel="stylesheet" />
+    <style>
+        .offices-details-section {
+            background: var(--color-sec-bg);
+        }
+
+        .fund-card {
+            margin-bottom: 24px;
+        }
+
+        .back-link-wrapper {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        /* Prevent sidebar expansion on hover */
+        .offices-details-section .faculty-sidebar__menu a {
+            padding-left: 20px !important;
+            transition: background .2s ease, color .2s ease;
+        }
+
+        .offices-details-section .faculty-sidebar__menu a:hover {
+            padding-left: 20px !important;
+        }
+    </style>
+}
+
+@section Meta {
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta property="og:title" content="@ViewBag.Title - HITEC University" />
+    <meta property="og:description" content="@ViewBag.MetaDescription" />
+    <meta property="og:type" content="website" />
+}
+
+<div class="body_wrap">
+    <main aria-labelledby="title">
+        <!-- breadcrumb start -->
+        <section class="breadcrumb bg_img ul_li" data-background="/Content/img/bg/about_bg.jpg">
+            <div class="container">
+                <div class="breadcrumb__content text-center">
+                    <h1 class="breadcrumb__title mt-25">@Model.Name Office</h1>
+                    <p class="breadcrumb__desc mb-50">@Model.Desc</p>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+
+        <!-- content start -->
+        <section class="offices-details-section pt-115 pb-120">
+            <div class="container">
+                <!-- Hero Section -->
+                <div class="fund-hero">
+                    <span class="subtitle">HITEC University</span>
+                    <h1>@Model.Name Office</h1>
+                    <div class="accent-line"></div>
+                    <p>@Model.Desc</p>
+                </div>
+
+                <div class="faculty-page-layout">
+                    <!-- Main Content -->
+                    <div class="faculty-page-content">
+                        <!-- About Card -->
+                        <div class="fund-card">
+                            <div class="fund-header">
+                                <div class="fund-badge">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <h3 class="fund-title">About This Office</h3>
+                            </div>
+                            <div class="fund-content">
+                                <p>@Model.FullDesc</p>
+                            </div>
+                        </div>
+
+                        <!-- Contact Information Card -->
+                        <div class="fund-card">
+                            <div class="fund-header">
+                                <div class="fund-badge">
+                                    <i class="fas fa-address-card"></i>
+                                </div>
+                                <h3 class="fund-title">Contact Information</h3>
+                            </div>
+                            <div class="fund-content">
+                                <div class="charges-grid">
+                                    <div class="charge-display">
+                                        <h4><i class="fas fa-phone" style="color: #002155; margin-right: 10px;"></i> Phone</h4>
+                                        <span class="amount-large" style="font-size: 18px;">@Model.Phone</span>
+                                    </div>
+                                    <div class="charge-display">
+                                        <h4><i class="fas fa-envelope" style="color: #002155; margin-right: 10px;"></i> Email</h4>
+                                        <span class="amount-large" style="font-size: 18px;">@Model.Email</span>
+                                    </div>
+                                    <div class="charge-display">
+                                        <h4><i class="fas fa-map-marker-alt" style="color: #002155; margin-right: 10px;"></i> Location</h4>
+                                        <span class="amount-large" style="font-size: 18px;">@Model.Location</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Office Hours Card -->
+                        <div class="fund-card">
+                            <div class="fund-header">
+                                <div class="fund-badge">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <h3 class="fund-title">Office Hours</h3>
+                            </div>
+                            <div class="fund-content">
+                                <table class="fee-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Day</th>
+                                            <th>Hours</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Monday - Friday</td>
+                                            <td>8:00 AM - 4:00 PM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Saturday</td>
+                                            <td>Closed</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sunday</td>
+                                            <td>Closed</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Back Link -->
+                        <div class="back-link-wrapper">
+                            <a class="thm-btn" href="@Url.Action("Index", "Offices")">
+                                <i class="fas fa-arrow-left" style="margin-right: 10px;"></i> Back to All Offices
+                                <span class="icon"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <div class="faculty-page-sidebar">
+                        <div class="faculty-sidebar">
+                            <h3 class="faculty-sidebar__title">@Model.Name Office</h3>
+                            <ul class="faculty-sidebar__menu">
+                                @switch (Model.Id)
+                                {
+                                    case "admission":
+                                        <li><a href="#" class="active">Overview</a></li>
+                                        <li><a href="@Url.Action("FeeStructure", "Admission")">Fee Structure</a></li>
+                                        <li><a href="@Url.Action("FinancialAssistance", "Admission")">Financial Assistance</a></li>
+                                        <li><a href="@Url.Action("AcademicCalendar", "Admission")">Academic Calendar</a></li>
+                                        <li><a href="@Url.Action("RefundPolicy", "Admission")">Refund Policy</a></li>
+                                        <li><a href="@Url.Action("AcademicRegulations", "Admission")">Academic Regulations</a></li>
+                                        <li><a href="#">Eligibility Criteria</a></li>
+                                        <li><a href="#">Required Documents</a></li>
+                                        <li><a href="https://admissions.hitecuni.edu.pk/" target="_blank">Apply Online</a></li>
+                                        break;
+                                    case "exam":
+                                        <li><a href="#" class="active">Overview</a></li>
+                                        <li><a href="#">Datesheet</a></li>
+                                        <li><a href="#">Results</a></li>
+                                        <li><a href="#">Transcript Request</a></li>
+                                        <li><a href="#">Exam Rules</a></li>
+                                        <li><a href="#">Rechecking Policy</a></li>
+                                        <li><a href="#">Grade Appeal</a></li>
+                                        <li><a href="#">Supplementary Exams</a></li>
+                                        <li><a href="#">Degree Issuance</a></li>
+                                        break;
+                                    case "accounts":
+                                        <li><a href="#" class="active">Overview</a></li>
+                                        <li><a href="@Url.Action("FeeStructure", "Admission")">Fee Structure</a></li>
+                                        <li><a href="#">Fee Payment Methods</a></li>
+                                        <li><a href="@Url.Action("RefundPolicy", "Admission")">Refund Policy</a></li>
+                                        <li><a href="@Url.Action("Fines", "Admission")">Fines & Penalties</a></li>
+                                        <li><a href="#">Fee Challan Download</a></li>
+                                        <li><a href="#">Payment Plans</a></li>
+                                        <li><a href="#">Tax Certificates</a></li>
+                                        <li><a href="#">Financial Clearance</a></li>
+                                        break;
+                                    case "admin":
+                                        <li><a href="#" class="active">Overview</a></li>
+                                        <li><a href="#">HR Services</a></li>
+                                        <li><a href="#">Facility Booking</a></li>
+                                        <li><a href="#">Campus Map</a></li>
+                                        <li><a href="#">Visitor Information</a></li>
+                                        <li><a href="#">ID Card Services</a></li>
+                                        <li><a href="#">Lost & Found</a></li>
+                                        <li><a href="#">Parking Services</a></li>
+                                        <li><a href="#">Security Office</a></li>
+                                        break;
+                                    case "dsa":
+                                        <li><a href="#" class="active">Overview</a></li>
+                                        <li><a href="#">Student Societies</a></li>
+                                        <li><a href="#">Sports Activities</a></li>
+                                        <li><a href="#">Counseling Services</a></li>
+                                        <li><a href="#">Student Grievances</a></li>
+                                        <li><a href="#">Event Calendar</a></li>
+                                        <li><a href="#">Character Certificate</a></li>
+                                        <li><a href="#">Health Services</a></li>
+                                        <li><a href="#">Career Guidance</a></li>
+                                        break;
+                                    case "qac":
+                                        <li><a href="#" class="active">Overview</a></li>
+                                        <li><a href="#">Quality Reports</a></li>
+                                        <li><a href="#">Accreditation Status</a></li>
+                                        <li><a href="#">HEC Compliance</a></li>
+                                        <li><a href="#">Faculty Evaluation</a></li>
+                                        <li><a href="#">Program Reviews</a></li>
+                                        <li><a href="#">Quality Standards</a></li>
+                                        <li><a href="#">Institutional Audits</a></li>
+                                        <li><a href="#">Feedback Forms</a></li>
+                                        break;
+                                    case "library":
+                                        <li><a href="#" class="active">Overview</a></li>
+                                        <li><a href="#">E-Resources</a></li>
+                                        <li><a href="#">Book Catalog</a></li>
+                                        <li><a href="#">Research Databases</a></li>
+                                        <li><a href="#">Library Rules</a></li>
+                                        <li><a href="#">Digital Library</a></li>
+                                        <li><a href="#">Journals & Periodicals</a></li>
+                                        <li><a href="#">Study Rooms</a></li>
+                                        <li><a href="#">Interlibrary Loan</a></li>
+                                        break;
+                                    case "hope":
+                                        <li><a href="#" class="active">Overview</a></li>
+                                        <li><a href="#">Short Courses</a></li>
+                                        <li><a href="#">Certifications</a></li>
+                                        <li><a href="#">Professional Training</a></li>
+                                        <li><a href="#">Corporate Training</a></li>
+                                        <li><a href="#">Workshop Calendar</a></li>
+                                        <li><a href="#">Online Courses</a></li>
+                                        <li><a href="#">Fee & Registration</a></li>
+                                        <li><a href="https://hope.hitecuni.edu.pk/" target="_blank">HOPE Portal</a></li>
+                                        break;
+                                    case "oric":
+                                        <li><a href="#" class="active">Overview</a></li>
+                                        <li><a href="#">Research Grants</a></li>
+                                        <li><a href="#">Publications</a></li>
+                                        <li><a href="#">Industry Partnerships</a></li>
+                                        <li><a href="#">Conferences & Seminars</a></li>
+                                        <li><a href="#">Patent Filing</a></li>
+                                        <li><a href="#">Research Groups</a></li>
+                                        <li><a href="#">Funding Opportunities</a></li>
+                                        <li><a href="#">Commercialization</a></li>
+                                        break;
+                                    case "dasr":
+                                        <li><a href="#" class="active">Overview</a></li>
+                                        <li><a href="@Url.Action("FinancialAssistance", "Admission")">Scholarships</a></li>
+                                        <li><a href="#">Course Registration</a></li>
+                                        <li><a href="#">Degree Verification</a></li>
+                                        <li><a href="#">Academic Transcripts</a></li>
+                                        <li><a href="#">Enrollment Certificate</a></li>
+                                        <li><a href="#">Add/Drop Courses</a></li>
+                                        <li><a href="#">Semester Freeze</a></li>
+                                        <li><a href="#">Migration Certificate</a></li>
+                                        break;
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- content end -->
+    </main>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('#preloader').fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            }, 500);
+        });
+    </script>
+}

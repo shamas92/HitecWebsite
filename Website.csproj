@@ -142,6 +142,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AdmissionController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\OfficesController.cs" />
     <Compile Include="Controllers\PolicyController.cs" />
     <Compile Include="Controllers\DownloadsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -263,6 +264,7 @@
     <Content Include="Content\css\news-marquee.css" />
     <Content Include="Content\css\nice-select.css" />
     <Content Include="Content\css\odometer.css" />
+    <Content Include="Content\css\offices.css" />
     <Content Include="Content\css\recoleta-font.css" />
     <Content Include="Content\css\sidebar-menu.css" />
     <Content Include="Content\css\swiper.min.css" />
@@ -1151,6 +1153,7 @@
     <Content Include="Content\img\menuicon\info-svgrepo-com.svg" />
     <Content Include="Content\img\menuicon\jobs-open-svgrepo-com.svg" />
     <Content Include="Content\img\menuicon\mortarboard-graduate-svgrepo-com.svg" />
+    <Content Include="Content\img\menuicon\office-building-svgrepo-com.svg" />
     <Content Include="Content\img\menuicon\users-svgrepo-com.svg" />
     <Content Include="Content\img\news\hs-news_img01.jpg" />
     <Content Include="Content\img\news\hs-news_img02.jpg" />
@@ -1377,6 +1380,8 @@
     <Content Include="Views\Faculties\FacilityDetails.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Events\_EventsList.cshtml" />
+    <Content Include="Views\Offices\Index.cshtml" />
+    <Content Include="Views\Offices\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

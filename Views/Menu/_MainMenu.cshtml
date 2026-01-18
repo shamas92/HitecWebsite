@@ -115,6 +115,13 @@
             @Html.Action("GetLatestEvents", "Events")
         </li>
     }
+
+    <li class="menu-item @(Request?.Url?.AbsolutePath != null && Request.Url.AbsolutePath.StartsWith("/Offices", StringComparison.OrdinalIgnoreCase) ? "active" : "")">
+        <a href="@Url.Action("Index", "Offices")">
+            @if (!string.IsNullOrEmpty("office-building-svgrepo-com.svg")) { <img src="@Url.Content("~/Content/img/menuicon/office-building-svgrepo-com.svg")" class="menu-icon" alt="Offices icon" /> <br /> }
+            <span>Offices</span>
+        </a>
+    </li>
 </ul>
 
 @functions {

@@ -1,0 +1,203 @@
+@model IEnumerable<HitecCM.Controllers.OfficeInfo>
+@{
+    ViewBag.Title = "Offices";
+    ViewBag.MetaDescription = "HITEC University administrative offices including Admission, Exam, Accounts, Admin, DSA, QA&C, Library, HOPE, ORIC and DASR.";
+    ViewBag.MetaKeywords = "HITEC University, offices, administration, admission office, exam office, accounts, library, ORIC, DASR";
+}
+
+@section Styles {
+    <link href="~/Content/css/admissions.css" rel="stylesheet" />
+    <link href="~/Content/css/upcoming-events.css" rel="stylesheet" />
+    <style>
+        /* Offices page card overrides */
+        .offices-card {
+            cursor: pointer;
+        }
+
+        .offices-card .upcoming-events__frontOverlay {
+            top: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(0,0,0,.3) 0%, rgba(0,0,0,.6) 100%);
+        }
+
+        .offices-card .upcoming-events__frontTop {
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+
+        .offices-card .upcoming-events__title {
+            font-size: 32px;
+            margin-bottom: 14px;
+        }
+
+        .offices-card .upcoming-events__desc {
+            font-size: 16px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, .9);
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .offices-card .upcoming-events__hint {
+            margin-top: 18px;
+        }
+
+        .offices-card .upcoming-events__backContent {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .offices-card .upcoming-events__backTitle {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .offices-card .upcoming-events__meta {
+            font-size: 16px;
+            max-width: 300px;
+        }
+
+        .offices-card .upcoming-events__backHeader {
+            align-items: center;
+        }
+
+        .offices-card .upcoming-events__clickHint {
+            margin-top: 20px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, .8);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .offices-card .upcoming-events__clickHint i {
+            font-size: 16px;
+        }
+
+        .offices-card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .offices-card-link:hover {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+}
+
+@section Meta {
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta property="og:title" content="@ViewBag.Title - HITEC University" />
+    <meta property="og:description" content="@ViewBag.MetaDescription" />
+    <meta property="og:type" content="website" />
+}
+
+<div class="body_wrap">
+    <main aria-labelledby="title">
+        <!-- breadcrumb start -->
+        <section class="breadcrumb bg_img ul_li" data-background="/Content/img/bg/about_bg.jpg">
+            <div class="container">
+                <div class="breadcrumb__content text-center">
+                    <h1 class="breadcrumb__title mt-25">Offices</h1>
+                    <p class="breadcrumb__desc mb-50">Administrative & Support Services</p>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+
+        <!-- content start -->
+        <section class="upcoming-events pt-115 pb-120">
+            <div class="container upcoming-events__grid">
+                <!-- Hero Section -->
+                <div class="fund-hero">
+                    <span class="subtitle">HITEC University</span>
+                    <h1>University Offices</h1>
+                    <div class="accent-line"></div>
+                    <p>HITEC University's administrative offices are dedicated to providing efficient services to students, faculty, and staff. Each office plays a vital role in ensuring smooth university operations and supporting academic excellence.</p>
+                </div>
+
+                <!-- Offices Grid -->
+                <div class="row justify-content-center">
+                    @foreach (var office in Model)
+                    {
+                        <div class="col-lg-4 col-md-6 mt-30">
+                            <a href="@Url.Action("Details", "Offices", new { id = office.Id })" class="offices-card-link">
+                                <div class="upcoming-events__card upcoming-events__card--noBanner offices-card">
+                                    <div class="upcoming-events__cardInner">
+                                        <div class="upcoming-events__cardFace upcoming-events__cardFace--front">
+                                            <div class="upcoming-events__frontOverlay">
+                                                <h3 class="upcoming-events__title border-effect-2">
+                                                    <span>@office.Name</span>
+                                                </h3>
+                                                <p class="upcoming-events__desc">@office.Desc</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="upcoming-events__cardFace upcoming-events__cardFace--back">
+                                            <div class="upcoming-events__backContent">
+                                                <div class="upcoming-events__backHeader">
+                                                    <h3 class="upcoming-events__backTitle">@office.Name</h3>
+                                                </div>
+                                                <div class="upcoming-events__meta">
+                                                    <p style="margin: 0;">Click to view full details</p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+
+                <!-- Contact Section -->
+                <div class="hr-contact-box" style="margin-top: 60px;">
+                    <h4>Need Assistance?</h4>
+                    <p>For general inquiries or to locate a specific office, please contact our main reception or visit the respective office during working hours.</p>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+92-51-9047851-60</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@hitecuni.edu.pk</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Mon - Fri: 8:00 AM - 4:00 PM</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>HITEC University, Taxila Cantt</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- content end -->
+    </main>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('#preloader').fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            }, 500);
+        });
+    </script>
+}
